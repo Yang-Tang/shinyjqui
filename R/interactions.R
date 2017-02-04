@@ -18,35 +18,35 @@ NULL
 #' @rdname Interactions_initializer
 #' @export
 jqui_resizabled <- function(tag, options = NULL) {
-  uiInteract(tag, 'resizable', options)
+  addInteractJS(tag, 'resizable', options)
 }
 
 
 #' @rdname Interactions_initializer
 #' @export
 jqui_sortabled <- function(tag, options = NULL) {
-  uiInteract(tag, 'sortable', options)
+  addInteractJS(tag, 'sortable', options)
 }
 
 
 #' @rdname Interactions_initializer
 #' @export
 jqui_draggabled <- function(tag, options = NULL) {
-  uiInteract(tag, 'draggable', options)
+  addInteractJS(tag, 'draggable', options)
 }
 
 
 #' @rdname Interactions_initializer
 #' @export
 jqui_droppabled <- function(tag, options = NULL) {
-  uiInteract(tag, 'droppable', options)
+  addInteractJS(tag, 'droppable', options)
 }
 
 
 #' @rdname Interactions_initializer
 #' @export
 jqui_selectabled <- function(tag, options = NULL) {
-  uiInteract(tag, 'selectable', options)
+  addInteractJS(tag, 'selectable', options)
 }
 
 

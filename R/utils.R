@@ -23,11 +23,11 @@ randomChars <- function() {
   paste0(sample(c(letters, LETTERS, 0:9), size = 8, replace = TRUE), collapse = '')
 }
 
-uiInteract <- function(tag, func, options = NULL) {
+addInteractJS <- function(tag, func, options = NULL) {
 
   if(inherits(tag, 'shiny.tag.list')) {
 
-    x <- lapply(tag, uiInteract, func = func, options = options)
+    x <- lapply(tag, addInteractJS, func = func, options = options)
     # set the original attributes like class (shiny.tag.list) and
     # html_dependencies (for htmlwidgets) back
     attributes(x) <- attributes(tag)
