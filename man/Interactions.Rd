@@ -39,13 +39,13 @@ jqui_resizable(selector, switch = TRUE, options = NULL)
 
 \item{options}{A list of interaction options. Ignored when \code{switch} is
 set as \code{FALSE}. In addition to the
-(\href{http://api.jqueryui.com/category/interactions/}{internal options}),
+\href{http://api.jqueryui.com/category/interactions/}{internal options},
 this parameter also accept a shiny option that controls the shiny input
 value returned from the element.}
 
 \item{selector}{A \href{https://api.jquery.com/category/selectors/}{jQuery's
 selector} that determines the shiny tag element(s) whose interaction is
-enable or disable interactions.}
+to be enabled or disabled.}
 
 \item{switch}{A boolean value to determine whether to enable or disable an
 interaction.}
