@@ -8,32 +8,6 @@
 }
 
 
-
-
-getId <- function(target) {
-  id <- target$attribs$id
-
-  if(!is.null(id)) {
-
-    return(id)
-
-  } else if('children' %in% names(target)) {
-
-    for(child in target$children) {
-      if(!is.list(child)) next
-      child_id <- getId(child)
-      if(!is.null(child_id)) return(child_id)
-    }
-
-    return(NULL)
-
-  } else {
-
-    return(NULL)
-
-  }
-}
-
 ## Code obtained from
 ## http://deanattali.com/blog/htmlwidgets-tips/#widget-to-r-data
 ## with some midifications.
