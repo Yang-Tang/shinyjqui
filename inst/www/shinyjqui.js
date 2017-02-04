@@ -16,7 +16,7 @@ shinyjqui = function() {
       var input_name = id + '_' + suffix;
       $.each(callbacks, function(event_type, func){
         $(el).on(event_type, function(event, ui){
-          var input_value = func(el, event, ui);
+          var input_value = func(event, ui);
           Shiny.onInputChange(input_name, input_value);
         });
       });
@@ -117,8 +117,8 @@ shinyjqui = function() {
 
         //el = getInputContainer(el);
 
-        var func = function(el, event, ui) {
-          return $(el).position();
+        var func = function(event, ui) {
+          return $(event.target).position();
         };
 
         var default_shiny_opt = {
@@ -153,14 +153,14 @@ shinyjqui = function() {
 
         var default_shiny_opt = {
           over : {
-            dropcreate : function(el, event, ui){return [];},
-            dropover : function(el, event, ui){return shinyjqui.getId(ui.draggable.get(0));}
+            dropcreate : function(event, ui){return [];},
+            dropover : function(event, ui){return shinyjqui.getId(ui.draggable.get(0));}
           },
           dragging : {
-            dropcreate : function(el, event, ui){return [];},
-            dropactivate : function(el, event, ui){
+            dropcreate : function(event, ui){return [];},
+            dropactivate : function(event, ui){
             return shinyjqui.getId(ui.draggable.get(0));},
-            dropdeactivate : function(el, event, ui){return [];}
+            dropdeactivate : function(event, ui){return [];}
           }
         };
 
@@ -208,10 +208,13 @@ shinyjqui = function() {
 
         var default_shiny_opt = {
           size : {
-            resizecreate : function(el, event, ui){
-              return {width: $(el).width(), height: $(el).height()};
+            resizecreate : function(event, ui){
+              return {
+                width: $(event.target).width(),
+                height: $(event.target).height()
+              };
             },
-            resize : function(el, event, ui){
+            resize : function(event, ui){
               return ui.size;
             }
           }
@@ -250,8 +253,8 @@ shinyjqui = function() {
 
       enable : function(el, opt) {
 
-        var func = function(el, event, ui) {
-          var $selected = $(el).children('.ui-selected');
+        var func = function(event, ui) {
+          var $selected = $(event.target).children('.ui-selected');
           var html = $selected.map(function(i, e){return e.innerHTML;}).get();
           var ids = $selected.map(function(i, e){return shinyjqui.getId(e);}).get();
           return {'id': ids, 'html': html};
@@ -282,8 +285,8 @@ shinyjqui = function() {
 
       enable : function(el, opt) {
 
-        var func = function(el, event, ui) {
-            var $selected = $(el).children();
+        var func = function(event, ui) {
+            var $selected = $(event.target).children();
             var html = $selected.map(function(i, e){return e.innerHTML;}).get();
             var ids = $selected.map(function(i, e){return shinyjqui.getId(e);}).get();
             return {'id': ids, 'html': html};

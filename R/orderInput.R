@@ -72,8 +72,8 @@ orderInput <- function(inputId, label, items,
   )
   if (!as_source) {
     cb <- 'function(e, ui){if(!$(e.target).children().length)$(e.target).empty();}'
-    func <- 'function(el, event, ui){
-      return $(el).children().map(function(i, e){
+    func <- 'function(event, ui){
+      return $(event.target).children().map(function(i, e){
         return $(e).attr("data-value");
       }).get();
     }'
