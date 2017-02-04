@@ -1,77 +1,113 @@
 
-#' Initiate jQuery UI interactions
+#' Initialize, enable or disable jQuery UI interactions
 #'
-#' These functions should be used in \code{ui} of a shiny document that initiate
-#' interactions of shiny tag element(s).
+#' These functions initialize or switch on/off jQuery UI interactions
+#' (\href{http://api.jqueryui.com/draggable/}{draggable},
+#' \href{http://api.jqueryui.com/droppable/}{droppable},
+#' \href{http://api.jqueryui.com/resizable/}{resizable},
+#' \href{http://api.jqueryui.com/selectable/}{selectable},
+#' \href{http://api.jqueryui.com/sortable/}{sortable}) to shiny tag element(s).
+#' \describe{ \item{\code{jqui_draggabled} and \code{jqui_draggable}}{Allow
+#' elements to be moved using the mouse.} \item{\code{jqui_droppabled} and
+#' \code{jqui_droppable}}{Create targets for draggable elements.}
+#' \item{\code{jqui_resizabled} and \code{jqui_resizable}}{Change the size of an
+#' element using the mouse.} \item{\code{jqui_selectabled} and
+#' \code{jqui_selectable}}{Use the mouse to select elements, individually or in
+#' a group.} \item{\code{jqui_sortabled} and \code{jqui_sortable}}{Reorder
+#' elements in a list or grid using the mouse.} }
+#'
+#' The function \code{jqui_draggabled}, \code{jqui_droppabled},
+#' \code{jqui_resizabled}, \code{jqui_selectabled} and \code{jqui_sortabled}
+#' initialize the interactions and should be used in \code{ui} of a shiny
+#' document. The function \code{jqui_draggable}, \code{jqui_droppable},
+#' \code{jqui_resizable}, \code{jqui_selectable} and \code{jqui_sortable} switch
+#' on/off interactions and should be used in \code{server} of a shiny document.
+#'
+#' If an element has an \code{id} and its interaction is initialized or switched
+#' on, users can use \code{input$id_suffix} to get access to some internally
+#' defined shiny input values from that element as showed below: \describe{
+#' \item{draggable}{ \itemize{ \item{suffix: position} \item{value: A list of
+#' the element's left and top distances in px to its parent} } }
+#' \item{droppable}{ \itemize{ \item{suffix: dragging} \item{value: The id of an
+#' acceptable element that is now dragging} } } \item{resizable}{
+#' \itemize{\item{suffix: size} \item{value: A list of the element's size}}}
+#' \item{selectable}{ \itemize{\item{suffix: dragging} \item{value: A dataframe
+#' of informations (id, innerHTML) related to the curently selected elements}}}
+#' \item{sortable}{ \itemize{\item{suffix: order}\item{value: A dataframe of
+#' informations (id, innerHTML) reflecting the curently elements' order}}} }
+#'
+#' Users can overwrite the default shiny input settings by passing a
+#' \code{shiny} option to the \code{options} parameter in the following format:
+#'
+#' \code{list(}\cr \code{  shiny = list(}\cr \code{    suffix1 = list(event1 =
+#' callback1, event2 = callback2, ...), }\cr \code{    suffix2 = list(event3 =
+#' callback3, event4 = callback4, ...),}\cr \code{    ...}\cr \code{  ),}\cr
+#' \code{  other_options,}\cr \code{  ...}\cr \code{)}\cr
+#'
+#' where the \code{suffix} is the suffix charactor of a shiny input name
+#' (\code{input$id_suffix}); The \code{event} is an interaction event type; The
+#' \code{callback} is a js callback function that accecpt \code{event} and
+#' \code{ui} parameters of the interaction \code{event} with its returned value
+#' send back to shiny \code{input}. (See detailed usage in examples and
+#' \url{http://api.jqueryui.com/category/interactions/})
 #'
 #' @param tag A shiny tag to enable interaction.
-#' @param options A list of interaction options. Please see
-#'   \url{http://api.jqueryui.com/category/interactions/} for more details.
+#' @param selector A \href{https://api.jquery.com/category/selectors/}{jQuery's
+#'   selector} that determines the shiny tag element(s) whose interaction is
+#'   to be enabled or disabled.
+#' @param switch A boolean value to determine whether to enable or disable an
+#'   interaction.
+#' @param options A list of interaction options. Ignored when \code{switch} is
+#'   set as \code{FALSE}. In addition to the
+#'   \href{http://api.jqueryui.com/category/interactions/}{internal options},
+#'   this parameter also accept a shiny option that controls the shiny input
+#'   value returned from the element.
 #'
-#' @return A modified shiny tag with interation enabled.
+#' @return \code{jqui_draggabled}, \code{jqui_droppabled},
+#'   \code{jqui_resizabled}, \code{jqui_selectabled} and \code{jqui_sortabled}
+#'   returns a modified shiny tag with interation enabled.
 #'
 #' @examples
-#' @name Interactions_initializer
+#' @name Interactions
 NULL
 
 
-#' @rdname Interactions_initializer
+#' @rdname Interactions
 #' @export
 jqui_resizabled <- function(tag, options = NULL) {
   addInteractJS(tag, 'resizable', options)
 }
 
 
-#' @rdname Interactions_initializer
+#' @rdname Interactions
 #' @export
 jqui_sortabled <- function(tag, options = NULL) {
   addInteractJS(tag, 'sortable', options)
 }
 
 
-#' @rdname Interactions_initializer
+#' @rdname Interactions
 #' @export
 jqui_draggabled <- function(tag, options = NULL) {
   addInteractJS(tag, 'draggable', options)
 }
 
 
-#' @rdname Interactions_initializer
+#' @rdname Interactions
 #' @export
 jqui_droppabled <- function(tag, options = NULL) {
   addInteractJS(tag, 'droppable', options)
 }
 
 
-#' @rdname Interactions_initializer
+#' @rdname Interactions
 #' @export
 jqui_selectabled <- function(tag, options = NULL) {
   addInteractJS(tag, 'selectable', options)
 }
 
 
-
-
-#' Enable or disable jQuery UI interactions
-#'
-#' These functions should be used in \code{server} of a shiny document that
-#' enable or disable interactions of shiny tag element(s).
-#'
-#' @param selector A \href{https://api.jquery.com/category/selectors/}{jQuery's
-#'   selector} that determines the shiny tag element(s) whose interaction is
-#'   enable or disable interactions.
-#' @param switch A boolean value to determine whether to enable or disable an
-#'   interaction.
-#' @param options A list of interaction options. Ignored when \code{switch} is
-#'   set as \code{FALSE}. Please see
-#'   \url{http://api.jqueryui.com/category/interactions/} for more details.
-#'
-#' @examples
-#' @name Interactions_switcher
-NULL
-
-
-#' @rdname Interactions_switcher
+#' @rdname Interactions
 #' @export
 jqui_sortable <- function(selector, switch = TRUE, options = NULL) {
   method <- 'interaction'
@@ -80,7 +116,7 @@ jqui_sortable <- function(selector, switch = TRUE, options = NULL) {
 }
 
 
-#' @rdname Interactions_switcher
+#' @rdname Interactions
 #' @export
 jqui_draggable <- function(selector, switch = TRUE, options = NULL) {
   method <- 'interaction'
@@ -89,7 +125,7 @@ jqui_draggable <- function(selector, switch = TRUE, options = NULL) {
 }
 
 
-#' @rdname Interactions_switcher
+#' @rdname Interactions
 #' @export
 jqui_droppable <- function(selector, switch = TRUE, options = NULL) {
   method <- 'interaction'
@@ -98,7 +134,7 @@ jqui_droppable <- function(selector, switch = TRUE, options = NULL) {
 }
 
 
-#' @rdname Interactions_switcher
+#' @rdname Interactions
 #' @export
 jqui_selectable <- function(selector, switch = TRUE, options = NULL) {
   method = 'interaction'
@@ -107,7 +143,7 @@ jqui_selectable <- function(selector, switch = TRUE, options = NULL) {
 }
 
 
-#' @rdname Interactions_switcher
+#' @rdname Interactions
 #' @export
 jqui_resizable <- function(selector, switch = TRUE, options = NULL) {
   method <- 'interaction'
