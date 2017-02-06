@@ -49,7 +49,7 @@ shinyjqui = function() {
   };
 
   // ==============================================================================
-  // The following code (splitWithEscape and evaluateStringMember) is obtained from htmlwidgets project
+  // The following code (splitWithEscape, evaluateStringMember and evalJS) is obtained from htmlwidgets project
   // (https://github.com/ramnathv/htmlwidgets/blob/master/inst/www/htmlwidgets.js), which is licensed MIT.
   // The original license info:
   // YEAR: 2016

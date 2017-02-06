@@ -1,28 +1,36 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-shinyjqui
-=========
 
-[![Travis-CI Build Status](https://travis-ci.org/Yang-Tang/shinyjqui.svg?branch=master)](https://travis-ci.org/Yang-Tang/shinyjqui)
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+# shinyjqui
+
+<!-- [![Travis-CI Build Status](https://travis-ci.org/Yang-Tang/shinyjqui.svg?branch=master)](https://travis-ci.org/Yang-Tang/shinyjqui) -->
 
 The shinyjqui package a wrapper of [jQuery UI](http://jqueryui.com/) javascript library. It allows user to easily add ineractions and animation effects to elements of a shiny app.
 
-Installation
-------------
+## Installation
 
 You can install shinyjqui from github with:
 
-``` r
+```{r, eval = FALSE}
 # install.packages("devtools")
 devtools::install_github("yang-tang/shinyjqui")
 ```
 
-Example
--------
+## Example
 
 Here are some basic examples:
 
-``` r
+```{r, eval=FALSE}
 # load packages
 library(shiny)
 library(shinyjqui)
@@ -30,9 +38,9 @@ library(ggplot2)
 library(highcharter)
 ```
 
--   **Draggable:** Allow elements to be moved using the mouse
+* __Draggable:__ Allow elements to be moved using the mouse
 
-``` r
+```{r, eval = FALSE}
 server <- function(input, output) {}
 
 ui <- fluidPage(
@@ -43,9 +51,9 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
--   **Resizable:** Change the size of an element using the mouse.
+* __Resizable:__ Change the size of an element using the mouse.
 
-``` r
+```{r, eval = FALSE}
 server <- function(input, output) {
   output$gg <- renderPlot({
     ggplot(mtcars, aes(x = cyl, y = mpg)) + geom_point()
@@ -60,9 +68,9 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
--   **Sortable:** Reorder elements in a list or grid using the mouse.
+* __Sortable:__ Reorder elements in a list or grid using the mouse.
 
-``` r
+```{r, eval = FALSE}
 server <- function(input, output) {
   output$hc <- renderHighchart({
     hchart(mtcars, "scatter", hcaes(x = cyl, y = mpg, group = factor(vs))) %>% 
@@ -85,9 +93,9 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
--   **Animation Effects:** Apply an animation effect to an element. Effects can also be used in hide or show.
+* __Animation Effects:__ Apply an animation effect to an element. Effects can also be used in hide or show.
 
-``` r
+```{r, eval = FALSE}
 server <- function(input, output) {
   observeEvent(input$show, {
     jqui_show('#gg', effect = input$effect)
@@ -116,9 +124,9 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
--   **Classes transfermation:** Add and remove class(es) to elements while animating all style changes.
+* __Classes transfermation:__ Add and remove class(es) to elements while animating all style changes.
 
-``` r
+```{r, eval = FALSE}
 
 server <- function(input, output) {
 
@@ -163,3 +171,4 @@ ui <- fluidPage(
 
 shinyApp(ui, server)
 ```
+
