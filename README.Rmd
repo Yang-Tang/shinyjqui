@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 ```
 # shinyjqui
 
-<!-- [![Travis-CI Build Status](https://travis-ci.org/Yang-Tang/shinyjqui.svg?branch=master)](https://travis-ci.org/Yang-Tang/shinyjqui) -->
+[![Travis-CI Build Status](https://travis-ci.org/Yang-Tang/shinyjqui.svg?branch=master)](https://travis-ci.org/Yang-Tang/shinyjqui)
 
 The shinyjqui package a wrapper of [jQuery UI](http://jqueryui.com/) javascript library. It allows user to easily add ineractions and animation effects to elements of a shiny app.
 
@@ -51,6 +51,9 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
+![](README-draggable.gif)
+
+
 * __Resizable:__ Change the size of an element using the mouse.
 
 ```{r, eval = FALSE}
@@ -67,6 +70,9 @@ ui <- fluidPage(
 
 shinyApp(ui, server)
 ```
+
+![](README-resizable.gif)
+
 
 * __Sortable:__ Reorder elements in a list or grid using the mouse.
 
@@ -92,6 +98,9 @@ ui <- fluidPage(
 
 shinyApp(ui, server)
 ```
+
+![](README-sortable.gif)
+
 
 * __Animation Effects:__ Apply an animation effect to an element. Effects can also be used in hide or show.
 
@@ -123,6 +132,9 @@ ui <- fluidPage(
 
 shinyApp(ui, server)
 ```
+
+![](README-effects.gif)
+
 
 * __Classes transfermation:__ Add and remove class(es) to elements while animating all style changes.
 
@@ -171,4 +183,6 @@ ui <- fluidPage(
 
 shinyApp(ui, server)
 ```
+
+![](README-classes.gif)
 

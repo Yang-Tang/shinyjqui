@@ -12,11 +12,12 @@ LazyData: true
 Depends:
     R (>= 3.2.0)
 Imports:
-    shiny,
-    htmlwidgets,
-    jsonlite
+    shiny (>= 0.14),
+    htmlwidgets (>= 0.8),
+    jsonlite (>= 1.1)
 Suggests:
-    tidyverse
+    ggplot2,
+    highcharter
 URL: https://github.com/yang-tang/shinyjqui
 BugReports: https://github.com/yang-tang/shinyjqui/issues
 RoxygenNote: 5.0.1
