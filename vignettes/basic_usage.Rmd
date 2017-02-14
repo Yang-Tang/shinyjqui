@@ -1,0 +1,265 @@
+---
+title: "Basic usage"
+author: "Yang Tang"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Basic usage}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include=FALSE}
+library(shiny)
+library(shinyjqui)
+```
+
+```{r, include=FALSE}
+func_intro <- data.frame(Functions = c('includeJqueryUI',
+                                    'jqui_draggable', 'jqui_draggabled',
+                                    'jqui_droppable', 'jqui_droppabled', 
+                                    'jqui_resizable', 'jqui_resizabled', 
+                                    'jqui_selectable', 'jqui_selectabled', 
+                                    'jqui_sortable', 'jqui_sortabled',
+                                    'orderInput', 
+                                    'jqui_effect', 'jqui_show', 'jqui_hide',
+                                    'get_jqui_effects',
+                                    'jqui_add_class', 'jqui_remove_class', 
+                                    'jqui_switch_class'), 
+                      Description = c(
+                        'Load necessary web assets. Has to be called before the usage of other functions',
+                        'Enable or disable element\'s draggable interaction.',
+                        'Initialize an element as draggable.',
+                        'Enable or disable element\'s droppable interaction.',
+                        'Initialize an element as droppable.',
+                        'Enable or disable element\'s resizable interaction.',
+                        'Initialize an element as resizable.',
+                        'Enable or disable element\'s selectable interaction.',
+                        'Initialize an element as selectable.',
+                        'Enable or disable element\'s sortable interaction.',
+                        'Initialize an element as sortable.',
+                        'Show order of a character vector and allow users to change the order by drag and drop.',
+                        'Let element(s) to show an animation immediately.',
+                        'Display hidden element(s) with an animation',
+                        'Hide element(s) with an animation',
+                        'List all the animation effects',
+                        'Add class(es) to element(s) while animating all style changes.',
+                        'Remove class(es) from element(s) while animating all style changes.',
+                        'Add and remove class(es) to element(s) while animating all style changes.'
+                      ),
+                      Where_to_use = c('ui',
+                                       rep(c('server', 'ui'), times = 5), 
+                                       'ui', 
+                                       rep('server', times = 3),
+                                       '',
+                                       rep('server', times = 3)),
+                      stringsAsFactors = FALSE)
+```
+
+The `shinyjqui` package provides functions to give shiny ui mouse-interactions and animation effects. This vignette provides some general introductions and examples.
+
+## The `includeJqueryUI` function
+
+Please first call `includeJqueryUI()` in `ui` of a shiny app before using other `shinyjqui` functions. This function loads some necessary js and css into the head of a shiny html document.
+
+## Interaction funcions
+
+There are five kinds of mouse interactions in jQuery UI library:
+
+* __Draggable:__ Allow elements to be moved using the mouse.
+
+* __Droppable:__ Create targets for draggable elements.
+
+* __Resizable:__ Change the size of an element using the mouse.
+
+* __Selectable:__ Use the mouse to select elements, individually or in a group.
+
+* __Sortable:__ Reorder elements in a list or grid using the mouse.
+
+Here are the corresponding R wrappers in `shinyjqui`:
+
+```{r, echo=FALSE}
+knitr::kable(func_intro[2:11, ], row.names = FALSE)
+```
+
+### General usage
+
+For each interaction, there are two functions: `...able` and `...abled`. They both can make a shiny html element interactive, but should be used in different scenarios. The `...abled` functions are designed to be used in `ui` of a shiny document by returning a modified element (tag, tagList, input or output) with interaction enabled. The `...able` functions modify the interactivity of existing (pre-defined in `ui`) elements and therefore should be placed in `server` of a shiny document. For example, you can make a `textInput` draggable either by:
+
+```{r, eval = FALSE}
+# in shiny ui
+jqui_draggabled(textInput('input', 'Input'))
+
+```
+
+or in this way:
+
+```{r, eval = FALSE}
+# in shiny ui
+textInput('input', 'Input')
+
+# in shiny server, either outside or in observe() or ovservEvent()
+jqui_draggable(selector = '#input')
+```
+
+The `...able` functions use [jQuery selector](https://api.jquery.com/category/selectors/) to identify which element to act on. In the above example, the selector `#input` refers to the element with id `input`. So you can make all the shiny inputs draggable by `jqui_draggable(selector = '.shiny-bound-input')`.
+
+For `...abled` functions, you can also make multiple elements interactive by wrapping them with `tagList()`:
+
+```{r, eval = FALSE}
+# in shiny ui, make each element in the tagList draggable
+jqui_draggabled(tagList(
+  selectInput('sel', 'Select', choices = month.abb),
+  checkboxGroupInput('chbox', 'Checkbox', choices = month.abb),
+  plotOutput('plot', width = '400px', height = '400px')
+))
+```
+
+The `...able` functions have a `switch` parameter. Set it as `FALSE` to disable the interaction of an element:
+
+```{r, eval = FALSE}
+# in shiny server
+jqui_draggable(selector = '#input', switch = FALSE)
+```
+
+Both `...able` and `...abled` functions have an `options` parameter to let you pass interaction-specific options. You can find available options on jQuery UI's  [API Documentation](http://api.jqueryui.com/category/interactions/) page. Some examples about these options are listed in the next few sections.
+
+Once an interaction is turned on and if the target element has an `id`, you can get access to some pre-defined interaction-specific shiny input values through `input$id_suffix`, where the `id` is the id of target element (`id` attribute for shiny tag, `inputId` for shiny inputs, `outputId` for shiny outputs) and the `suffix` depends on the interaction you enabled. Please see the following table:
+```{r, echo=FALSE}
+knitr::kable(data.frame(Interactions = c('draggagle', 'droppable', 'resizable', 'selectable', 'sortable'),
+                        suffix = c('position', 'dragging', 'size', 'selected', 'order'),
+                        `shiny input value` = c('A list of the element\'s left and top distances in px to its parent',
+                                                'The id of an acceptable element that is now dragging',
+                                                'A list of the element\'s size',
+                                                'A dataframe containing the id and innerHTML of curently selected elements',
+                                                'A dataframe containing the id and innerHTML of curently order of elements')))
+```
+
+You can even customize these shiny input values by including a `shiny` option in the `options` parameter. Please see this vignette for more details.
+
+### Draggable
+
+Draggable element can be moved by mouse. You can custom the movement by options: 
+
+```{r, eval = FALSE}
+# drag only horizontally
+jqui_draggable('#foo', options = list(axis = 'x'))
+# make movement snapping to a 80 x 80 grid
+jqui_draggable('#foo', options = list(grid = c(80, 80)))
+```
+
+### Droppable
+
+With the droppable interaction enabled, the element can sense the behavior of accepted draggable elements and make changes (e.g. change display style) accordingly:
+
+```{r, eval = FALSE}
+jqui_droppable('#foo', options = list(
+  accept = '#bar', # Which draggable element to monitor.
+  classes = list(
+    `ui-droppable-active` = 'ui-state-active', # change class when draggable element is dragging
+    `ui-droppable-hover` = 'ui-state-hover' # change class when draggable element is dragging over
+  ),
+  drop = htmlwidgets::JS(
+    'function(event, ui){$(this).addClass("ui-state-highlight");}'
+  ) # change class when draggable element is dropped in
+))
+```
+Note: When passing a javascrip callback function to the `opations` parameter, please wrap it with `htmlwidgets::JS()` so that it can be evaled correctly.
+
+### Resizable
+
+You can change the size of a resizable element by dragging the resize-handles around it. Several examples are listed here:
+
+```{r, eval = FALSE}
+# keep aspect ratio when resizing
+jqui_resizable('#foo', options = list(aspectRatio = TRUE))
+
+# Limit the resizable element to a maximum or minimum height or width
+jqui_resizable('#foo', options = list(minHeight = 100, maxHeight = 300,
+                                      minWidth = 200, maxWidth = 400))
+
+# make the two plotOutputs resize synchronously
+jqui_resizabled(plotOutput('plot1', width = '400px', height = '400px'), 
+                options = list(alsoResize = '#plot2')),
+jqui_resizabled(plotOutput('plot2', width = '400px', height = '400px'), 
+                options = list(alsoResize = '#plot1'))
+
+```
+
+### Selectable
+
+The selectable interaction make target element's children selectable. You can select by click, Ctrl+click or dragging a box (lasso selection). The selected elements may change display styles if specified in `options`:
+
+```{r, eval = FALSE}
+# highlight the selected plotOutput
+jqui_selectabled(
+  div(
+    plotOutput('plot1', width = '400px', height = '400px'),
+    plotOutput('plot2', width = '400px', height = '400px')
+  ),
+  options = list(classes = list(`ui-selected` = 'ui-state-highlight'))
+)
+```
+
+### Sortable
+
+The sortable interaction makes target element's children sortable. You can re-arrange them by drag and drop. Some examples here:
+
+```{r, eval = FALSE}
+# change opacity while sorting
+jqui_sortable('#foo', options = list(opacity = 0.5))
+
+# only items with class "items" inside the element become sortable
+jqui_sortable('#foo', options = list(items = '> .items'))
+
+# connect two sortable elements, so that items in one element can be dragged to another
+jqui_sortable('#foo1', options = list(connectWith = '#foo2'))
+jqui_sortable('#foo2', options = list(connectWith = '#foo1'))
+
+```
+
+`shinyjqui` has a function called `orderInput()`. You can use it to display the order of a vector in shiny and users can change the order by drag and drop. The changed items order is send back to server as an input value. Please see this vignette for details.
+
+## Animation effects functions
+
+These functions apply an animation effect to an element:
+
+```{r, echo=FALSE}
+knitr::kable(func_intro[13:15, ], row.names = FALSE)
+```
+
+The above three functions use [jQuery selector](https://api.jquery.com/category/selectors/) to locate the target element(s) and should be used in `server`.
+
+The `effect` parameter accept a string that defines which animation effect to apply. You can get a full list of animation effects by `get_jqui_effects()`:
+```{r, echo=FALSE}
+get_jqui_effects()
+```
+
+There is a live demo for each effect [here](http://jqueryui.com/effect/). Note: The `transfer` effect can only be used in `jqui_effect()`.
+
+The `options` parameter accept a list of effect specific options. Please find more details [here](http://api.jqueryui.com/category/effects/).
+The `complete` parameter accept a javascript callback function which will be called after the animation. Please wrap it with `htmlwidgets::JS()`.
+
+Here are some examples:
+```{r, eval=FALSE}
+# in shiny ui
+plotOutput('foo', width = '400px', height = '400px')
+
+# in shiny server
+jqui_effect('#foo', effect = 'bounce') # bounces the plot
+jqui_effect('#foo', effect = 'scale', options = list(percent = 50)) # scale to 50%
+jqui_hide('#foo', effect = 'size', options = list(width = 200, height = 60)) # resize then hide
+jqui_show('#foo', effect = 'clip') # show the plot by clipping
+```
+
+## Classes animation functions
+  
+These functions change shiny elements' class(es) while animating all style changes:
+
+```{r, echo=FALSE}
+knitr::kable(func_intro[17:19, ], row.names = FALSE)
+```
+
+Similar to the animation effects functions, these functions need a [jQuery selector](https://api.jquery.com/category/selectors/) and please use them in `server`.
+
+The `easing` parameter defines the speed style of the animation progresses. More details can be found [here](http://api.jqueryui.com/easings/)

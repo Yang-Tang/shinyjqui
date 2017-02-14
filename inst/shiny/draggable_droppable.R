@@ -35,7 +35,7 @@ ui <- fluidPage(
       jqui_draggabled(checkboxGroupInput('drg_chbox', 'Checkbox', choices = month.abb)),
       jqui_draggabled(dateRangeInput('drg_date', 'Daterange')),
       jqui_draggabled(fileInput('drg_file', 'File')),
-      jqui_draggabled(sliderInput('drg_slider', 'Slider', 1, 100, 1)),
+      jqui_draggabled(sliderInput('drg_slider', 'Slider', 1, 100, 1), options = list(grid = c(80, 80))),
       jqui_draggabled(textAreaInput('drg_textarea', 'Textarea')),
       jqui_draggabled(plotOutput('gg', width = '400px', height = '400px'))
 

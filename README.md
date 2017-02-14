@@ -5,7 +5,7 @@ shinyjqui
 
 [![Travis-CI Build Status](https://travis-ci.org/Yang-Tang/shinyjqui.svg?branch=master)](https://travis-ci.org/Yang-Tang/shinyjqui)
 
-The shinyjqui package a wrapper of [jQuery UI](http://jqueryui.com/) javascript library. It allows user to easily add ineractions and animation effects to elements of a shiny app.
+The shinyjqui package is an R wrapper for [jQuery UI](http://jqueryui.com/) javascript library. It allows user to easily add interactions and animation effects to a shiny app.
 
 Installation
 ------------
@@ -43,7 +43,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](README-draggable.gif)
+![](fig/README-draggable.gif)
 
 -   **Resizable:** Change the size of an element using the mouse.
 
@@ -62,7 +62,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](README-resizable.gif)
+![](fig/README-resizable.gif)
 
 -   **Sortable:** Reorder elements in a list or grid using the mouse.
 
@@ -89,7 +89,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](README-sortable.gif)
+![](fig/README-sortable.gif)
 
 -   **Animation Effects:** Apply an animation effect to an element. Effects can also be used in hide or show.
 
@@ -122,9 +122,9 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](README-effects.gif)
+![](fig/README-effects.gif)
 
--   **Classes transfermation:** Add and remove class(es) to elements while animating all style changes.
+-   **Classes transformation:** Add and remove class(es) to elements while animating all style changes.
 
 ``` r
 
@@ -172,4 +172,4 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](README-classes.gif)
+![](fig/README-classes.gif)

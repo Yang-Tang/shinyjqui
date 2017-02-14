@@ -1,5 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.Rhistory$
 ^\.travis\.yml$
 ^README\.Rmd$
-^README-.*\.png$
+^fig/README-.*\.gif$
+^examples/.*$

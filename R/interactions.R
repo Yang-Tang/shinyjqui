@@ -67,7 +67,7 @@
 #'   \code{jqui_resizabled}, \code{jqui_selectabled} and \code{jqui_sortabled}
 #'   returns a modified shiny tag with interation enabled.
 #'
-#' @examples
+#' @example examples/interactions.R
 #' @name Interactions
 NULL
 
