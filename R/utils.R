@@ -35,6 +35,11 @@ addInteractJS <- function(tag, func, options = NULL) {
 
   } else if(inherits(tag, 'shiny.tag')) {
 
+    if(is.null(tag$name) ||
+       tag$name %in% c('style', 'script', 'head', 'meta', 'br', 'hr')) {
+      return(tag)
+    }
+
     id <- tag$attribs$id
     if(!is.null(id)) {
       selector <- paste0('#', id)
