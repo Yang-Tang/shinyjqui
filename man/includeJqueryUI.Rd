@@ -13,4 +13,19 @@ A shiny head tag with necessary js and css assets.
 This function has to be called within the \code{ui} of a shiny document before the
 usage of other \code{shinyjqui} functions.
 }
+\examples{
+if (interactive()) {
+  library(shiny)
+
+  shinyApp(
+    ui = fluidPage(
+      includeJqueryUI(),
+      # other ui codes
+    ),
+    server = function(input, output) {
+      # server codes
+    }
+  )
+}
+}
 

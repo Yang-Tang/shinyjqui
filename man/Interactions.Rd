@@ -35,7 +35,7 @@ jqui_selectable(selector, switch = TRUE, options = NULL)
 jqui_resizable(selector, switch = TRUE, options = NULL)
 }
 \arguments{
-\item{tag}{A shiny tag to enable interaction.}
+\item{tag}{A shiny tag object to add interactions to.}
 
 \item{options}{A list of interaction options. Ignored when \code{switch} is
 set as \code{FALSE}. In addition to the
@@ -44,8 +44,8 @@ this parameter also accept a shiny option that controls the shiny input
 value returned from the element.}
 
 \item{selector}{A \href{https://api.jquery.com/category/selectors/}{jQuery's
-selector} that determines the shiny tag element(s) whose interaction is
-to be enabled or disabled.}
+selector} that determines the shiny tag element(s) whose interaction is to
+be enabled or disabled.}
 
 \item{switch}{A boolean value to determine whether to enable or disable an
 interaction.}
@@ -62,95 +62,55 @@ These functions initialize or switch on/off jQuery UI interactions
 \href{http://api.jqueryui.com/resizable/}{resizable},
 \href{http://api.jqueryui.com/selectable/}{selectable},
 \href{http://api.jqueryui.com/sortable/}{sortable}) to shiny tag element(s).
-\describe{ \item{\code{jqui_draggabled} and \code{jqui_draggable}}{Allow
-elements to be moved using the mouse.} \item{\code{jqui_droppabled} and
-\code{jqui_droppable}}{Create targets for draggable elements.}
-\item{\code{jqui_resizabled} and \code{jqui_resizable}}{Change the size of an
-element using the mouse.} \item{\code{jqui_selectabled} and
-\code{jqui_selectable}}{Use the mouse to select elements, individually or in
-a group.} \item{\code{jqui_sortabled} and \code{jqui_sortable}}{Reorder
-elements in a list or grid using the mouse.} }
 }
 \details{
 The function \code{jqui_draggabled}, \code{jqui_droppabled},
 \code{jqui_resizabled}, \code{jqui_selectabled} and \code{jqui_sortabled}
-initialize the interactions and should be used in \code{ui} of a shiny
-document. The function \code{jqui_draggable}, \code{jqui_droppable},
+initialize the interactions and should be used in \code{ui} of a shiny app.
+The function \code{jqui_draggable}, \code{jqui_droppable},
 \code{jqui_resizable}, \code{jqui_selectable} and \code{jqui_sortable} switch
-on/off interactions and should be used in \code{server} of a shiny document.
+on/off interactions and should be used in \code{server} of a shiny app.
 
 If an element has an \code{id} and its interaction is initialized or switched
-on, users can use \code{input$id_suffix} to get access to some internally
-defined shiny input values from that element as showed below: \describe{
-\item{draggable}{ \itemize{ \item{suffix: position} \item{value: A list of
-the element's left and top distances in px to its parent} } }
-\item{droppable}{ \itemize{ \item{suffix: dragging} \item{value: The id of an
-acceptable element that is now dragging} } } \item{resizable}{
-\itemize{\item{suffix: size} \item{value: A list of the element's size}}}
-\item{selectable}{ \itemize{\item{suffix: dragging} \item{value: A dataframe
-of informations (id, innerHTML) related to the curently selected elements}}}
-\item{sortable}{ \itemize{\item{suffix: order}\item{value: A dataframe of
-informations (id, innerHTML) reflecting the curently elements' order}}} }
+on, users can get access to some internally defined shiny input values.
+Please see the vignette \code{Basic usage} for more details.
 
 Users can overwrite the default shiny input settings by passing a
-\code{shiny} option to the \code{options} parameter in the following format:
-
-\code{list(}\cr \code{  shiny = list(}\cr \code{    suffix1 = list(event1 =
-callback1, event2 = callback2, ...), }\cr \code{    suffix2 = list(event3 =
-callback3, event4 = callback4, ...),}\cr \code{    ...}\cr \code{  ),}\cr
-\code{  other_options,}\cr \code{  ...}\cr \code{)}\cr
-
-where the \code{suffix} is the suffix charactor of a shiny input name
-(\code{input$id_suffix}); The \code{event} is an interaction event type; The
-\code{callback} is a js callback function that accecpt \code{event} and
-\code{ui} parameters of the interaction \code{event} with its returned value
-send back to shiny \code{input}. (See detailed usage in examples and
-\url{http://api.jqueryui.com/category/interactions/})
+\code{shiny} option to the \code{options} parameter. The vignette
+\code{Custom shiny input} provides more details about it.
 }
 \examples{
-# draggable examples:
-# ====================
-
 library(shiny)
 library(highcharter)
 
-# jqui_draggabled() modifiy a shiny tag, tagList, input or output to a draggable
-# element. The function has to be called in shiny ui.
-jqui_draggabled(textInput('input', 'Input'))
-
-# actionButton needs to set options cancel = '', because jQuery UI defaultly
-# prevents dragging from starting on button
-jqui_draggabled(actionButton('btn', 'Button'), options = list(cancel = ''))
-
-# for tagList
-jqui_draggabled(tagList(
-  selectInput('sel', 'Select', choices = month.abb),
-  checkboxGroupInput('chbox', 'Checkbox', choices = month.abb),
-  dateRangeInput('date', 'Daterange')
+## used in ui
+jqui_resizabled(actionButton('btn', 'Button'))
+jqui_draggabled(plotOutput('plot', width = '400px', height = '400px'),
+                options = list(axis = 'x'))
+jqui_selectabled(
+  div(
+    id = 'sel_plots',
+    highchartOutput('highchart', width = '300px'),
+    plotOutput('ggplot', width = '300px')
+  ),
+  options = list(
+    classes = list(`ui-selected` = 'ui-state-highlight')
+  )
+)
+jqui_sortabled(tags$ul(
+  id = 'lst',
+  tags$li('A'),
+  tags$li('B'),
+  tags$li('C')
 ))
 
-# pass options to jQuery UI (can be dragged only horizontally)
-jqui_draggabled(sliderInput('drg_slider', 'Slider', 1, 100, 1),
-                options = list(axis = 'x'))
-
-# for output
-jqui_draggabled(plotOutput('plot', width = '400px', height = '400px'))
-
-# jqui_draggable enable or diable element's draggable interaction based on the
-# jQuery selector provided. It has to be used in shiny server.
+## used in server
 \dontrun{
-  # enable the draggable of an element with id foo.
-  jqui_draggable('#foo')
-
-  # disable the draggable of any elements with class foo.
-  jqui_draggable('.foo', switch = FALSE)
-
-  # pass options (snap to a 80 x 80 grid)
-  jqui_draggable('.grid', options = list(grid = c(80, 80)))
+  jqui_draggable('#foo', options = list(grid = c(80, 80)))
+  jqui_droppable('.foo', switch = FALSE)
 }
 
-# Once an element is draggable, if it has an id, we can obtain its position
-# (relative to its parent element) through input$id_position
+## use shiny input
 if (interactive()) {
   server <- function(input, output) {
     output$foo <- renderHighchart({
@@ -168,9 +128,7 @@ if (interactive()) {
   shinyApp(ui, server)
 }
 
-# If we want the absolute position of a draggable element, we can create a new
-# input for it by passing a shiny option with event handlers in options
-# parameter.
+## custom shiny input
 func <- htmlwidgets::JS('function(event, ui){return $(event.target).offset();}')
 options <-  list(
   shiny = list(
@@ -182,11 +140,7 @@ options <-  list(
 )
 jqui_draggabled(highchartOutput('foo', width = '200px', height = '200px'),
                 options = options)
-# get absolute position (relative to the document) through input$foo_abs_position
 
-
-# droppable examples:
-# ====================
 
 }
 

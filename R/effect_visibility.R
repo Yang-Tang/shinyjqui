@@ -1,14 +1,16 @@
 
 #' Apply jQuery UI effect.
 #'
-#' These functions should be used in \code{server} of a shiny document.
-#' \describe{
-#' \item{\href{http://api.jqueryui.com/effect/}{\code{jqui_effect}}}{Apply an
-#' animation effect to matched element(s).}
-#' \item{\href{http://api.jqueryui.com/hide/}{\code{jqui_hide}}}{Hide the
-#' matched element(s) with animation effect.}
-#' \item{\href{http://api.jqueryui.com/show/}{\code{jqui_show}}}{Display the
-#' matched element(s) with animation effect.} }
+#' These functions are the R wrappers of
+#' \href{http://api.jqueryui.com/effect/}{effect()},
+#' \href{http://api.jqueryui.com/hide/}{hide()},
+#' \href{http://api.jqueryui.com/show/}{show()} in jQuery UI library. They
+#' should be used in \code{server} of a shiny document.
+#'
+#' \describe{ \item{\code{jqui_effect}}{Apply an animation effect to matched
+#' element(s).} \item{\code{jqui_hide}}{Hide the matched element(s) with
+#' animation effect.} \item{\code{jqui_show}}{Display the matched element(s)
+#' with animation effect.} }
 #'
 #' @param selector A \href{https://api.jquery.com/category/selectors/}{jQuery's
 #'   selector} that determines the shiny tag element(s) whose interaction is
@@ -24,7 +26,7 @@
 #' @param complete A function to call once the animation is complete, called
 #'   once per matched element.
 #'
-#' @examples
+#' @example examples/effect_and_visibility.R
 #' @name Effect_and_visibility
 NULL
 

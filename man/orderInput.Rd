@@ -2,7 +2,7 @@
 % Please edit documentation in R/orderInput.R
 \name{orderInput}
 \alias{orderInput}
-\title{Create a items list input control whose order can be changed.}
+\title{Create a shiny input control with a list of items whose order can be changed.}
 \usage{
 orderInput(inputId, label, items, as_source = FALSE, connect = NULL,
   item_class = c("default", "primary", "success", "info", "warning",
@@ -14,8 +14,8 @@ order of items.}
 
 \item{label}{Display label for the control, or \code{NULL} for no label.}
 
-\item{items}{A list or vector of items to be initially displayed. If named,
-the names are displayed to user.}
+\item{items}{A list or atomic vector of items to be initially displayed. If
+named, the names are displayed to user.}
 
 \item{as_source}{A boolean value to determine whether the \code{orderInput}
 is set as source mode. If source mode, items in this \code{orderInput} can
@@ -46,8 +46,23 @@ the container of the \code{orderInput}.}
 A \code{orderInput} control that can be added to a UI definition.
 }
 \description{
-Create a items list whose order can be changed by drag and drop within or
+Display a list items whose order can be changed by drag and drop within or
 between \code{orderInput}(s). The current items order can be obtained from
 \code{input$inputId}.
+}
+\examples{
+orderInput('items1', 'Items1', items = month.abb, item_class = 'info')
+
+## build connections between orderInputs
+orderInput('items2', 'Items2 (can be moved to Items1 and Items4)', items = month.abb,
+           connect = c('lst1', 'lst4'), item_class = 'primary')
+
+## build connections in source mode
+orderInput('items3', 'Items3 (can be copied to List2 and List4)', items = month.abb,
+           as_source = TRUE, connect = c('lst2', 'lst4'), item_class = 'success')
+
+## show placeholder
+orderInput('items4', 'Items4 (can be moved to List2)', items = NULL, connect = 'lst2',
+           placeholder = 'Drag items here...')
 }
 

@@ -7,54 +7,26 @@
 #' \href{http://api.jqueryui.com/resizable/}{resizable},
 #' \href{http://api.jqueryui.com/selectable/}{selectable},
 #' \href{http://api.jqueryui.com/sortable/}{sortable}) to shiny tag element(s).
-#' \describe{ \item{\code{jqui_draggabled} and \code{jqui_draggable}}{Allow
-#' elements to be moved using the mouse.} \item{\code{jqui_droppabled} and
-#' \code{jqui_droppable}}{Create targets for draggable elements.}
-#' \item{\code{jqui_resizabled} and \code{jqui_resizable}}{Change the size of an
-#' element using the mouse.} \item{\code{jqui_selectabled} and
-#' \code{jqui_selectable}}{Use the mouse to select elements, individually or in
-#' a group.} \item{\code{jqui_sortabled} and \code{jqui_sortable}}{Reorder
-#' elements in a list or grid using the mouse.} }
 #'
 #' The function \code{jqui_draggabled}, \code{jqui_droppabled},
 #' \code{jqui_resizabled}, \code{jqui_selectabled} and \code{jqui_sortabled}
-#' initialize the interactions and should be used in \code{ui} of a shiny
-#' document. The function \code{jqui_draggable}, \code{jqui_droppable},
+#' initialize the interactions and should be used in \code{ui} of a shiny app.
+#' The function \code{jqui_draggable}, \code{jqui_droppable},
 #' \code{jqui_resizable}, \code{jqui_selectable} and \code{jqui_sortable} switch
-#' on/off interactions and should be used in \code{server} of a shiny document.
+#' on/off interactions and should be used in \code{server} of a shiny app.
 #'
 #' If an element has an \code{id} and its interaction is initialized or switched
-#' on, users can use \code{input$id_suffix} to get access to some internally
-#' defined shiny input values from that element as showed below: \describe{
-#' \item{draggable}{ \itemize{ \item{suffix: position} \item{value: A list of
-#' the element's left and top distances in px to its parent} } }
-#' \item{droppable}{ \itemize{ \item{suffix: dragging} \item{value: The id of an
-#' acceptable element that is now dragging} } } \item{resizable}{
-#' \itemize{\item{suffix: size} \item{value: A list of the element's size}}}
-#' \item{selectable}{ \itemize{\item{suffix: dragging} \item{value: A dataframe
-#' of informations (id, innerHTML) related to the curently selected elements}}}
-#' \item{sortable}{ \itemize{\item{suffix: order}\item{value: A dataframe of
-#' informations (id, innerHTML) reflecting the curently elements' order}}} }
+#' on, users can get access to some internally defined shiny input values.
+#' Please see the vignette \code{Introduction} for more details.
 #'
 #' Users can overwrite the default shiny input settings by passing a
-#' \code{shiny} option to the \code{options} parameter in the following format:
+#' \code{shiny} option to the \code{options} parameter. The vignette
+#' \code{Custom shiny input} provides more details about it.
 #'
-#' \code{list(}\cr \code{  shiny = list(}\cr \code{    suffix1 = list(event1 =
-#' callback1, event2 = callback2, ...), }\cr \code{    suffix2 = list(event3 =
-#' callback3, event4 = callback4, ...),}\cr \code{    ...}\cr \code{  ),}\cr
-#' \code{  other_options,}\cr \code{  ...}\cr \code{)}\cr
-#'
-#' where the \code{suffix} is the suffix charactor of a shiny input name
-#' (\code{input$id_suffix}); The \code{event} is an interaction event type; The
-#' \code{callback} is a js callback function that accecpt \code{event} and
-#' \code{ui} parameters of the interaction \code{event} with its returned value
-#' send back to shiny \code{input}. (See detailed usage in examples and
-#' \url{http://api.jqueryui.com/category/interactions/})
-#'
-#' @param tag A shiny tag to enable interaction.
+#' @param tag A shiny tag object to add interactions to.
 #' @param selector A \href{https://api.jquery.com/category/selectors/}{jQuery's
-#'   selector} that determines the shiny tag element(s) whose interaction is
-#'   to be enabled or disabled.
+#'   selector} that determines the shiny tag element(s) whose interaction is to
+#'   be enabled or disabled.
 #' @param switch A boolean value to determine whether to enable or disable an
 #'   interaction.
 #' @param options A list of interaction options. Ignored when \code{switch} is

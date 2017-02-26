@@ -36,13 +36,31 @@ run.}
 once per matched element.}
 }
 \description{
-These functions should be used in \code{server} of a shiny document.
-\describe{
-\item{\href{http://api.jqueryui.com/effect/}{\code{jqui_effect}}}{Apply an
-animation effect to matched element(s).}
-\item{\href{http://api.jqueryui.com/hide/}{\code{jqui_hide}}}{Hide the
-matched element(s) with animation effect.}
-\item{\href{http://api.jqueryui.com/show/}{\code{jqui_show}}}{Display the
-matched element(s) with animation effect.} }
+These functions are the R wrappers of
+\href{http://api.jqueryui.com/effect/}{effect()},
+\href{http://api.jqueryui.com/hide/}{hide()},
+\href{http://api.jqueryui.com/show/}{show()} in jQuery UI library. They
+should be used in \code{server} of a shiny document.
+}
+\details{
+\describe{ \item{\code{jqui_effect}}{Apply an animation effect to matched
+element(s).} \item{\code{jqui_hide}}{Hide the matched element(s) with
+animation effect.} \item{\code{jqui_show}}{Display the matched element(s)
+with animation effect.} }
+}
+\examples{
+\dontrun{
+  # in shiny ui create a plot
+  plotOutput('foo')
+
+  # in shiny server apply a 'bounce' effect to the plot
+  jqui_effect('#foo', 'bounce')
+
+  # in shiny server hide the plot with a 'fold' effect
+  jqui_hide('#foo', 'fold')
+
+  # in shiny server show the plot with a 'blind' effect
+  jqui_show('#foo', 'blind')
+}
 }
 

@@ -1,5 +1,5 @@
 ---
-title: "Basic usage"
+title: "Introduction to shinyjqui"
 author: "Yang Tang"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette

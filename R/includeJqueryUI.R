@@ -7,6 +7,19 @@
 #' @export
 #'
 #' @examples
+#' if (interactive()) {
+#'   library(shiny)
+#'
+#'   shinyApp(
+#'     ui = fluidPage(
+#'       includeJqueryUI(),
+#'       # other ui codes
+#'     ),
+#'     server = function(input, output) {
+#'       # server codes
+#'     }
+#'   )
+#' }
 includeJqueryUI <- function() {
 
   shiny::addResourcePath('shinyjqui', system.file('www', package = 'shinyjqui'))

@@ -1,14 +1,14 @@
-#' Create a items list input control whose order can be changed.
+#' Create a shiny input control with a list of items whose order can be changed.
 #'
-#' Create a items list whose order can be changed by drag and drop within or
+#' Display a list items whose order can be changed by drag and drop within or
 #' between \code{orderInput}(s). The current items order can be obtained from
 #' \code{input$inputId}.
 #'
 #' @param inputId The \code{input} slot that will be used to access the current
 #'   order of items.
 #' @param label Display label for the control, or \code{NULL} for no label.
-#' @param items A list or vector of items to be initially displayed. If named,
-#'   the names are displayed to user.
+#' @param items A list or atomic vector of items to be initially displayed. If
+#'   named, the names are displayed to user.
 #' @param as_source A boolean value to determine whether the \code{orderInput}
 #'   is set as source mode. If source mode, items in this \code{orderInput} can
 #'   only be dragged (copied) to the connected non-source \code{orderInput}(s)
@@ -32,7 +32,7 @@
 #' @return A \code{orderInput} control that can be added to a UI definition.
 #' @export
 #'
-#' @examples
+#' @example examples/orderInput.R
 orderInput <- function(inputId, label, items,
                        as_source = FALSE, connect = NULL,
                        item_class = c('default', 'primary', 'success',

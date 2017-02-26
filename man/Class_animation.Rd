@@ -41,16 +41,27 @@ removed from the class attribute of each matched element.}
 the class attribute of each matched element.}
 }
 \description{
-These functions should be used in \code{server} of a shiny document.
-\describe{
-\item{\href{http://api.jqueryui.com/addClass/}{\code{jqui_add_class}}}{Adds
-the specified class(es) to each of the set of matched elements while
-animating all style changes.}
-\item{\href{http://api.jqueryui.com/removeClass/}{\code{jqui_remove_class}}}{Removes
-the specified class(es) from each of the set of matched elements while
-animating all style changes.}
-\item{\href{http://api.jqueryui.com/switchClass/}{\code{jqui_switch_class}}}{Adds
-and removes the specified class(es) to each of the set of matched elements
-while animating all style changes} }
+These functions are the R wrappers of
+\href{http://api.jqueryui.com/addClass/}{addClass()},
+\href{http://api.jqueryui.com/addClass/}{removeClass()},
+\href{http://api.jqueryui.com/addClass/}{switchClass()} in jQuery UI library.
+They should be used in \code{server} of a shiny document.
+}
+\details{
+\describe{ \item{\code{jqui_add_class}}{Adds the specified class(es) to each
+of the set of matched elements while animating all style changes.}
+\item{\code{jqui_remove_class}}{Removes the specified class(es) from each of
+the set of matched elements while animating all style changes.}
+\item{\code{jqui_switch_class}}{Adds and removes the specified class(es) to
+each of the set of matched elements while animating all style changes} }
+}
+\examples{
+\dontrun{
+  # in shiny ui create a span
+  tags$span(id = 'foo', 'class animation demo')
+
+  # in shiny server add class 'lead' to the span
+  jqui_add_class('#foo', className = 'lead')
+}
 }
 
