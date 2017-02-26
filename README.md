@@ -3,7 +3,7 @@
 shinyjqui
 =========
 
-[![Travis-CI Build Status](https://travis-ci.org/Yang-Tang/shinyjqui.svg?branch=master)](https://travis-ci.org/Yang-Tang/shinyjqui)
+<!-- [![Travis-CI Build Status](https://travis-ci.org/Yang-Tang/shinyjqui.svg?branch=master)](https://travis-ci.org/Yang-Tang/shinyjqui) -->
 The shinyjqui package is an R wrapper for [jQuery UI](http://jqueryui.com/) javascript library. It allows user to easily add interactions and animation effects to a shiny app.
 
 Installation
@@ -128,7 +128,6 @@ shinyApp(ui, server)
 -   **Classes transformation:** Add and remove class(es) to elements while animating all style changes.
 
 ``` r
-
 server <- function(input, output) {
 
   current_class <- c()
@@ -174,3 +173,23 @@ shinyApp(ui, server)
 ```
 
 ![](fig/README-classes.gif)
+
+-   **orderInput():** Display a list of items. Their order can be changed by drag and drop.
+
+``` r
+server <- function(input, output) {
+  output$order <- renderPrint({ print(input$dest_order) })
+}
+
+ui <- fluidPage(
+  includeJqueryUI(),
+  orderInput('source', 'Source', items = month.abb,
+             as_source = TRUE, connect = 'dest'),
+  orderInput('dest', 'Dest', items = NULL, placeholder = 'Drag items here...'),
+  verbatimTextOutput('order')
+)
+
+shinyApp(ui, server)
+```
+
+![](fig/README-orderInput.gif)

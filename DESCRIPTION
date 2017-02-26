@@ -12,9 +12,9 @@ LazyData: true
 Depends:
     R (>= 3.2.0)
 Imports:
-    shiny (>= 0.14),
-    htmlwidgets (>= 0.8),
-    jsonlite (>= 1.1)
+    shiny,
+    htmlwidgets,
+    jsonlite
 Suggests:
     ggplot2,
     highcharter,
