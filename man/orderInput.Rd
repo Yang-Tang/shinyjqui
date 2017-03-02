@@ -14,8 +14,10 @@ order of items.}
 
 \item{label}{Display label for the control, or \code{NULL} for no label.}
 
-\item{items}{A list or atomic vector of items to be initially displayed. If
-named, the names are displayed to user.}
+\item{items}{Items to display, can be a list, an atomic vector or a factor.
+For list and atomic vector, if named, the names are displayed and the order
+is given in values. For factor, values are displayed and the order is
+given in levels}
 
 \item{as_source}{A boolean value to determine whether the \code{orderInput}
 is set as source mode. If source mode, items in this \code{orderInput} can
@@ -48,7 +50,7 @@ A \code{orderInput} control that can be added to a UI definition.
 \description{
 Display a list items whose order can be changed by drag and drop within or
 between \code{orderInput}(s). The current items order can be obtained from
-\code{input$inputId}.
+\code{input$inputId_order}.
 }
 \examples{
 orderInput('items1', 'Items1', items = month.abb, item_class = 'info')
