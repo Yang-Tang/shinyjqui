@@ -19,7 +19,7 @@
 #' on, users can get access to some internally defined shiny input values.
 #' Please see the vignette \code{Introduction} for more details.
 #'
-#' Users can overwrite the default shiny input settings by passing a
+#' Users can override the default shiny input settings by passing a
 #' \code{shiny} option to the \code{options} parameter. The vignette
 #' \code{Custom shiny input} provides more details about it.
 #'

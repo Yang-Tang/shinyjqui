@@ -84,7 +84,7 @@ knitr::kable(func_intro[2:11, ], row.names = FALSE)
 
 ### General usage
 
-For each interaction, there are two functions: `...able` and `...abled`. They both can make a shiny html element interactive, but should be used in different scenarios. The `...abled` functions are designed to be used in `ui` of a shiny document by returning a modified element (tag, tagList, input or output) with interaction enabled. The `...able` functions modify the interactivity of existing (pre-defined in `ui`) elements and therefore should be placed in `server` of a shiny document. For example, you can make a `textInput` draggable either by:
+For each interaction, there are two functions: `-able()` and `-abled()`. They both can make a shiny html element interactive, but should be used in different places. The `-abled()` functions are designed to be used in `ui` of a shiny document. They return a modified element (tag, tagList, input or output) with interaction enabled. The `-able()` functions modify the interactivity of existing (pre-defined in `ui`) elements and therefore should be placed in `server` of a shiny document. For example, you can make a `textInput` draggable either by:
 
 ```{r, eval = FALSE}
 # in shiny ui
@@ -102,9 +102,9 @@ textInput('input', 'Input')
 jqui_draggable(selector = '#input')
 ```
 
-The `...able` functions use [jQuery selector](https://api.jquery.com/category/selectors/) to identify which element to act on. In the above example, the selector `#input` refers to the element with id `input`. So you can make all the shiny inputs draggable by `jqui_draggable(selector = '.shiny-bound-input')`.
+The `-able()` functions use [jQuery selector](https://api.jquery.com/category/selectors/) to identify which element to act on. In the above example, the selector `#input` refers to the element with id `input`. So you can make all the shiny inputs draggable by `jqui_draggable(selector = '.shiny-bound-input')`.
 
-For `...abled` functions, you can also make multiple elements interactive by wrapping them with `tagList()`:
+For `-abled()` functions, you can also make multiple elements interactive by wrapping them with `tagList()`:
 
 ```{r, eval = FALSE}
 # in shiny ui, make each element in the tagList draggable
@@ -115,14 +115,14 @@ jqui_draggabled(tagList(
 ))
 ```
 
-The `...able` functions have a `switch` parameter. Set it as `FALSE` to disable the interaction of an element:
+The `-able()` functions have a `switch` parameter. Set it as `FALSE` to disable the interaction of an element:
 
 ```{r, eval = FALSE}
 # in shiny server
 jqui_draggable(selector = '#input', switch = FALSE)
 ```
 
-Both `...able` and `...abled` functions have an `options` parameter to let you pass interaction-specific options. You can find available options on jQuery UI's  [API Documentation](http://api.jqueryui.com/category/interactions/) page. Some examples about these options are listed in the next few sections.
+Both `-able()` and `-abled()` functions have an `options` parameter to let you pass interaction-specific options. You can find available options on jQuery UI's  [API Documentation](http://api.jqueryui.com/category/interactions/) page. Some examples about these options are listed in the next few sections.
 
 Once an interaction is turned on and if the target element has an `id`, you can get access to some pre-defined interaction-specific shiny input values through `input$id_suffix`, where the `id` is the id of target element (`id` attribute for shiny tag, `inputId` for shiny inputs, `outputId` for shiny outputs) and the `suffix` depends on the interaction you enabled. Please see the following table:
 ```{r, echo=FALSE}
@@ -135,7 +135,7 @@ knitr::kable(data.frame(Interactions = c('draggagle', 'droppable', 'resizable', 
                                                 'A dataframe containing the id and innerHTML of curently order of elements')))
 ```
 
-You can even customize these shiny input values by including a `shiny` option in the `options` parameter. Please see this vignette for more details.
+You can even customize these shiny input values by including a `shiny` option in the `options` parameter. Please see the Vignette `shiny_options` for more details.
 
 ### Draggable
 
@@ -218,7 +218,7 @@ jqui_sortable('#foo2', options = list(connectWith = '#foo1'))
 
 ```
 
-`shinyjqui` has a function called `orderInput()`. You can use it to display the order of a vector in shiny and users can change the order by drag and drop. The changed items order is send back to server as an input value. Please see this vignette for details.
+`shinyjqui` has a function called `orderInput()`. You can use it to display the order of a vector in shiny and users can change the order by drag and drop. The changed items order is send back to server as an input value. Please see the Vignette `orderInput` for details.
 
 ## Animation effects functions
 

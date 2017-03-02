@@ -28,7 +28,7 @@ devtools::install_github("yang-tang/shinyjqui")
 
 ## Usage
 
-In order to use other funtions in `shinyjqui`, you must first call `includeJqueryUI()` in `ui` of a shiny app. This function loads necessary js and css into your html document.
+In order to use other funtions in `shinyjqui`, please first call `includeJqueryUI()` in `ui` of a shiny app. This function loads necessary js and css into your html document.
 
 Here are some examples:
 
