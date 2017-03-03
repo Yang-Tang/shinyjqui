@@ -135,7 +135,49 @@ knitr::kable(data.frame(Interactions = c('draggagle', 'droppable', 'resizable', 
                                                 'A dataframe containing the id and innerHTML of curently order of elements')))
 ```
 
-You can even customize these shiny input values by including a `shiny` option in the `options` parameter. Please see the Vignette `shiny_options` for more details.
+You can even customize these shiny input values by including a `shiny` option in the `options` parameter. The shiny option is a list in the following format:
+
+```{r, eval = FALSE}
+shiny_opt = list(
+  
+  # define the shiny input value input$id_suffix1
+  suffix1 = list(
+    # on event_type1 run callback1 and send the returned value to input$id_suffix1
+    event_type1 = htmlwidgets::JS(callback1),
+    # on event_type2 run callback2 and send the returned value to input$id_suffix1
+    event_type2 = htmlwidgets::JS(callback2),
+    ...
+  ),
+  
+  # define the shiny input value input$id_suffix2
+  suffix2 = list(
+    ...
+  ),
+  
+  # define other shiny input values
+  
+)
+```
+
+Each element of the list is also a list that define a shiny input value. Its name is used as `siffix` in `input$id_suffix`. Within that list, there are multiple `htmlwidgets::JS` wrapped javascript callback functions named with corresponding event types. The event triggers the callback to run and the returned value is used to update the shiny input value. The valid event types for each interactions can be found in the [API Documentation](http://api.jqueryui.com/category/interactions/) of jQuery UI. The callcack function takes two arguments, `event` and `ui`. The definition of the `ui` argument can also be found in that document too. Here is a simple example of `draggable` interaction:
+
+```{r, eval = FALSE}
+jqui_draggable('#foo', options = list(
+  shiny = list(
+    # By default, draggable element has a shiny input value showing the element 
+    # position (relative to the offset parent). Here, another shiny input
+    # value is added. It gives the element offset (position relative to the 
+    # document). Using input$foo_offset to get access to it . 
+    offset = list(
+      # return the initiated offset value when the draggable is created
+      dragcreate = htmlwidgets::JS('function(event, ui) { return $(event.target).offset(); };'),
+      # update the offset value while dragging
+      drag = htmlwidgets::JS('function(event, ui) { return $(event.target).offset(); };')
+    )
+  )
+))
+```
+
 
 ### Draggable
 

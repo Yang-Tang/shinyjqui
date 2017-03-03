@@ -2,7 +2,7 @@
 % Please edit documentation in R/orderInput.R
 \name{orderInput}
 \alias{orderInput}
-\title{Create a shiny input control with a list of items whose order can be changed.}
+\title{A shiny input control to show the order of a list of items}
 \usage{
 orderInput(inputId, label, items, as_source = FALSE, connect = NULL,
   item_class = c("default", "primary", "success", "info", "warning",
