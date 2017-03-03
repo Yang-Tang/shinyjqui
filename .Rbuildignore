@@ -3,6 +3,7 @@
 ^\.Rhistory$
 ^\.travis\.yml$
 ^README\.Rmd$
-^fig/README-.*\.gif$
-^examples/.*$
+^fig$
+^examples$
 ^appveyor\.yml$
+^NEWS\.md$

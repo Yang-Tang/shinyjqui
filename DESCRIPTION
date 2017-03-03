@@ -1,7 +1,7 @@
 Package: shinyjqui
 Type: Package
 Title: jQuery UI Interactions and Effects for Shiny
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: person("Yang", "Tang", email = "tang_yang@outlook.com",
   role = c("aut", "cre"))
 Description: An extension to shiny that brings UI interations and animation effects from
