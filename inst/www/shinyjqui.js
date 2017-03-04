@@ -1,7 +1,5 @@
 shinyjqui = function() {
 
-  //var interaction_func = ['draggable', 'droppable', 'resizable', 'selectable', 'sortable'];
-
   var getInputContainer = function(el) {
     var $container = $(el).closest(".shiny-input-container");
     if($container.length) {
@@ -48,65 +46,23 @@ shinyjqui = function() {
 
   };
 
-  // ==============================================================================
-  // The following code (splitWithEscape, evaluateStringMember and evalJS) is obtained from htmlwidgets project
-  // (https://github.com/ramnathv/htmlwidgets/blob/master/inst/www/htmlwidgets.js), which is licensed MIT.
-  // The original license info:
-  // YEAR: 2016
-  // COPYRIGHT HOLDER: Ramnath Vaidyanathan, Joe Cheng, JJ Allaire, Yihui Xie, and Kenton Russell
-  // ==============================================================================
 
-  var splitWithEscape = function(value, splitChar, escapeChar) {
-    var results = [];
-    var escapeMode = false;
-    var currentResult = "";
-    for (var pos = 0; pos < value.length; pos++) {
-      if (!escapeMode) {
-        if (value[pos] === splitChar) {
-          results.push(currentResult);
-          currentResult = "";
-        } else if (value[pos] === escapeChar) {
-          escapeMode = true;
-        } else {
-          currentResult += value[pos];
+  var evaluateJSExpressions = function(opt, idx) {
+    $.each(idx, function( key, value ) {
+        if(value === true && opt[key]) {
+          opt[key] = eval("(" + opt[key] + ")");
+        } else if(typeof value === 'object'){
+          evaluateJSExpressions(opt[key], value);
         }
-      } else {
-        currentResult += value[pos];
-        escapeMode = false;
-      }
-    }
-    if (currentResult !== "") {
-      results.push(currentResult);
-    }
-    return results;
+      });
   };
 
-  var evaluateStringMember = function(o, member) {
-
-    var parts = splitWithEscape(member, '.', '\\');
-    for (var i = 0, l = parts.length; i < l; i++) {
-      var part = parts[i];
-      // part may be a character or 'numeric' member name
-      if (o !== null && typeof o === "object" && part in o) {
-        if (i == (l - 1)) { // if we are at the end of the line then evalulate
-          if (typeof o[part] === "string")
-            o[part] = eval("(" + o[part] + ")");
-        } else { // otherwise continue to next embedded object
-          o = o[part];
-        }
-      }
+  var evalJS = function(option) {
+    var idx = option._js_idx;
+    if(idx && typeof idx === 'object') {
+      evaluateJSExpressions(option, idx);
     }
-  };
-
-
-  var evalJS = function(data) {
-
-    if (!(data['.evals'] instanceof Array)) data['.evals'] = [data['.evals']];
-        for (var i = 0; data['.evals'] && i < data['.evals'].length; i++) {
-          evaluateStringMember(data, data['.evals'][i]);
-        }
-    return data;
-
+    return(option);
   };
 
   var interactions = {

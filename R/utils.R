@@ -7,14 +7,19 @@
   }, force = TRUE)
 }
 
+## add location index of JS expressions needed to be evaled in javascript side
+addJSIdx <- function(list) {
+  list$`_js_idx` <- rapply(list, is.character, classes = 'JS_EVAL',
+                        deflt = FALSE, how = 'list')
+  return(list)
+}
 
-## Code obtained from
+## Idea from
 ## http://deanattali.com/blog/htmlwidgets-tips/#widget-to-r-data
 ## with some midifications.
 sendMsg <- function() {
   message <- Filter(function(x) !is.symbol(x), as.list(parent.frame(1)))
-  # record locations of JS codes needed to be evaled in javascript side
-  message <- c(message, list(.evals = JSEvals(message)))
+  message <- addJSIdx(message)
   session <- shiny::getDefaultReactiveDomain()
   session$sendCustomMessage('shinyjqui', message)
 }
@@ -54,7 +59,7 @@ addInteractJS <- function(tag, func, options = NULL) {
                 func = func,
                 switch = TRUE,
                 options = options)
-    msg <- c(msg, list(.evals = JSEvals(msg)))
+    msg <- addJSIdx(msg)
 
     interaction_call <- sprintf('shinyjqui.msgCallback(%s);',
                                 jsonlite::toJSON(msg, auto_unbox = TRUE, force = TRUE))
