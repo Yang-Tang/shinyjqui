@@ -6,5 +6,4 @@
 ^fig$
 ^examples$
 ^appveyor\.yml$
-^NEWS\.md$
 ^cran-comments\.md$

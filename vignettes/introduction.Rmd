@@ -4,7 +4,7 @@ author: "Yang Tang"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Basic usage}
+  %\VignetteIndexEntry{Introduction to shinyjqui}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
