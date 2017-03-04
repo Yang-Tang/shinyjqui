@@ -22,7 +22,7 @@
 #'   behavior of the conneted \code{orderInput}(s) depend on the
 #'   \code{as_source} argument.
 #' @param item_class One of the
-#'   \href{http://www.w3schools.com/bootstrap/bootstrap_buttons.asp}{Bootstrap
+#'   \href{http://getbootstrap.com/css/#buttons-options}{Bootstrap
 #'   Button Styles} to apply to each item.
 #' @param placeholder A character string to show when there is no item left in
 #'   the \code{orderInput}.
