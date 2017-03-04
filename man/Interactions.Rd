@@ -73,11 +73,10 @@ on/off interactions and should be used in \code{server} of a shiny app.
 
 If an element has an \code{id} and its interaction is initialized or switched
 on, users can get access to some internally defined shiny input values.
-Please see the vignette \code{Introduction} for more details.
-
-Users can override the default shiny input settings by passing a
-\code{shiny} option to the \code{options} parameter. The vignette
-\code{Custom shiny input} provides more details about it.
+Please see the vignette \code{Introduction} for more details.Users can
+override the default shiny input settings by passing a \code{shiny} option to
+the \code{options} parameter. Please see the vignette \code{Introduction} for
+more details.
 }
 \examples{
 library(shiny)
