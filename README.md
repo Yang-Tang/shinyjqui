@@ -5,16 +5,20 @@ shinyjqui
 
 [![Travis-CI Build Status](https://travis-ci.org/Yang-Tang/shinyjqui.svg?branch=master)](https://travis-ci.org/Yang-Tang/shinyjqui)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/Yang-Tang/shinyjqui?branch=master&svg=true)](https://ci.appveyor.com/project/Yang-Tang/shinyjqui)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/shinyjqui)](https://cran.r-project.org/package=shinyjqui)
 
 The shinyjqui package is an R wrapper for [jQuery UI](http://jqueryui.com/) javascript library. It allows user to easily add interactions and animation effects to a shiny app.
 
 Installation
 ------------
 
-You can install shinyjqui from github with:
+You can install the stable version from CRAN, or the development version from github with:
 
 ``` r
-# install.packages("devtools")
+# install from CRAN
+install.packages('shinyjqui')
+
+# for the development version
 devtools::install_github("yang-tang/shinyjqui")
 ```
 
