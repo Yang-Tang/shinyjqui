@@ -20,6 +20,8 @@ Create an jQuery UI pre-defined icon. For lists of available icons, see
 \examples{
 jqui_icon('caret-1-n')
 
+library(shiny)
+
 # add an icon to an actionButton
 actionButton('button', 'Button', icon = jqui_icon('refresh'))
 

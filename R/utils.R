@@ -116,6 +116,8 @@ addInteractJS <- function(tag, func, options = NULL) {
 #' @examples
 #' jqui_icon('caret-1-n')
 #'
+#' library(shiny)
+#'
 #' # add an icon to an actionButton
 #' actionButton('button', 'Button', icon = jqui_icon('refresh'))
 #'
