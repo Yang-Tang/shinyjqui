@@ -64,4 +64,3 @@ each of the set of matched elements while animating all style changes} }
   jqui_add_class('#foo', className = 'lead')
 }
 }
-

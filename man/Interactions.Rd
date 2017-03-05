@@ -2,16 +2,16 @@
 % Please edit documentation in R/interactions.R
 \name{Interactions}
 \alias{Interactions}
-\alias{jqui_draggable}
-\alias{jqui_draggabled}
-\alias{jqui_droppable}
-\alias{jqui_droppabled}
-\alias{jqui_resizable}
 \alias{jqui_resizabled}
-\alias{jqui_selectable}
+\alias{jqui_sortabled}
+\alias{jqui_draggabled}
+\alias{jqui_droppabled}
 \alias{jqui_selectabled}
 \alias{jqui_sortable}
-\alias{jqui_sortabled}
+\alias{jqui_draggable}
+\alias{jqui_droppable}
+\alias{jqui_selectable}
+\alias{jqui_resizable}
 \title{Initialize, enable or disable jQuery UI interactions}
 \usage{
 jqui_resizabled(tag, options = NULL)
@@ -142,4 +142,3 @@ jqui_draggabled(highchartOutput('foo', width = '200px', height = '200px'),
 
 
 }
-

@@ -67,4 +67,3 @@ orderInput('items3', 'Items3 (can be copied to List2 and List4)', items = month.
 orderInput('items4', 'Items4 (can be moved to List2)', items = NULL, connect = 'lst2',
            placeholder = 'Drag items here...')
 }
-

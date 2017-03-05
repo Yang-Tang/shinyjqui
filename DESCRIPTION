@@ -23,5 +23,5 @@ Suggests:
     rmarkdown
 URL: https://github.com/yang-tang/shinyjqui
 BugReports: https://github.com/yang-tang/shinyjqui/issues
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 VignetteBuilder: knitr

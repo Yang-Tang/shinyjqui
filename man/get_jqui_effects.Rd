@@ -12,4 +12,3 @@ A character vector of effect names
 \description{
 Use this function to get all animation effects in jQuery UI.
 }
-

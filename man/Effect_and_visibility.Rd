@@ -3,8 +3,8 @@
 \name{Effect_and_visibility}
 \alias{Effect_and_visibility}
 \alias{jqui_effect}
-\alias{jqui_hide}
 \alias{jqui_show}
+\alias{jqui_hide}
 \title{Apply jQuery UI effect.}
 \usage{
 jqui_effect(selector, effect, options = NULL, duration = 400,
@@ -63,4 +63,3 @@ with animation effect.} }
   jqui_show('#foo', 'blind')
 }
 }
-
