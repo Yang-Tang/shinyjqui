@@ -53,7 +53,7 @@ interaction.}
 \value{
 \code{jqui_draggabled}, \code{jqui_droppabled},
   \code{jqui_resizabled}, \code{jqui_selectabled} and \code{jqui_sortabled}
-  returns a modified shiny tag with interation enabled.
+  returns a modified shiny tag with interaction enabled.
 }
 \description{
 These functions initialize or switch on/off jQuery UI interactions

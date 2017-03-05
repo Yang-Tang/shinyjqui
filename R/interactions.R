@@ -36,7 +36,7 @@
 #'
 #' @return \code{jqui_draggabled}, \code{jqui_droppabled},
 #'   \code{jqui_resizabled}, \code{jqui_selectabled} and \code{jqui_sortabled}
-#'   returns a modified shiny tag with interation enabled.
+#'   returns a modified shiny tag with interaction enabled.
 #'
 #' @example examples/interactions.R
 #' @name Interactions

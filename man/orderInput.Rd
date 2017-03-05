@@ -28,7 +28,7 @@ non-source \code{orderInput}(s) defined by \code{connect} argument.}
 
 \item{connect}{optional, a vector of \code{inputId}(s) of other
 \code{orderInput}(s) that the current \code{orderInput} connects to. The
-behavior of the conneted \code{orderInput}(s) depend on the
+behavior of the connected \code{orderInput}(s) depend on the
 \code{as_source} argument.}
 
 \item{item_class}{One of the
