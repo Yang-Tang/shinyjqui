@@ -124,7 +124,7 @@ addInteractJS <- function(tag, func, options = NULL) {
 #' # add an icon to a tabPanel
 #' tabPanel('Help', icon = jqui_icon('help'))
 jqui_icon <- function(name) {
-  if(!startsWith(name, 'ui-icon-')) {
+  if(!grepl('^ui-icon-', name)) {
     name <- paste0('ui-icon-', name)
   }
   shiny::tags$i(class = paste0('ui-icon ', name))
