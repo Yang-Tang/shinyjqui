@@ -32,11 +32,9 @@ addInteractJS <- function(tag, func, options = NULL) {
 
   if(inherits(tag, 'shiny.tag.list')) {
 
-    x <- lapply(tag, addInteractJS, func = func, options = options)
-    # set the original attributes like class (shiny.tag.list) and
-    # html_dependencies (for htmlwidgets) back
-    attributes(x) <- attributes(tag)
-    return(x)
+    # use `[<-` to keep original attributes of tagList
+    tag[] <- lapply(tag, addInteractJS, func = func, options = options)
+    return(tag)
 
   } else if(inherits(tag, 'shiny.tag')) {
 
@@ -69,7 +67,7 @@ addInteractJS <- function(tag, func, options = NULL) {
       # For shiny/htmlwidgets output elements, call resizable on "shiny:value"
       # event. This ensures js get the correct element dimension especially when
       # the output element is hiden on shiny initialization.
-      js <- sprintf('$("%s").on("shiny:value", function(e){console.log(e.target); %s});',
+      js <- sprintf('$("%s").on("shiny:value", function(e){%s});',
                     selector, interaction_call)
 
     } else {
