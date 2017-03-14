@@ -5,6 +5,7 @@
 \alias{jqui_effect}
 \alias{jqui_show}
 \alias{jqui_hide}
+\alias{jqui_toggle}
 \title{Apply jQuery UI effect.}
 \usage{
 jqui_effect(selector, effect, options = NULL, duration = 400,
@@ -14,6 +15,9 @@ jqui_show(selector, effect, options = NULL, duration = 400,
   complete = NULL)
 
 jqui_hide(selector, effect, options = NULL, duration = 400,
+  complete = NULL)
+
+jqui_toggle(selector, effect, options = NULL, duration = 400,
   complete = NULL)
 }
 \arguments{

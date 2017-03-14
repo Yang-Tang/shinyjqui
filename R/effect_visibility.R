@@ -10,7 +10,8 @@
 #' \describe{ \item{\code{jqui_effect}}{Apply an animation effect to matched
 #' element(s).} \item{\code{jqui_hide}}{Hide the matched element(s) with
 #' animation effect.} \item{\code{jqui_show}}{Display the matched element(s)
-#' with animation effect.} }
+#' with animation effect.} \item{\code{jqui_toggle}}{Display or hide the matched
+#' element(s) with animation effect.}}
 #'
 #' @param selector A \href{https://api.jquery.com/category/selectors/}{jQuery's
 #'   selector} that determines the shiny tag element(s) whose interaction is
@@ -57,6 +58,16 @@ jqui_hide <- function(selector, effect, options = NULL,
                       duration = 400, complete = NULL) {
   method = 'effect'
   func = 'hide'
+  sendMsg()
+}
+
+
+#' @rdname Effect_and_visibility
+#' @export
+jqui_toggle <- function(selector, effect, options = NULL,
+                      duration = 400, complete = NULL) {
+  method = 'effect'
+  func = 'toggle'
   sendMsg()
 }
 

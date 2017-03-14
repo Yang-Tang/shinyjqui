@@ -36,6 +36,10 @@ server <- function(input, output) {
     jqui_hide('#gg', effect = input$effect)
   })
 
+  observeEvent(input$toggle, {
+    jqui_toggle('#gg', effect = input$effect)
+  })
+
   output$gg <- renderPlot({
     ggplot(mtcars, aes(x = cyl, y = mpg, color = factor(gear))) +
       geom_point() +
@@ -60,8 +64,9 @@ ui <- fluidPage(
   actionButton('run', 'Run effect'),
   actionButton('show', 'Show'),
   actionButton('hide', 'Hide'),
+  actionButton('toggle', 'Toggle'),
   br(),
-  'Note: The "transfer" effect does not support Show/Hide'
+  'Note: The "transfer" effect does not support Show/Hide/Toggle'
 
 )
 

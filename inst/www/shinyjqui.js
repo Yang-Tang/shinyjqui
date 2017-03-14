@@ -352,7 +352,9 @@ shinyjqui = function() {
           if(!msg.hasOwnProperty('effect')) {
             console.warn('No effect found. Action abort.');
             return;
-          } else if(msg.effect === 'transfer' && (func === 'hide' || func === 'show')) {
+          }
+
+          if(msg.effect === 'transfer' && (func === 'hide' || func === 'show' || func === 'toggle')) {
             console.warn('The transfer effect cannot be used in hide/show. Action abort.');
             return;
           }

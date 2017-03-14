@@ -14,48 +14,6 @@ library(shiny)
 library(shinyjqui)
 ```
 
-```{r, include=FALSE}
-func_intro <- data.frame(Functions = c('includeJqueryUI',
-                                    'jqui_draggable', 'jqui_draggabled',
-                                    'jqui_droppable', 'jqui_droppabled', 
-                                    'jqui_resizable', 'jqui_resizabled', 
-                                    'jqui_selectable', 'jqui_selectabled', 
-                                    'jqui_sortable', 'jqui_sortabled',
-                                    'orderInput', 
-                                    'jqui_effect', 'jqui_show', 'jqui_hide',
-                                    'get_jqui_effects',
-                                    'jqui_add_class', 'jqui_remove_class', 
-                                    'jqui_switch_class'), 
-                      Description = c(
-                        'Load necessary web assets. Has to be called before the usage of other functions',
-                        'Enable or disable element\'s draggable interaction.',
-                        'Initialize an element as draggable.',
-                        'Enable or disable element\'s droppable interaction.',
-                        'Initialize an element as droppable.',
-                        'Enable or disable element\'s resizable interaction.',
-                        'Initialize an element as resizable.',
-                        'Enable or disable element\'s selectable interaction.',
-                        'Initialize an element as selectable.',
-                        'Enable or disable element\'s sortable interaction.',
-                        'Initialize an element as sortable.',
-                        'Show order of a character vector and allow users to change the order by drag and drop.',
-                        'Let element(s) to show an animation immediately.',
-                        'Display hidden element(s) with an animation',
-                        'Hide element(s) with an animation',
-                        'List all the animation effects',
-                        'Add class(es) to element(s) while animating all style changes.',
-                        'Remove class(es) from element(s) while animating all style changes.',
-                        'Add and remove class(es) to element(s) while animating all style changes.'
-                      ),
-                      Where_to_use = c('ui',
-                                       rep(c('server', 'ui'), times = 5), 
-                                       'ui', 
-                                       rep('server', times = 3),
-                                       '',
-                                       rep('server', times = 3)),
-                      stringsAsFactors = FALSE)
-```
-
 The `shinyjqui` package provides functions to give shiny ui mouse-interactions and animation effects. This vignette provides some general introductions and examples.
 
 ## The `includeJqueryUI` function
@@ -90,7 +48,24 @@ There are five kinds of mouse interactions in jQuery UI library:
 Here are the corresponding R wrappers in `shinyjqui`:
 
 ```{r, echo=FALSE}
-knitr::kable(func_intro[2:11, ], row.names = FALSE)
+func_intro <- data.frame(Functions = c('jqui_draggable', 'jqui_draggabled',
+                                       'jqui_droppable', 'jqui_droppabled', 
+                                       'jqui_resizable', 'jqui_resizabled', 
+                                       'jqui_selectable', 'jqui_selectabled', 
+                                       'jqui_sortable', 'jqui_sortabled'), 
+                         Description = c('Enable or disable element\'s draggable interaction.',
+                                         'Initialize an element as draggable.',
+                                         'Enable or disable element\'s droppable interaction.',
+                                         'Initialize an element as droppable.',
+                                         'Enable or disable element\'s resizable interaction.',
+                                         'Initialize an element as resizable.',
+                                         'Enable or disable element\'s selectable interaction.',
+                                         'Initialize an element as selectable.',
+                                         'Enable or disable element\'s sortable interaction.',
+                                         'Initialize an element as sortable.'),
+                         Where_to_use = rep(c('server', 'ui'), times = 5),
+                         stringsAsFactors = FALSE)
+knitr::kable(func_intro, row.names = FALSE)
 ```
 
 For each interaction, there are two functions: `-able()` and `-abled()`. They both can make a shiny html element interactive, but should be used in different places. The `-abled()` functions are designed to be used in `ui` of a shiny app. They return a modified element (tag, tagList, input or output) with interaction enabled. The `-able()` functions modify the interactivity of existing (pre-defined in `ui`) elements and therefore should be placed in `server` of a shiny app. For example, you can make a `textInput` draggable either in this way:
@@ -277,7 +252,7 @@ jqui_sortable('#foo2', options = list(connectWith = '#foo1'))
 
 `shinyjqui` has a function called `orderInput()` which takes advantage of sortable interaction. You can use it to display a list of items in shiny and can change their order by drag and drop. The changed items order is send back to server as an input value. Please see the Vignette `orderInput` for details.
 
-## Animation effects functions
+## Animation effects
 
 jQuery UI library comes with 15 internal animation effects. You can get a full list of them by R function `get_jqui_effects()`:
 
@@ -288,7 +263,14 @@ get_jqui_effects()
 There is a live demo for each effect [here](http://jqueryui.com/effect/). By use following functions, you can apply these effects to a shiny element:
 
 ```{r, echo=FALSE}
-knitr::kable(func_intro[13:15, ], row.names = FALSE)
+func_intro <- data.frame(Functions = c('jqui_effect', 'jqui_show', 'jqui_hide', 'jqui_toggle'), 
+                         Description = c('Let element(s) to show an animation immediately.',
+                                         'Display hidden element(s) with an animation',
+                                         'Hide element(s) with an animation',
+                                         'Display or hide element(s) with an animation'),
+                         Where_to_use = rep('server', times = 4),
+                         stringsAsFactors = FALSE)
+knitr::kable(func_intro, row.names = FALSE)
 ```
 
 The above three functions use [jQuery selector](https://api.jquery.com/category/selectors/) to locate the target element(s) and should be used in `server`.
@@ -311,12 +293,18 @@ jqui_hide('#foo', effect = 'size', options = list(width = 200, height = 60)) # r
 jqui_show('#foo', effect = 'clip') # show the plot by clipping
 ```
 
-## Classes animation functions
+## Classes animation
   
 These functions can be used to change shiny element's class(es) while animating all style changes:
 
 ```{r, echo=FALSE}
-knitr::kable(func_intro[17:19, ], row.names = FALSE)
+func_intro <- data.frame(Functions = c('jqui_add_class', 'jqui_remove_class', 'jqui_switch_class'), 
+                         Description = c('Add class(es) to element(s) while animating all style changes.',
+                                         'Remove class(es) from element(s) while animating all style changes.',
+                                         'Add and remove class(es) to element(s) while animating all style changes.'),
+                         Where_to_use = rep('server', times = 3),
+                         stringsAsFactors = FALSE)
+knitr::kable(func_intro, row.names = FALSE)
 ```
 
 Similar to the animation effects functions, these functions need a [jQuery selector](https://api.jquery.com/category/selectors/) and please use them in `server`.
