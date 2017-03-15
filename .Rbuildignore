@@ -7,3 +7,4 @@
 ^examples$
 ^appveyor\.yml$
 ^cran-comments\.md$
+^docs$

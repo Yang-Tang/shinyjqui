@@ -50,7 +50,8 @@ should be used in \code{server} of a shiny document.
 \describe{ \item{\code{jqui_effect}}{Apply an animation effect to matched
 element(s).} \item{\code{jqui_hide}}{Hide the matched element(s) with
 animation effect.} \item{\code{jqui_show}}{Display the matched element(s)
-with animation effect.} }
+with animation effect.} \item{\code{jqui_toggle}}{Display or hide the matched
+element(s) with animation effect.}}
 }
 \examples{
 \dontrun{
