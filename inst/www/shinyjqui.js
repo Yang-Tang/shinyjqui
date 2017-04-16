@@ -81,6 +81,11 @@ shinyjqui = function() {
           position : {
             dragcreate : func,
             drag : func
+          },
+          is_dragging : {
+            dragcreate : function(event, ui) {return false;},
+            dragstart : function(event, ui) {return true;},
+            dragstop : function(event, ui) {return false;}
           }
         };
 
@@ -112,11 +117,39 @@ shinyjqui = function() {
             dropcreate : function(event, ui){return [];},
             dropover : function(event, ui){return shinyjqui.getId(ui.draggable.get(0));}
           },
+          drop : {
+            dropcreate : function(event, ui){return [];},
+            drop : function(event, ui){return shinyjqui.getId(ui.draggable.get(0));}
+          },
+          out : {
+            dropcreate : function(event, ui){return [];},
+            dropout : function(event, ui){return shinyjqui.getId(ui.draggable.get(0));}
+          },
           dragging : {
             dropcreate : function(event, ui){return [];},
             dropactivate : function(event, ui){
             return shinyjqui.getId(ui.draggable.get(0));},
             dropdeactivate : function(event, ui){return [];}
+          },
+          dropped : {
+            dropcreate : function(event, ui){
+              $(event.target).data("shinyjqui_droppedIds", []);
+              return [];
+            },
+            drop : function(event, ui){
+              var current_ids = $(event.target).data("shinyjqui_droppedIds");
+              var new_id = shinyjqui.getId(ui.draggable.get(0));
+              if($.inArray(new_id, current_ids) == -1) current_ids.push(new_id);
+              $(event.target).data("shinyjqui_droppedIds", current_ids);
+              return current_ids;
+            },
+            dropout : function(event, ui){
+              var current_ids = $(event.target).data("shinyjqui_droppedIds");
+              var out_id = shinyjqui.getId(ui.draggable.get(0));
+              current_ids.splice($.inArray(out_id, current_ids),1);
+              $(event.target).data("shinyjqui_droppedIds", current_ids);
+              return current_ids;
+            }
           }
         };
 
@@ -173,6 +206,11 @@ shinyjqui = function() {
             resize : function(event, ui){
               return ui.size;
             }
+          },
+          is_resizing : {
+            resizecreate : function(event, ui){return false;},
+            resizestart : function(event, ui){return true;},
+            resizestop : function(event, ui){return false;}
           }
         };
         handleShinyInput(el, opt, default_shiny_opt);
@@ -220,6 +258,11 @@ shinyjqui = function() {
           'selected:shinyjqui.df' : {
             selectablecreate : func,
             selectablestop : func
+          },
+          is_selecting : {
+            selectablecreate : function(event, ui) {return false;},
+            selectablestart : function(event, ui) {return true;},
+            selectablestop : function(event, ui) {return false;},
           }
         };
 

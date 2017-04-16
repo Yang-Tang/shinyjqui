@@ -13,7 +13,15 @@ server <- function(input, output) {
     top <- input[[paste0(id, '_position')]]$top
     left <- input[[paste0(id, '_position')]]$left
     cat('Now dragging: ')
-    cat(sprintf('%s (top: %s, left: %s)\n', id, top, left))
+    cat(sprintf('%s (top: %s, left: %s)', id, top, left))
+    cat('\nDropped: ')
+    cat(input$drop_area_dropped)
+    cat('\nDrop: ')
+    cat(input$drop_area_drop)
+    cat('\nOut: ')
+    cat(input$drop_area_out)
+    cat('\nOver: ')
+    cat(input$drop_area_over)
   })
 
 }
@@ -29,6 +37,7 @@ ui <- fluidPage(
       width = 3,
 
       jqui_draggabled(div(id = 'drg_div', 'Div', style = 'width:100px; height:100px; background-color:#79BBF2')),
+      jqui_draggabled(div('No id Div', style = 'width:100px; height:100px; background-color:#79BBF2')),
       jqui_draggabled(actionButton('drg_btn', 'Button'), options = list(cancel = '')),
       jqui_draggabled(textInput('drg_input', 'Input')),
       jqui_draggabled(selectInput('drg_sel', 'Select', choices = month.abb)),
@@ -48,14 +57,42 @@ ui <- fluidPage(
       'Try to drop something here!'
     ), options = list(
       drop = htmlwidgets::JS(
-      'function(event, ui){',
-      '  var info = "A " + shinyjqui.getId(ui.draggable) + " is dropped.";',
-      '  $(this).addClass("ui-state-highlight").html(info);',
-      '  setTimeout(function(){',
-      '    $(event.target).removeClass("ui-state-highlight").html("Try to drop something here!");',
-      '  }, 1500);',
-      '}'
-    )
+        'function(event, ui){',
+        '  var info = "A " + shinyjqui.getId(ui.draggable) + " is dropped.";',
+        '  $(this).addClass("ui-state-highlight").html(info);',
+        '  setTimeout(function(){',
+        '    $(event.target).removeClass("ui-state-highlight").html("Try to drop something here!");',
+        '  }, 1500);',
+        '}'
+      )
+      # shiny = list(
+      #   dropped = list(
+      #     dropcreate = htmlwidgets::JS(
+      #       'function(event, ui){',
+      #       '  $(event.target).data("shinyjqui_droppedIds", []);',
+      #       '  return [];',
+      #       '}'
+      #     ),
+      #     drop = htmlwidgets::JS(
+      #       'function(event, ui){',
+      #       '  var current_ids = $(event.target).data("shinyjqui_droppedIds");',
+      #       '  var new_id = shinyjqui.getId(ui.draggable);',
+      #       '  if($.inArray(new_id, current_ids) == -1) current_ids.push(new_id);',
+      #       '  $(event.target).data("shinyjqui_droppedIds", current_ids);',
+      #       '  return current_ids;',
+      #       '}'
+      #     ),
+      #     dropout = htmlwidgets::JS(
+      #       'function(event, ui){',
+      #       '  var current_ids = $(event.target).data("shinyjqui_droppedIds");',
+      #       '  var out_id = shinyjqui.getId(ui.draggable);',
+      #       '  current_ids.splice($.inArray(out_id, current_ids),1);',
+      #       '  $(event.target).data("shinyjqui_droppedIds", current_ids);',
+      #       '  return current_ids;',
+      #       '}'
+      #     )
+      #   )
+      # )
     ))
   )
 )

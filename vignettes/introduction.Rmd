@@ -110,13 +110,56 @@ Both `-able()` and `-abled()` functions have an `options` parameter to accept in
 
 Once an interaction is turned on and if the target element has an `id`, you can get access to some pre-defined interaction-specific shiny input values through `input$id_suffix`, where the `id` is the id of target element (`id` attribute for shiny tag, `inputId` for shiny inputs, `outputId` for shiny outputs) and the `suffix` depends on the type of interaction enabled. Please see the following table:
 ```{r, echo=FALSE}
-knitr::kable(data.frame(Interaction_type = c('draggagle', 'droppable', 'resizable', 'selectable', 'sortable'),
-                        suffix = c('position', 'dragging', 'size', 'selected', 'order'),
-                        `The_returned_shiny_input_value` = c('A list of the element\'s left and top distances (in pixels) to its parent element',
-                                                'The id of an acceptable element that is now dragging',
-                                                'A list of the element\'s current size',
-                                                'A dataframe containing the id and innerHTML of curently selected elements',
-                                                'A dataframe containing the id and innerHTML of curently order of elements')))
+draggable_shiny <- data.frame(
+  Interaction_type = 'draggable',
+  suffix = c('position', 'is_dragging'),
+  `The_returned_shiny_input_value` = c(
+    'A list of the element\'s left and top distances (in pixels) to its parent element',
+    'TRUE or FALSE that indicate whether the element is dragging'
+  )
+)
+
+droppable_shiny <- data.frame(
+  Interaction_type = 'droppable',
+  suffix = c('dragging', 'over', 'drop', 'dropped', 'out'),
+  `The_returned_shiny_input_value` = c(
+    'The id of an acceptable element that is now dragging',
+    'The id of the last acceptable element that is dragged over',
+    'The id of the last acceptable element that is dropped',
+    'The ids of all acceptable elements that is currently dropped',
+    'The id of the last acceptable element that is dragged out'
+  )
+)
+
+resizable_shiny <- data.frame(
+  Interaction_type = 'resizable',
+  suffix = c('size', 'is_resizing'),
+  `The_returned_shiny_input_value` = c(
+    'A list of the element\'s current size',
+    'TRUE or FALSE that indicate whether the element is resizing'
+  )
+)
+
+selectable_shiny <- data.frame(
+  Interaction_type = 'selectable',
+  suffix = c('selected', 'is_selecting'),
+  `The_returned_shiny_input_value` = c(
+    'A dataframe containing the id and innerHTML of curently selected elements',
+    'TRUE or FALSE that indicate whether the element is selecting (e.g. during lasso selection)'
+  )
+)
+
+sortable_shiny <- data.frame(
+  Interaction_type = 'sortable',
+  suffix = c('order'),
+  `The_returned_shiny_input_value` = c(
+    'A dataframe containing the id and innerHTML of curently order of elements'
+  )
+)
+
+knitr::kable(rbind(draggable_shiny, droppable_shiny, resizable_shiny, 
+                   selectable_shiny, sortable_shiny))
+
 ```
 
 You can even customize these shiny input values by including a `shiny` option in the `options` parameter. Create a shiny option in the following format, then combine it with other interaction-specific options before passing to the `options` parameter:
@@ -169,7 +212,9 @@ jqui_draggable('#foo', options = list(
 ))
 ```
 
-Following are some examples for each iteractions.
+When customizing shiny input values by shiny option and callbacks, you may want to get the id of certain element in javascript. For simple shiny tag (e.g. `tags$div`), `element.attr("id")` just works fine, but it dosen't work for shiny inputs (e.g. `textInput`). The id arribute of most shiny inputs is hidden inside a div container. You have to use `.find()` to locate it. The `shinyjqui` package comes with an internal javascript function `shinyjqui.getId()` which will take care of this. You can just simply pass in any shiny element, either simple tag, shiny input or shiny output. It will use the appropriate way to find out the id.
+
+The following are some examples for each iteractions.
 
 ### Draggable
 
