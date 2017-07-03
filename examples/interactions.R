@@ -39,7 +39,6 @@ if (interactive()) {
     })
   }
   ui <- fluidPage(
-    includeJqueryUI(),
     verbatimTextOutput('position'),
     jqui_draggabled(highchartOutput('foo', width = '200px', height = '200px'))
   )

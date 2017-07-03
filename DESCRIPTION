@@ -24,4 +24,5 @@ Suggests:
 URL: https://github.com/yang-tang/shinyjqui
 BugReports: https://github.com/yang-tang/shinyjqui/issues
 RoxygenNote: 6.0.1
+Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr

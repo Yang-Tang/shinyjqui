@@ -24,7 +24,7 @@ server <- function(input, output) {
 }
 
 ui <- fluidPage(
-  includeJqueryUI(),
+  # includeJqueryUI(),
 
   orderInput('lst1', 'List1', items = month.abb, item_class = 'info'),
   orderInput('lst2', 'List2 (can be moved to List1 and List4)', items = month.abb,

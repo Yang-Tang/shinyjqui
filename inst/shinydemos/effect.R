@@ -50,7 +50,7 @@ server <- function(input, output) {
 
 ui <- fluidPage(
 
-  includeJqueryUI(),
+  # includeJqueryUI(),
 
   tags$head(
     tags$style(

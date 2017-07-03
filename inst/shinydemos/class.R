@@ -10,9 +10,9 @@ server <- function(input, output) {
     class_to_remove <- setdiff(current_class, input$class)
     class_to_add <- setdiff(input$class, current_class)
     current_class <<- input$class
-    if(length(class_to_remove) > 0) {
+    if (length(class_to_remove) > 0) {
       jqui_remove_class('#foo', paste(class_to_remove, collapse = ' '), duration = 1000)}
-    if(length(class_to_add) > 0) {
+    if (length(class_to_add) > 0) {
       jqui_add_class('#foo', paste(class_to_add, collapse = ' '), duration = 1000)}
   })
 
@@ -20,7 +20,7 @@ server <- function(input, output) {
 
 ui <- fluidPage(
 
-  includeJqueryUI(),
+  # includeJqueryUI(),
 
   tags$head(
     tags$style(

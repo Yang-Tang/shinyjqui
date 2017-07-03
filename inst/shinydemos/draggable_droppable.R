@@ -28,7 +28,7 @@ server <- function(input, output) {
 
 ui <- fluidPage(
 
-  includeJqueryUI(),
+  # includeJqueryUI(),
 
   verbatimTextOutput('position'),
 

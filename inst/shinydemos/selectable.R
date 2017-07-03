@@ -14,7 +14,7 @@ server <- function(input, output) {
     hchart(mtcars, "scatter", hcaes(x = cyl, y = mpg, group = factor(vs)))
   })
   output$ggplot <- renderPlot({
-    ggplot(mtcars, aes(x = cyl, y = mpg, color = factor(vs))) + geom_point()+
+    ggplot(mtcars, aes(x = cyl, y = mpg, color = factor(vs))) + geom_point() +
       theme(plot.background = element_rect(fill = "transparent",colour = NA))
   }, bg = "transparent")
 
@@ -26,7 +26,7 @@ server <- function(input, output) {
 
 ui <- fluidPage(
 
-  includeJqueryUI(),
+  # includeJqueryUI(),
 
   jqui_selectabled(tags$ul(id = 'sel_lst',
                       tags$li('a'),

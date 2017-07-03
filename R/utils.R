@@ -1,7 +1,7 @@
 .onLoad <- function(libname, pkgname) {
   shiny::registerInputHandler('shinyjqui.df', function(data, shinysession, name) {
     data <- lapply(data, function(x){
-      `if`(length(x)==0, NA_character_, unlist(x))
+      `if`(length(x) == 0, NA_character_, unlist(x))
     })
     data.frame(data, stringsAsFactors = FALSE)
   }, force = TRUE)
@@ -14,10 +14,23 @@ addJSIdx <- function(list) {
   return(list)
 }
 
+## return a shiny head tag with necessary js and css for shinyjqui
+jquiHead <- function() {
+  shiny::addResourcePath('shinyjqui', system.file('www', package = 'shinyjqui'))
+  shiny::singleton(
+    shiny::tags$head(
+      shiny::tags$script(src = "shared/jqueryui/jquery-ui.min.js"),
+      shiny::tags$link(rel = "stylesheet", href = "shared/jqueryui/jquery-ui.css"),
+      shiny::tags$script(src = 'shinyjqui/shinyjqui.min.js')
+    )
+  )
+}
+
 ## Idea from
 ## http://deanattali.com/blog/htmlwidgets-tips/#widget-to-r-data
 ## with some midifications.
 sendMsg <- function() {
+  shiny::insertUI("body", "afterBegin", jquiHead(), immediate = TRUE)
   message <- Filter(function(x) !is.symbol(x), as.list(parent.frame(1)))
   message <- addJSIdx(message)
   session <- shiny::getDefaultReactiveDomain()
@@ -30,21 +43,21 @@ randomChars <- function() {
 
 addInteractJS <- function(tag, func, options = NULL) {
 
-  if(inherits(tag, 'shiny.tag.list')) {
+  if (inherits(tag, 'shiny.tag.list')) {
 
     # use `[<-` to keep original attributes of tagList
     tag[] <- lapply(tag, addInteractJS, func = func, options = options)
     return(tag)
 
-  } else if(inherits(tag, 'shiny.tag')) {
+  } else if (inherits(tag, 'shiny.tag')) {
 
-    if(is.null(tag$name) ||
+    if (is.null(tag$name) ||
        tag$name %in% c('style', 'script', 'head', 'meta', 'br', 'hr')) {
       return(tag)
     }
 
     id <- tag$attribs$id
-    if(!is.null(id)) {
+    if (!is.null(id)) {
       selector <- paste0('#', id)
     } else {
       class <- sprintf('jqui-interaction-%s', randomChars())
@@ -62,7 +75,7 @@ addInteractJS <- function(tag, func, options = NULL) {
     interaction_call <- sprintf('shinyjqui.msgCallback(%s);',
                                 jsonlite::toJSON(msg, auto_unbox = TRUE, force = TRUE))
 
-    if(!is.null(tag$attribs$class) &&
+    if (!is.null(tag$attribs$class) &&
        grepl('html-widget-output|shiny-.+?-output', tag$attribs$class)) {
       # For shiny/htmlwidgets output elements, call resizable on "shiny:value"
       # event. This ensures js get the correct element dimension especially when
@@ -82,14 +95,20 @@ addInteractJS <- function(tag, func, options = NULL) {
 
     # run js on document ready
     js <- sprintf('$(function(){%s});', js)
+    shiny::addResourcePath('shinyjqui', system.file('www', package = 'shinyjqui'))
 
     shiny::tagList(
+
+      jquiHead(),
+
       shiny::singleton(
         shiny::tags$head(
           shiny::tags$script(js)
         )
       ),
+
       tag
+
     )
   } else {
 
@@ -122,7 +141,7 @@ addInteractJS <- function(tag, func, options = NULL) {
 #' # add an icon to a tabPanel
 #' tabPanel('Help', icon = jqui_icon('help'))
 jqui_icon <- function(name) {
-  if(!grepl('^ui-icon-', name)) {
+  if (!grepl('^ui-icon-', name)) {
     name <- paste0('ui-icon-', name)
   }
   shiny::tags$i(class = paste0('ui-icon ', name))

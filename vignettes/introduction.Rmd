@@ -16,21 +16,6 @@ library(shinyjqui)
 
 The `shinyjqui` package provides functions to give shiny ui mouse-interactions and animation effects. This vignette provides some general introductions and examples.
 
-## The `includeJqueryUI` function
-
-`includeJqueryUI()` function loads necessary js and css into the head of a shiny html document. It has to be called in shiny `ui` before using other `shinyjqui` functions.
-
-```{r, eval = FALSE}
-server <- function(input, output) {}
-
-ui <- fluidPage(
-  includeJqueryUI(),
-  # other code goes here
-)
-
-shinyApp(ui, server)
-```
-
 ## Mouse interactions
 
 There are five kinds of mouse interactions in jQuery UI library:

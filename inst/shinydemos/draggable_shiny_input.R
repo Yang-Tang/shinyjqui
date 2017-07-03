@@ -9,7 +9,7 @@ server <- function(input, output) {
 }
 
 ui <- fluidPage(
-  includeJqueryUI(),
+  # includeJqueryUI(),
   verbatimTextOutput('out'),
   jqui_draggabled(textInput('text', 'Text'))
 )

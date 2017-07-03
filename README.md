@@ -23,10 +23,6 @@ devtools::install_github("yang-tang/shinyjqui")
 Usage
 -----
 
-In order to use other funtions in `shinyjqui`, please first call `includeJqueryUI()` in `ui` of a shiny app. This function loads necessary js and css into your html document.
-
-Here are some examples:
-
 ``` r
 # load packages
 library(shiny)
@@ -41,7 +37,6 @@ library(highcharter)
 server <- function(input, output) {}
 
 ui <- fluidPage(
-  includeJqueryUI(), # Load necessary web assets
   jqui_draggabled(fileInput('file', 'File'))
 )
 
@@ -60,7 +55,6 @@ server <- function(input, output) {
 }
 
 ui <- fluidPage(
-  includeJqueryUI(), # Load necessary web assets
   jqui_resizabled(plotOutput('gg', width = '200px', height = '200px'))
 )
 
@@ -85,7 +79,6 @@ server <- function(input, output) {
 }
 
 ui <- fluidPage(
-  includeJqueryUI(), # Load necessary web assets
   jqui_sortabled(div(id = 'plots',
                      highchartOutput('hc', width = '200px', height = '200px'),
                      plotOutput('gg', width = '200px', height = '200px')))
@@ -116,7 +109,6 @@ server <- function(input, output) {
 }
 
 ui <- fluidPage(
-  includeJqueryUI(), # Load necessary web assets
   div(style = 'width: 400px; height: 400px',
       plotOutput('gg', width = '100%', height = '100%')),
   selectInput('effect', NULL, choices = get_jqui_effects()),
@@ -151,8 +143,6 @@ server <- function(input, output) {
 
 ui <- fluidPage(
 
-  includeJqueryUI(), # Load necessary web assets
-
   tags$head(
     tags$style(
       HTML('.class1 { width: 410px; height: 100px; }
@@ -186,7 +176,6 @@ server <- function(input, output) {
 }
 
 ui <- fluidPage(
-  includeJqueryUI(),
   orderInput('source', 'Source', items = month.abb,
              as_source = TRUE, connect = 'dest'),
   orderInput('dest', 'Dest', items = NULL, placeholder = 'Drag items here...'),

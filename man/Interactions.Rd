@@ -37,26 +37,27 @@ jqui_resizable(selector, switch = TRUE, options = NULL)
 \arguments{
 \item{tag}{A shiny tag object to add interactions to.}
 
-\item{options}{A list of interaction options. Ignored when \code{switch} is
-set as \code{FALSE}. In addition to the
-\href{http://api.jqueryui.com/category/interactions/}{internal options},
+\item{options}{A list of interaction options. Ignored when \code{switch} is set as
+\code{FALSE}. In addition to the
+\href{http://api.jqueryui.com/category/interactions/}{interaction_specific_options},
 this parameter also accept a shiny option that controls the shiny input
-value returned from the element.}
+value returned from the element. See Details.}
 
-\item{selector}{A \href{https://api.jquery.com/category/selectors/}{jQuery's
-selector} that determines the shiny tag element(s) whose interaction is to
-be enabled or disabled.}
+\item{selector}{A
+\href{https://api.jquery.com/category/selectors/}{jQuery_selector} that
+determines the shiny tag element(s) whose interaction is to be enabled or
+disabled.}
 
 \item{switch}{A boolean value to determine whether to enable or disable an
 interaction.}
 }
 \value{
-\code{jqui_draggabled}, \code{jqui_droppabled},
-  \code{jqui_resizabled}, \code{jqui_selectabled} and \code{jqui_sortabled}
-  returns a modified shiny tag with interaction enabled.
+\code{jqui_draggabled}, \code{jqui_droppabled}, \code{jqui_resizabled},
+\code{jqui_selectabled} and \code{jqui_sortabled} returns a modified shiny tag object
+with interaction enabled.
 }
 \description{
-These functions initialize or switch on/off jQuery UI interactions
+These functions initialize or switch on/off jQuery UI mouse interactions
 (\href{http://api.jqueryui.com/draggable/}{draggable},
 \href{http://api.jqueryui.com/droppable/}{droppable},
 \href{http://api.jqueryui.com/resizable/}{resizable},
@@ -64,18 +65,16 @@ These functions initialize or switch on/off jQuery UI interactions
 \href{http://api.jqueryui.com/sortable/}{sortable}) to shiny tag element(s).
 }
 \details{
-The function \code{jqui_draggabled}, \code{jqui_droppabled},
-\code{jqui_resizabled}, \code{jqui_selectabled} and \code{jqui_sortabled}
-initialize the interactions and should be used in \code{ui} of a shiny app.
-The function \code{jqui_draggable}, \code{jqui_droppable},
-\code{jqui_resizable}, \code{jqui_selectable} and \code{jqui_sortable} switch
-on/off interactions and should be used in \code{server} of a shiny app.
+The function \code{jqui_draggabled}, \code{jqui_droppabled}, \code{jqui_resizabled},
+\code{jqui_selectabled} and \code{jqui_sortabled} initialize the element's interactions
+and should be used in \code{ui} of a shiny app. The function \code{jqui_draggable},
+\code{jqui_droppable}, \code{jqui_resizable}, \code{jqui_selectable} and \code{jqui_sortable}
+switch on/off interactions and should be used in \code{server} of a shiny app.
 
-If an element has an \code{id} and its interaction is initialized or switched
-on, users can get access to some internally defined shiny input values.
-Please see the vignette \code{Introduction} for more details.Users can
-override the default shiny input settings by passing a \code{shiny} option to
-the \code{options} parameter. Please see the vignette \code{Introduction} for
+If an element has an \code{id} and its interaction is initialized or switched on,
+users can get access to some internally defined shiny input values. Users can
+override the default shiny input settings by passing a \code{shiny} option to the
+\code{options} parameter. Please see the vignette \code{Introduction to shinyjqui} for
 more details.
 }
 \examples{
@@ -120,7 +119,6 @@ if (interactive()) {
     })
   }
   ui <- fluidPage(
-    includeJqueryUI(),
     verbatimTextOutput('position'),
     jqui_draggabled(highchartOutput('foo', width = '200px', height = '200px'))
   )

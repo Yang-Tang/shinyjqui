@@ -63,7 +63,7 @@ server <- function(input, output) {
 
 ui <- fluidPage(
 
-  includeJqueryUI(),
+  # includeJqueryUI(),
 
   jqui_sortabled(tags$ul(
     id = 'lst',

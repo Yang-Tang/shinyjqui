@@ -68,7 +68,7 @@ server <- function(input, output) {
 
 ui <- fluidPage(
 
-  includeJqueryUI(),
+  # includeJqueryUI(),
 
   actionButton('enable', 'Enable resizable'),
   actionButton('disable', 'Disable resizable'),
