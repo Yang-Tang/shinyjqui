@@ -126,7 +126,7 @@ if (interactive()) {
 }
 
 ## custom shiny input
-func <- htmlwidgets::JS('function(event, ui){return $(event.target).offset();}')
+func <- JS('function(event, ui){return $(event.target).offset();}')
 options <-  list(
   shiny = list(
     abs_position = list(

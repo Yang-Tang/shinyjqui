@@ -16,7 +16,7 @@ server <- function(input, output) {
       options <- list(to = list(width = 200, height = 60))
     }
 
-    callback <- htmlwidgets::JS(
+    callback <- JS(
       'function(){',
       '  setTimeout(function() {',
       '    $("#gg").children().removeAttr("style");',

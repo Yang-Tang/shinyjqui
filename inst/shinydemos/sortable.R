@@ -17,7 +17,7 @@ server <- function(input, output) {
 
   observeEvent(input$en_tabs, {
 
-    func <- htmlwidgets::JS(
+    func <- JS(
       'function(event, ui) {',
       '  return $(event.target).find("a").map(function(i, e){',
       '    return $(e).attr("data-value");',

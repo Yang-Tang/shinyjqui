@@ -56,7 +56,7 @@ ui <- fluidPage(
       id = 'drop_area',
       'Try to drop something here!'
     ), options = list(
-      drop = htmlwidgets::JS(
+      drop = JS(
         'function(event, ui){',
         '  var info = "A " + shinyjqui.getId(ui.draggable) + " is dropped.";',
         '  $(this).addClass("ui-state-highlight").html(info);',
@@ -65,34 +65,6 @@ ui <- fluidPage(
         '  }, 1500);',
         '}'
       )
-      # shiny = list(
-      #   dropped = list(
-      #     dropcreate = htmlwidgets::JS(
-      #       'function(event, ui){',
-      #       '  $(event.target).data("shinyjqui_droppedIds", []);',
-      #       '  return [];',
-      #       '}'
-      #     ),
-      #     drop = htmlwidgets::JS(
-      #       'function(event, ui){',
-      #       '  var current_ids = $(event.target).data("shinyjqui_droppedIds");',
-      #       '  var new_id = shinyjqui.getId(ui.draggable);',
-      #       '  if($.inArray(new_id, current_ids) == -1) current_ids.push(new_id);',
-      #       '  $(event.target).data("shinyjqui_droppedIds", current_ids);',
-      #       '  return current_ids;',
-      #       '}'
-      #     ),
-      #     dropout = htmlwidgets::JS(
-      #       'function(event, ui){',
-      #       '  var current_ids = $(event.target).data("shinyjqui_droppedIds");',
-      #       '  var out_id = shinyjqui.getId(ui.draggable);',
-      #       '  current_ids.splice($.inArray(out_id, current_ids),1);',
-      #       '  $(event.target).data("shinyjqui_droppedIds", current_ids);',
-      #       '  return current_ids;',
-      #       '}'
-      #     )
-      #   )
-      # )
     ))
   )
 )
