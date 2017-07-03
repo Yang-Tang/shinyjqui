@@ -1,5 +1,5 @@
 
-#' Initialize, enable or disable jQuery UI interactions
+#' Mouse interactions
 #'
 #' These functions initialize or switch on/off jQuery UI mouse interactions
 #' ([draggable](http://api.jqueryui.com/draggable/),

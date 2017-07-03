@@ -2,7 +2,7 @@
 % Please edit documentation in R/includeJqueryUI.R
 \name{includeJqueryUI}
 \alias{includeJqueryUI}
-\title{Inject necessary js and css assets to the head of a shiny document}
+\title{Inject necessary js and css assets to the head of a shiny document (deprecated).}
 \usage{
 includeJqueryUI()
 }

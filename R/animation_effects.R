@@ -1,5 +1,5 @@
 
-#' Apply jQuery UI effect.
+#' Animation effects.
 #'
 #' These functions are the R wrappers of
 #' \href{http://api.jqueryui.com/effect/}{effect()},
@@ -72,7 +72,7 @@ jqui_toggle <- function(selector, effect, options = NULL,
 }
 
 
-#' Effects of jQuery UI
+#' Get available animation effects.
 #'
 #' Use this function to get all animation effects in jQuery UI.
 #'

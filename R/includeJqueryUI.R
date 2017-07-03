@@ -1,4 +1,4 @@
-#' Inject necessary js and css assets to the head of a shiny document
+#' Inject necessary js and css assets to the head of a shiny document (deprecated).
 #'
 #' This function has to be called within the \code{ui} of a shiny document before the
 #' usage of other \code{shinyjqui} functions.

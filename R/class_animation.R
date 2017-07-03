@@ -1,5 +1,5 @@
 
-#' Add/remove/switch class(es) with animating.
+#' Class animation.
 #'
 #' These functions are the R wrappers of
 #' \href{http://api.jqueryui.com/addClass/}{addClass()},
