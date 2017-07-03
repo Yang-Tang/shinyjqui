@@ -7,6 +7,10 @@
   }, force = TRUE)
 }
 
+#' @importFrom htmlwidgets JS
+#' @export
+htmlwidgets::JS
+
 ## add location index of JS expressions needed to be evaled in javascript side
 addJSIdx <- function(list) {
   list$`_js_idx` <- rapply(list, is.character, classes = 'JS_EVAL',
