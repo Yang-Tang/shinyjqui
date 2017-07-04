@@ -3,7 +3,6 @@
 ^\.Rhistory$
 ^\.travis\.yml$
 ^README\.Rmd$
-^fig$
 ^examples$
 ^appveyor\.yml$
 ^cran-comments\.md$

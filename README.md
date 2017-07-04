@@ -43,7 +43,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](fig/README-draggable.gif)
+![](inst/fig/README-draggable.gif)
 
 -   **Resizable:** Change the size of an element using the mouse.
 
@@ -61,7 +61,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](fig/README-resizable.gif)
+![](inst/fig/README-resizable.gif)
 
 -   **Sortable:** Reorder elements in a list or grid using the mouse.
 
@@ -87,7 +87,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](fig/README-sortable.gif)
+![](inst/fig/README-sortable.gif)
 
 -   **Animation Effects:** Apply an animation effect to an element. Effects can also be used in hide or show.
 
@@ -119,7 +119,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](fig/README-effects.gif)
+![](inst/fig/README-effects.gif)
 
 -   **Classes transformation:** Add and remove class(es) to elements while animating all style changes.
 
@@ -166,7 +166,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](fig/README-classes.gif)
+![](inst/fig/README-classes.gif)
 
 -   **orderInput():** Display a list of items. Their order can be changed by drag and drop.
 
@@ -185,4 +185,4 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](fig/README-orderInput.gif)
+![](inst/fig/README-orderInput.gif)
