@@ -152,7 +152,12 @@ jqui_icon <- function(name) {
   if (!grepl('^ui-icon-', name)) {
     name <- paste0('ui-icon-', name)
   }
-  shiny::tags$i(class = paste0('ui-icon ', name))
+  icon <- shiny::tags$i(class = paste0('ui-icon ', name))
+  dep <- htmltools::htmlDependency('jqueryui', '1.12.1',
+                                   src = c(href = 'shared/jqueryui'),
+                                   script = 'jquery-ui.min.js',
+                                   stylesheet = 'jquery-ui.css')
+  htmltools::attachDependencies(icon, dep)
 }
 
 

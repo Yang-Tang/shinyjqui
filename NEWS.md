@@ -1,6 +1,7 @@
 ## shinyjqui 0.2.9001
 
 * Fix a bug that the mouse interaction function `-abled()` doesn't work when the same element is inserted again.
+* Add `htmlDependency` to `jqui_icon()` to make it work in version 0.2.0 and above.
 
 ## shinyjqui 0.2.0
 
