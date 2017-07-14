@@ -1,3 +1,7 @@
+## shinyjqui 0.2.9001
+
+* Fix a bug that the mouse interaction function `-abled()` doesn't work when the same element is inserted again.
+
 ## shinyjqui 0.2.0
 
 * No longer needed to call `includeJqueryUI()` before using other `shinyjqui` functions.(#4)

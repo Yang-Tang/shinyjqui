@@ -76,7 +76,10 @@ addInteractJS <- function(tag, func, options = NULL) {
                 options = options)
     msg <- addJSIdx(msg)
 
-    interaction_call <- sprintf('shinyjqui.msgCallback(%s);',
+    # remove the script after call, so that the next created or inserted element
+    # with same selector can be called again
+    interaction_call <- sprintf('shinyjqui.msgCallback(%s);
+                                 $("head .jqui_self_cleaning_script").remove();',
                                 jsonlite::toJSON(msg, auto_unbox = TRUE, force = TRUE))
 
     if (!is.null(tag$attribs$class) &&
@@ -105,10 +108,11 @@ addInteractJS <- function(tag, func, options = NULL) {
 
       jquiHead(),
 
-      shiny::singleton(
-        shiny::tags$head(
-          shiny::tags$script(js)
-        )
+      shiny::tags$head(
+        # made this script self removable. shiny::singleton should not be used
+        # here. As it prevent the same script from insertion even after the
+        # first one was removed
+        shiny::tags$script(class = 'jqui_self_cleaning_script', js)
       ),
 
       tag
