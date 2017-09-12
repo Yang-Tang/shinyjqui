@@ -65,6 +65,14 @@ shinyjqui = function() {
     return(option);
   };
 
+  // if the target el has "jqui-resizable-wrapper", return the wrapper
+  var checkResizableWrapper = function(el) {
+    if($(el).parent().hasClass("jqui-resizable-wrapper")) {
+          el = $(el).parent().get(0);
+    }
+    return(el);
+  };
+
   var interactions = {
 
     draggable : {
@@ -88,6 +96,8 @@ shinyjqui = function() {
             dragstop : function(event, ui) {return false;}
           }
         };
+
+        el = checkResizableWrapper(el);
 
         handleShinyInput(el, opt, default_shiny_opt);
 
@@ -153,6 +163,8 @@ shinyjqui = function() {
           }
         };
 
+        el = checkResizableWrapper(el);
+
         handleShinyInput(el, opt, default_shiny_opt);
 
         $(el).droppable(opt);
@@ -187,11 +199,26 @@ shinyjqui = function() {
             .outerHeight($(el).outerHeight() ? $(el).outerHeight() : '100%')
             .addClass('jqui-resizable-wrapper');
 
-          el = $(el)
+          var wrapper = $(el)
             .wrap($wrapper)
             .outerWidth('100%')
             .outerHeight('100%')
             .parent().get(0);
+
+          // for the case when resizable is applied to element with other interactions
+          // the existed interaction options will first be apply to wrapper, then will
+          // be removed from the target element.
+          var shinyjqui_options = $(el).data("shinyjqui_options");
+          $(wrapper).data("shinyjqui_options", {});
+          // apply existed interaction options to wrapper, if any
+          $.each(shinyjqui_options, function(func, options) {
+            interactions[func].enable(wrapper, options);
+            interactions[func].disable(el);
+            $(wrapper).data("shinyjqui_options")[func] = options;
+          });
+          $(el).data("shinyjqui_options", {});
+
+          el = wrapper;
 
         }
 
@@ -213,6 +240,7 @@ shinyjqui = function() {
             resizestop : function(event, ui){return false;}
           }
         };
+
         handleShinyInput(el, opt, default_shiny_opt);
 
         $(el).resizable(opt);
@@ -266,6 +294,8 @@ shinyjqui = function() {
           }
         };
 
+        el = checkResizableWrapper(el);
+
         handleShinyInput(el, opt, default_shiny_opt);
 
         $(el).selectable(opt);
@@ -297,6 +327,8 @@ shinyjqui = function() {
             sortupdate : func
           }
         };
+
+        el = checkResizableWrapper(el);
 
         handleShinyInput(el, opt, default_shiny_opt);
 
@@ -370,7 +402,14 @@ shinyjqui = function() {
               console.log('OPTIONS: ');
               console.log(msg.options);
               console.log('===================');
+
+              // create shinyjqui_options element data to store interaction options
+              // these options may be used when resizable wrapper is introduced.
+              if(!$(el).data("shinyjqui_options")) {
+                $(el).data("shinyjqui_options", {})
+              }
               interactions[func].enable(el, msg.options);
+              $(el).data("shinyjqui_options")[func] = msg.options;
             });
 
           } else if(msg.switch === false) {
@@ -381,7 +420,13 @@ shinyjqui = function() {
               console.log('ELEMENT: ');
               console.log(el);
               console.log('===================');
+
+              if(!$(el).data("shinyjqui_options")) {
+                $(el).data("shinyjqui_options", {})
+              }
+
               interactions[func].disable(el);
+              delete $(el).data("shinyjqui_options")[func];
             });
 
           } else {
