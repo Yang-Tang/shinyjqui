@@ -1,6 +1,24 @@
 shinyjqui = function() {
 
+  // If the target element has class "shiny-bound-input", which usually the case
+  // when user uses an id to refer to a shiny input, we should redirect this
+  // target element to its shiny-input-container so that the whole shiny input
+  // but not a part of it would be affected. This is very important when the
+  // shiny input are checkboxInput, fileInput, numericInput, selectInput,
+  // sliderInput, textInput, textAreaInput and passwordInput whose id-containing
+  // elements are located deep inside the shiny-input-container. However, the
+  // only exception is actionButton who dosen't have a shiny-input-container.
   var getInputContainer = function(el) {
+
+    // if the target element is not a shiny input, just cancel the operation
+    if(!($(el).hasClass("shiny-bound-input"))) {
+      return el;
+    }
+    // if it is a shiny actionBotton, cancel the operation
+    if($(el).hasClass("btn")) {
+      return el;
+    }
+
     var $container = $(el).closest(".shiny-input-container");
     if($container.length) {
       return $container.get(0);
@@ -71,6 +89,21 @@ shinyjqui = function() {
           el = $(el).parent().get(0);
     }
     return(el);
+  };
+
+  // Obtained from shiny init_shiny.js
+  // Return true if the object or one of its ancestors in the DOM tree has
+  // style='display:none'; otherwise return false.
+  var isHidden = function(obj) {
+    // null means we've hit the top of the tree. If width or height is
+    // non-zero, then we know that no ancestor has display:none.
+    if (obj === null || obj.offsetWidth !== 0 || obj.offsetHeight !== 0) {
+      return false;
+    } else if (getStyle(obj, 'display') === 'none') {
+      return true;
+    } else {
+      return(isHidden(obj.parentNode));
+    }
   };
 
   var interactions = {
@@ -346,19 +379,58 @@ shinyjqui = function() {
 
   };
 
+  var update_interactions = {
+
+    resize : function(el, opt) {
+      target = checkResizableWrapper(el);
+      $(target).width(opt.width).height(opt.height);
+      //$(el).data("shiny-output-binding").onResize();
+      //$(el).trigger({
+        //type: 'shiny:visualchange',
+        //visible: !isHidden(el),
+        //binding: $(el).data('shiny-output-binding')
+      //});
+    }
+
+  };
+
   return {
 
+    // if el is or part of a shiny tag element, return the shiny id
     getId : function(el) {
+
       var id = $(el).attr('id');
-      if(!id) {
-        if($(el).hasClass('shiny-input-container')) {
-          // for shiny inputs
-          id = $(el).find('.shiny-bound-input').attr('id');
-        } else if ($(el).hasClass('jqui-resizable-wrapper')) {
-          // for shiny output that is wrapped with a resizable div
-          id = $(el).find('.shiny-bound-output').attr('id');
-        }
+
+      // tabsetInput
+      if((!id) && $(el).hasClass('tabbable')) {
+        id = $(el)
+          .find('.shiny-bound-input')
+          .attr('id');
       }
+
+      // for shiny inputs
+      if(!id) {
+        id = $(el)
+          .closest('.shiny-input-container')
+          .find('.shiny-bound-input')
+          .attr('id');
+      }
+
+      // for shiny output
+      if(!id) {
+        id = $(el)
+          .closest('.shiny-bound-output')
+          .attr('id');
+      }
+
+      // for shiny output that is wrapped with a resizable div
+      if(!id) {
+        id = $(el)
+          .closest('.jqui-resizable-wrapper')
+          .find('.shiny-bound-output')
+          .attr('id');
+      }
+
       return id ? id : '';
     },
 
@@ -370,6 +442,7 @@ shinyjqui = function() {
         }
       var $els = $(msg.selector).map(function(i, e){
           return getInputContainer(e);
+          //return e;
         });
 
       if(!msg.hasOwnProperty('method')) {
@@ -434,6 +507,20 @@ shinyjqui = function() {
             console.warn('Invalid switch: ' + msg.switch);
 
           }
+
+      } else if(method === 'update_interaction') {
+
+        $els.each(function(idx, el) {
+          console.log('===================');
+          console.log('ENABLE: ' + func);
+          console.log('ELEMENT: ');
+          console.log(el);
+          console.log('OPTIONS: ');
+          console.log(msg.options);
+          console.log('===================');
+
+          update_interactions[func](el, msg.options);
+        })
 
       } else if(method === 'effect') {
 

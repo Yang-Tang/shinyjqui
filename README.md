@@ -186,3 +186,45 @@ shinyApp(ui, server)
 ```
 
 ![](inst/fig/README-orderInput.gif)
+
+-   **sortableTableOutput():** Render a HTML table with sortable rows.
+
+``` r
+ui <- fluidPage(
+  verbatimTextOutput("order"),
+  sortableTableOutput("tbl")
+)
+
+server <- function(input, output) {
+  output$order <- renderPrint({
+    cat("Rows order:\n")
+    input$tbl_order
+  })
+  output$tbl <- renderTable(head(mtcars), rownames = TRUE)
+}
+
+shinyApp(ui, server)
+```
+
+![](inst/fig/README-sortableTableOutput.gif)
+
+-   **selectableTableOutput():** Render a HTML table with selectable rows or cells.
+
+``` r
+ui <- fluidPage(
+  selectableTableOutput("tbl", selection_mode = "cell"),
+  verbatimTextOutput("selected")
+)
+
+server <- function(input, output) {
+  output$selected <- renderPrint({
+    cat("Selected:\n")
+    input$tbl_selected
+  })
+  output$tbl <- renderTable(head(mtcars), rownames = TRUE)
+}
+
+shinyApp(ui, server)
+```
+
+![](inst/fig/README-selectableTableOutput_cell.gif)

@@ -25,7 +25,8 @@ jquiHead <- function() {
     shiny::tags$head(
       shiny::tags$script(src = "shared/jqueryui/jquery-ui.min.js"),
       shiny::tags$link(rel = "stylesheet", href = "shared/jqueryui/jquery-ui.css"),
-      shiny::tags$script(src = 'shinyjqui/shinyjqui.min.js')
+      shiny::tags$script(src = 'shinyjqui/shinyjqui.js')
+      # shiny::tags$script(src = 'shinyjqui/shinyjqui.min.js')
     )
   )
 }
@@ -38,7 +39,11 @@ sendMsg <- function() {
   message <- Filter(function(x) !is.symbol(x), as.list(parent.frame(1)))
   message <- addJSIdx(message)
   session <- shiny::getDefaultReactiveDomain()
-  session$sendCustomMessage('shinyjqui', message)
+  # send message only after session flushed, this ensures the target element is
+  # fully rendered when the message contains js codes.
+  session$onFlushed(function(){
+    session$sendCustomMessage('shinyjqui', message)
+  })
 }
 
 randomChars <- function() {
@@ -78,30 +83,29 @@ addInteractJS <- function(tag, func, options = NULL) {
 
     # remove the script after call, so that the next created or inserted element
     # with same selector can be called again
-    interaction_call <- sprintf('shinyjqui.msgCallback(%s);
-                                 $("head .jqui_self_cleaning_script").remove();',
-                                jsonlite::toJSON(msg, auto_unbox = TRUE, force = TRUE))
+    js <- sprintf('shinyjqui.msgCallback(%s);
+                   $("head .jqui_self_cleaning_script").remove();',
+                  jsonlite::toJSON(msg, auto_unbox = TRUE, force = TRUE))
+
+    # Wait for a while so that shiny initialized. This ensures the
+    # Shiny.onInputChange works and all the shiny inputs have class
+    # shiny-bound-input and all the shiny outputs have class
+    # shiny-bound-output.
+    js <- sprintf('setTimeout(function(){%s}, 10);', js)
 
     if (!is.null(tag$attribs$class) &&
        grepl('html-widget-output|shiny-.+?-output', tag$attribs$class)) {
-      # For shiny/htmlwidgets output elements, call resizable on "shiny:value"
-      # event. This ensures js get the correct element dimension especially when
-      # the output element is hiden on shiny initialization.
+      # For shiny/htmlwidgets output elements, in addition to wait for a while,
+      # we have to call js on "shiny:value" event. This ensures js get the
+      # correct element dimension especially when the output element is hiden on
+      # shiny initialization.
       js <- sprintf('$("%s").on("shiny:value", function(e){%s});',
-                    selector, interaction_call)
-
-    } else {
-      # Wait for a while so that shiny initialized. This ensures the
-      # Shiny.onInputChange works and all the shiny inputs have class
-      # shiny-bound-input and all the shiny outputs have class
-      # shiny-bound-output.
-      js <- sprintf('setTimeout(function(){%s}, 10);',
-                    interaction_call)
-
+                    selector, js)
     }
 
     # run js on document ready
     js <- sprintf('$(function(){%s});', js)
+
     shiny::addResourcePath('shinyjqui', system.file('www', package = 'shinyjqui'))
 
     shiny::tagList(
@@ -159,6 +163,7 @@ jqui_icon <- function(name) {
                                    stylesheet = 'jquery-ui.css')
   htmltools::attachDependencies(icon, dep)
 }
+
 
 
 
