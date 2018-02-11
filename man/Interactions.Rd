@@ -12,8 +12,6 @@
 \alias{jqui_droppable}
 \alias{jqui_selectable}
 \alias{jqui_resizable}
-\alias{jqui_resize}
-\alias{jqui_position}
 \title{Mouse interactions}
 \usage{
 jqui_resizabled(tag, options = NULL)
@@ -35,12 +33,6 @@ jqui_droppable(selector, switch = TRUE, options = NULL)
 jqui_selectable(selector, switch = TRUE, options = NULL)
 
 jqui_resizable(selector, switch = TRUE, options = NULL)
-
-jqui_resize(selector, width = NULL, height = NULL)
-
-jqui_position(selector, position = "center", against = NULL,
-  against_position = "center", collision = "flip", using = NULL,
-  within = "window")
 }
 \arguments{
 \item{tag}{A shiny tag object to add interactions to.}
