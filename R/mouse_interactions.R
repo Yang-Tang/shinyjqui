@@ -121,35 +121,35 @@ jqui_resizable <- function(selector, switch = TRUE, options = NULL) {
   sendMsg()
 }
 
-#' @rdname Interactions
-jqui_resize <- function(selector, width = NULL, height = NULL) {
-  method <- 'update_interaction'
-  func <- 'resize'
-  options <- list()
-  if(!is.null(width)) options$width = width
-  if(!is.null(height)) options$height = height
-  rm(width, height)
-  sendMsg()
-}
+
+#' jqui_resize <- function(selector, width = NULL, height = NULL) {
+#'   method <- 'update_interaction'
+#'   func <- 'resize'
+#'   options <- list()
+#'   if(!is.null(width)) options$width = width
+#'   if(!is.null(height)) options$height = height
+#'   rm(width, height)
+#'   sendMsg()
+#' }
 
 
-#' @rdname Interactions
-jqui_position <- function(selector, position = "center",
-                          against = NULL, against_position = "center",
-                          collision = "flip",
-                          using = NULL,
-                          within = "window") {
-  method <- 'update_interaction'
-  func <- 'position'
-  options <- list(my        = position,
-                  at        = against_position,
-                  of        = against,
-                  collision = collision,
-                  using     = using,
-                  within    = within)
-  rm(position, against, against_position, collision, using, within)
-  sendMsg()
-}
 
-#' #' @rdname Interactions
+#' jqui_position <- function(selector, position = "center",
+#'                           against = NULL, against_position = "center",
+#'                           collision = "flip",
+#'                           using = NULL,
+#'                           within = "window") {
+#'   method <- 'update_interaction'
+#'   func <- 'position'
+#'   options <- list(my        = position,
+#'                   at        = against_position,
+#'                   of        = against,
+#'                   collision = collision,
+#'                   using     = using,
+#'                   within    = within)
+#'   rm(position, against, against_position, collision, using, within)
+#'   sendMsg()
+#' }
+
+
 #' jqui_drag <- function(selector, top, left)

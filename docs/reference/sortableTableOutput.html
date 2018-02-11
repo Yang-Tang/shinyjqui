@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Class animation. °™ Class_animation ‚Äêı<U+3E32> shinyjqui</title>
+<title>Create a table output element with sortable rows °™ sortableTableOutput ‚Äêı<U+3E32> shinyjqui</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -98,86 +98,51 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Class animation.</h1>
+    <h1>Create a table output element with sortable rows</h1>
     </div>
 
     
-    <p>These functions are the R wrappers of
-<a href='http://api.jqueryui.com/addClass/'>addClass()</a>,
-<a href='http://api.jqueryui.com/addClass/'>removeClass()</a>,
-<a href='http://api.jqueryui.com/addClass/'>switchClass()</a> in jQuery UI library.
-They should be used in <code>server</code> of a shiny document.</p>
+    <p>Render a standard HTML table with table rows sortable by drag and drop. The
+order of table rows is recorded in <code>input$outputId_order</code>.</p>
     
 
-    <pre class="usage"><span class='fu'>jqui_add_class</span>(<span class='no'>selector</span>, <span class='no'>className</span>, <span class='kw'>duration</span> <span class='kw'>=</span> <span class='fl'>400</span>, <span class='kw'>easing</span> <span class='kw'>=</span> <span class='st'>"swing"</span>,
-  <span class='kw'>complete</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-
-<span class='fu'>jqui_remove_class</span>(<span class='no'>selector</span>, <span class='no'>className</span>, <span class='kw'>duration</span> <span class='kw'>=</span> <span class='fl'>400</span>, <span class='kw'>easing</span> <span class='kw'>=</span> <span class='st'>"swing"</span>,
-  <span class='kw'>complete</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-
-<span class='fu'>jqui_switch_class</span>(<span class='no'>selector</span>, <span class='no'>removeClassName</span>, <span class='no'>addClassName</span>, <span class='kw'>duration</span> <span class='kw'>=</span> <span class='fl'>400</span>,
-  <span class='kw'>easing</span> <span class='kw'>=</span> <span class='st'>"swing"</span>, <span class='kw'>complete</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>sortableTableOutput</span>(<span class='no'>outputId</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>selector</th>
-      <td><p>A <a href='https://api.jquery.com/category/selectors/'>jQuery's
-selector</a> that determines the shiny tag element(s) whose interaction is
-enable or disable interactions.</p></td>
-    </tr>
-    <tr>
-      <th>className</th>
-      <td><p>One or more class names (space separated) to be added to or
-removed from the class attribute of each matched element.</p></td>
-    </tr>
-    <tr>
-      <th>duration</th>
-      <td><p>A string or number determining how long the animation will
-run.</p></td>
-    </tr>
-    <tr>
-      <th>easing</th>
-      <td><p>A string indicating which
-<a href='http://api.jqueryui.com/easings/'>easing</a> function to use for the
-transition.</p></td>
-    </tr>
-    <tr>
-      <th>complete</th>
-      <td><p>A js function to call once the animation is complete, called
-once per matched element.</p></td>
-    </tr>
-    <tr>
-      <th>removeClassName</th>
-      <td><p>One or more class names (space separated) to be
-removed from the class attribute of each matched element.</p></td>
-    </tr>
-    <tr>
-      <th>addClassName</th>
-      <td><p>One or more class names (space separated) to be added to
-the class attribute of each matched element.</p></td>
+      <th>outputId</th>
+      <td><p>output variable to read the table from</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <dl class='dl-horizontal'>
-<dt><code>jqui_add_class</code></dt><dd><p>Adds the specified class(es) to each
-of the set of matched elements while animating all style changes.</p></dd>
-<dt><code>jqui_remove_class</code></dt><dd><p>Removes the specified class(es) from each of
-the set of matched elements while animating all style changes.</p></dd>
-<dt><code>jqui_switch_class</code></dt><dd><p>Adds and removes the specified class(es) to
-each of the set of matched elements while animating all style changes</p></dd> </dl>
+    <p>A table output element that can be included in a panel</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p><code><a href='sortableRadioButtons.html'>sortableRadioButtons()</a></code>, <code><a href='sortableCheckboxGroupInput.html'>sortableCheckboxGroupInput()</a></code>,
+<code><a href='sortableTabsetPanel.html'>sortableTabsetPanel()</a></code>, <code><a href='selectableTableOutput.html'>selectableTableOutput()</a></code></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-  <span class='co'># in shiny ui create a span</span>
-  <span class='no'>tags</span>$<span class='fu'>span</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'foo'</span>, <span class='st'>'class animation demo'</span>)
+<span class='co'>## Only run this example in interactive R sessions</span>
+<span class='kw'>if</span> (<span class='fu'>interactive</span>()) {
+  <span class='fu'>shinyApp</span>(
+    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'>fluidPage</span>(
+      <span class='fu'>verbatimTextOutput</span>(<span class='st'>"order"</span>),
+      <span class='fu'>sortableTableOutput</span>(<span class='st'>"tbl"</span>)
+    ),
+    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
+      <span class='no'>output</span>$<span class='no'>order</span> <span class='kw'>&lt;-</span> <span class='fu'>renderPrint</span>({<span class='no'>input</span>$<span class='no'>tbl_order</span>})
+      <span class='no'>output</span>$<span class='no'>tbl</span> <span class='kw'>&lt;-</span> <span class='fu'>renderTable</span>(<span class='no'>mtcars</span>, <span class='kw'>rownames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+    }
+  )
+}
 
-  <span class='co'># in shiny server add class 'lead' to the span</span>
-  <span class='fu'>jqui_add_class</span>(<span class='st'>'#foo'</span>, <span class='kw'>className</span> <span class='kw'>=</span> <span class='st'>'lead'</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -185,7 +150,9 @@ each of the set of matched elements while animating all style changes</p></dd> <
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#details">Details</a></li>
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

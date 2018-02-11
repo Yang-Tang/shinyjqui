@@ -5,7 +5,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>'jQuery UI' Interactions and Effects for Shiny • shinyjqui</title>
+<title>'jQuery UI' Interactions and Effects for Shiny ‐�<u> shinyjqui</u>
+</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
@@ -15,7 +16,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-vignette">
+    <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -29,7 +30,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="/index.html">
+  <a href="index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -73,14 +74,8 @@
 
       
       </header><div class="row">
-  <div class="col-md-9">
-    
-
-    
-    
-<div class="contents">
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-<div id="shinyjqui" class="section level1">
+  <div class="contents col-md-9">
+    <div id="shinyjqui" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#shinyjqui" class="anchor"></a>shinyjqui</h1></div>
 
@@ -114,9 +109,7 @@ ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
 )
 
 <span class="kw">shinyApp</span>(ui, server)</code></pre></div>
-<div class="figure">
-<img src="fig/README-draggable.gif">
-</div>
+<p><img src="inst/fig/README-draggable.gif"></p>
 <ul>
 <li>
 <strong>Resizable:</strong> Change the size of an element using the mouse.</li>
@@ -132,9 +125,7 @@ ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
 )
 
 <span class="kw">shinyApp</span>(ui, server)</code></pre></div>
-<div class="figure">
-<img src="fig/README-resizable.gif">
-</div>
+<p><img src="inst/fig/README-resizable.gif"></p>
 <ul>
 <li>
 <strong>Sortable:</strong> Reorder elements in a list or grid using the mouse.</li>
@@ -158,9 +149,7 @@ ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
 )
 
 <span class="kw">shinyApp</span>(ui, server)</code></pre></div>
-<div class="figure">
-<img src="fig/README-sortable.gif">
-</div>
+<p><img src="inst/fig/README-sortable.gif"></p>
 <ul>
 <li>
 <strong>Animation Effects:</strong> Apply an animation effect to an element. Effects can also be used in hide or show.</li>
@@ -190,9 +179,7 @@ ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
 )
 
 <span class="kw">shinyApp</span>(ui, server)</code></pre></div>
-<div class="figure">
-<img src="fig/README-effects.gif">
-</div>
+<p><img src="inst/fig/README-effects.gif"></p>
 <ul>
 <li>
 <strong>Classes transformation:</strong> Add and remove class(es) to elements while animating all style changes.</li>
@@ -237,9 +224,7 @@ ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
 )
 
 <span class="kw">shinyApp</span>(ui, server)</code></pre></div>
-<div class="figure">
-<img src="fig/README-classes.gif">
-</div>
+<p><img src="inst/fig/README-classes.gif"></p>
 <ul>
 <li>
 <strong>orderInput():</strong> Display a list of items. Their order can be changed by drag and drop.</li>
@@ -256,17 +241,51 @@ ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
 )
 
 <span class="kw">shinyApp</span>(ui, server)</code></pre></div>
-<div class="figure">
-<img src="fig/README-orderInput.gif">
-</div>
-</div>
+<p><img src="inst/fig/README-orderInput.gif"></p>
+<ul>
+<li>
+<strong>sortableTableOutput():</strong> Render a HTML table with sortable rows.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
+  <span class="kw">verbatimTextOutput</span>(<span class="st">"order"</span>),
+  <span class="kw"><a href="reference/sortableTableOutput.html">sortableTableOutput</a></span>(<span class="st">"tbl"</span>)
+)
+
+server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
+  output<span class="op">$</span>order &lt;-<span class="st"> </span><span class="kw">renderPrint</span>({
+    <span class="kw">cat</span>(<span class="st">"Rows order:</span><span class="ch">\n</span><span class="st">"</span>)
+    input<span class="op">$</span>tbl_order
+  })
+  output<span class="op">$</span>tbl &lt;-<span class="st"> </span><span class="kw">renderTable</span>(<span class="kw">head</span>(mtcars), <span class="dt">rownames =</span> <span class="ot">TRUE</span>)
+}
+
+<span class="kw">shinyApp</span>(ui, server)</code></pre></div>
+<p><img src="inst/fig/README-sortableTableOutput.gif"></p>
+<ul>
+<li>
+<strong>selectableTableOutput():</strong> Render a HTML table with selectable rows or cells.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
+  <span class="kw"><a href="reference/selectableTableOutput.html">selectableTableOutput</a></span>(<span class="st">"tbl"</span>, <span class="dt">selection_mode =</span> <span class="st">"cell"</span>),
+  <span class="kw">verbatimTextOutput</span>(<span class="st">"selected"</span>)
+)
+
+server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
+  output<span class="op">$</span>selected &lt;-<span class="st"> </span><span class="kw">renderPrint</span>({
+    <span class="kw">cat</span>(<span class="st">"Selected:</span><span class="ch">\n</span><span class="st">"</span>)
+    input<span class="op">$</span>tbl_selected
+  })
+  output<span class="op">$</span>tbl &lt;-<span class="st"> </span><span class="kw">renderTable</span>(<span class="kw">head</span>(mtcars), <span class="dt">rownames =</span> <span class="ot">TRUE</span>)
+}
+
+<span class="kw">shinyApp</span>(ui, server)</code></pre></div>
+<p><img src="inst/fig/README-selectableTableOutput_cell.gif"></p>
 </div>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2 class="hasAnchor">
-<a href="#sidebar" class="anchor"></a>Links</h2>
+  <div class="col-md-3" id="sidebar">
+    <h2>Links</h2>
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cran.r-project.org/package=shinyjqui">https://​cran.r-project.org/​package=shinyjqui</a>
 </li>
@@ -288,7 +307,6 @@ ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
 <li><a href="https://cran.r-project.org/package=shinyjqui"><img src="http://www.r-pkg.org/badges/version/shinyjqui" alt="CRAN_Status_Badge"></a></li>
 </ul>
 </div>
-
 </div>
 
 
@@ -297,7 +315,7 @@ ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

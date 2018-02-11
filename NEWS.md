@@ -3,6 +3,7 @@
 * Fix a bug that the mouse interaction function `-abled()` doesn't work when the same element is inserted again. (#6, #8)
 * Fix a bug that resizable interfere other interactions when the target element is a shiny output. (#10)
 * Add `htmlDependency` to `jqui_icon()` to make it work in version 0.2.0 and above.
+* New `sortableCheckboxGroupInput()`, `sortableRadioButtons()`, `sortableTabsetPanel()`, `sortableTableOutput()` and `selectableTableOutput()` to create mouse interaction enhanced shiny inputs and outputs
 
 ## shinyjqui 0.2.0
 
