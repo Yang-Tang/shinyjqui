@@ -4,6 +4,9 @@
 * Fix a bug that resizable interfere other interactions when the target element is a shiny output. (#10)
 * Add `htmlDependency` to `jqui_icon()` to make it work in version 0.2.0 and above.
 * New `sortableCheckboxGroupInput()`, `sortableRadioButtons()`, `sortableTabsetPanel()`, `sortableTableOutput()` and `selectableTableOutput()` to create mouse interaction enhanced shiny inputs and outputs
+* New experimental helper functions `jqui_resize()`, `jqui_drag()` and 
+`jqui_sort()` to manipulate the size, position and order of html elements with 
+JavaScript.
 
 ## shinyjqui 0.2.0
 

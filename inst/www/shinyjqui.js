@@ -354,10 +354,22 @@ shinyjqui = function() {
             return {'id': ids, 'html': html};
           };
 
+        var func_set = function(event, ui) {
+          var $items = $(event.target).find('.ui-sortable-handle');
+          $items.attr('jqui_sortable_idx', function(i, v){return i + 1});
+          return $.map($(Array($items.length)),function(v, i){return i + 1});
+        };
+
+        var func_get = function(event, ui) {
+          var idx = $(event.target)
+            .sortable('toArray', {attribute:'jqui_sortable_idx'});
+          return $.map(idx, function(v, i){return parseInt(v)});
+        };
+
         var default_shiny_opt = {
-          'order:shinyjqui.df' : {
-            sortcreate : func,
-            sortupdate : func
+          'order' : {
+            sortcreate : func_set,
+            sortupdate : func_get
           }
         };
 
@@ -390,6 +402,19 @@ shinyjqui = function() {
         //visible: !isHidden(el),
         //binding: $(el).data('shiny-output-binding')
       //});
+    },
+
+    drag : function(el, opt) {
+      target = checkResizableWrapper(el);
+      $(target).position(opt);
+    },
+
+    sort : function(el, opt) {
+      var $items = $(el).children();
+      $items.detach();
+      $.each(opt.items, function(i, v) {
+        $(el).append($items.get(v - 1));
+      });
     }
 
   };

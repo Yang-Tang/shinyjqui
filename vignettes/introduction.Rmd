@@ -138,7 +138,7 @@ sortable_shiny <- data.frame(
   Interaction_type = 'sortable',
   suffix = c('order'),
   `The_returned_shiny_input_value` = c(
-    'A dataframe containing the id and innerHTML of curently order of elements'
+    'A integer vector showing the current item order (1-indexed)'
   )
 )
 
