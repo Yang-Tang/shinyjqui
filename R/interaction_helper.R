@@ -22,8 +22,9 @@
 #'
 #' @examples
 jqui_resize <- function(selector, width = NULL, height = NULL) {
-  method <- 'update_interaction'
-  func <- 'resize'
+  type    <- 'interaction'
+  func    <- 'resizable'
+  method  <- "change"
   options <- list()
   if(!is.null(width)) options$width = width
   if(!is.null(height)) options$height = height
@@ -64,7 +65,7 @@ jqui_resize <- function(selector, width = NULL, height = NULL) {
 #' @examples
 jqui_drag <- function(selector, my = "center", at = "center", of = "body",
                           collision = "flip", using = NULL, within = "body") {
-  method <- 'update_interaction'
+  type <- 'update_interaction'
   func <- 'drag'
   options <- list(my        = my,
                   at        = at,
@@ -91,7 +92,7 @@ jqui_drag <- function(selector, my = "center", at = "center", of = "body",
 #'
 #' @examples
 jqui_sort <- function(selector, items) {
-  method <- 'update_interaction'
+  type <- 'update_interaction'
   func <- 'sort'
   options <- list(items = as.integer(items))
   rm(order)

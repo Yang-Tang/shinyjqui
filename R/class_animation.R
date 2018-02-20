@@ -40,8 +40,8 @@ NULL
 #' @export
 jqui_add_class <- function(selector, className, duration = 400,
                            easing = 'swing', complete = NULL) {
-  method = 'class'
-  func = 'add'
+  type <- 'class'
+  func <- 'add'
   sendMsg()
 }
 
@@ -50,8 +50,8 @@ jqui_add_class <- function(selector, className, duration = 400,
 #' @export
 jqui_remove_class <- function(selector, className, duration = 400,
                               easing = 'swing', complete = NULL) {
-  method = 'class'
-  func = 'remove'
+  type <- 'class'
+  func <- 'remove'
   sendMsg()
 }
 
@@ -60,7 +60,7 @@ jqui_remove_class <- function(selector, className, duration = 400,
 #' @export
 jqui_switch_class <- function(selector, removeClassName, addClassName,
                         duration = 400, easing = 'swing', complete = NULL) {
-  method = 'class'
-  func = 'switch'
+  type <- 'class'
+  func <- 'switch'
   sendMsg()
 }

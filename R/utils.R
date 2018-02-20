@@ -75,9 +75,9 @@ addInteractJS <- function(tag, func, options = NULL) {
     }
 
     msg <- list(selector = selector,
-                method = 'interaction',
+                type = 'interaction',
                 func = func,
-                switch = TRUE,
+                method = "enable",
                 options = options)
     msg <- addJSIdx(msg)
 
@@ -98,8 +98,9 @@ addInteractJS <- function(tag, func, options = NULL) {
       # For shiny/htmlwidgets output elements, in addition to wait for a while,
       # we have to call js on "shiny:value" event. This ensures js get the
       # correct element dimension especially when the output element is hiden on
-      # shiny initialization.
-      js <- sprintf('$("%s").on("shiny:value", function(e){%s});',
+      # shiny initialization. The initialization only needs to be run once, so
+      # .one() is used here.
+      js <- sprintf('$("%s").one("shiny:value", function(e){%s});',
                     selector, js)
     }
 

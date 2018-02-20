@@ -36,8 +36,8 @@ NULL
 #' @export
 jqui_effect <- function(selector, effect, options = NULL,
                         duration = 400, complete = NULL) {
-  method = 'effect'
-  func = 'effect'
+  type <- 'effect'
+  func <- 'effect'
   sendMsg()
 }
 
@@ -46,8 +46,8 @@ jqui_effect <- function(selector, effect, options = NULL,
 #' @export
 jqui_show <- function(selector, effect, options = NULL,
                       duration = 400, complete = NULL) {
-  method = 'effect'
-  func = 'show'
+  type <- 'effect'
+  func <- 'show'
   sendMsg()
 }
 
@@ -56,8 +56,8 @@ jqui_show <- function(selector, effect, options = NULL,
 #' @export
 jqui_hide <- function(selector, effect, options = NULL,
                       duration = 400, complete = NULL) {
-  method = 'effect'
-  func = 'hide'
+  type <- 'effect'
+  func <- 'hide'
   sendMsg()
 }
 
@@ -66,8 +66,8 @@ jqui_hide <- function(selector, effect, options = NULL,
 #' @export
 jqui_toggle <- function(selector, effect, options = NULL,
                       duration = 400, complete = NULL) {
-  method = 'effect'
-  func = 'toggle'
+  type <- 'effect'
+  func <- 'toggle'
   sendMsg()
 }
 

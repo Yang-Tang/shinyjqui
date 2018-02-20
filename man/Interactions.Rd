@@ -24,15 +24,20 @@ jqui_droppabled(tag, options = NULL)
 
 jqui_selectabled(tag, options = NULL)
 
-jqui_sortable(selector, switch = TRUE, options = NULL)
+jqui_sortable(selector, method = c("enable", "disable", "save", "load"),
+  options = NULL)
 
-jqui_draggable(selector, switch = TRUE, options = NULL)
+jqui_draggable(selector, method = c("enable", "disable", "save", "load"),
+  options = NULL)
 
-jqui_droppable(selector, switch = TRUE, options = NULL)
+jqui_droppable(selector, method = c("enable", "disable", "save", "load"),
+  options = NULL)
 
-jqui_selectable(selector, switch = TRUE, options = NULL)
+jqui_selectable(selector, method = c("enable", "disable", "save", "load"),
+  options = NULL)
 
-jqui_resizable(selector, switch = TRUE, options = NULL)
+jqui_resizable(selector, method = c("enable", "disable", "save", "load"),
+  options = NULL)
 }
 \arguments{
 \item{tag}{A shiny tag object to add interactions to.}

@@ -130,7 +130,7 @@ shinyjqui = function() {
           }
         };
 
-        el = checkResizableWrapper(el);
+        //el = checkResizableWrapper(el);
 
         handleShinyInput(el, opt, default_shiny_opt);
 
@@ -139,9 +139,9 @@ shinyjqui = function() {
 
       },
 
-      disable : function(el) {
+      disable : function(el, opt) {
 
-        el = getInputContainer(el);
+        //el = getInputContainer(el);
 
         $(el).draggable('destroy');
 
@@ -153,7 +153,7 @@ shinyjqui = function() {
 
       enable : function(el, opt) {
 
-        el = getInputContainer(el);
+        //el = getInputContainer(el);
 
         var default_shiny_opt = {
           over : {
@@ -196,7 +196,7 @@ shinyjqui = function() {
           }
         };
 
-        el = checkResizableWrapper(el);
+        //el = checkResizableWrapper(el);
 
         handleShinyInput(el, opt, default_shiny_opt);
 
@@ -205,9 +205,9 @@ shinyjqui = function() {
 
       },
 
-      disable : function(el) {
+      disable : function(el, opt) {
 
-        el = getInputContainer(el);
+        //el = getInputContainer(el);
 
         $(el).droppable('destroy');
 
@@ -291,9 +291,19 @@ shinyjqui = function() {
 
         $(el).resizable(opt);
 
+        // initiate data("shinyjqui") to store option and status etc.
+        var tmp = {
+          save : {
+            resizable : {}
+          }
+        };
+        if(!$(el).data("shinyjqui")) {
+          $(el).data("shinyjqui", tmp);
+        }
+
       },
 
-      disable : function(el) {
+      disable : function(el, opt) {
 
         var $wrapper = $(el).parent('.ui-resizable');
 
@@ -304,6 +314,7 @@ shinyjqui = function() {
           $(el)
             .outerWidth($wrapper.outerWidth())
             .outerHeight($wrapper.outerHeight())
+            .css($wrapper.css(["top", "left"]))
             .insertAfter($wrapper);
           $wrapper.remove();
 
@@ -313,6 +324,41 @@ shinyjqui = function() {
 
         }
 
+      },
+
+      change : function(el, opt) {
+        //el = checkResizableWrapper(el);
+        $(el).width(opt.width).height(opt.height);
+        if($(el).hasClass("jqui-resizable-wrapper")) {
+          $(el)
+            .children(".shiny-bound-output")
+            .data("shiny-output-binding")
+            .onResize();
+        }
+      //$(el).data("shiny-output-binding").onResize();
+      //$(el).trigger({
+        //type: 'shiny:visualchange',
+        //visible: !isHidden(el),
+        //binding: $(el).data('shiny-output-binding')
+      //});
+      },
+
+      save : function(el, opt) {
+        var $el = $(el);
+        if(!$el.is(".ui-resizable")) {return;}
+        var option  = $el.resizable("option");
+        var size = {width: $el.width(), height: $el.height()};
+        $el.data("shinyjqui").save.resizable.option = option;
+        $el.data("shinyjqui").save.resizable.size = size;
+      },
+
+      load : function(el, opt) {
+        var $el = $(el);
+        opt = opt ? opt : $el.data("shinyjqui").save.resizable;
+        if(!opt) {return;}
+        $el.resizable("option", opt.option);
+        interactions.resizable.change($el, opt.size);
+        $el.trigger("resizecreate");
       }
 
     },
@@ -340,7 +386,7 @@ shinyjqui = function() {
           }
         };
 
-        el = checkResizableWrapper(el);
+        //el = checkResizableWrapper(el);
 
         handleShinyInput(el, opt, default_shiny_opt);
 
@@ -348,7 +394,7 @@ shinyjqui = function() {
 
       },
 
-      disable : function(el) {
+      disable : function(el, opt) {
 
         $(el).selectable('destroy');
 
@@ -386,7 +432,7 @@ shinyjqui = function() {
           }
         };
 
-        el = checkResizableWrapper(el);
+        //el = checkResizableWrapper(el);
 
         handleShinyInput(el, opt, default_shiny_opt);
 
@@ -394,7 +440,7 @@ shinyjqui = function() {
 
       },
 
-      disable : function(el) {
+      disable : function(el, opt) {
 
         $(el).sortable('destroy');
 
@@ -478,17 +524,22 @@ shinyjqui = function() {
       if(!msg.hasOwnProperty('selector')) {
           console.warn('No selector found');
           return;
-        }
-      var $els = $(msg.selector).map(function(i, e){
-          return getInputContainer(e);
-          //return e;
-        });
+      }
+      var $els = $(msg.selector);
+      $els.removeClass(function(index, className){
+        return (className.match (/(^|\s)jqui-interaction-\S+/g) || []).join(' ');
+      });
+      $els = $els.map(function(i, e){
+        e = getInputContainer(e);
+        e = checkResizableWrapper(e);
+        return e;
+      });
 
-      if(!msg.hasOwnProperty('method')) {
-          console.warn('No method found');
+      if(!msg.hasOwnProperty('type')) {
+          console.warn('No type found');
           return;
         }
-      var method = msg.method;
+      var type = msg.type;
 
       if(!msg.hasOwnProperty('func')) {
           console.warn('No func found');
@@ -498,56 +549,20 @@ shinyjqui = function() {
 
       msg = evalJS(msg);
 
-      if(method === 'interaction') {
+      console.log('===================');
+      console.log('ELEMENTS: ');
+      console.log($els);
+      console.log('MSG: ');
+      console.log(msg);
+      console.log('===================');
 
-          $els.removeClass(function(index, className){
-            return (className.match (/(^|\s)jqui-interaction-\S+/g) || []).join(' ');
+      if(type === 'interaction') {
+
+          $els.each(function(idx, el) {
+            interactions[func][msg.method](el, msg.options);
           });
 
-          if(msg.switch === true) {
-
-            $els.each(function(idx, el) {
-              console.log('===================');
-              console.log('ENABLE: ' + func);
-              console.log('ELEMENT: ');
-              console.log(el);
-              console.log('OPTIONS: ');
-              console.log(msg.options);
-              console.log('===================');
-
-              // create shinyjqui_options element data to store interaction options
-              // these options may be used when resizable wrapper is introduced.
-              //if(!$(el).data("shinyjqui_options")) {
-                //$(el).data("shinyjqui_options", {})
-              //}
-              interactions[func].enable(el, msg.options);
-              //$(el).data("shinyjqui_options")[func] = msg.options;
-            });
-
-          } else if(msg.switch === false) {
-
-            $els.each(function(idx, el) {
-              console.log('===================');
-              console.log('DISABLE: ' + func);
-              console.log('ELEMENT: ');
-              console.log(el);
-              console.log('===================');
-
-              //if(!$(el).data("shinyjqui_options")) {
-                //$(el).data("shinyjqui_options", {})
-              //}
-
-              interactions[func].disable(el);
-              //delete $(el).data("shinyjqui_options")[func];
-            });
-
-          } else {
-
-            console.warn('Invalid switch: ' + msg.switch);
-
-          }
-
-      } else if(method === 'update_interaction') {
+      } else if(type === 'update_interaction') {
 
         $els.each(function(idx, el) {
           console.log('===================');
@@ -561,7 +576,7 @@ shinyjqui = function() {
           update_interactions[func](el, msg.options);
         })
 
-      } else if(method === 'effect') {
+      } else if(type === 'effect') {
 
           if(!msg.hasOwnProperty('effect')) {
             console.warn('No effect found. Action abort.');
@@ -574,7 +589,7 @@ shinyjqui = function() {
           }
           $els[func](msg.effect, msg.options, msg.duration, msg.complete);
 
-      } else if(method === 'class') {
+      } else if(type === 'class') {
 
           if(func === 'add' || func === 'remove') {
 
@@ -611,7 +626,7 @@ shinyjqui = function() {
 
       } else {
 
-          console.warn('Invalid method: ' + msg.method);
+          console.warn('Invalid type: ' + msg.type);
 
         }
 
