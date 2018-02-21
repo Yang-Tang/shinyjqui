@@ -46,7 +46,8 @@ shinyjqui = function() {
     if(id) {
 
       if(opt && opt.hasOwnProperty('shiny')) {
-        // remove keys in default_shiny_opt that have duplicated input_suffix but with a input_handler.
+        // remove keys in default_shiny_opt that have duplicated input_suffix
+        // but with a input_handler.
         var suffix = Object.keys(default_shiny_opt);
         $.each(suffix, function(i, v){
           if($.inArray(v.replace(/:.+/, ''), Object.keys(opt.shiny)) >= 0) {
@@ -83,9 +84,9 @@ shinyjqui = function() {
     return(option);
   };
 
-  // if the target el has "jqui-resizable-wrapper", return the wrapper
-  var checkResizableWrapper = function(el) {
-    if($(el).parent().hasClass("jqui-resizable-wrapper")) {
+  // if the target el has "jqui-wrapper", return the wrapper
+  var getWrapper = function(el) {
+    if($(el).parent().hasClass("jqui-wrapper")) {
           el = $(el).parent().get(0);
     }
     return(el);
@@ -106,22 +107,100 @@ shinyjqui = function() {
     }
   };
 
+  // initiate data("shinyjqui") to store option and status etc.
+  var initJquiData = function(el) {
+    var data = {
+      draggable : { save : {} },
+      droppable : { save : {} },
+      resizable : { save : {} },
+      selectable : { save : {} },
+      sortable : { save : {} }
+    };
+    if(!$(el).data("shinyjqui")) { $(el).data("shinyjqui", data) }
+  };
+
+  // Wrap the element when it is a shiny/htmlwidgets output, so that
+  // the element's redraw on resizing won't remove the dragging handlers.
+  // Shiny actionButton also needs wrapping. The resizable's internal
+  // ui-wrapper is not working very well.
+  var addWrapper = function(el) {
+
+    if($(el).parent().hasClass("jqui-wrapper")) { return el; }
+
+    var pattern = /action-button|html-widget-output|shiny-.+?-output/;
+    if(!pattern.test($(el).attr('class'))) { return el; }
+
+    var $wrapper = $('<div></div>')
+      .outerWidth($(el).outerWidth() ? $(el).outerWidth() : '100%')
+      .outerHeight($(el).outerHeight() ? $(el).outerHeight() : '100%')
+      .css($(el).css(["top", "left"]))
+      .addClass('jqui-wrapper');
+
+    var wrapper = $(el)
+      .wrap($wrapper)
+      .outerWidth('100%')
+      .outerHeight('100%')
+      .css({top:"0px", left:"0px"})
+      .parent().get(0);
+
+      // When applying resizable to element with other interactions already
+      // initiated, the interaction options will first be transfered to
+      // the wrapper, then be removed from the element
+      //var inter_funcs = ["draggable", "droppable", "selectable", "sortable"];
+      //$.each(inter_funcs, function(i, v){
+        //if($(el).is(".ui-" + v)) {
+          //var opt = $(el)[v]("option");
+          //$(wrapper)[v](opt);
+          //$(el)[v]("destroy");
+        //}
+      //});
+
+    return wrapper;
+
+  };
+
+  // When an interaction is disabled, check and try to remove the wrapper
+  var removeWrapper = function(el) {
+
+    var $el = $(el);
+
+    // cancel operation if it's not a shiny output or any interactions left
+    if(!$el.hasClass("jqui-wrapper")) { return; }
+    if($el.hasClass("ui-draggable")) { return; }
+    if($el.hasClass("ui-droppable")) { return; }
+    if($el.hasClass("ui-selectable")) { return; }
+    if($el.hasClass("ui-sortable")) { return; }
+    if($el.hasClass("ui-resizable")) { return; }
+
+    $el
+      .children(".shiny-bound-output")
+      .outerWidth($el.outerWidth())
+      .outerHeight($el.outerHeight())
+      .css($el.css(["top", "left"]))
+      .insertAfter($el);
+
+    $el.remove();
+
+  };
+
+  var disableInteraction = function(el, interaction) {
+    var $el = $(el);
+    if(!$el.hasClass("ui-" + interaction)) {return;}
+    $el[interaction]('destroy');
+    $el.removeData("shinyjqui");
+    removeWrapper(el);
+  };
+
   var interactions = {
 
     draggable : {
 
       enable : function(el, opt) {
 
-        //el = getInputContainer(el);
-
-        var func = function(event, ui) {
-          return $(event.target).position();
-        };
-
         var default_shiny_opt = {
           position : {
-            dragcreate : func,
-            drag : func
+            dragcreate : function(event, ui) {return $(event.target).position();},
+            drag : function(event, ui) {return $(event.target).position();}
           },
           is_dragging : {
             dragcreate : function(event, ui) {return false;},
@@ -130,21 +209,16 @@ shinyjqui = function() {
           }
         };
 
-        //el = checkResizableWrapper(el);
-
         handleShinyInput(el, opt, default_shiny_opt);
 
         $(el).draggable(opt);
 
+        initJquiData(el);
 
       },
 
       disable : function(el, opt) {
-
-        //el = getInputContainer(el);
-
-        $(el).draggable('destroy');
-
+        disableInteraction(el, "draggable");
       }
 
     },
@@ -152,8 +226,6 @@ shinyjqui = function() {
     droppable : {
 
       enable : function(el, opt) {
-
-        //el = getInputContainer(el);
 
         var default_shiny_opt = {
           over : {
@@ -171,7 +243,8 @@ shinyjqui = function() {
           dragging : {
             dropcreate : function(event, ui){return [];},
             dropactivate : function(event, ui){
-            return shinyjqui.getId(ui.draggable.get(0));},
+              return shinyjqui.getId(ui.draggable.get(0));
+            },
             dropdeactivate : function(event, ui){return [];}
           },
           dropped : {
@@ -196,21 +269,16 @@ shinyjqui = function() {
           }
         };
 
-        //el = checkResizableWrapper(el);
-
         handleShinyInput(el, opt, default_shiny_opt);
 
         $(el).droppable(opt);
 
+        initJquiData(el);
 
       },
 
       disable : function(el, opt) {
-
-        //el = getInputContainer(el);
-
-        $(el).droppable('destroy');
-
+        disableInteraction(el, "droppable");
       }
 
     },
@@ -219,65 +287,23 @@ shinyjqui = function() {
 
       enable : function(el, opt) {
 
-        if($(el).parent().hasClass('ui-resizable')) return;
-
-        if(/action-button|html-widget-output|shiny-.+?-output/.test($(el).attr('class'))) {
-
-          // Wrap the element when it is a shiny/htmlwidgets output, so that
-          // the element's redraw on resizing won't remove the dragging handlers.
-          // Shiny actionButton also needs wrapping. The resizable's internal
-          // ui-wrapper is not working very well.
-          var $wrapper = $('<div></div>')
-            .outerWidth($(el).outerWidth() ? $(el).outerWidth() : '100%')
-            .outerHeight($(el).outerHeight() ? $(el).outerHeight() : '100%')
-            .css($(el).css(["top", "left"]))
-            .addClass('jqui-resizable-wrapper');
-
-          var wrapper = $(el)
-            .wrap($wrapper)
-            .outerWidth('100%')
-            .outerHeight('100%')
-            .css({top:"0px", left:"0px"})
-            .parent().get(0);
-
-          //var shinyjqui_options = $(el).data("shinyjqui_options");
-          //$(wrapper).data("shinyjqui_options", {});
-          // apply existed interaction options to wrapper, if any
-          //$.each(shinyjqui_options, function(func, options) {
-            //interactions[func].enable(wrapper, options);
-            //interactions[func].disable(el);
-            //$(wrapper).data("shinyjqui_options")[func] = options;
-          //});
-          //$(el).data("shinyjqui_options", {});
+        //if($(el).parent().hasClass('ui-resizable')) return;
 
 
-          // When applying resizable to element with other interactions already
-          // initiated, the interaction options will first be transfered to
-          // the wrapper, then be removed from the element
-
-          var inter_funcs = ["draggable", "droppable", "selectable", "sortable"];
-          $.each(inter_funcs, function(i, v){
-            if($(el).is(".ui-" + v)) {
-              var opt = $(el)[v]("option");
-              $(wrapper)[v](opt);
-              $(el)[v]("destroy");
-            }
-          });
-
-          el = wrapper;
-
-        }
 
         var default_shiny_opt = {
           size : {
-            resizecreate : function(event, ui){
+            resizecreate : function(event, ui) {
               return {
-                width: $(event.target).width(),
-                height: $(event.target).height()
+                width : $(event.target).width(),
+                height : $(event.target).height()
               };
             },
             resize : function(event, ui){
-              return ui.size;
+              return $(event.target).data("uiResizable").size;
+            },
+            resizestop : function(event, ui) {
+              return $(event.target).data("uiResizable").size;
             }
           },
           is_resizing : {
@@ -291,45 +317,18 @@ shinyjqui = function() {
 
         $(el).resizable(opt);
 
-        // initiate data("shinyjqui") to store option and status etc.
-        var tmp = {
-          save : {
-            resizable : {}
-          }
-        };
-        if(!$(el).data("shinyjqui")) {
-          $(el).data("shinyjqui", tmp);
-        }
+        initJquiData(el);
 
       },
 
       disable : function(el, opt) {
-
-        var $wrapper = $(el).parent('.ui-resizable');
-
-        if($wrapper.length) {
-
-          // do some more things when it is a shiny/htmlwidgets output.
-          $wrapper.resizable('destroy');
-          $(el)
-            .outerWidth($wrapper.outerWidth())
-            .outerHeight($wrapper.outerHeight())
-            .css($wrapper.css(["top", "left"]))
-            .insertAfter($wrapper);
-          $wrapper.remove();
-
-        } else {
-
-          $(el).resizable('destroy');
-
-        }
-
+        disableInteraction(el, "resizable");
       },
 
       change : function(el, opt) {
-        //el = checkResizableWrapper(el);
+
         $(el).width(opt.width).height(opt.height);
-        if($(el).hasClass("jqui-resizable-wrapper")) {
+        if($(el).hasClass("jqui-wrapper")) {
           $(el)
             .children(".shiny-bound-output")
             .data("shiny-output-binding")
@@ -347,17 +346,20 @@ shinyjqui = function() {
         var $el = $(el);
         if(!$el.is(".ui-resizable")) {return;}
         var option  = $el.resizable("option");
-        var size = {width: $el.width(), height: $el.height()};
-        $el.data("shinyjqui").save.resizable.option = option;
-        $el.data("shinyjqui").save.resizable.size = size;
+        var size = $el.data("uiResizable").size;
+        $el.data("shinyjqui").resizable.save.option = option;
+        $el.data("shinyjqui").resizable.save.size = size;
       },
 
       load : function(el, opt) {
         var $el = $(el);
-        opt = opt ? opt : $el.data("shinyjqui").save.resizable;
-        if(!opt) {return;}
-        $el.resizable("option", opt.option);
-        interactions.resizable.change($el, opt.size);
+        if(!$el.is(".ui-resizable")) {return;}
+        var saving = opt ? opt : $el.data("shinyjqui").resizable.save;
+        if(!saving) {return;}
+        $el.resizable("option", saving.option);
+        interactions.resizable.change($el, saving.size);
+        // use "resizecreate" event to update shiny input value.
+        // "resize" and "resizestop" event not working
         $el.trigger("resizecreate");
       }
 
@@ -386,18 +388,16 @@ shinyjqui = function() {
           }
         };
 
-        //el = checkResizableWrapper(el);
-
         handleShinyInput(el, opt, default_shiny_opt);
 
         $(el).selectable(opt);
 
+        initJquiData(el);
+
       },
 
       disable : function(el, opt) {
-
-        $(el).selectable('destroy');
-
+        disableInteraction(el, "selectable");
       }
 
     },
@@ -432,18 +432,16 @@ shinyjqui = function() {
           }
         };
 
-        //el = checkResizableWrapper(el);
-
         handleShinyInput(el, opt, default_shiny_opt);
 
         $(el).sortable(opt);
 
+        initJquiData(el);
+
       },
 
       disable : function(el, opt) {
-
-        $(el).sortable('destroy');
-
+        disableInteraction(el, "sortable");
       }
 
     }
@@ -453,7 +451,7 @@ shinyjqui = function() {
   var update_interactions = {
 
     resize : function(el, opt) {
-      target = checkResizableWrapper(el);
+      target = getWrapper(el);
       $(target).width(opt.width).height(opt.height);
       //$(el).data("shiny-output-binding").onResize();
       //$(el).trigger({
@@ -464,7 +462,7 @@ shinyjqui = function() {
     },
 
     drag : function(el, opt) {
-      target = checkResizableWrapper(el);
+      target = getWrapper(el);
       $(target).position(opt);
     },
 
@@ -511,7 +509,7 @@ shinyjqui = function() {
       // for shiny output that is wrapped with a resizable div
       if(!id) {
         id = $(el)
-          .closest('.jqui-resizable-wrapper')
+          .closest('.jqui-wrapper')
           .find('.shiny-bound-output')
           .attr('id');
       }
@@ -531,7 +529,8 @@ shinyjqui = function() {
       });
       $els = $els.map(function(i, e){
         e = getInputContainer(e);
-        e = checkResizableWrapper(e);
+        e = addWrapper(e);
+        e = getWrapper(e);
         return e;
       });
 
