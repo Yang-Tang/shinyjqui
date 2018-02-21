@@ -65,7 +65,6 @@ shinyjqui = function() {
 
   };
 
-
   var evaluateJSExpressions = function(opt, idx) {
     $.each(idx, function( key, value ) {
         if(value === true && opt[key]) {
@@ -183,12 +182,168 @@ shinyjqui = function() {
 
   };
 
+  var removeIndex = function(el) {
+    var $el = $(el);
+
+    if($el.hasClass("ui-selectable")) { return; }
+    if($el.hasClass("ui-sortable")) { return; }
+
+    $el
+      .find(".ui-sortable-handle,.ui-selectee")
+      .removeAttr("jqui_idx");
+
+  };
+
   var disableInteraction = function(el, interaction) {
     var $el = $(el);
     if(!$el.hasClass("ui-" + interaction)) {return;}
     $el[interaction]('destroy');
     $el.removeData("shinyjqui");
     removeWrapper(el);
+    removeIndex(el);
+  };
+
+  var getStatus = function(el, interaction) {
+
+    var $el = $(el);
+    var status;
+
+    switch (interaction) {
+      case 'draggable':
+        status = $el.position();
+        break;
+      case 'droppable':
+        status = $el.position();
+        break;
+      case 'resizable':
+        status = {width: $el.width(), height: $el.height()};
+        break;
+      case 'selectable':
+        //var $selected = $el.find(".ui-selected");
+        //status = $selected.map(function(i, e){
+          //return parseInt($(e).attr("jqui_idx"));
+        //});
+        status = $el.find(".ui-selected");
+        break;
+      case 'sortable':
+        //var idx = $el.sortable('toArray', {attribute:'jqui_idx'});
+        //status = $.map(idx, function(v, i){return parseInt(v)});
+        status = $el.find(".ui-sortable-handle");
+        break;
+      default:
+        console.warn("Invalid interaction type");
+    }
+
+    return status;
+  };
+
+  var setStatus = function(el, interaction, status) {
+
+    var $el = $(el);
+
+    switch (interaction) {
+      case 'draggable':
+        $el.position({
+          my : "left top",
+          at : "left+" + status.left + " top+" + status.top,
+          of : $el.parent()
+        });
+        $el.data("uiDraggable")._mouseStop(null);
+        break;
+
+      case 'droppable':
+
+        break;
+
+      case 'resizable':
+        //$el.width(status.width).height(status.height);
+        //if($el.hasClass("jqui-wrapper")) {
+          //$el
+            //.children(".shiny-bound-output")
+            //.data("shiny-output-binding")
+            //.onResize();
+        //}
+
+        // idea from https://stackoverflow.com/questions/2523522/how-to-trigger-jquery-resizable-resize-programmatically
+        var start = new $.Event("mousedown", { pageX: 0, pageY: 0 });
+        var end = new $.Event("mouseup", {
+            pageX: status.width - $el.width(),
+            pageY: status.height - $el.height()
+        });
+        $el.data("uiResizable").axis = 'se';
+        $el.data("uiResizable")._mouseStart(start);
+        $el.data("uiResizable")._mouseDrag(end);
+        $el.data("uiResizable")._mouseStop(end);
+        break;
+
+      case 'selectable':
+        // idea from https://stackoverflow.com/questions/3140017/how-to-programmatically-select-selectables-with-jquery-ui
+
+        // get "ui-selected" and additional classes
+        var sel_class = $el.selectable("option", "classes.ui-selected");
+        sel_class = sel_class ? "ui-selected " + sel_class : "ui-selected";
+
+        $el
+          .find(".ui-selected")
+          .not(status)
+          .removeClass(sel_class)
+          .addClass("ui-unselecting");
+
+        status
+          .not(".ui-selected")
+          .addClass("ui-selecting");
+
+        $el.data("uiSelectable")._mouseStop(null);
+
+        break;
+
+      case 'sortable':
+        var $items = $el.find(".ui-sortable-handle");
+        var $container = $items.parent();
+        $items.detach();
+        $container.append(status);
+        // this doesn't trigger "sortupdate" ?
+        //$el.data("uiSortable")._mouseStop(null);
+        $el.trigger("sortupdate");
+        //var selector;
+        //$.each(status, function(i, v) {
+          //selector = "[jqui_idx=" + v + "]";
+          //$container.append($items.filter(selector));
+        //});
+        break;
+
+      default:
+        console.warn("Invalid interaction type");
+    }
+
+  };
+
+  var saveInteraction = function(el, interaction) {
+    var $el = $(el);
+    if(!$el.hasClass("ui-" + interaction)) {return;}
+    $el.data("shinyjqui")[interaction].save = {
+      option : $el[interaction]("option"),
+      status : getStatus(el, interaction)
+    };
+  };
+
+  var loadInteraction = function(el, interaction, save) {
+    var $el = $(el);
+    if(!$el.hasClass("ui-" + interaction)) {return;}
+    var saving = save ? save : $el.data("shinyjqui")[interaction].save;
+    if(!saving) {return;}
+    $el[interaction]("option", saving.option);
+    setStatus(el, interaction, saving.status);
+
+    // trigger event to update shiny input value.
+    // "resize" and "resizestop" event not working
+    var e = {
+      draggable: "drag",
+      resizable: "resizecreate",
+      sortable: "sortupdate",
+      selectable: "selectablestop"
+    };
+    //$el.trigger(e[interaction]);
   };
 
   var interactions = {
@@ -200,7 +355,8 @@ shinyjqui = function() {
         var default_shiny_opt = {
           position : {
             dragcreate : function(event, ui) {return $(event.target).position();},
-            drag : function(event, ui) {return $(event.target).position();}
+            drag : function(event, ui) {return $(event.target).position();},
+            dragstop : function(event, ui) {return $(event.target).position();}
           },
           is_dragging : {
             dragcreate : function(event, ui) {return false;},
@@ -219,6 +375,14 @@ shinyjqui = function() {
 
       disable : function(el, opt) {
         disableInteraction(el, "draggable");
+      },
+
+      save : function(el, opt) {
+        saveInteraction(el, "draggable");
+      },
+
+      load : function(el, opt) {
+        loadInteraction(el, "draggable", opt);
       }
 
     },
@@ -343,24 +507,11 @@ shinyjqui = function() {
       },
 
       save : function(el, opt) {
-        var $el = $(el);
-        if(!$el.is(".ui-resizable")) {return;}
-        var option  = $el.resizable("option");
-        var size = $el.data("uiResizable").size;
-        $el.data("shinyjqui").resizable.save.option = option;
-        $el.data("shinyjqui").resizable.save.size = size;
+        saveInteraction(el, "resizable");
       },
 
       load : function(el, opt) {
-        var $el = $(el);
-        if(!$el.is(".ui-resizable")) {return;}
-        var saving = opt ? opt : $el.data("shinyjqui").resizable.save;
-        if(!saving) {return;}
-        $el.resizable("option", saving.option);
-        interactions.resizable.change($el, saving.size);
-        // use "resizecreate" event to update shiny input value.
-        // "resize" and "resizestop" event not working
-        $el.trigger("resizecreate");
+        loadInteraction(el, "resizable", opt);
       }
 
     },
@@ -398,6 +549,14 @@ shinyjqui = function() {
 
       disable : function(el, opt) {
         disableInteraction(el, "selectable");
+      },
+
+      save : function(el, opt) {
+        saveInteraction(el, "selectable");
+      },
+
+      load : function(el, opt) {
+        loadInteraction(el, "selectable", opt);
       }
 
     },
@@ -415,20 +574,24 @@ shinyjqui = function() {
 
         var func_set = function(event, ui) {
           var $items = $(event.target).find('.ui-sortable-handle');
-          $items.attr('jqui_sortable_idx', function(i, v){return i + 1});
+          $items.attr('jqui_idx', function(i, v){return i + 1});
           return $.map($(Array($items.length)),function(v, i){return i + 1});
         };
 
         var func_get = function(event, ui) {
           var idx = $(event.target)
-            .sortable('toArray', {attribute:'jqui_sortable_idx'});
+            .sortable('toArray', {attribute:'jqui_idx'});
           return $.map(idx, function(v, i){return parseInt(v)});
         };
 
         var default_shiny_opt = {
-          'order' : {
+          'index' : {
             sortcreate : func_set,
             sortupdate : func_get
+          },
+          'order' : {
+            sortcreate : func,
+            sortupdate : func
           }
         };
 
@@ -442,6 +605,14 @@ shinyjqui = function() {
 
       disable : function(el, opt) {
         disableInteraction(el, "sortable");
+      },
+
+      save : function(el, opt) {
+        saveInteraction(el, "sortable");
+      },
+
+      load : function(el, opt) {
+        loadInteraction(el, "sortable", opt);
       }
 
     }
