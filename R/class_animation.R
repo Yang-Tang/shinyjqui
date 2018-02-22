@@ -42,6 +42,11 @@ jqui_add_class <- function(selector, className, duration = 400,
                            easing = 'swing', complete = NULL) {
   type <- 'class'
   func <- 'add'
+  options <- list(className = className,
+                  duration  = duration,
+                  easing    = easing,
+                  complete  = complete)
+  rm(className, duration, easing, complete)
   sendMsg()
 }
 
@@ -52,6 +57,11 @@ jqui_remove_class <- function(selector, className, duration = 400,
                               easing = 'swing', complete = NULL) {
   type <- 'class'
   func <- 'remove'
+  options <- list(className = className,
+                  duration  = duration,
+                  easing    = easing,
+                  complete  = complete)
+  rm(className, duration, easing, complete)
   sendMsg()
 }
 
@@ -62,5 +72,11 @@ jqui_switch_class <- function(selector, removeClassName, addClassName,
                         duration = 400, easing = 'swing', complete = NULL) {
   type <- 'class'
   func <- 'switch'
+  options <- list(removeClassName = removeClassName,
+                  addClassName    = addClassName,
+                  duration        = duration,
+                  easing          = easing,
+                  complete        = complete)
+  rm(removeClassName, addClassName, duration, easing, complete)
   sendMsg()
 }

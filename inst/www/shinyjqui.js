@@ -83,6 +83,41 @@ shinyjqui = function() {
     return(option);
   };
 
+  var handleServerMsg = function(msg) {
+
+    msg = evalJS(msg);
+
+    var $els = $(msg.selector);
+    if(!$els) {
+      console.warn("The selector didn't match any element. Operation abort.");
+      return;
+    }
+    $els.removeClass(function(index, className){
+      return (className.match (/(^|\s)jqui-interaction-\S+/g) || []).join(' ');
+    });
+    $els = $els.map(function(i, e){
+      e = getInputContainer(e);
+      e = addWrapper(e);
+      e = getWrapper(e);
+      return e;
+    });
+
+    console.log('===================');
+    console.log('ELEMENTS: ');
+    console.log($els);
+    console.log('MSG: ');
+    console.log(msg);
+    console.log('===================');
+
+    return {
+      elements : $els,
+      type     : msg.type,
+      func     : msg.func,
+      method   : msg.method,
+      options  : msg.options
+    };
+  };
+
   // if the target el has "jqui-wrapper", return the wrapper
   var getWrapper = function(el) {
     if($(el).parent().hasClass("jqui-wrapper")) {
@@ -106,7 +141,7 @@ shinyjqui = function() {
     }
   };
 
-  // initiate data("shinyjqui") to store option and status etc.
+    // initiate data("shinyjqui") to store option and status etc.
   var initJquiData = function(el) {
     var data = {
       draggable : { save : {} },
@@ -194,68 +229,100 @@ shinyjqui = function() {
 
   };
 
-  var disableInteraction = function(el, interaction) {
-    var $el = $(el);
-    if(!$el.hasClass("ui-" + interaction)) {return;}
-    $el[interaction]('destroy');
-    $el.removeData("shinyjqui");
-    removeWrapper(el);
-    removeIndex(el);
-  };
+  var interaction_settings = {
 
-  var getStatus = function(el, interaction) {
+    draggable : {
 
-    var $el = $(el);
-    var status;
+      getStatus : function(el) {
+        return $(el).position();
+      },
 
-    switch (interaction) {
-      case 'draggable':
-        status = $el.position();
-        break;
-      case 'droppable':
-        status = $el.position();
-        break;
-      case 'resizable':
-        status = {width: $el.width(), height: $el.height()};
-        break;
-      case 'selectable':
-        //var $selected = $el.find(".ui-selected");
-        //status = $selected.map(function(i, e){
-          //return parseInt($(e).attr("jqui_idx"));
-        //});
-        status = $el.find(".ui-selected");
-        break;
-      case 'sortable':
-        //var idx = $el.sortable('toArray', {attribute:'jqui_idx'});
-        //status = $.map(idx, function(v, i){return parseInt(v)});
-        status = $el.find(".ui-sortable-handle");
-        break;
-      default:
-        console.warn("Invalid interaction type");
-    }
-
-    return status;
-  };
-
-  var setStatus = function(el, interaction, status) {
-
-    var $el = $(el);
-
-    switch (interaction) {
-      case 'draggable':
-        $el.position({
+      setStatus : function(el, status) {
+        $(el).position({
           my : "left top",
           at : "left+" + status.left + " top+" + status.top,
-          of : $el.parent()
+          of : $(el).parent()
         });
-        $el.data("uiDraggable")._mouseStop(null);
-        break;
+        $(el).data("uiDraggable")._mouseStop(null);
+      },
 
-      case 'droppable':
+      shiny : {
+        position : {
+          dragcreate : function(event, ui) {return $(event.target).position();},
+          drag : function(event, ui) {return $(event.target).position();},
+          dragstop : function(event, ui) {return $(event.target).position();}
+        },
+        is_dragging : {
+          dragcreate : function(event, ui) {return false;},
+          dragstart : function(event, ui) {return true;},
+          dragstop : function(event, ui) {return false;}
+        }
+      }
 
-        break;
+    },
 
-      case 'resizable':
+    droppable : {
+
+      getStatus : function(el) {
+        return;
+      },
+
+      setStatus : function(el, status) {
+
+      },
+
+      shiny : {
+        over : {
+            dropcreate : function(event, ui){return [];},
+            dropover : function(event, ui){return shinyjqui.getId(ui.draggable.get(0));}
+          },
+        drop : {
+            dropcreate : function(event, ui){return [];},
+            drop : function(event, ui){return shinyjqui.getId(ui.draggable.get(0));}
+          },
+        out : {
+            dropcreate : function(event, ui){return [];},
+            dropout : function(event, ui){return shinyjqui.getId(ui.draggable.get(0));}
+          },
+        dragging : {
+            dropcreate : function(event, ui){return [];},
+            dropactivate : function(event, ui){
+              return shinyjqui.getId(ui.draggable.get(0));
+            },
+            dropdeactivate : function(event, ui){return [];}
+          },
+        dropped : {
+          dropcreate : function(event, ui){
+              $(event.target).data("shinyjqui_droppedIds", []);
+              return [];
+            },
+          drop : function(event, ui){
+              var current_ids = $(event.target).data("shinyjqui_droppedIds");
+              var new_id = shinyjqui.getId(ui.draggable.get(0));
+              if($.inArray(new_id, current_ids) == -1) current_ids.push(new_id);
+              $(event.target).data("shinyjqui_droppedIds", current_ids);
+              return current_ids;
+            },
+          dropout : function(event, ui){
+              var current_ids = $(event.target).data("shinyjqui_droppedIds");
+              var out_id = shinyjqui.getId(ui.draggable.get(0));
+              current_ids.splice($.inArray(out_id, current_ids),1);
+              $(event.target).data("shinyjqui_droppedIds", current_ids);
+              return current_ids;
+            }
+        }
+      }
+
+    },
+
+    resizable : {
+
+      getStatus : function(el) {
+        return {width: $(el).width(), height: $(el).height()};
+      },
+
+      setStatus : function(el, status) {
+        var $el = $(el);
         //$el.width(status.width).height(status.height);
         //if($el.hasClass("jqui-wrapper")) {
           //$el
@@ -274,9 +341,44 @@ shinyjqui = function() {
         $el.data("uiResizable")._mouseStart(start);
         $el.data("uiResizable")._mouseDrag(end);
         $el.data("uiResizable")._mouseStop(end);
-        break;
+      },
 
-      case 'selectable':
+      shiny : {
+        size : {
+          resizecreate : function(event, ui) {
+            return {
+              width : $(event.target).width(),
+              height : $(event.target).height()
+            };
+          },
+          resize : function(event, ui){
+            return $(event.target).data("uiResizable").size;
+          },
+          resizestop : function(event, ui) {
+            return $(event.target).data("uiResizable").size;
+          }
+        },
+        is_resizing : {
+          resizecreate : function(event, ui){return false;},
+          resizestart : function(event, ui){return true;},
+          resizestop : function(event, ui){return false;}
+        }
+      }
+
+    },
+
+    selectable : {
+
+      getStatus : function(el) {
+        //var $selected = $el.find(".ui-selected");
+        //status = $selected.map(function(i, e){
+          //return parseInt($(e).attr("jqui_idx"));
+        //});
+        return $(el).find(".ui-selected");
+      },
+
+      setStatus : function(el, status) {
+        var $el = $(el);
         // idea from https://stackoverflow.com/questions/3140017/how-to-programmatically-select-selectables-with-jquery-ui
 
         // get "ui-selected" and additional classes
@@ -294,10 +396,35 @@ shinyjqui = function() {
           .addClass("ui-selecting");
 
         $el.data("uiSelectable")._mouseStop(null);
+      },
 
-        break;
+      shiny : {
+        'selected:shinyjqui.df' : {
+          "selectablecreate selectablestop" : function(event, ui) {
+            var $selected = $(event.target).children('.ui-selected');
+            var html = $selected.map(function(i, e){return e.innerHTML;}).get();
+            var ids = $selected.map(function(i, e){return shinyjqui.getId(e);}).get();
+            return {'id': ids, 'html': html};
+          }
+        },
+        is_selecting : {
+          "selectablecreate selectablestop" : function(event, ui) {return false;},
+          selectablestart : function(event, ui) {return true;}
+        }
+      }
 
-      case 'sortable':
+    },
+
+    sortable : {
+
+      getStatus : function(el) {
+        //var idx = $el.sortable('toArray', {attribute:'jqui_idx'});
+        //status = $.map(idx, function(v, i){return parseInt(v)});
+        return $(el).find(".ui-sortable-handle");
+      },
+
+      setStatus : function(el, status) {
+        var $el = $(el);
         var $items = $el.find(".ui-sortable-handle");
         var $container = $items.parent();
         $items.detach();
@@ -310,339 +437,68 @@ shinyjqui = function() {
           //selector = "[jqui_idx=" + v + "]";
           //$container.append($items.filter(selector));
         //});
-        break;
+      },
 
-      default:
-        console.warn("Invalid interaction type");
-    }
-
-  };
-
-  var saveInteraction = function(el, interaction) {
-    var $el = $(el);
-    if(!$el.hasClass("ui-" + interaction)) {return;}
-    $el.data("shinyjqui")[interaction].save = {
-      option : $el[interaction]("option"),
-      status : getStatus(el, interaction)
-    };
-  };
-
-  var loadInteraction = function(el, interaction, save) {
-    var $el = $(el);
-    if(!$el.hasClass("ui-" + interaction)) {return;}
-    var saving = save ? save : $el.data("shinyjqui")[interaction].save;
-    if(!saving) {return;}
-    $el[interaction]("option", saving.option);
-    setStatus(el, interaction, saving.status);
-
-    // trigger event to update shiny input value.
-    // "resize" and "resizestop" event not working
-    var e = {
-      draggable: "drag",
-      resizable: "resizecreate",
-      sortable: "sortupdate",
-      selectable: "selectablestop"
-    };
-    //$el.trigger(e[interaction]);
-  };
-
-  var interactions = {
-
-    draggable : {
-
-      enable : function(el, opt) {
-
-        var default_shiny_opt = {
-          position : {
-            dragcreate : function(event, ui) {return $(event.target).position();},
-            drag : function(event, ui) {return $(event.target).position();},
-            dragstop : function(event, ui) {return $(event.target).position();}
+      shiny : {
+        index : {
+          sortcreate : function(event, ui) {
+            var $items = $(event.target).find('.ui-sortable-handle');
+            $items.attr('jqui_idx', function(i, v){return i + 1});
+            return $.map($(Array($items.length)),function(v, i){return i + 1});
           },
-          is_dragging : {
-            dragcreate : function(event, ui) {return false;},
-            dragstart : function(event, ui) {return true;},
-            dragstop : function(event, ui) {return false;}
+          sortupdate : function(event, ui) {
+            var idx = $(event.target)
+              .sortable('toArray', {attribute:'jqui_idx'});
+            return $.map(idx, function(v, i){return parseInt(v)});
           }
-        };
-
-        handleShinyInput(el, opt, default_shiny_opt);
-
-        $(el).draggable(opt);
-
-        initJquiData(el);
-
-      },
-
-      disable : function(el, opt) {
-        disableInteraction(el, "draggable");
-      },
-
-      save : function(el, opt) {
-        saveInteraction(el, "draggable");
-      },
-
-      load : function(el, opt) {
-        loadInteraction(el, "draggable", opt);
-      }
-
-    },
-
-    droppable : {
-
-      enable : function(el, opt) {
-
-        var default_shiny_opt = {
-          over : {
-            dropcreate : function(event, ui){return [];},
-            dropover : function(event, ui){return shinyjqui.getId(ui.draggable.get(0));}
-          },
-          drop : {
-            dropcreate : function(event, ui){return [];},
-            drop : function(event, ui){return shinyjqui.getId(ui.draggable.get(0));}
-          },
-          out : {
-            dropcreate : function(event, ui){return [];},
-            dropout : function(event, ui){return shinyjqui.getId(ui.draggable.get(0));}
-          },
-          dragging : {
-            dropcreate : function(event, ui){return [];},
-            dropactivate : function(event, ui){
-              return shinyjqui.getId(ui.draggable.get(0));
-            },
-            dropdeactivate : function(event, ui){return [];}
-          },
-          dropped : {
-            dropcreate : function(event, ui){
-              $(event.target).data("shinyjqui_droppedIds", []);
-              return [];
-            },
-            drop : function(event, ui){
-              var current_ids = $(event.target).data("shinyjqui_droppedIds");
-              var new_id = shinyjqui.getId(ui.draggable.get(0));
-              if($.inArray(new_id, current_ids) == -1) current_ids.push(new_id);
-              $(event.target).data("shinyjqui_droppedIds", current_ids);
-              return current_ids;
-            },
-            dropout : function(event, ui){
-              var current_ids = $(event.target).data("shinyjqui_droppedIds");
-              var out_id = shinyjqui.getId(ui.draggable.get(0));
-              current_ids.splice($.inArray(out_id, current_ids),1);
-              $(event.target).data("shinyjqui_droppedIds", current_ids);
-              return current_ids;
-            }
-          }
-        };
-
-        handleShinyInput(el, opt, default_shiny_opt);
-
-        $(el).droppable(opt);
-
-        initJquiData(el);
-
-      },
-
-      disable : function(el, opt) {
-        disableInteraction(el, "droppable");
-      }
-
-    },
-
-    resizable : {
-
-      enable : function(el, opt) {
-
-        //if($(el).parent().hasClass('ui-resizable')) return;
-
-
-
-        var default_shiny_opt = {
-          size : {
-            resizecreate : function(event, ui) {
-              return {
-                width : $(event.target).width(),
-                height : $(event.target).height()
-              };
-            },
-            resize : function(event, ui){
-              return $(event.target).data("uiResizable").size;
-            },
-            resizestop : function(event, ui) {
-              return $(event.target).data("uiResizable").size;
-            }
-          },
-          is_resizing : {
-            resizecreate : function(event, ui){return false;},
-            resizestart : function(event, ui){return true;},
-            resizestop : function(event, ui){return false;}
-          }
-        };
-
-        handleShinyInput(el, opt, default_shiny_opt);
-
-        $(el).resizable(opt);
-
-        initJquiData(el);
-
-      },
-
-      disable : function(el, opt) {
-        disableInteraction(el, "resizable");
-      },
-
-      change : function(el, opt) {
-
-        $(el).width(opt.width).height(opt.height);
-        if($(el).hasClass("jqui-wrapper")) {
-          $(el)
-            .children(".shiny-bound-output")
-            .data("shiny-output-binding")
-            .onResize();
-        }
-      //$(el).data("shiny-output-binding").onResize();
-      //$(el).trigger({
-        //type: 'shiny:visualchange',
-        //visible: !isHidden(el),
-        //binding: $(el).data('shiny-output-binding')
-      //});
-      },
-
-      save : function(el, opt) {
-        saveInteraction(el, "resizable");
-      },
-
-      load : function(el, opt) {
-        loadInteraction(el, "resizable", opt);
-      }
-
-    },
-
-    selectable : {
-
-      enable : function(el, opt) {
-
-        var func = function(event, ui) {
-          var $selected = $(event.target).children('.ui-selected');
-          var html = $selected.map(function(i, e){return e.innerHTML;}).get();
-          var ids = $selected.map(function(i, e){return shinyjqui.getId(e);}).get();
-          return {'id': ids, 'html': html};
-        };
-
-        var default_shiny_opt = {
-          'selected:shinyjqui.df' : {
-            selectablecreate : func,
-            selectablestop : func
-          },
-          is_selecting : {
-            selectablecreate : function(event, ui) {return false;},
-            selectablestart : function(event, ui) {return true;},
-            selectablestop : function(event, ui) {return false;},
-          }
-        };
-
-        handleShinyInput(el, opt, default_shiny_opt);
-
-        $(el).selectable(opt);
-
-        initJquiData(el);
-
-      },
-
-      disable : function(el, opt) {
-        disableInteraction(el, "selectable");
-      },
-
-      save : function(el, opt) {
-        saveInteraction(el, "selectable");
-      },
-
-      load : function(el, opt) {
-        loadInteraction(el, "selectable", opt);
-      }
-
-    },
-
-    sortable : {
-
-      enable : function(el, opt) {
-
-        var func = function(event, ui) {
+        },
+        order : {
+          "sortcreate sortupdate" : function(event, ui) {
             var $selected = $(event.target).children();
             var html = $selected.map(function(i, e){return e.innerHTML;}).get();
             var ids = $selected.map(function(i, e){return shinyjqui.getId(e);}).get();
             return {'id': ids, 'html': html};
-          };
-
-        var func_set = function(event, ui) {
-          var $items = $(event.target).find('.ui-sortable-handle');
-          $items.attr('jqui_idx', function(i, v){return i + 1});
-          return $.map($(Array($items.length)),function(v, i){return i + 1});
-        };
-
-        var func_get = function(event, ui) {
-          var idx = $(event.target)
-            .sortable('toArray', {attribute:'jqui_idx'});
-          return $.map(idx, function(v, i){return parseInt(v)});
-        };
-
-        var default_shiny_opt = {
-          'index' : {
-            sortcreate : func_set,
-            sortupdate : func_get
-          },
-          'order' : {
-            sortcreate : func,
-            sortupdate : func
           }
-        };
-
-        handleShinyInput(el, opt, default_shiny_opt);
-
-        $(el).sortable(opt);
-
-        initJquiData(el);
-
-      },
-
-      disable : function(el, opt) {
-        disableInteraction(el, "sortable");
-      },
-
-      save : function(el, opt) {
-        saveInteraction(el, "sortable");
-      },
-
-      load : function(el, opt) {
-        loadInteraction(el, "sortable", opt);
+        }
       }
 
     }
 
   };
 
-  var update_interactions = {
+  var interaction = {
 
-    resize : function(el, opt) {
-      target = getWrapper(el);
-      $(target).width(opt.width).height(opt.height);
-      //$(el).data("shiny-output-binding").onResize();
-      //$(el).trigger({
-        //type: 'shiny:visualchange',
-        //visible: !isHidden(el),
-        //binding: $(el).data('shiny-output-binding')
-      //});
+    enable : function(el, interaction, opt) {
+      handleShinyInput(el, opt, interaction_settings[interaction].shiny);
+      $(el)[interaction](opt);
+      initJquiData(el);
     },
 
-    drag : function(el, opt) {
-      target = getWrapper(el);
-      $(target).position(opt);
+    disable : function(el, interaction, dummyarg) {
+      var $el = $(el);
+      if(!$el.hasClass("ui-" + interaction)) {return;}
+      $el[interaction]('destroy');
+      $el.removeData("shinyjqui");
+      removeWrapper(el);
+      removeIndex(el);
     },
 
-    sort : function(el, opt) {
-      var $items = $(el).children();
-      $items.detach();
-      $.each(opt.items, function(i, v) {
-        $(el).append($items.get(v - 1));
-      });
+    save : function(el, interaction, dummyarg) {
+      var $el = $(el);
+      if(!$el.hasClass("ui-" + interaction)) {return;}
+      $el.data("shinyjqui")[interaction].save = {
+        option : $el[interaction]("option"),
+        status : interaction_settings[interaction].getStatus(el)
+      };
+    },
+
+    load : function(el, interaction, save) {
+      var $el = $(el);
+      if(!$el.hasClass("ui-" + interaction)) {return;}
+      var saving = save ? save : $el.data("shinyjqui")[interaction].save;
+      if(!saving) {return;}
+      $el[interaction]("option", saving.option);
+      interaction_settings[interaction].setStatus(el, saving.status);
     }
 
   };
@@ -690,115 +546,31 @@ shinyjqui = function() {
 
     msgCallback : function(msg) {
 
-      if(!msg.hasOwnProperty('selector')) {
-          console.warn('No selector found');
-          return;
-      }
-      var $els = $(msg.selector);
-      $els.removeClass(function(index, className){
-        return (className.match (/(^|\s)jqui-interaction-\S+/g) || []).join(' ');
-      });
-      $els = $els.map(function(i, e){
-        e = getInputContainer(e);
-        e = addWrapper(e);
-        e = getWrapper(e);
-        return e;
-      });
-
-      if(!msg.hasOwnProperty('type')) {
-          console.warn('No type found');
-          return;
-        }
+      msg = handleServerMsg(msg);
+      if(!msg) { return; }
+      var $els = msg.elements;
       var type = msg.type;
-
-      if(!msg.hasOwnProperty('func')) {
-          console.warn('No func found');
-          return;
-        }
+      var method = msg.method;
       var func = msg.func;
-
-      msg = evalJS(msg);
-
-      console.log('===================');
-      console.log('ELEMENTS: ');
-      console.log($els);
-      console.log('MSG: ');
-      console.log(msg);
-      console.log('===================');
+      var opt = msg.options;
 
       if(type === 'interaction') {
 
-          $els.each(function(idx, el) {
-            interactions[func][msg.method](el, msg.options);
-          });
-
-      } else if(type === 'update_interaction') {
-
-        $els.each(function(idx, el) {
-          console.log('===================');
-          console.log('ENABLE: ' + func);
-          console.log('ELEMENT: ');
-          console.log(el);
-          console.log('OPTIONS: ');
-          console.log(msg.options);
-          console.log('===================');
-
-          update_interactions[func](el, msg.options);
-        })
+          $els.each(function(idx, el) {interaction[method](el, func, opt);});
 
       } else if(type === 'effect') {
 
-          if(!msg.hasOwnProperty('effect')) {
-            console.warn('No effect found. Action abort.');
-            return;
-          }
-
-          if(msg.effect === 'transfer' && (func === 'hide' || func === 'show' || func === 'toggle')) {
-            console.warn('The transfer effect cannot be used in hide/show. Action abort.');
-            return;
-          }
-          $els[func](msg.effect, msg.options, msg.duration, msg.complete);
+          $els[func](opt);
 
       } else if(type === 'class') {
 
           if(func === 'add' || func === 'remove') {
-
-            if(!msg.hasOwnProperty('className')) {
-              console.warn('No className found');
-              return;
-            }
-            $els[func + 'Class'](msg.className,
-                                 msg.duration,
-                                 msg.easing,
-                                 msg.complete);
-
+            $els[func + 'Class'](opt.className, opt);
           } else if(func === 'switch') {
-
-            if(!msg.hasOwnProperty('removeClassName')) {
-              console.warn('No removeClassName found');
-              return;
-            }
-            if(!msg.hasOwnProperty('addClassName')) {
-              console.warn('No addClassName found');
-              return;
-            }
-            $els[func + 'Class'](msg.removeClassName,
-                                 msg.addClassName,
-                                 msg.duration,
-                                 msg.easing,
-                                 msg.complete);
-
-          } else {
-
-            console.warn('Invalid func: ' + msg.func);
-
+            $els.switchClass(opt.removeClassName, opt.addClassName, opt);
           }
 
-      } else {
-
-          console.warn('Invalid type: ' + msg.type);
-
-        }
+      }
 
     },
 

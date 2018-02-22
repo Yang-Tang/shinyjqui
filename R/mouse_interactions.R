@@ -25,12 +25,12 @@
 #'   [jQuery_selector](https://api.jquery.com/category/selectors/) that
 #'   determines the shiny tag element(s) whose interaction is to be enabled or
 #'   disabled.
-#' @param switch A boolean value to determine whether to enable or disable an
-#'   interaction.
-#' @param options A list of interaction options. Ignored when `switch` is set as
-#'   `FALSE`. In addition to the
+#' @param method A string to determine the operation related to the interaction
+#'   type. Should be one of `enable`, `disable`, `save` and `load`
+#' @param options A list of interaction options. Ignored when `method` is set as
+#'   `disable` or `save`. In addition to the
 #'   [interaction_specific_options](http://api.jqueryui.com/category/interactions/),
-#'   this parameter also accept a shiny option that controls the shiny input
+#'    this parameter also accept a shiny option that controls the shiny input
 #'   value returned from the element. See Details.
 #'
 #' @return `jqui_draggabled`, `jqui_droppabled`, `jqui_resizabled`,

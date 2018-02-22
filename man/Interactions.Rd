@@ -42,8 +42,8 @@ jqui_resizable(selector, method = c("enable", "disable", "save", "load"),
 \arguments{
 \item{tag}{A shiny tag object to add interactions to.}
 
-\item{options}{A list of interaction options. Ignored when \code{switch} is set as
-\code{FALSE}. In addition to the
+\item{options}{A list of interaction options. Ignored when \code{method} is set as
+\code{disable} or \code{save}. In addition to the
 \href{http://api.jqueryui.com/category/interactions/}{interaction_specific_options},
 this parameter also accept a shiny option that controls the shiny input
 value returned from the element. See Details.}
@@ -53,8 +53,8 @@ value returned from the element. See Details.}
 determines the shiny tag element(s) whose interaction is to be enabled or
 disabled.}
 
-\item{switch}{A boolean value to determine whether to enable or disable an
-interaction.}
+\item{method}{A string to determine the operation related to the interaction
+type. Should be one of \code{enable}, \code{disable}, \code{save} and \code{load}}
 }
 \value{
 \code{jqui_draggabled}, \code{jqui_droppabled}, \code{jqui_resizabled},

@@ -36,8 +36,14 @@ NULL
 #' @export
 jqui_effect <- function(selector, effect, options = NULL,
                         duration = 400, complete = NULL) {
+  if(!(effect %in% get_jqui_effects())) stop("Invalid effect.")
   type <- 'effect'
   func <- 'effect'
+  options <- list(effect = effect,
+                  options = options,
+                  duration = duration,
+                  complete = complete)
+  rm(effect, duration, complete)
   sendMsg()
 }
 
@@ -46,8 +52,17 @@ jqui_effect <- function(selector, effect, options = NULL,
 #' @export
 jqui_show <- function(selector, effect, options = NULL,
                       duration = 400, complete = NULL) {
+  if(!(effect %in% get_jqui_effects())) stop("Invalid effect.")
+  if(effect == "transfer") {
+    stop("The transfer effect is not supported in show/hide/toggle.")
+  }
   type <- 'effect'
   func <- 'show'
+  options <- list(effect = effect,
+                  options = options,
+                  duration = duration,
+                  complete = complete)
+  rm(effect, duration, complete)
   sendMsg()
 }
 
@@ -56,8 +71,17 @@ jqui_show <- function(selector, effect, options = NULL,
 #' @export
 jqui_hide <- function(selector, effect, options = NULL,
                       duration = 400, complete = NULL) {
+  if(!(effect %in% get_jqui_effects())) stop("Invalid effect.")
+  if(effect == "transfer") {
+    stop("The transfer effect is not supported in show/hide/toggle.")
+  }
   type <- 'effect'
   func <- 'hide'
+  options <- list(effect = effect,
+                  options = options,
+                  duration = duration,
+                  complete = complete)
+  rm(effect, duration, complete)
   sendMsg()
 }
 
@@ -66,8 +90,17 @@ jqui_hide <- function(selector, effect, options = NULL,
 #' @export
 jqui_toggle <- function(selector, effect, options = NULL,
                       duration = 400, complete = NULL) {
+  if(!(effect %in% get_jqui_effects())) stop("Invalid effect.")
+  if(effect == "transfer") {
+    stop("The transfer effect is not supported in show/hide/toggle.")
+  }
   type <- 'effect'
   func <- 'toggle'
+  options <- list(effect = effect,
+                  options = options,
+                  duration = duration,
+                  complete = complete)
+  rm(effect, duration, complete)
   sendMsg()
 }
 
