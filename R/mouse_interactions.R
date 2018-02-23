@@ -135,3 +135,41 @@ jqui_resizable <- function(selector,
   method <- match.arg(method)
   sendMsg()
 }
+
+
+
+#' Enable bookmarking state of mouse interactions
+#'
+#' Enable shiny
+#' [bookmarking_state](https://shiny.rstudio.com/articles/bookmarking-state.html)
+#' for elements with mouse interactions initiated. By calling this function in
+#' server, the `position`, `size`, `selection state` and `sorting state` of
+#' elements can be saved and restored through an URL.
+#'
+#' __Limitations:__
+#' * The target element should have an `id`
+#' * Cann't restore items who were moved from other sortable elements with
+#' `connectWith` settings
+#'
+#' @export
+#'
+#' @examples
+jqui_enable_bookmarking <- function() {
+  shiny::onRestored(function(state) {
+    inputs <- state$input
+    for (name in names(inputs)) {
+      if(!grepl("__shinyjquiBookmarkState__", name)) next()
+      info <- strsplit(name, "__")[[1]]
+      selector <- paste0("#", info[1])
+      options <- list(state = inputs[[name]])
+      func <- switch (info[3],
+                      "draggable"  = jqui_draggable,
+                      "droppable"  = jqui_droppable,
+                      "resizable"  = jqui_resizable,
+                      "sortable"   = jqui_sortable,
+                      "selectable" = jqui_selectable
+      )
+      func(selector = selector, method   = "load", options  = options)
+    }
+  })
+}
