@@ -348,24 +348,22 @@ shinyjqui = function() {
       },
 
       shiny : {
+        "_shinyjquiBookmarkState__resizable" : {
+          "resizecreate resizestop" : function(event, ui) {
+            return interaction_settings.resizable.getState(event.target);
+          }
+        },
         size : {
-          resizecreate : function(event, ui) {
+          "resizecreate resize resizestop" : function(event, ui) {
             return {
               width : $(event.target).width(),
               height : $(event.target).height()
             };
-          },
-          resize : function(event, ui){
-            return $(event.target).data("uiResizable").size;
-          },
-          resizestop : function(event, ui) {
-            return $(event.target).data("uiResizable").size;
           }
         },
         is_resizing : {
-          resizecreate : function(event, ui){return false;},
-          resizestart : function(event, ui){return true;},
-          resizestop : function(event, ui){return false;}
+          "resizecreate resizestop" : function(event, ui){return false;},
+          "resizestart" : function(event, ui){return true;}
         }
       }
 
