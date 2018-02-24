@@ -372,28 +372,51 @@ shinyjqui = function() {
     selectable : {
 
       getState : function(el) {
-        //var $selected = $el.find(".ui-selected");
-        //state = $selected.map(function(i, e){
-          //return parseInt($(e).attr("jqui_idx"));
-        //});
-        return $(el).find(".ui-selected");
+        var $selected = $(el).find(".ui-selected");
+        var index = $selected.map(function(i, e) {
+          return $(e).attr("jqui_selectable_idx");
+        }).get();
+        return {
+          selected : $selected, // for client mode
+          index : index // for shiny bookmarking mode
+        };
       },
 
       setState : function(el, state) {
         var $el = $(el);
-        // idea from https://stackoverflow.com/questions/3140017/how-to-programmatically-select-selectables-with-jquery-ui
 
         // get "ui-selected" and additional classes
         var sel_class = $el.selectable("option", "classes.ui-selected");
         sel_class = sel_class ? "ui-selected " + sel_class : "ui-selected";
 
+        // The value of `state` is different in client mode and bookmarking
+        // mode. In client mode, `state.selected` is a jquery object of selected
+        // items; In bookmarking mode, `state.selected` is an empty string,
+        // instead, `state.index` will be used to generate the selected items.
+        var $selected;
+        if(state.selected instanceof jQuery) {
+          // client mode
+          $selected = state.selected;
+        } else {
+          // shiny bookmarking mode
+          if(!Array.isArray(state.index)) {
+            // if there is only one index, change it to an array
+            state.index = Array(state.index);
+          }
+          $selected = $(state.index).map(function(i, v) {
+            return $("[jqui_selectable_idx=" + v + "]").get(0)
+          });
+
+        }
+
+        // idea from https://stackoverflow.com/questions/3140017/how-to-programmatically-select-selectables-with-jquery-ui
         $el
           .find(".ui-selected")
-          .not(state)
+          .not($selected)
           .removeClass(sel_class)
           .addClass("ui-unselecting");
 
-        state
+        $selected
           .not(".ui-selected")
           .addClass("ui-selecting");
 
@@ -401,6 +424,26 @@ shinyjqui = function() {
       },
 
       shiny : {
+        "_shinyjquiBookmarkState__selectable" : {
+          // create `jqui_selectable_idx` attribute to each item in the form of
+          // {id}__1, {id}__2, etc.
+          "selectablecreate" : function(event, ui) {
+            var id = shinyjqui.getId(event.target);
+            if(!id) {return;}
+            var $items = $(event.target).find('.ui-selectee');
+            $items.attr('jqui_selectable_idx', function(i, v){
+              return id + "__" + (i + 1);
+            });
+            var state = interaction_settings.selectable.getState(event.target);
+            state.selected = "";
+            return state;
+          },
+          "selectablestop" : function(event, ui) {
+            var state = interaction_settings.selectable.getState(event.target);
+            state.selected = "";
+            return state;
+          }
+        },
         'selected:shinyjqui.df' : {
           "selectablecreate selectablestop" : function(event, ui) {
             var $selected = $(event.target).children('.ui-selected');
