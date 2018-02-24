@@ -463,28 +463,63 @@ shinyjqui = function() {
     sortable : {
 
       getState : function(el) {
-        //var idx = $el.sortable('toArray', {attribute:'jqui_idx'});
-        //state = $.map(idx, function(v, i){return parseInt(v)});
-        return $(el).find(".ui-sortable-handle");
+        var $items = $(el).find(".ui-sortable-handle");
+        var index = $(el).sortable('toArray', {attribute:"jqui_sortable_idx"});
+        return {
+          items : $items, // for client mode
+          index : index // for shiny bookmarking mode
+        };
       },
 
       setState : function(el, state) {
         var $el = $(el);
-        var $items = $el.find(".ui-sortable-handle");
-        var $container = $items.parent();
-        $items.detach();
-        $container.append(state);
+
+        var $items_to_restore;
+        if(state.items instanceof jQuery) {
+          // client mode
+          $items_to_restore = state.items;
+        } else {
+          // shiny bookmarking mode
+          if(!Array.isArray(state.index)) {
+            // if there is only one index, change it to an array
+            state.index = Array(state.index);
+          }
+          $items_to_restore = $(state.index).map(function(i, v) {
+            return $("[jqui_sortable_idx=" + v + "]").get(0)
+          });
+
+        }
+
+        var $items_to_remove = $el.find(".ui-sortable-handle");
+        var $container = $items_to_remove.parent();
+        $items_to_remove.detach();
+        $container.append($items_to_restore);
         // this doesn't trigger "sortupdate" ?
         //$el.data("uiSortable")._mouseStop(null);
         $el.trigger("sortupdate");
-        //var selector;
-        //$.each(state, function(i, v) {
-          //selector = "[jqui_idx=" + v + "]";
-          //$container.append($items.filter(selector));
-        //});
       },
 
       shiny : {
+        "_shinyjquiBookmarkState__sortable" : {
+          // create `jqui_sortable_idx` attribute to each item in the form of
+          // {id}__1, {id}__2, etc.
+          "sortcreate" : function(event, ui) {
+            var id = shinyjqui.getId(event.target);
+            if(!id) {return;}
+            var $items = $(event.target).find('.ui-sortable-handle');
+            $items.attr('jqui_sortable_idx', function(i, v){
+              return id + "__" + (i + 1);
+            });
+            var state = interaction_settings.sortable.getState(event.target);
+            state.items = "";
+            return state;
+          },
+          "sortupdate" : function(event, ui) {
+            var state = interaction_settings.sortable.getState(event.target);
+            state.items = "";
+            return state;
+          }
+        },
         index : {
           sortcreate : function(event, ui) {
             var $items = $(event.target).find('.ui-sortable-handle');
