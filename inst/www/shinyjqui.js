@@ -234,16 +234,30 @@ shinyjqui = function() {
     draggable : {
 
       getState : function(el) {
-        return $(el).position();
+        return $(el).offset();
       },
 
       setState : function(el, state) {
-        $(el).position({
-          my : "left top",
-          at : "left+" + state.left + " top+" + state.top,
-          of : $(el).parent()
+        var $el = $(el);
+
+        //$(el).position({
+         // my : "left top",
+          //at : "left+" + state.left + " top+" + state.top,
+          //of : "body"
+        //});
+        //$(el).data("uiDraggable")._mouseStop(null);
+
+        var start = new $.Event("mousedown", {
+            pageX: $el.offset().left,
+            pageY: $el.offset().top
         });
-        $(el).data("uiDraggable")._mouseStop(null);
+        var end = new $.Event("mouseup", {
+            pageX: state.left,
+            pageY: state.top
+        });
+        $el.data("uiDraggable")._mouseStart(start);
+        $el.data("uiDraggable")._mouseDrag(end);
+        $el.data("uiDraggable")._mouseStop(end);
       },
 
       shiny : {
