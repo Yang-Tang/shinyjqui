@@ -129,7 +129,7 @@ selectable_shiny <- data.frame(
   Interaction_type = 'selectable',
   suffix = c('selected', 'is_selecting'),
   `The_returned_shiny_input_value` = c(
-    'A dataframe containing the id and innerHTML of curently selected elements',
+    'A dataframe containing the id and innerText of curently selected items',
     'TRUE or FALSE that indicate whether the element is selecting (e.g. during lasso selection)'
   )
 )
@@ -138,7 +138,7 @@ sortable_shiny <- data.frame(
   Interaction_type = 'sortable',
   suffix = c('order'),
   `The_returned_shiny_input_value` = c(
-    'A integer vector showing the current item order (1-indexed)'
+    'A dataframe containing the id and innerText of items in the current order'
   )
 )
 

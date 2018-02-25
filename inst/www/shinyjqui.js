@@ -460,10 +460,15 @@ shinyjqui = function() {
         },
         'selected:shinyjqui.df' : {
           "selectablecreate selectablestop" : function(event, ui) {
-            var $selected = $(event.target).children('.ui-selected');
-            var html = $selected.map(function(i, e){return e.innerHTML;}).get();
-            var ids = $selected.map(function(i, e){return shinyjqui.getId(e);}).get();
-            return {'id': ids, 'html': html};
+            var $selected = $(event.target).find('.ui-selected');
+            var text = $selected.map(function(i, e){
+              // use empty string for `undefined` to keep the same length as ids
+              return e.innerText ? e.innerText : ""
+            }).get();
+            var ids = $selected.map(function(i, e){
+              return shinyjqui.getId(e)
+            }).get();
+            return {'id': ids, 'text': text};
           }
         },
         is_selecting : {
@@ -546,12 +551,17 @@ shinyjqui = function() {
             return $.map(idx, function(v, i){return parseInt(v)});
           }
         },
-        order : {
+        "order:shinyjqui.df" : {
           "sortcreate sortupdate" : function(event, ui) {
-            var $selected = $(event.target).children();
-            var html = $selected.map(function(i, e){return e.innerHTML;}).get();
-            var ids = $selected.map(function(i, e){return shinyjqui.getId(e);}).get();
-            return {'id': ids, 'html': html};
+            var $items = $(event.target).find('.ui-sortable-handle');
+            var text = $items.map(function(i, e){
+              // use empty string for `undefined` to keep the same length as ids
+              return e.innerText ? e.innerText : ""
+            }).get();
+            var ids = $items.map(function(i, e){
+              return shinyjqui.getId(e)
+            }).get();
+            return {'id': ids, 'text': text};
           }
         }
       }
