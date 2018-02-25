@@ -16,11 +16,11 @@ server <- function(input, output) {
 
 }
 
-ui <- fluidPage(
+ui <- function(request) {fluidPage(
   verbatimTextOutput('position'),
   bookmarkButton(),
   jqui_draggabled(plotOutput('gg', width = '200px', height = '200px'))
-)
+)}
 
 enableBookmarking(store = "url")
 

@@ -1,11 +1,11 @@
 library(shiny)
 library(shinyjqui)
 
-ui <- fluidPage(
+ui <- function(request) {fluidPage(
   bookmarkButton(),
   selectableTableOutput("tbl", selection_mode = "cell"),
   verbatimTextOutput("selected")
-)
+)}
 
 server <- function(input, output) {
   output$selected <- renderPrint({

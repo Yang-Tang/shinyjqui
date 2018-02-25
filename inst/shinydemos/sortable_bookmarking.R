@@ -2,11 +2,11 @@ library(shiny)
 library(shinyjqui)
 
 
-ui <- fluidPage(
+ui <- function(request) {fluidPage(
   verbatimTextOutput("order"),
   bookmarkButton(),
   sortableTableOutput("tbl")
-)
+)}
 
 server <- function(input, output) {
   output$order <- renderPrint({
