@@ -25,7 +25,7 @@ server <- function(input, output) {
 
 }
 
-ui <- fluidPage(
+ui <- function(resquest) {fluidPage(
 
   bookmarkButton(),
 
@@ -39,7 +39,7 @@ ui <- fluidPage(
 
   verbatimTextOutput('lst_order')
 
-)
+)}
 
 enableBookmarking(store = "url")
 

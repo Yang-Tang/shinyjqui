@@ -118,14 +118,6 @@ shinyjqui = function() {
     };
   };
 
-  // if the target el has "jqui-wrapper", return the wrapper
-  var getWrapper = function(el) {
-    if($(el).parent().hasClass("jqui-wrapper")) {
-          el = $(el).parent().get(0);
-    }
-    return(el);
-  };
-
   // Obtained from shiny init_shiny.js
   // Return true if the object or one of its ancestors in the DOM tree has
   // style='display:none'; otherwise return false.
@@ -142,7 +134,7 @@ shinyjqui = function() {
   };
 
     // initiate data("shinyjqui") to store option and state etc.
-  var initJquiData = function(el) {
+  var addJquiData = function(el) {
     var data = {
       draggable : { save : {} },
       droppable : { save : {} },
@@ -151,6 +143,22 @@ shinyjqui = function() {
       sortable : { save : {} }
     };
     if(!$(el).data("shinyjqui")) { $(el).data("shinyjqui", data) }
+  };
+
+  var removeJquiData = function(el) {
+
+    var $el = $(el);
+
+    // cancel operation if it's not a shiny output or any interactions left
+    if(!$el.hasClass("jqui-wrapper")) { return; }
+    if($el.hasClass("ui-draggable")) { return; }
+    if($el.hasClass("ui-droppable")) { return; }
+    if($el.hasClass("ui-selectable")) { return; }
+    if($el.hasClass("ui-sortable")) { return; }
+    if($el.hasClass("ui-resizable")) { return; }
+
+    $el.removeData("shinyjqui");
+
   };
 
   // Wrap the element when it is a shiny/htmlwidgets output, so that
@@ -217,15 +225,66 @@ shinyjqui = function() {
 
   };
 
+  // if the target el has "jqui-wrapper", return the wrapper
+  var getWrapper = function(el) {
+    if($(el).parent().hasClass("jqui-wrapper")) {
+          el = $(el).parent().get(0);
+    }
+    return(el);
+  };
+
+  // add index to selectable, sortable and draggable-connectToSortable items
+  // for bookmarking, called after interaction created
+  var addIndex = function(el) {
+    var $el = $(el);
+    var id = shinyjqui.getId(el);
+
+    if($el.hasClass("ui-sortable") && id) {
+      $el
+        .find('.ui-sortable-handle')
+        .attr('jqui_sortable_idx', function(i, v){
+          return id + "__" + (i + 1);
+        });
+        // trigger "sortcreate" again to update input value of bookmark state
+        $el.trigger("sortcreate");
+    }
+
+    if($el.hasClass("ui-draggable") &&
+       $el.draggable("option", "connectToSortable") &&
+       !($el.is("[jqui_sortable_idx]"))) {
+      var n = $(".ui-draggable").filter("[jqui_sortable_idx]").length;
+      $el.attr("jqui_sortable_idx", n + 1);
+    }
+
+    if($el.hasClass("ui-selectable") && id) {
+      $el
+        .find('.ui-selectee')
+        .attr('jqui_selectable_idx', function(i, v){
+              return id + "__" + (i + 1);
+        });
+        $el.trigger("selectablecreate");
+    }
+
+  };
+
   var removeIndex = function(el) {
     var $el = $(el);
 
-    if($el.hasClass("ui-selectable")) { return; }
-    if($el.hasClass("ui-sortable")) { return; }
+    if(!$el.hasClass("ui-selectable")) {
+      $el
+      .find(".ui-selectee")
+      .removeAttr("jqui_seletable_idx");
+    }
 
-    $el
-      .find(".ui-sortable-handle,.ui-selectee")
-      .removeAttr("jqui_idx");
+    if(!$el.hasClass("ui-sortable")) {
+      $el
+      .find(".ui-sortable-handle")
+      .removeAttr("jqui_sortable_idx");
+    }
+
+    if(!$el.hasClass("ui-draggable")) {
+      $el.removeAttr("jqui_sortable_idx");
+    }
 
   };
 
@@ -341,13 +400,6 @@ shinyjqui = function() {
 
       setState : function(el, state) {
         var $el = $(el);
-        //$el.width(state.width).height(state.height);
-        //if($el.hasClass("jqui-wrapper")) {
-          //$el
-            //.children(".shiny-bound-output")
-            //.data("shiny-output-binding")
-            //.onResize();
-        //}
 
         // idea from https://stackoverflow.com/questions/2523522/how-to-trigger-jquery-resizable-resize-programmatically
         var start = new $.Event("mousedown", { pageX: 0, pageY: 0 });
@@ -420,7 +472,6 @@ shinyjqui = function() {
           $selected = $(state.index).map(function(i, v) {
             return $("[jqui_selectable_idx=" + v + "]").get(0)
           });
-
         }
 
         // idea from https://stackoverflow.com/questions/3140017/how-to-programmatically-select-selectables-with-jquery-ui
@@ -439,20 +490,7 @@ shinyjqui = function() {
 
       shiny : {
         "_shinyjquiBookmarkState__selectable" : {
-          // create `jqui_selectable_idx` attribute to each item in the form of
-          // {id}__1, {id}__2, etc.
-          "selectablecreate" : function(event, ui) {
-            var id = shinyjqui.getId(event.target);
-            if(!id) {return;}
-            var $items = $(event.target).find('.ui-selectee');
-            $items.attr('jqui_selectable_idx', function(i, v){
-              return id + "__" + (i + 1);
-            });
-            var state = interaction_settings.selectable.getState(event.target);
-            state.selected = "";
-            return state;
-          },
-          "selectablestop" : function(event, ui) {
+          "selectablecreate selectablestop" : function(event, ui) {
             var state = interaction_settings.selectable.getState(event.target);
             state.selected = "";
             return state;
@@ -482,8 +520,13 @@ shinyjqui = function() {
     sortable : {
 
       getState : function(el) {
-        var $items = $(el).find(".ui-sortable-handle");
-        var index = $(el).sortable('toArray', {attribute:"jqui_sortable_idx"});
+        // .ui-draggable are items from draggable-connectToSortable,
+        // this should be more restrict in later changes
+        var $items = $(el).find(".ui-sortable-handle,.ui-draggable");
+        // don't use toArray here
+        var index = $items.map(function(i, e) {
+          return $(e).attr("jqui_sortable_idx");
+        }).get();
         return {
           items : $items, // for client mode
           index : index // for shiny bookmarking mode
@@ -510,9 +553,28 @@ shinyjqui = function() {
         }
 
         var $items_to_remove = $el.find(".ui-sortable-handle");
-        var $container = $items_to_remove.parent();
-        $items_to_remove.detach();
-        $container.append($items_to_restore);
+
+        // use $el instead in case no item to remove
+        var $container = $items_to_remove.length ? $items_to_remove.parent() : $el
+
+        // Use this to store the container of restore items. if the item is from
+        // other sortable group, its container will be different from current
+        // $el, then should trigger "sortupdate" of that sortable group to update
+        // shiny input values.
+        var $thiscontainer;
+        $items_to_restore.each(function(i, e) {
+          if($(e).hasClass("ui-draggable")) {
+            $(e).clone().appendTo($container);
+          } else {
+            $thiscontainer = $(e).closest(".ui-sortable");
+            $(e).appendTo($container);
+            // also trigger "sortupdate" of other container
+            if(!$thiscontainer.is($el)) {
+              $thiscontainer.trigger("sortupdate");
+            }
+          }
+        });
+        //$container.append($items_to_restore);
         // this doesn't trigger "sortupdate" ?
         //$el.data("uiSortable")._mouseStop(null);
         $el.trigger("sortupdate");
@@ -520,20 +582,7 @@ shinyjqui = function() {
 
       shiny : {
         "_shinyjquiBookmarkState__sortable" : {
-          // create `jqui_sortable_idx` attribute to each item in the form of
-          // {id}__1, {id}__2, etc.
-          "sortcreate" : function(event, ui) {
-            var id = shinyjqui.getId(event.target);
-            if(!id) {return;}
-            var $items = $(event.target).find('.ui-sortable-handle');
-            $items.attr('jqui_sortable_idx', function(i, v){
-              return id + "__" + (i + 1);
-            });
-            var state = interaction_settings.sortable.getState(event.target);
-            state.items = "";
-            return state;
-          },
-          "sortupdate" : function(event, ui) {
+          "sortcreate sortupdate" : function(event, ui) {
             var state = interaction_settings.sortable.getState(event.target);
             state.items = "";
             return state;
@@ -575,14 +624,15 @@ shinyjqui = function() {
     enable : function(el, interaction, opt) {
       handleShinyInput(el, opt, interaction_settings[interaction].shiny);
       $(el)[interaction](opt);
-      initJquiData(el);
+      addJquiData(el);
+      addIndex(el);
     },
 
     disable : function(el, interaction, dummyarg) {
       var $el = $(el);
       if(!$el.hasClass("ui-" + interaction)) {return;}
       $el[interaction]('destroy');
-      $el.removeData("shinyjqui");
+      removeJquiData(el);
       removeWrapper(el);
       removeIndex(el);
     },
