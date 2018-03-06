@@ -588,18 +588,6 @@ shinyjqui = function() {
             return state;
           }
         },
-        index : {
-          sortcreate : function(event, ui) {
-            var $items = $(event.target).find('.ui-sortable-handle');
-            $items.attr('jqui_idx', function(i, v){return i + 1});
-            return $.map($(Array($items.length)),function(v, i){return i + 1});
-          },
-          sortupdate : function(event, ui) {
-            var idx = $(event.target)
-              .sortable('toArray', {attribute:'jqui_idx'});
-            return $.map(idx, function(v, i){return parseInt(v)});
-          }
-        },
         "order:shinyjqui.df" : {
           "sortcreate sortupdate" : function(event, ui) {
             var $items = $(event.target).find('.ui-sortable-handle');

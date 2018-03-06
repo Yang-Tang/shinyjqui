@@ -203,14 +203,14 @@ shinyApp(ui, server)
 
 ```{r, eval = FALSE}
 ui <- fluidPage(
-  verbatimTextOutput("order"),
+  verbatimTextOutput("index"),
   sortableTableOutput("tbl")
 )
 
 server <- function(input, output) {
-  output$order <- renderPrint({
-    cat("Rows order:\n")
-    input$tbl_order
+  output$index <- renderPrint({
+    cat("Row index:\n")
+    input$tbl_row_index
   })
   output$tbl <- renderTable(head(mtcars), rownames = TRUE)
 }
