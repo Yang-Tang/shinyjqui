@@ -25,7 +25,7 @@ jqui_sortabled(tags$ul(
 ## used in server
 \dontrun{
   jqui_draggable('#foo', options = list(grid = c(80, 80)))
-  jqui_droppable('.foo', switch = FALSE)
+  jqui_droppable('.foo', method = "enable")
 }
 
 ## use shiny input

@@ -59,14 +59,12 @@ selectableTableOutput <- function(outputId, selection_mode = c("row", "cell")) {
     selection_mode,
     cell = list(
       `selected:shinyjqui.df` = list(
-        selectablecreate = func_cell,
-        selectablestop = func_cell
+        `selectablecreate selectablestop` = func_cell
       )
     ),
     row = list(
       `selected` = list(
-        selectablecreate = func_row,
-        selectablestop = func_row
+        `selectablecreate selectablestop` = func_row
       )
     )
   )
