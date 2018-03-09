@@ -37,17 +37,18 @@
 #' @example examples/orderInput.R
 orderInput <- function(inputId, label, items,
                        as_source = FALSE, connect = NULL,
-                       item_class = c('default', 'primary', 'success',
-                                      'info', 'warning', 'danger'),
+                       item_class = c(
+                         "default", "primary", "success",
+                         "info", "warning", "danger"
+                       ),
                        placeholder = NULL,
-                       width = '500px', ...) {
-
-  if(is.null(connect)) {
-    connect <- 'false'
+                       width = "500px", ...) {
+  if (is.null(connect)) {
+    connect <- "false"
   } else {
-    connect <- paste0('#', connect, collapse = ', ')
+    connect <- paste0("#", connect, collapse = ", ")
   }
-  item_class <- sprintf('btn btn-%s', match.arg(item_class))
+  item_class <- sprintf("btn btn-%s", match.arg(item_class))
 
   if (length(items) == 0 || (!is.vector(items) && !is.factor(items))) {
     item_tags <- list()
@@ -55,49 +56,57 @@ orderInput <- function(inputId, label, items,
     if (is.vector(items)) {
       item_values <- unlist(items, recursive = FALSE, use.names = TRUE)
       nms <- names(item_values)
-      item_html <- `if`(is.null(nms) || any(nms == '') || any(is.na(nms)),
-                        item_values, nms)
+      item_html <- `if`(
+        is.null(nms) || any(nms == "") || any(is.na(nms)),
+        item_values, nms
+      )
     } else if (is.factor(items)) {
       item_values <- as.numeric(items)
       item_html <- as.character(items)
     }
     item_tags <- lapply(1:length(item_values), function(i) {
-      tag <- shiny::tags$div(item_html[i],
-                             `data-value` = item_values[i],
-                             class = item_class, style = 'margin: 1px')
+      tag <- shiny::tags$div(
+        item_html[i],
+        `data-value` = item_values[i],
+        class = item_class, style = "margin: 1px"
+      )
       if (as_source) {
-        options <- list(connectToSortable = connect, helper = 'clone', cancel = '')
+        options <- list(connectToSortable = connect, helper = "clone", cancel = "")
         tag <- jqui_draggabled(tag, options = options)
       }
       return(tag)
     })
   }
 
-  style <- sprintf('width: %s; font-size: 0px; min-height: 25px;',
-                   shiny::validateCssUnit(width))
+  style <- sprintf(
+    "width: %s; font-size: 0px; min-height: 25px;",
+    shiny::validateCssUnit(width)
+  )
   container <- shiny::tagSetChildren(
     shiny::tags$div(id = inputId, style = style, ...),
     list = item_tags
   )
   if (!as_source) {
-    cb <- 'function(e, ui){if(!$(e.target).children().length)$(e.target).empty();}'
+    cb <- "function(e, ui){if(!$(e.target).children().length)$(e.target).empty();}"
     func <- 'function(event, ui){
       return $(event.target).children().map(function(i, e){
         return $(e).attr("data-value");
       }).get();
     }'
-    options <- list(connectWith = connect,
-                    remove = htmlwidgets::JS(cb),
-                    shiny = list(
-                      order = list(
-                        sortcreate = htmlwidgets::JS(func),
-                        sortupdate = htmlwidgets::JS(func)
-                      )
-                    ))
+    options <- list(
+      connectWith = connect,
+      remove = htmlwidgets::JS(cb),
+      shiny = list(
+        order = list(
+          sortcreate = htmlwidgets::JS(func),
+          sortupdate = htmlwidgets::JS(func)
+        )
+      )
+    )
     container <- jqui_sortabled(container, options = options)
   }
 
-  if(!is.null(placeholder)) {
+  if (!is.null(placeholder)) {
     css <- '#%s:empty:before{content: "%s"; font-size: 14px; opacity: 0.5;}'
     placeholder <- shiny::singleton(
       shiny::tags$head(
@@ -115,5 +124,4 @@ orderInput <- function(inputId, label, items,
     shiny::tags$label(label, `for` = inputId),
     container
   )
-
 }

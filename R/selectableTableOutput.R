@@ -34,7 +34,6 @@
 #' }
 #'
 selectableTableOutput <- function(outputId, selection_mode = c("row", "cell")) {
-
   func_cell <- JS(
     "function(event, ui){",
     "  var $sels = $(event.target).find('.ui-selected');",
@@ -55,7 +54,7 @@ selectableTableOutput <- function(outputId, selection_mode = c("row", "cell")) {
 
   selection_mode <- match.arg(selection_mode)
 
-  shiny_opt <- switch (
+  shiny_opt <- switch(
     selection_mode,
     cell = list(
       `selected:shinyjqui.df` = list(
@@ -69,19 +68,18 @@ selectableTableOutput <- function(outputId, selection_mode = c("row", "cell")) {
     )
   )
 
-  filter <- switch (
+  filter <- switch(
     selection_mode,
     cell = "tbody td",
     row = "tbody tr"
   )
 
   jqui_selectabled(
-    tag     = shiny::tableOutput(outputId),
+    tag = shiny::tableOutput(outputId),
     options = list(
       filter = filter,
       classes = list(`ui-selected` = "ui-state-highlight"),
       shiny = shiny_opt
     )
   )
-
 }

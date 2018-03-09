@@ -45,35 +45,35 @@ NULL
 #' @rdname Interactions
 #' @export
 jqui_resizabled <- function(tag, options = NULL) {
-  addInteractJS(tag, 'resizable', options)
+  addInteractJS(tag, "resizable", options)
 }
 
 
 #' @rdname Interactions
 #' @export
 jqui_sortabled <- function(tag, options = NULL) {
-  addInteractJS(tag, 'sortable', options)
+  addInteractJS(tag, "sortable", options)
 }
 
 
 #' @rdname Interactions
 #' @export
 jqui_draggabled <- function(tag, options = NULL) {
-  addInteractJS(tag, 'draggable', options)
+  addInteractJS(tag, "draggable", options)
 }
 
 
 #' @rdname Interactions
 #' @export
 jqui_droppabled <- function(tag, options = NULL) {
-  addInteractJS(tag, 'droppable', options)
+  addInteractJS(tag, "droppable", options)
 }
 
 
 #' @rdname Interactions
 #' @export
 jqui_selectabled <- function(tag, options = NULL) {
-  addInteractJS(tag, 'selectable', options)
+  addInteractJS(tag, "selectable", options)
 }
 
 
@@ -82,8 +82,8 @@ jqui_selectabled <- function(tag, options = NULL) {
 jqui_sortable <- function(selector,
                           method = c("enable", "disable", "save", "load"),
                           options = NULL) {
-  type <- 'interaction'
-  func <- 'sortable'
+  type <- "interaction"
+  func <- "sortable"
   method <- match.arg(method)
   sendMsg()
 }
@@ -94,8 +94,8 @@ jqui_sortable <- function(selector,
 jqui_draggable <- function(selector,
                            method = c("enable", "disable", "save", "load"),
                            options = NULL) {
-  type <- 'interaction'
-  func <- 'draggable'
+  type <- "interaction"
+  func <- "draggable"
   method <- match.arg(method)
   sendMsg()
 }
@@ -106,8 +106,8 @@ jqui_draggable <- function(selector,
 jqui_droppable <- function(selector,
                            method = c("enable", "disable", "save", "load"),
                            options = NULL) {
-  type <- 'interaction'
-  func <- 'droppable'
+  type <- "interaction"
+  func <- "droppable"
   method <- match.arg(method)
   sendMsg()
 }
@@ -118,8 +118,8 @@ jqui_droppable <- function(selector,
 jqui_selectable <- function(selector,
                             method = c("enable", "disable", "save", "load"),
                             options = NULL) {
-  type <- 'interaction'
-  func <- 'selectable'
+  type <- "interaction"
+  func <- "selectable"
   method <- match.arg(method)
   sendMsg()
 }
@@ -130,8 +130,8 @@ jqui_selectable <- function(selector,
 jqui_resizable <- function(selector,
                            method = c("enable", "disable", "save", "load"),
                            options = NULL) {
-  type <- 'interaction'
-  func <- 'resizable'
+  type <- "interaction"
+  func <- "resizable"
   method <- match.arg(method)
   sendMsg()
 }
@@ -158,18 +158,18 @@ jqui_bookmarking <- function() {
   shiny::onRestored(function(state) {
     inputs <- state$input
     for (name in names(inputs)) {
-      if(!grepl("__shinyjquiBookmarkState__", name)) next()
+      if (!grepl("__shinyjquiBookmarkState__", name)) next()
       info <- strsplit(name, "__")[[1]]
       selector <- paste0("#", info[1])
       options <- list(state = inputs[[name]])
-      func <- switch (info[3],
-                      "draggable"  = jqui_draggable,
-                      "droppable"  = jqui_droppable,
-                      "resizable"  = jqui_resizable,
-                      "sortable"   = jqui_sortable,
-                      "selectable" = jqui_selectable
+      func <- switch(info[3],
+        "draggable" = jqui_draggable,
+        "droppable" = jqui_droppable,
+        "resizable" = jqui_resizable,
+        "sortable" = jqui_sortable,
+        "selectable" = jqui_selectable
       )
-      func(selector = selector, method   = "load", options  = options)
+      func(selector = selector, method = "load", options = options)
     }
   })
 }

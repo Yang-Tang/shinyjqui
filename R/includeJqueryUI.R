@@ -21,9 +21,8 @@
 #'   )
 #' }
 includeJqueryUI <- function() {
-
   .Deprecated(
-    msg = 'Since v0.2.0, there is no need to call includeJqueryUI() before using other shinyjqui functions'
+    msg = "Since v0.2.0, there is no need to call includeJqueryUI() before using other shinyjqui functions"
   )
   jquiHead()
 }

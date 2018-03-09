@@ -53,7 +53,7 @@ sortableTableOutput <- function(outputId) {
     )
   )
   jqui_sortabled(
-    tag     = shiny::tableOutput(outputId),
+    tag = shiny::tableOutput(outputId),
     options = list(items = "tbody tr", shiny = shinyopt)
   )
 }

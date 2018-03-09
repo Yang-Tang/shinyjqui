@@ -31,7 +31,7 @@
 #' }
 #'
 sortableTabsetPanel <- function(..., id = NULL, selected = NULL,
-                                 type = c("tabs", "pills"), position = NULL) {
+                                type = c("tabs", "pills"), position = NULL) {
   func <- JS(
     "function(event, ui){",
     "  var $e = $(event.target).children('.shiny-bound-input');",
@@ -51,8 +51,10 @@ sortableTabsetPanel <- function(..., id = NULL, selected = NULL,
   shiny_opt <- list(order = list(sortcreate = func, sortupdate = func))
 
   jqui_sortabled(
-    tag     = shiny::tabsetPanel(..., id = id, selected = selected,
-                                 type = type, position = position),
+    tag = shiny::tabsetPanel(
+      ..., id = id, selected = selected,
+      type = type, position = position
+    ),
     options = list(items = "li", shiny = shiny_opt)
   )
 }
