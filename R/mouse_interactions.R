@@ -152,8 +152,6 @@ jqui_resizable <- function(selector,
 #' `connectWith` settings
 #'
 #' @export
-#'
-#' @examples
 jqui_bookmarking <- function() {
   shiny::onRestored(function(state) {
     inputs <- state$input

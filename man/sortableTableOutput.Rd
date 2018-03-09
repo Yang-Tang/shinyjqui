@@ -21,11 +21,11 @@ order of table rows is recorded in \code{input$outputId_order}.
 if (interactive()) {
   shinyApp(
     ui = fluidPage(
-      verbatimTextOutput("order"),
+      verbatimTextOutput("rows"),
       sortableTableOutput("tbl")
     ),
     server = function(input, output) {
-      output$order <- renderPrint({input$tbl_order})
+      output$rows <- renderPrint({input$tbl_row_index})
       output$tbl <- renderTable(mtcars, rownames = TRUE)
     }
   )
