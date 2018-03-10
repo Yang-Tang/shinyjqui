@@ -110,11 +110,11 @@ shinyjqui = function() {
     console.log('===================');
 
     return {
-      elements : $els,
-      type     : msg.type,
-      func     : msg.func,
-      method   : msg.method,
-      options  : msg.options
+      elements  : $els,
+      type      : msg.type,
+      func      : msg.func,
+      operation : msg.operation,
+      options   : msg.options
     };
   };
 
@@ -696,13 +696,13 @@ shinyjqui = function() {
       if(!msg) { return; }
       var $els = msg.elements;
       var type = msg.type;
-      var method = msg.method;
+      var operation = msg.operation;
       var func = msg.func;
       var opt = msg.options;
 
       if(type === 'interaction') {
 
-          $els.each(function(idx, el) {interaction[method](el, func, opt);});
+          $els.each(function(idx, el) {interaction[operation](el, func, opt);});
 
       } else if(type === 'effect') {
 

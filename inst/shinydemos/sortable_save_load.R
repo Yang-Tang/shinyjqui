@@ -17,11 +17,11 @@ server <- function(input, output) {
   output$tbl <- renderTable(head(mtcars), rownames = TRUE)
 
   observeEvent(input$save, {
-    jqui_sortable("#tbl", method = "save")
+    jqui_sortable("#tbl", operation = "save")
   })
 
   observeEvent(input$load, {
-    jqui_sortable("#tbl", method = "load")
+    jqui_sortable("#tbl", operation = "load")
   })
 }
 

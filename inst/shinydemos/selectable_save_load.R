@@ -15,11 +15,11 @@ server <- function(input, output) {
   })
   output$tbl <- renderTable(head(mtcars), rownames = TRUE)
   observeEvent(input$save, {
-    jqui_selectable("#tbl", method = "save")
+    jqui_selectable("#tbl", operation = "save")
   })
 
   observeEvent(input$load, {
-    jqui_selectable("#tbl", method = "load")
+    jqui_selectable("#tbl", operation = "load")
   })
 }
 

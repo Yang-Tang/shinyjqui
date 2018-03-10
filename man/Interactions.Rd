@@ -24,19 +24,19 @@ jqui_droppabled(tag, options = NULL)
 
 jqui_selectabled(tag, options = NULL)
 
-jqui_sortable(selector, method = c("enable", "disable", "save", "load"),
+jqui_sortable(selector, operation = c("enable", "disable", "save", "load"),
   options = NULL)
 
-jqui_draggable(selector, method = c("enable", "disable", "save", "load"),
+jqui_draggable(selector, operation = c("enable", "disable", "save", "load"),
   options = NULL)
 
-jqui_droppable(selector, method = c("enable", "disable", "save", "load"),
+jqui_droppable(selector, operation = c("enable", "disable", "save", "load"),
   options = NULL)
 
-jqui_selectable(selector, method = c("enable", "disable", "save", "load"),
+jqui_selectable(selector, operation = c("enable", "disable", "save", "load"),
   options = NULL)
 
-jqui_resizable(selector, method = c("enable", "disable", "save", "load"),
+jqui_resizable(selector, operation = c("enable", "disable", "save", "load"),
   options = NULL)
 }
 \arguments{
@@ -44,7 +44,7 @@ jqui_resizable(selector, method = c("enable", "disable", "save", "load"),
 
 \item{options}{A list of
 \href{http://api.jqueryui.com/category/interactions/}{interaction_specific_options}.
-Ignored when \code{method} is set as \code{disable} or \code{save}. This parameter also
+Ignored when \code{operation} is set as \code{disable} or \code{save}. This parameter also
 accept a \code{shiny} option that controls the shiny input value returned from
 the element. See Details.}
 
@@ -53,7 +53,7 @@ the element. See Details.}
 \link[htmlwidgets:JS]{JS()} wrapped javascript expression that returns a
 \href{http://api.jquery.com/Types/#jQuery}{jQuery object}.}
 
-\item{method}{A string to determine how to menipulate the mosue interaction.
+\item{operation}{A string to determine how to menipulate the mosue interaction.
 Should be one of \code{enable}, \code{disable}, \code{save} and \code{load}}
 }
 \value{
@@ -132,7 +132,7 @@ jqui_sortabled(tags$ul(
 ## used in server
 \dontrun{
   jqui_draggable('#foo', options = list(grid = c(80, 80)))
-  jqui_droppable('.foo', method = "enable")
+  jqui_droppable('.foo', operation = "enable")
 }
 
 ## use shiny input

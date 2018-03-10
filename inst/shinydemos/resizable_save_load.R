@@ -14,11 +14,11 @@ server <- function(input, output) {
   })
 
   observeEvent(input$save, {
-    jqui_resizable("#gg", method = "save")
+    jqui_resizable("#gg", operation = "save")
   })
 
   observeEvent(input$load, {
-    jqui_resizable("#gg", method = "load")
+    jqui_resizable("#gg", operation = "load")
   })
 }
 

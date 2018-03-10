@@ -50,10 +50,10 @@ server <- function(input, output) {
   })
 
   observeEvent(input$enable, {
-    jqui_resizable(selector(), method = "enable", options = list(cancel = ''))
+    jqui_resizable(selector(), operation = "enable", options = list(cancel = ''))
   })
   observeEvent(input$disable, {
-    jqui_resizable(selector(), method = "disable")
+    jqui_resizable(selector(), operation = "disable")
   })
 
   output$size <- renderPrint({

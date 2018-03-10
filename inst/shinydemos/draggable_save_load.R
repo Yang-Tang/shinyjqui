@@ -14,11 +14,11 @@ server <- function(input, output) {
   })
 
   observeEvent(input$save, {
-    jqui_draggable("#gg", method = "save")
+    jqui_draggable("#gg", operation = "save")
   })
 
   observeEvent(input$load, {
-    jqui_draggable("#gg", method = "load")
+    jqui_draggable("#gg", operation = "load")
   })
 }
 

@@ -6,10 +6,10 @@ library(ggplot2)
 server <- function(input, output) {
 
   observeEvent(input$en_lst, {
-    jqui_sortable('#lst', method = "enable")
+    jqui_sortable('#lst', operation = "enable")
   })
   observeEvent(input$di_lst, {
-    jqui_sortable('#lst', method = "disable")
+    jqui_sortable('#lst', operation = "disable")
   })
   output$order_lst <- renderPrint({
     print(input$lst_order)
@@ -34,10 +34,10 @@ server <- function(input, output) {
       )
     )
 
-    jqui_sortable('#tabs', method = "enable", options = options)
+    jqui_sortable('#tabs', operation = "enable", options = options)
   })
   observeEvent(input$di_tabs, {
-    jqui_sortable('#tabs', method = "disable")
+    jqui_sortable('#tabs', operation = "disable")
   })
   output$order_tabs <- renderPrint({
     print(input$tabs_order)
@@ -50,10 +50,10 @@ server <- function(input, output) {
     ggplot(mtcars, aes(x = cyl, y = mpg, color = factor(vs))) + geom_point()
   })
   observeEvent(input$en_plots, {
-    jqui_sortable('#plots', method = "enable")
+    jqui_sortable('#plots', operation = "enable")
   })
   observeEvent(input$di_plots, {
-    jqui_sortable('#plots', method = "disable")
+    jqui_sortable('#plots', operation = "disable")
   })
   output$order_plots <- renderPrint({
     print(input$plots_order)

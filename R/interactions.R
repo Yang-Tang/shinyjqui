@@ -41,11 +41,11 @@
 #'   [jQuery_selector](https://api.jquery.com/category/selectors/) or a
 #'   [JS()][htmlwidgets::JS()] wrapped javascript expression that returns a
 #'   [jQuery object](http://api.jquery.com/Types/#jQuery).
-#' @param method A string to determine how to menipulate the mosue interaction.
+#' @param operation A string to determine how to menipulate the mosue interaction.
 #'   Should be one of `enable`, `disable`, `save` and `load`
 #' @param options A list of
 #'   [interaction_specific_options](http://api.jqueryui.com/category/interactions/).
-#'   Ignored when `method` is set as `disable` or `save`. This parameter also
+#'   Ignored when `operation` is set as `disable` or `save`. This parameter also
 #'   accept a `shiny` option that controls the shiny input value returned from
 #'   the element. See Details.
 #'
@@ -98,11 +98,11 @@ jqui_selectabled <- function(tag, options = NULL) {
 #' @rdname Interactions
 #' @export
 jqui_sortable <- function(selector,
-                          method = c("enable", "disable", "save", "load"),
+                          operation = c("enable", "disable", "save", "load"),
                           options = NULL) {
   type <- "interaction"
   func <- "sortable"
-  method <- match.arg(method)
+  operation <- match.arg(operation)
   sendMsg()
   return(selector)
 }
@@ -111,11 +111,11 @@ jqui_sortable <- function(selector,
 #' @rdname Interactions
 #' @export
 jqui_draggable <- function(selector,
-                           method = c("enable", "disable", "save", "load"),
+                           operation = c("enable", "disable", "save", "load"),
                            options = NULL) {
   type <- "interaction"
   func <- "draggable"
-  method <- match.arg(method)
+  operation <- match.arg(operation)
   sendMsg()
   return(selector)
 }
@@ -124,11 +124,11 @@ jqui_draggable <- function(selector,
 #' @rdname Interactions
 #' @export
 jqui_droppable <- function(selector,
-                           method = c("enable", "disable", "save", "load"),
+                           operation = c("enable", "disable", "save", "load"),
                            options = NULL) {
   type <- "interaction"
   func <- "droppable"
-  method <- match.arg(method)
+  operation <- match.arg(operation)
   sendMsg()
   return(selector)
 }
@@ -137,11 +137,11 @@ jqui_droppable <- function(selector,
 #' @rdname Interactions
 #' @export
 jqui_selectable <- function(selector,
-                            method = c("enable", "disable", "save", "load"),
+                            operation = c("enable", "disable", "save", "load"),
                             options = NULL) {
   type <- "interaction"
   func <- "selectable"
-  method <- match.arg(method)
+  operation <- match.arg(operation)
   sendMsg()
   return(selector)
 }
@@ -150,11 +150,11 @@ jqui_selectable <- function(selector,
 #' @rdname Interactions
 #' @export
 jqui_resizable <- function(selector,
-                           method = c("enable", "disable", "save", "load"),
+                           operation = c("enable", "disable", "save", "load"),
                            options = NULL) {
   type <- "interaction"
   func <- "resizable"
-  method <- match.arg(method)
+  operation <- match.arg(operation)
   sendMsg()
   return(selector)
 }
@@ -185,7 +185,7 @@ jqui_bookmarking <- function() {
         "sortable" = jqui_sortable,
         "selectable" = jqui_selectable
       )
-      func(selector = selector, method = "load", options = options)
+      func(selector = selector, operation = "load", options = options)
     }
   })
 }
