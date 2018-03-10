@@ -51,8 +51,8 @@ A list of HTML elements that can be added to a UI definition
 \description{
 Render a group of checkboxes with multiple choices toggleable. The choices
 are also sortable by drag and drop. In addition to the selected values stored
-in \code{input$inputId}, the server will also receive the order of choices in
-\code{input$inputId_order}.
+in \code{input$<inputId>}, the server will also receive the order of choices in
+\code{input$<inputId>_order}.
 }
 \examples{
 ## Only run this example in interactive R sessions
@@ -71,6 +71,6 @@ if (interactive()) {
 
 }
 \seealso{
-\code{\link[=sortableRadioButtons]{sortableRadioButtons()}}, \code{\link[=sortableTableOutput]{sortableTableOutput()}},
-\code{\link[=sortableTabsetPanel]{sortableTabsetPanel()}}
+\link[shiny:checkboxGroupInput]{shiny::checkboxGroupInput}, \code{\link[=sortableRadioButtons]{sortableRadioButtons()}},
+\code{\link[=sortableTableOutput]{sortableTableOutput()}}, \code{\link[=sortableTabsetPanel]{sortableTabsetPanel()}}
 }

@@ -2,15 +2,15 @@
 #'
 #' Render a group of checkboxes with multiple choices toggleable. The choices
 #' are also sortable by drag and drop. In addition to the selected values stored
-#' in `input$inputId`, the server will also receive the order of choices in
-#' `input$inputId_order`.
+#' in `input$<inputId>`, the server will also receive the order of choices in
+#' `input$<inputId>_order`.
 #'
 #' @inheritParams shiny::checkboxGroupInput
 #'
 #' @return A list of HTML elements that can be added to a UI definition
 #' @export
-#' @seealso [sortableRadioButtons()], [sortableTableOutput()],
-#'   [sortableTabsetPanel()]
+#' @seealso [shiny::checkboxGroupInput], [sortableRadioButtons()],
+#'   [sortableTableOutput()], [sortableTabsetPanel()]
 #' @examples
 #' ## Only run this example in interactive R sessions
 #' if (interactive()) {

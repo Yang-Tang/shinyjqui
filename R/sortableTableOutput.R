@@ -1,14 +1,15 @@
 #' Create a table output element with sortable rows
 #'
 #' Render a standard HTML table with table rows sortable by drag and drop. The
-#' order of table rows is recorded in `input$outputId_order`.
+#' order of table rows is recorded in `input$<outputId>_order`.
 #'
-#' @param outputId output variable to read the table from
+#' @inheritParams shiny::tableOutput
 #'
 #' @return A table output element that can be included in a panel
 #' @export
-#' @seealso [sortableRadioButtons()], [sortableCheckboxGroupInput()],
-#'   [sortableTabsetPanel()], [selectableTableOutput()]
+#' @seealso [shiny::tableOutput], [sortableRadioButtons],
+#'   [sortableCheckboxGroupInput], [sortableTabsetPanel],
+#'   [selectableTableOutput]
 #' @examples
 #' ## Only run this example in interactive R sessions
 #' if (interactive()) {

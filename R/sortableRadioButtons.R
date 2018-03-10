@@ -2,15 +2,15 @@
 #'
 #' Create a set of radio buttons used to select an item from a list. The choices
 #' are sortable by drag and drop. In addition to the selected values stored in
-#' `input$inputId`, the server will also receive the order of choices in
-#' `input$inputId_order`.
+#' `input$<inputId>`, the server will also receive the order of choices in
+#' `input$<inputId>_order`.
 #'
 #' @inheritParams shiny::radioButtons
 #'
 #' @return A set of radio buttons that can be added to a UI definition.
 #' @export
-#' @seealso [sortableCheckboxGroupInput()], [sortableTableOutput()],
-#'   [sortableTabsetPanel()]
+#' @seealso [shiny::radioButtons], [sortableCheckboxGroupInput],
+#'   [sortableTableOutput], [sortableTabsetPanel]
 #' @examples
 #' ## Only run this example in interactive R sessions
 #' if (interactive()) {

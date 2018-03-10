@@ -2,22 +2,23 @@
 #'
 #' Render a standard HTML table with its rows or cells selectable. The server
 #' will receive the index of selected rows or cells stored in
-#' `input$outputId_selected`.
+#' `input$<outputId>_selected`.
 #'
 #' Use mouse click to select single target, lasso (mouse dragging) to select
 #' multiple targets, and Ctrl + click to add or remove selection. In `row`
-#' selection mode, `input$outputId_selected` will receive the selected row index
-#' in the form of numberic vector. In `cell` selection mode,
-#' `input$outputId_selected` will receive a dataframe with `rows` and
+#' selection mode, `input$<outputId>_selected` will receive the selected row
+#' index in the form of numberic vector. In `cell` selection mode,
+#' `input$<outputId>_selected` will receive a dataframe with `rows` and
 #' `columns` index of each selected cells.
 #'
 #' @inheritParams shiny::tableOutput
+#'
 #' @param selection_mode one of `"row"` or `"cell"` to define either entire row
 #'   or individual cell can be selected.
 #'
 #' @return A table output element that can be included in a panel
 #' @export
-#' @seealso [sortableTableOutput]
+#' @seealso [shiny::tableOutput], [sortableTableOutput]
 #' @examples
 #' ## Only run this example in interactive R sessions
 #' if (interactive()) {

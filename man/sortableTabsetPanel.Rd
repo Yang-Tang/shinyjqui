@@ -26,13 +26,13 @@ look where tabs are selected using a background fill color.}
 Bootstrap 3.}
 }
 \value{
-A tabset that can be passed to \code{\link[shiny:mainPanel]{shiny::mainPanel()}}
+A tabset that can be passed to \link[shiny:mainPanel]{shiny::mainPanel}
 }
 \description{
-Create a tabset that contains \code{\link[shiny:tabPanel]{shiny::tabPanel()}} elements. The tabs are
+Create a tabset that contains \link[shiny:tabPanel]{shiny::tabPanel} elements. The tabs are
 sortable by drag and drop. In addition to the activated tab title stored in
-\code{input$id}, the server will also receive the order of tabs in
-\code{input$id_order}.
+\code{input$<id>}, the server will also receive the order of tabs in
+\code{input$<id>_order}.
 }
 \examples{
 ## Only run this example in interactive R sessions
@@ -55,6 +55,6 @@ if (interactive()) {
 
 }
 \seealso{
-\code{\link[=sortableRadioButtons]{sortableRadioButtons()}}, \code{\link[=sortableCheckboxGroupInput]{sortableCheckboxGroupInput()}},
-\code{\link[=sortableTableOutput]{sortableTableOutput()}}
+\link[shiny:tabsetPanel]{shiny::tabsetPanel}, \link{sortableRadioButtons},
+\link{sortableCheckboxGroupInput}, \link{sortableTableOutput}
 }

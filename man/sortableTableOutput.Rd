@@ -14,7 +14,7 @@ A table output element that can be included in a panel
 }
 \description{
 Render a standard HTML table with table rows sortable by drag and drop. The
-order of table rows is recorded in \code{input$outputId_order}.
+order of table rows is recorded in \code{input$<outputId>_order}.
 }
 \examples{
 ## Only run this example in interactive R sessions
@@ -33,6 +33,7 @@ if (interactive()) {
 
 }
 \seealso{
-\code{\link[=sortableRadioButtons]{sortableRadioButtons()}}, \code{\link[=sortableCheckboxGroupInput]{sortableCheckboxGroupInput()}},
-\code{\link[=sortableTabsetPanel]{sortableTabsetPanel()}}, \code{\link[=selectableTableOutput]{selectableTableOutput()}}
+\link[shiny:tableOutput]{shiny::tableOutput}, \link{sortableRadioButtons},
+\link{sortableCheckboxGroupInput}, \link{sortableTabsetPanel},
+\link{selectableTableOutput}
 }

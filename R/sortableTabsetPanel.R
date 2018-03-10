@@ -1,16 +1,16 @@
 #' Create a tabset panel with sortable tabs
 #'
-#' Create a tabset that contains [shiny::tabPanel()] elements. The tabs are
+#' Create a tabset that contains [shiny::tabPanel] elements. The tabs are
 #' sortable by drag and drop. In addition to the activated tab title stored in
-#' `input$id`, the server will also receive the order of tabs in
-#' `input$id_order`.
+#' `input$<id>`, the server will also receive the order of tabs in
+#' `input$<id>_order`.
 #'
 #' @inheritParams shiny::tabsetPanel
 #'
-#' @return A tabset that can be passed to [shiny::mainPanel()]
+#' @return A tabset that can be passed to [shiny::mainPanel]
 #' @export
-#' @seealso [sortableRadioButtons()], [sortableCheckboxGroupInput()],
-#'   [sortableTableOutput()]
+#' @seealso [shiny::tabsetPanel], [sortableRadioButtons],
+#'   [sortableCheckboxGroupInput], [sortableTableOutput]
 #' @examples
 #' ## Only run this example in interactive R sessions
 #' if (interactive()) {

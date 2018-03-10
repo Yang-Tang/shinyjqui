@@ -52,8 +52,8 @@ A set of radio buttons that can be added to a UI definition.
 \description{
 Create a set of radio buttons used to select an item from a list. The choices
 are sortable by drag and drop. In addition to the selected values stored in
-\code{input$inputId}, the server will also receive the order of choices in
-\code{input$inputId_order}.
+\code{input$<inputId>}, the server will also receive the order of choices in
+\code{input$<inputId>_order}.
 }
 \examples{
 ## Only run this example in interactive R sessions
@@ -72,6 +72,6 @@ if (interactive()) {
 
 }
 \seealso{
-\code{\link[=sortableCheckboxGroupInput]{sortableCheckboxGroupInput()}}, \code{\link[=sortableTableOutput]{sortableTableOutput()}},
-\code{\link[=sortableTabsetPanel]{sortableTabsetPanel()}}
+\link[shiny:radioButtons]{shiny::radioButtons}, \link{sortableCheckboxGroupInput},
+\link{sortableTableOutput}, \link{sortableTabsetPanel}
 }
