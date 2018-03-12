@@ -25,19 +25,19 @@ jqui_droppabled(tag, options = NULL)
 jqui_selectabled(tag, options = NULL)
 
 jqui_sortable(selector, operation = c("enable", "disable", "save", "load"),
-  options = NULL)
+  options = NULL, switch = NULL)
 
 jqui_draggable(selector, operation = c("enable", "disable", "save", "load"),
-  options = NULL)
+  options = NULL, switch = NULL)
 
 jqui_droppable(selector, operation = c("enable", "disable", "save", "load"),
-  options = NULL)
+  options = NULL, switch = NULL)
 
 jqui_selectable(selector, operation = c("enable", "disable", "save", "load"),
-  options = NULL)
+  options = NULL, switch = NULL)
 
 jqui_resizable(selector, operation = c("enable", "disable", "save", "load"),
-  options = NULL)
+  options = NULL, switch = NULL)
 }
 \arguments{
 \item{tag}{A shiny tag object to attach mouse interactions to.}

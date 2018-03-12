@@ -3,7 +3,7 @@
 * __New feature:__ Introduce `save` and `load` operations to mouse-interaction attached html elements. This enabled client-side store and restore the elements' states (eg. position, size, selection and order). (#16)
 * __New feature:__ Adds shiny bookmark supporting to mouse-interaction attached html elements. This enabled server-side or across-client store and restore the elements' states (eg. position, size, selection and order). (#12)
 * __New feature:__ Now, all interaction functions' `selector` argument accepts `JS()` wrapped javascript expression. This made the target element selection more flexible. 
-* __New feature:__ Add `sortableCheckboxGroupInput()`, `sortableRadioButtons()`, `sortableTabsetPanel()`, `sortableTableOutput()` and `selectableTableOutput()` functions to create shiny inputs and outputs with mouse interactions.
+* __New feature:__ Add `draggableModalDialog()`, `sortableCheckboxGroupInput()`, `sortableRadioButtons()`, `sortableTabsetPanel()`, `sortableTableOutput()` and `selectableTableOutput()` functions to create shiny inputs and outputs with mouse interactions.
 * __Breaking change:__ The `switch` argument in mouse-interaction functions was replaced with `operation` argument to support more options.
 * __Breaking change:__ The shiny input values `selected` from selectable and `order` from sortable now return elements' `innerText` instead of `innerHTML`.
 * Fix a bug that the mouse interaction function `-abled()` doesn't work when the same element is inserted again. (#6, #8)

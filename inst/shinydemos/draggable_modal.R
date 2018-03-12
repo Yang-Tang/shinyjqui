@@ -9,11 +9,11 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   observeEvent(input$show, {
-    showModal(jqui_draggabled(modalDialog(
+    showModal(draggableModalDialog(
       title = "Somewhat important message",
       "This is a somewhat important message.",
       easyClose = TRUE
-    )))
+    ))
   })
 }
 
