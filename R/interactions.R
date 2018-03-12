@@ -99,9 +99,20 @@ jqui_selectabled <- function(tag, options = NULL) {
 #' @export
 jqui_sortable <- function(selector,
                           operation = c("enable", "disable", "save", "load"),
-                          options = NULL) {
+                          options = NULL, switch = NULL) {
   type <- "interaction"
   func <- "sortable"
+
+  if (!is.null(switch) && is.logical(switch)) {
+    operation <- switch[1]
+  }
+  if (is.logical(operation)) {
+    warning("The switch parameter is deprecated,
+            please use the operation parameter instead")
+    operation <- ifelse(operation[1], "enable", "disable")
+  }
+  rm(switch)
+
   operation <- match.arg(operation)
   sendMsg()
   return(selector)
@@ -112,9 +123,20 @@ jqui_sortable <- function(selector,
 #' @export
 jqui_draggable <- function(selector,
                            operation = c("enable", "disable", "save", "load"),
-                           options = NULL) {
+                           options = NULL, switch = NULL) {
   type <- "interaction"
   func <- "draggable"
+
+  if (!is.null(switch) && is.logical(switch)) {
+    operation <- switch[1]
+  }
+  if (is.logical(operation)) {
+    warning("The switch parameter is deprecated,
+            please use the operation parameter instead")
+    operation <- ifelse(operation[1], "enable", "disable")
+  }
+  rm(switch)
+
   operation <- match.arg(operation)
   sendMsg()
   return(selector)
@@ -125,9 +147,20 @@ jqui_draggable <- function(selector,
 #' @export
 jqui_droppable <- function(selector,
                            operation = c("enable", "disable", "save", "load"),
-                           options = NULL) {
+                           options = NULL, switch = NULL) {
   type <- "interaction"
   func <- "droppable"
+
+  if (!is.null(switch) && is.logical(switch)) {
+    operation <- switch[1]
+  }
+  if (is.logical(operation)) {
+    warning("The switch parameter is deprecated,
+            please use the operation parameter instead")
+    operation <- ifelse(operation[1], "enable", "disable")
+  }
+  rm(switch)
+
   operation <- match.arg(operation)
   sendMsg()
   return(selector)
@@ -138,9 +171,20 @@ jqui_droppable <- function(selector,
 #' @export
 jqui_selectable <- function(selector,
                             operation = c("enable", "disable", "save", "load"),
-                            options = NULL) {
+                            options = NULL, switch = NULL) {
   type <- "interaction"
   func <- "selectable"
+
+  if (!is.null(switch) && is.logical(switch)) {
+    operation <- switch[1]
+  }
+  if (is.logical(operation)) {
+    warning("The switch parameter is deprecated,
+            please use the operation parameter instead")
+    operation <- ifelse(operation[1], "enable", "disable")
+  }
+  rm(switch)
+
   operation <- match.arg(operation)
   sendMsg()
   return(selector)
@@ -151,9 +195,19 @@ jqui_selectable <- function(selector,
 #' @export
 jqui_resizable <- function(selector,
                            operation = c("enable", "disable", "save", "load"),
-                           options = NULL) {
+                           options = NULL, switch = NULL) {
   type <- "interaction"
   func <- "resizable"
+
+  if (!is.null(switch) && is.logical(switch)) {
+    operation <- switch[1]
+  }
+  if (is.logical(operation)) {
+    warning("The switch parameter is deprecated, please use the operation parameter instead")
+    operation <- ifelse(operation[1], "enable", "disable")
+  }
+  rm(switch)
+
   operation <- match.arg(operation)
   sendMsg()
   return(selector)
