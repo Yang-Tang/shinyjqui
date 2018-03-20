@@ -23,17 +23,20 @@ draggableModalDialog <- function(..., title = NULL,
     div(
       class = "modal-dialog",
       class = switch(size, s = "modal-sm", m = NULL, l = "modal-lg"),
-      jqui_draggabled(div(
+      jqui_draggabled(shiny::div(
         class = "modal-content",
         if (!is.null(title)) {
-          div(class = "modal-header", tags$h4(class = "modal-title",  title))
+          shiny::div(
+            class = "modal-header",
+            shiny::tags$h4(class = "modal-title",  title)
+          )
         },
-        div(class = "modal-body", ...),
+        shiny::div(class = "modal-body", ...),
         if (!is.null(footer)) {
-          div(class = "modal-footer", footer)
+          shiny::div(class = "modal-footer", footer)
         }
       ))
     ),
-    tags$script("$('#shiny-modal').modal().focus();")
+    shiny::tags$script("$('#shiny-modal').modal().focus();")
   )
 }

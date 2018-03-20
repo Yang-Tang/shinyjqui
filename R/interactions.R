@@ -48,6 +48,8 @@
 #'   Ignored when `operation` is set as `disable` or `save`. This parameter also
 #'   accept a `shiny` option that controls the shiny input value returned from
 #'   the element. See Details.
+#'  @param switch Deprecated, just keep for backward compatibility. Please use
+#'   `operation` instead.
 #'
 #' @return `jqui_draggabled()`, `jqui_droppabled()`, `jqui_resizabled()`,
 #'   `jqui_selectabled()` and `jqui_sortabled()` returns a modified shiny tag
