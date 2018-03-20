@@ -611,23 +611,34 @@ shinyjqui = function() {
 
     enable : function(el, interaction, opt) {
       handleShinyInput(el, opt, interaction_settings[interaction].shiny);
-      $(el)[interaction](opt);
+      $(el)[interaction](opt); // initiate interaction and set options
+      $(el)[interaction]("enable"); // enable interaction
       addJquiData(el);
       addIndex(el);
     },
 
-    disable : function(el, interaction, dummyarg) {
+    disable : function(el, interaction, opt) {
+      handleShinyInput(el, opt, interaction_settings[interaction].shiny);
+      $(el)[interaction](opt); // initiate interaction and set options
+      $(el)[interaction]("disable"); // disable interaction
+    },
+
+    destroy : function(el, interaction, dummyarg) {
       var $el = $(el);
-      if(!$el.hasClass("ui-" + interaction)) {return;}
-      $el[interaction]('destroy');
+      if(!$el.hasClass("ui-" + interaction)) {
+        console.warn("Interaction not initiated. Operation abort.");
+        return;
+      }
+      $el[interaction]("destroy");
       removeJquiData(el);
       removeWrapper(el);
       removeIndex(el);
     },
 
-    save : function(el, interaction, dummyarg) {
+    save : function(el, interaction, opt) {
       var $el = $(el);
-      if(!$el.hasClass("ui-" + interaction)) {return;}
+      handleShinyInput(el, opt, interaction_settings[interaction].shiny);
+      $el[interaction](opt); // initiate interaction and set options
       $el.data("shinyjqui")[interaction].save = {
         option : $el[interaction]("option"),
         state : interaction_settings[interaction].getState(el)
@@ -636,9 +647,15 @@ shinyjqui = function() {
 
     load : function(el, interaction, save) {
       var $el = $(el);
-      if(!$el.hasClass("ui-" + interaction)) {return;}
+      if(!$el.hasClass("ui-" + interaction)) {
+        console.warn("Interaction not initiated. Operation abort.");
+        return;
+      }
       var saving = save ? save : $el.data("shinyjqui")[interaction].save;
-      if(!saving) {return;}
+      if(!saving) {
+        console.warn("Nothing can be load. Operation abort.");
+        return;
+      }
       if(saving.option) {
         $el[interaction]("option", saving.option);
       }

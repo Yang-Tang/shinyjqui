@@ -2,7 +2,7 @@
 #' Mouse interactions
 #'
 #' Attach mouse-based interactions to shiny html tags and input/output widgets,
-#' and provide ways to manipulate them. The interaction includes:
+#' and provide ways to manipulate them. The interactions include:
 #' * [draggable](http://api.jqueryui.com/draggable/): Allow elements to be
 #' moved using the mouse.
 #' * [droppable](http://api.jqueryui.com/droppable/): Create targets for
@@ -21,19 +21,20 @@
 #'
 #' The functions `jqui_draggable()`, `jqui_droppable()`, `jqui_resizable()`,
 #' `jqui_selectable()` and `jqui_sortable()` should be used in `server` of a
-#' shiny app. They locate target element(s) in shiny (by `selector` parameter)
-#' and manipulate their mouse interactions. The currently supported operations
-#' includes:
-#' * `enable`: Attach corresponding mouse interaction to the target(s).
-#' * `disable`: Distroy corresponding mouse interaction of the target(s).
-#' * `save`: Save the current interaction state .
-#' * `load`: Restore the target(s) to the last saved interaction state.
+#' shiny app. They locate the target element(s) in shiny (by `selector`
+#' parameter) and manipulate their mouse interactions. The currently supported
+#' operations includes:
+#' * `enable`: Attach the corresponding mouse interaction to the target(s).
+#' * `disable`: Attach the interaction if not and disable it at once (only set the options).
+#' * `destory`: Destroy the interaction.
+#' * `save`: Attach the interaction if not and save the current interaction state.
+#' * `load`: If interaction attached, restore the target(s) to the last saved interaction state.
 #'
-#' With mouse interactions attached, some internally defined shiny input values
-#' (in the form of `input$<id>_<state>`) can be used to refer to
-#' cosrresponding interaction state, e.g. `position`, `size`, `selected` and
-#' `order`. Users can add or override these default settings by passing a
-#' `shiny` option to the `options` parameter. Please see the vignette
+#' With mouse interactions attached, the cosrresponding interaction states, e.g.
+#' `position` of draggable, `size` of resizable, `selected` of selectable and
+#' `order` of sortable, will be send to server in the form of
+#' `input$<id>_<state>`. This default settings can be overriden by setting the
+#' `shiny` option in the `options` parameter. Please see the vignette
 #' `Introduction to shinyjqui` for more details.
 #'
 #' @param tag A shiny tag object to attach mouse interactions to.
@@ -42,20 +43,21 @@
 #'   [JS()][htmlwidgets::JS()] wrapped javascript expression that returns a
 #'   [jQuery object](http://api.jquery.com/Types/#jQuery).
 #' @param operation A string to determine how to menipulate the mosue interaction.
-#'   Should be one of `enable`, `disable`, `save` and `load`
+#'   Should be one of `enable`, `disable`, `destroy`, `save` and `load`. See
+#'   Details.
 #' @param options A list of
 #'   [interaction_specific_options](http://api.jqueryui.com/category/interactions/).
-#'   Ignored when `operation` is set as `disable` or `save`. This parameter also
+#'   Ignored when `operation` is set as `destroy`. This parameter also
 #'   accept a `shiny` option that controls the shiny input value returned from
 #'   the element. See Details.
-#'  @param switch Deprecated, just keep for backward compatibility. Please use
+#' @param switch Deprecated, just keep for backward compatibility. Please use
 #'   `operation` instead.
 #'
 #' @return `jqui_draggabled()`, `jqui_droppabled()`, `jqui_resizabled()`,
 #'   `jqui_selectabled()` and `jqui_sortabled()` returns a modified shiny tag
 #'   object with mouse interactions attached. `jqui_draggable()`,
 #'   `jqui_droppable()`, `jqui_resizable()`, `jqui_selectable()` and
-#'   `jqui_sortable()` returns their first parameter `selector`.
+#'   `jqui_sortable()` return their first parameter `selector`.
 #'
 #' @example examples/interactions.R
 #' @name Interactions
@@ -100,7 +102,7 @@ jqui_selectabled <- function(tag, options = NULL) {
 #' @rdname Interactions
 #' @export
 jqui_sortable <- function(selector,
-                          operation = c("enable", "disable", "save", "load"),
+                          operation = c("enable", "disable", "destroy", "save", "load"),
                           options = NULL, switch = NULL) {
   type <- "interaction"
   func <- "sortable"
@@ -109,8 +111,10 @@ jqui_sortable <- function(selector,
     operation <- switch[1]
   }
   if (is.logical(operation)) {
-    warning("The switch parameter is deprecated,
-            please use the operation parameter instead")
+    warning(
+      "The switch parameter is deprecated, ",
+      "please use the operation parameter instead"
+    )
     operation <- ifelse(operation[1], "enable", "disable")
   }
   rm(switch)
@@ -124,7 +128,7 @@ jqui_sortable <- function(selector,
 #' @rdname Interactions
 #' @export
 jqui_draggable <- function(selector,
-                           operation = c("enable", "disable", "save", "load"),
+                           operation = c("enable", "disable", "destroy", "save", "load"),
                            options = NULL, switch = NULL) {
   type <- "interaction"
   func <- "draggable"
@@ -133,8 +137,10 @@ jqui_draggable <- function(selector,
     operation <- switch[1]
   }
   if (is.logical(operation)) {
-    warning("The switch parameter is deprecated,
-            please use the operation parameter instead")
+    warning(
+      "The switch parameter is deprecated, ",
+      "please use the operation parameter instead"
+    )
     operation <- ifelse(operation[1], "enable", "disable")
   }
   rm(switch)
@@ -148,7 +154,7 @@ jqui_draggable <- function(selector,
 #' @rdname Interactions
 #' @export
 jqui_droppable <- function(selector,
-                           operation = c("enable", "disable", "save", "load"),
+                           operation = c("enable", "disable", "destroy", "save", "load"),
                            options = NULL, switch = NULL) {
   type <- "interaction"
   func <- "droppable"
@@ -157,8 +163,10 @@ jqui_droppable <- function(selector,
     operation <- switch[1]
   }
   if (is.logical(operation)) {
-    warning("The switch parameter is deprecated,
-            please use the operation parameter instead")
+    warning(
+      "The switch parameter is deprecated, ",
+      "please use the operation parameter instead"
+    )
     operation <- ifelse(operation[1], "enable", "disable")
   }
   rm(switch)
@@ -172,7 +180,7 @@ jqui_droppable <- function(selector,
 #' @rdname Interactions
 #' @export
 jqui_selectable <- function(selector,
-                            operation = c("enable", "disable", "save", "load"),
+                            operation = c("enable", "disable", "destroy", "save", "load"),
                             options = NULL, switch = NULL) {
   type <- "interaction"
   func <- "selectable"
@@ -181,8 +189,10 @@ jqui_selectable <- function(selector,
     operation <- switch[1]
   }
   if (is.logical(operation)) {
-    warning("The switch parameter is deprecated,
-            please use the operation parameter instead")
+    warning(
+      "The switch parameter is deprecated, ",
+      "please use the operation parameter instead"
+    )
     operation <- ifelse(operation[1], "enable", "disable")
   }
   rm(switch)
@@ -196,7 +206,7 @@ jqui_selectable <- function(selector,
 #' @rdname Interactions
 #' @export
 jqui_resizable <- function(selector,
-                           operation = c("enable", "disable", "save", "load"),
+                           operation = c("enable", "disable", "destroy", "save", "load"),
                            options = NULL, switch = NULL) {
   type <- "interaction"
   func <- "resizable"
@@ -205,7 +215,10 @@ jqui_resizable <- function(selector,
     operation <- switch[1]
   }
   if (is.logical(operation)) {
-    warning("The switch parameter is deprecated, please use the operation parameter instead")
+    warning(
+      "The switch parameter is deprecated, ",
+      "please use the operation parameter instead"
+    )
     operation <- ifelse(operation[1], "enable", "disable")
   }
   rm(switch)
@@ -214,7 +227,6 @@ jqui_resizable <- function(selector,
   sendMsg()
   return(selector)
 }
-
 
 
 #' Enable bookmarking state of mouse interactions

@@ -24,27 +24,27 @@ jqui_droppabled(tag, options = NULL)
 
 jqui_selectabled(tag, options = NULL)
 
-jqui_sortable(selector, operation = c("enable", "disable", "save", "load"),
-  options = NULL, switch = NULL)
+jqui_sortable(selector, operation = c("enable", "disable", "destroy", "save",
+  "load"), options = NULL, switch = NULL)
 
-jqui_draggable(selector, operation = c("enable", "disable", "save", "load"),
-  options = NULL, switch = NULL)
+jqui_draggable(selector, operation = c("enable", "disable", "destroy", "save",
+  "load"), options = NULL, switch = NULL)
 
-jqui_droppable(selector, operation = c("enable", "disable", "save", "load"),
-  options = NULL, switch = NULL)
+jqui_droppable(selector, operation = c("enable", "disable", "destroy", "save",
+  "load"), options = NULL, switch = NULL)
 
-jqui_selectable(selector, operation = c("enable", "disable", "save", "load"),
-  options = NULL, switch = NULL)
+jqui_selectable(selector, operation = c("enable", "disable", "destroy",
+  "save", "load"), options = NULL, switch = NULL)
 
-jqui_resizable(selector, operation = c("enable", "disable", "save", "load"),
-  options = NULL, switch = NULL)
+jqui_resizable(selector, operation = c("enable", "disable", "destroy", "save",
+  "load"), options = NULL, switch = NULL)
 }
 \arguments{
 \item{tag}{A shiny tag object to attach mouse interactions to.}
 
 \item{options}{A list of
 \href{http://api.jqueryui.com/category/interactions/}{interaction_specific_options}.
-Ignored when \code{operation} is set as \code{disable} or \code{save}. This parameter also
+Ignored when \code{operation} is set as \code{destroy}. This parameter also
 accept a \code{shiny} option that controls the shiny input value returned from
 the element. See Details.}
 
@@ -54,18 +54,22 @@ the element. See Details.}
 \href{http://api.jquery.com/Types/#jQuery}{jQuery object}.}
 
 \item{operation}{A string to determine how to menipulate the mosue interaction.
-Should be one of \code{enable}, \code{disable}, \code{save} and \code{load}}
+Should be one of \code{enable}, \code{disable}, \code{destroy}, \code{save} and \code{load}. See
+Details.}
+
+\item{switch}{Deprecated, just keep for backward compatibility. Please use
+\code{operation} instead.}
 }
 \value{
 \code{jqui_draggabled()}, \code{jqui_droppabled()}, \code{jqui_resizabled()},
 \code{jqui_selectabled()} and \code{jqui_sortabled()} returns a modified shiny tag
 object with mouse interactions attached. \code{jqui_draggable()},
 \code{jqui_droppable()}, \code{jqui_resizable()}, \code{jqui_selectable()} and
-\code{jqui_sortable()} returns their first parameter \code{selector}.
+\code{jqui_sortable()} return their first parameter \code{selector}.
 }
 \description{
 Attach mouse-based interactions to shiny html tags and input/output widgets,
-and provide ways to manipulate them. The interaction includes:
+and provide ways to manipulate them. The interactions include:
 \itemize{
 \item \href{http://api.jqueryui.com/draggable/}{draggable}: Allow elements to be
 moved using the mouse.
@@ -87,21 +91,22 @@ therefore should be used in \code{ui} of a shiny app.
 
 The functions \code{jqui_draggable()}, \code{jqui_droppable()}, \code{jqui_resizable()},
 \code{jqui_selectable()} and \code{jqui_sortable()} should be used in \code{server} of a
-shiny app. They locate target element(s) in shiny (by \code{selector} parameter)
-and manipulate their mouse interactions. The currently supported operations
-includes:
+shiny app. They locate the target element(s) in shiny (by \code{selector}
+parameter) and manipulate their mouse interactions. The currently supported
+operations includes:
 \itemize{
-\item \code{enable}: Attach corresponding mouse interaction to the target(s).
-\item \code{disable}: Distroy corresponding mouse interaction of the target(s).
-\item \code{save}: Save the current interaction state .
-\item \code{load}: Restore the target(s) to the last saved interaction state.
+\item \code{enable}: Attach the corresponding mouse interaction to the target(s).
+\item \code{disable}: Attach the interaction if not and disable it at once (only set the options).
+\item \code{destory}: Destroy the interaction.
+\item \code{save}: Attach the interaction if not and save the current interaction state.
+\item \code{load}: If interaction attached, restore the target(s) to the last saved interaction state.
 }
 
-With mouse interactions attached, some internally defined shiny input values
-(in the form of \code{input$<id>_<state>}) can be used to refer to
-cosrresponding interaction state, e.g. \code{position}, \code{size}, \code{selected} and
-\code{order}. Users can add or override these default settings by passing a
-\code{shiny} option to the \code{options} parameter. Please see the vignette
+With mouse interactions attached, the cosrresponding interaction states, e.g.
+\code{position} of draggable, \code{size} of resizable, \code{selected} of selectable and
+\code{order} of sortable, will be send to server in the form of
+\code{input$<id>_<state>}. This default settings can be overriden by setting the
+\code{shiny} option in the \code{options} parameter. Please see the vignette
 \code{Introduction to shinyjqui} for more details.
 }
 \examples{
