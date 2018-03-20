@@ -14,13 +14,13 @@ draggableModalDialog <- function(..., title = NULL,
                                  easyClose = FALSE, fade = TRUE) {
   size <- match.arg(size)
   cls <- if (fade) { "modal fade" } else { "modal" }
-  div(
+  shiny::div(
     id = "shiny-modal",
     class = cls,
     tabindex = "-1",
     `data-backdrop` = if (!easyClose) { "static" } ,
     `data-keyboard` = if (!easyClose) { "false" } ,
-    div(
+    shiny::div(
       class = "modal-dialog",
       class = switch(size, s = "modal-sm", m = NULL, l = "modal-lg"),
       jqui_draggabled(shiny::div(
