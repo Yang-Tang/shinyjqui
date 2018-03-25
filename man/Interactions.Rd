@@ -142,19 +142,20 @@ jqui_sortabled(tags$ul(
 
 ## use shiny input
 if (interactive()) {
-  server <- function(input, output) {
-    output$foo <- renderHighchart({
-      hchart(mtcars, "scatter", hcaes(x = cyl, y = mpg))
-    })
-    output$position <- renderPrint({
-      print(input$foo_position)
-    })
-  }
-  ui <- fluidPage(
-    verbatimTextOutput('position'),
-    jqui_draggabled(highchartOutput('foo', width = '200px', height = '200px'))
+  shinyApp(
+    server = function(input, output) {
+      output$foo <- renderHighchart({
+        hchart(mtcars, "scatter", hcaes(x = cyl, y = mpg))
+      })
+      output$position <- renderPrint({
+        print(input$foo_position)
+      })
+    },
+    ui = fluidPage(
+      verbatimTextOutput('position'),
+      jqui_draggabled(highchartOutput('foo', width = '200px', height = '200px'))
+    )
   )
-  shinyApp(ui, server)
 }
 
 ## custom shiny input

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Class animation. °™ Class_animation ‚Äêı<U+3E32> shinyjqui</title>
+<title>Class effects. ‚Äî Class_effects ‚Ä¢ shinyjqui</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,24 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Class effects. ‚Äî Class_effects" />
+
+<meta property="og:description" content="Menipulate specified class(es) to matched elements while animating all style
+changes.
+jqui_add_class(): Add class(es).
+jqui_remove_class(): Remove class(es).
+jqui_switch_class(): Switch cless(es).
+" />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +58,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">shinyjqui</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">shinyjqui</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.9001</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -73,10 +88,13 @@
     <li>
       <a href="../articles/orderInput.html">The orderInput</a>
     </li>
+    <li>
+      <a href="../articles/save-and-restore.html">Save and restore</a>
+    </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -98,15 +116,17 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Class animation.</h1>
+    <h1>Class effects.</h1>
+    <small>Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/R/effects.R'><code>R/effects.R</code></a></small>
     </div>
 
     
-    <p>These functions are the R wrappers of
-<a href='http://api.jqueryui.com/addClass/'>addClass()</a>,
-<a href='http://api.jqueryui.com/addClass/'>removeClass()</a>,
-<a href='http://api.jqueryui.com/addClass/'>switchClass()</a> in jQuery UI library.
-They should be used in <code>server</code> of a shiny document.</p>
+    <p>Menipulate specified class(es) to matched elements while animating all style
+changes.</p><ul>
+<li><p><code>jqui_add_class()</code>: Add class(es).</p></li>
+<li><p><code>jqui_remove_class()</code>: Remove class(es).</p></li>
+<li><p><code>jqui_switch_class()</code>: Switch cless(es).</p></li>
+</ul>
     
 
     <pre class="usage"><span class='fu'>jqui_add_class</span>(<span class='no'>selector</span>, <span class='no'>className</span>, <span class='kw'>duration</span> <span class='kw'>=</span> <span class='fl'>400</span>, <span class='kw'>easing</span> <span class='kw'>=</span> <span class='st'>"swing"</span>,
@@ -118,14 +138,15 @@ They should be used in <code>server</code> of a shiny document.</p>
 <span class='fu'>jqui_switch_class</span>(<span class='no'>selector</span>, <span class='no'>removeClassName</span>, <span class='no'>addClassName</span>, <span class='kw'>duration</span> <span class='kw'>=</span> <span class='fl'>400</span>,
   <span class='kw'>easing</span> <span class='kw'>=</span> <span class='st'>"swing"</span>, <span class='kw'>complete</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>selector</th>
-      <td><p>A <a href='https://api.jquery.com/category/selectors/'>jQuery's
-selector</a> that determines the shiny tag element(s) whose interaction is
-enable or disable interactions.</p></td>
+      <td><p>The target element(s) to be menipulated. Can be a string of
+<a href='https://api.jquery.com/category/selectors/'>jQuery_selector</a> or a
+<a href='http://www.rdocumentation.org/packages/htmlwidgets/topics/JS'>JS()</a> wrapped javascript expression that returns a
+<a href='http://api.jquery.com/Types/#jQuery'>jQuery object</a>.</p></td>
     </tr>
     <tr>
       <th>className</th>
@@ -162,13 +183,11 @@ the class attribute of each matched element.</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <dl class='dl-horizontal'>
-<dt><code>jqui_add_class</code></dt><dd><p>Adds the specified class(es) to each
-of the set of matched elements while animating all style changes.</p></dd>
-<dt><code>jqui_remove_class</code></dt><dd><p>Removes the specified class(es) from each of
-the set of matched elements while animating all style changes.</p></dd>
-<dt><code>jqui_switch_class</code></dt><dd><p>Adds and removes the specified class(es) to
-each of the set of matched elements while animating all style changes</p></dd> </dl>
+    <p>These functions are the R wrappers of
+<a href='http://api.jqueryui.com/addClass/'>addClass()</a>,
+<a href='http://api.jqueryui.com/removeClass/'>removeClass()</a> and
+<a href='http://api.jqueryui.com/switchClass/'>switchClass()</a> from jQuery UI library.
+They should be used in <code>server</code> of a shiny app.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -207,3 +226,4 @@ each of the set of matched elements while animating all style changes</p></dd> <
 
   </body>
 </html>
+

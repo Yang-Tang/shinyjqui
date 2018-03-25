@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a jQuery UI icon — jqui_icon • shinyjqui</title>
+<title>Enable bookmarking state of mouse interactions — jqui_bookmarking • shinyjqui</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,10 +25,13 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Create a jQuery UI icon — jqui_icon" />
+<meta property="og:title" content="Enable bookmarking state of mouse interactions — jqui_bookmarking" />
 
-<meta property="og:description" content="Create an jQuery UI pre-defined icon. For lists of available icons, see
-http://api.jqueryui.com/theming/icons/." />
+<meta property="og:description" content="Enable shiny
+bookmarking_state
+of mouse interactions. By calling this function in server, the elements'
+position, size, selection state and sorting state changed by mouse
+operations can be saved and restored through an URL." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,54 +115,26 @@ http://api.jqueryui.com/theming/icons/." />
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a jQuery UI icon</h1>
-    <small>Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <h1>Enable bookmarking state of mouse interactions</h1>
+    <small>Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/R/interactions.R'><code>R/interactions.R</code></a></small>
     </div>
 
     
-    <p>Create an jQuery UI pre-defined icon. For lists of available icons, see
-<a href='http://api.jqueryui.com/theming/icons/'>http://api.jqueryui.com/theming/icons/</a>.</p>
+    <p>Enable shiny
+<a href='https://shiny.rstudio.com/articles/bookmarking-state.html'>bookmarking_state</a>
+of mouse interactions. By calling this function in <code>server</code>, the elements'
+<code>position</code>, <code>size</code>, <code>selection state</code> and <code>sorting state</code> changed by mouse
+operations can be saved and restored through an URL.</p>
     
 
-    <pre class="usage"><span class='fu'>jqui_icon</span>(<span class='no'>name</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>name</th>
-      <td><p>Class name of icon. The "ui-icon-" prefix can be omitted (i.e.
-use "ui-icon-flag" or "flag" to display a flag icon)</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <pre class="usage"><span class='fu'>jqui_bookmarking</span>()</pre>
+        
 
-    <p>An icon element</p>
-    
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>jqui_icon</span>(<span class='st'>'caret-1-n'</span>)
-
-<span class='fu'>library</span>(<span class='no'>shiny</span>)
-
-<span class='co'># add an icon to an actionButton</span>
-<span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='st'>'button'</span>, <span class='st'>'Button'</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'>jqui_icon</span>(<span class='st'>'refresh'</span>))
-
-<span class='co'># add an icon to a tabPanel</span>
-<span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/tabPanel'>tabPanel</a></span>(<span class='st'>'Help'</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'>jqui_icon</span>(<span class='st'>'help'</span>))
-<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+                </ul>
 
   </div>
 </div>

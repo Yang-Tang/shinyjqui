@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a table output element with selectable rows or cells °™ selectableTableOutput ‚Äêı<U+3E32> shinyjqui</title>
+<title>Create a table output element with selectable rows or cells ‚Äî selectableTableOutput ‚Ä¢ shinyjqui</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,21 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Create a table output element with selectable rows or cells ‚Äî selectableTableOutput" />
+
+<meta property="og:description" content="Render a standard HTML table with its rows or cells selectable. The server
+will receive the index of selected rows or cells stored in
+input$&lt;outputId&gt;_selected." />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +55,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">shinyjqui</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">shinyjqui</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.9001</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -73,10 +85,13 @@
     <li>
       <a href="../articles/orderInput.html">The orderInput</a>
     </li>
+    <li>
+      <a href="../articles/save-and-restore.html">Save and restore</a>
+    </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -99,17 +114,18 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create a table output element with selectable rows or cells</h1>
+    <small>Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/R/selectableTableOutput.R'><code>R/selectableTableOutput.R</code></a></small>
     </div>
 
     
     <p>Render a standard HTML table with its rows or cells selectable. The server
 will receive the index of selected rows or cells stored in
-<code>input$outputId_selected</code>.</p>
+<code>input$&lt;outputId&gt;_selected</code>.</p>
     
 
     <pre class="usage"><span class='fu'>selectableTableOutput</span>(<span class='no'>outputId</span>, <span class='kw'>selection_mode</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"row"</span>, <span class='st'>"cell"</span>))</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -131,14 +147,14 @@ or individual cell can be selected.</p></td>
 
     <p>Use mouse click to select single target, lasso (mouse dragging) to select
 multiple targets, and Ctrl + click to add or remove selection. In <code>row</code>
-selection mode, <code>input$outputId_selected</code> will receive the selected row index
-in the form of numberic vector. In <code>cell</code> selection mode,
-<code>input$outputId_selected</code> will receive a dataframe with <code>rows</code> and
+selection mode, <code>input$&lt;outputId&gt;_selected</code> will receive the selected row
+index in the form of numberic vector. In <code>cell</code> selection mode,
+<code>input$&lt;outputId&gt;_selected</code> will receive a dataframe with <code>rows</code> and
 <code>columns</code> index of each selected cells.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><a href='sortableTableOutput.html'>sortableTableOutput</a></p>
+    <p><a href='http://www.rdocumentation.org/packages/shiny/topics/tableOutput'>shiny::tableOutput</a>, <a href='sortableTableOutput.html'>sortableTableOutput</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -190,3 +206,4 @@ in the form of numberic vector. In <code>cell</code> selection mode,
 
   </body>
 </html>
+

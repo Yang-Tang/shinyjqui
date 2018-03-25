@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a tabset panel with sortable tabs °™ sortableTabsetPanel ‚Äêı<U+3E32> shinyjqui</title>
+<title>Create a tabset panel with sortable tabs ‚Äî sortableTabsetPanel ‚Ä¢ shinyjqui</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,22 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Create a tabset panel with sortable tabs ‚Äî sortableTabsetPanel" />
+
+<meta property="og:description" content="Create a tabset that contains shiny::tabPanel elements. The tabs are
+sortable by drag and drop. In addition to the activated tab title stored in
+input$&lt;id&gt;, the server will also receive the order of tabs in
+input$&lt;id&gt;_order." />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +56,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">shinyjqui</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">shinyjqui</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.9001</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -73,10 +86,13 @@
     <li>
       <a href="../articles/orderInput.html">The orderInput</a>
     </li>
+    <li>
+      <a href="../articles/save-and-restore.html">Save and restore</a>
+    </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -99,19 +115,20 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create a tabset panel with sortable tabs</h1>
+    <small>Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/R/sortableTabsetPanel.R'><code>R/sortableTabsetPanel.R</code></a></small>
     </div>
 
     
-    <p>Create a tabset that contains <code><a href='http://www.rdocumentation.org/packages/shiny/topics/tabPanel'>shiny::tabPanel()</a></code> elements. The tabs are
+    <p>Create a tabset that contains <a href='http://www.rdocumentation.org/packages/shiny/topics/tabPanel'>shiny::tabPanel</a> elements. The tabs are
 sortable by drag and drop. In addition to the activated tab title stored in
-<code>input$id</code>, the server will also receive the order of tabs in
-<code>input$id_order</code>.</p>
+<code>input$&lt;id&gt;</code>, the server will also receive the order of tabs in
+<code>input$&lt;id&gt;_order</code>.</p>
     
 
     <pre class="usage"><span class='fu'>sortableTabsetPanel</span>(<span class='no'>...</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>selected</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"tabs"</span>,
   <span class='st'>"pills"</span>), <span class='kw'>position</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -145,12 +162,12 @@ Bootstrap 3.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tabset that can be passed to <code><a href='http://www.rdocumentation.org/packages/shiny/topics/mainPanel'>shiny::mainPanel()</a></code></p>
+    <p>A tabset that can be passed to <a href='http://www.rdocumentation.org/packages/shiny/topics/mainPanel'>shiny::mainPanel</a></p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='sortableRadioButtons.html'>sortableRadioButtons()</a></code>, <code><a href='sortableCheckboxGroupInput.html'>sortableCheckboxGroupInput()</a></code>,
-<code><a href='sortableTableOutput.html'>sortableTableOutput()</a></code></p>
+    <p><a href='http://www.rdocumentation.org/packages/shiny/topics/tabsetPanel'>shiny::tabsetPanel</a>, <a href='sortableRadioButtons.html'>sortableRadioButtons</a>,
+<a href='sortableCheckboxGroupInput.html'>sortableCheckboxGroupInput</a>, <a href='sortableTableOutput.html'>sortableTableOutput</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -204,3 +221,4 @@ Bootstrap 3.</p></td>
 
   </body>
 </html>
+

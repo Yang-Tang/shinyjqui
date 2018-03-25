@@ -14,7 +14,7 @@ library(shiny)
 library(shinyjqui)
 ```
 
-The `shinyjqui` package provides functions to give shiny ui mouse-interactions and animation effects. This vignette provides some general introductions and examples.
+The `shinyjqui` package provides APIs to `jQuery UI` JavaScript library that can be used to add mouse-interactions and animation effects to shiny ui. This vignette provides general introductions and examples of them.
 
 ## Mouse interactions
 
@@ -38,42 +38,46 @@ func_intro <- data.frame(Functions = c('jqui_draggable', 'jqui_draggabled',
                                        'jqui_resizable', 'jqui_resizabled', 
                                        'jqui_selectable', 'jqui_selectabled', 
                                        'jqui_sortable', 'jqui_sortabled'), 
-                         Description = c('Enable or disable element\'s draggable interaction.',
-                                         'Initialize an element as draggable.',
-                                         'Enable or disable element\'s droppable interaction.',
-                                         'Initialize an element as droppable.',
-                                         'Enable or disable element\'s resizable interaction.',
-                                         'Initialize an element as resizable.',
-                                         'Enable or disable element\'s selectable interaction.',
-                                         'Initialize an element as selectable.',
-                                         'Enable or disable element\'s sortable interaction.',
-                                         'Initialize an element as sortable.'),
+                         Description = c('Attach draggable interaction to shiny html elements or manipulate it.',
+                                         'Create a draggable shiny html element.',
+                                         'Attach droppable interaction to shiny html elements or manipulate it.',
+                                         'Create a droppable shiny html element.',
+                                         'Attach resizable interaction to shiny html elements or manipulate it.',
+                                         'Create a resizable shiny html element.',
+                                         'Attach selectable interaction to shiny html elements or manipulate it.',
+                                         'Create a selectable shiny html element.',
+                                         'Attach sortable interaction to shiny html elements or manipulate it.',
+                                         'Create a sortable shiny html element.'),
                          Where_to_use = rep(c('server', 'ui'), times = 5),
                          stringsAsFactors = FALSE)
 knitr::kable(func_intro, row.names = FALSE)
 ```
 
-For each interaction, there are two functions: `-able()` and `-abled()`. They both can make a shiny html element interactive, but should be used in different places. The `-abled()` functions are designed to be used in `ui` of a shiny app. They return a modified element (tag, tagList, input or output) with interaction enabled. The `-able()` functions modify the interactivity of existing (pre-defined in `ui`) elements and therefore should be placed in `server` of a shiny app. For example, you can make a `textInput` draggable either in this way:
+For each kind of interaction, there are two functions: `-able()` and `-abled()`. They both can be used to add interaction to a shiny html element, but should be used in different context. The `-abled()` functions are designed to be used in `ui` of a shiny app. They return a modified shiny html element (tag, tagList, input or output) with interaction enabled. The `-able()` functions modify the interactivity of existing (pre-defined in `ui`) elements and therefore should be placed in `server` of a shiny app. For example, you can make a draggable `textInput` either by `jqui_draggabled()`:
 
 ```{r, eval = FALSE}
 # in shiny ui
-jqui_draggabled(textInput('input', 'Input'))
+jqui_draggabled(textInput('foo', 'Input'))
 
 ```
 
-or in this way:
+or by `jqui_draggable()`:
 
 ```{r, eval = FALSE}
 # in shiny ui
-textInput('input', 'Input')
+textInput('foo', 'Input')
 
 # in shiny server, either outside or in observe() or ovservEvent()
-jqui_draggable(selector = '#input')
+jqui_draggable(selector = '#foo')
 ```
 
-The advantiage of the second way is that you can control the element's interactivity reactivly by calling the `-able()` functions inside an `observe()` or `ovservEvent()`. The `-able()` functions use [jQuery selector](https://api.jquery.com/category/selectors/) to identify which element to act on. In the above example, the selector `#input` refers to the element with id `input`. You can also use `class name` to select multiple elements, e.g., to make all the shiny inputs draggable by `jqui_draggable(selector = '.shiny-bound-input')`.
+The `-able()` functions are more flexible in the following three ways:
 
-For `-abled()` functions, to make multiple elements interactive, you can use `tagList()`:
+1. By calling them inside an `observe()` or `ovservEvent()`, you can reactively control the element's interactivity .
+2. They are more flexible in selecting the target shiny html element(s). The `selector` argument accepts either a string of [jQuery selector](https://api.jquery.com/category/selectors/) or a `JS()` wrapped JavaScript expression that returns a jQuery object. In the above example, which used the jQuery selector mode, the string `#foo` refers to the element with id `foo`. To select a set of elements, use their `class name`, e.g., use `jqui_draggable(selector = ".shiny-bound-input")` to make all the shiny inputs draggable. The JavaScript expression mode gives more freedom to make your selection. You can write your own JavaScript expression that returns a jQuery object to refer to any element(s) you want, e.g., use `jqui_resizable(selector = JS("$('#foo').parent()"))` to make the parent of element with id `foo` resizable.
+3. In addition to `enable` the interactions, the `-able()` functions also support `disable`, `destory`, `save` and `load` the interactions. This behavior is controlled by the `operation` argument with the default value `enable`. The difference between `disable` and `destory` is that the `disable` operation only disable the effect of interaction temporarily without removing the corresponding settings, whereas the `destory` operation removes the interaction totally. The `save` and `load` operations are used to save and restore the interaction state (e.g., the current position of a draggable element). Please see the vignette `Save and restore` for more details.
+
+To make multiple elements interactive, you can either use `-abled()` functions combining with `tagList()`:
 
 ```{r, eval = FALSE}
 # in shiny ui, make each element in the tagList draggable
@@ -84,16 +88,16 @@ jqui_draggabled(tagList(
 ))
 ```
 
-The `-able()` functions have a `switch` parameter. Set it as `FALSE` to disable the interaction of an element:
+or use jQuery selector in `-able()` functions:
 
 ```{r, eval = FALSE}
-# in shiny server
-jqui_draggable(selector = '#input', switch = FALSE)
+jqui_draggable("#sel,#chbox,#plot")
 ```
 
-Both `-able()` and `-abled()` functions have an `options` parameter to accept interaction-specific options. You can find available options on jQuery UI's  [API Documentation](http://api.jqueryui.com/category/interactions/) page. Some examples about these options are listed in the next few sections.
+Both `-able()` and `-abled()` functions have an `options` argument to accept interaction-specific options. The full list of the available options can be found in jQuery UI's  [API Documentation](http://api.jqueryui.com/category/interactions/) page. The example sections below showed how to use them.
 
-Once an interaction is turned on and if the target element has an `id`, you can get access to some pre-defined interaction-specific shiny input values through `input$id_suffix`, where the `id` is the id of target element (`id` attribute for shiny tag, `inputId` for shiny inputs, `outputId` for shiny outputs) and the `suffix` depends on the type of interaction enabled. Please see the following table:
+In shiny, the user input values are send back to server in the form of `input$<id>`. Similarly, once enabled, some interaction-specific state values are returned to server and can be accessed by `input$<id>_<suffix>`, where the `id` is the element id (`id` attribute for shiny tag, `inputId` for shiny inputs, `outputId` for shiny outputs) and the `suffix` depends on the type of interaction enabled. The currently deployed interaction state values are listed here:
+
 ```{r, echo=FALSE}
 draggable_shiny <- data.frame(
   Interaction_type = 'draggable',
@@ -147,7 +151,7 @@ knitr::kable(rbind(draggable_shiny, droppable_shiny, resizable_shiny,
 
 ```
 
-You can even customize these shiny input values by including a `shiny` option in the `options` parameter. Create a shiny option in the following format, then combine it with other interaction-specific options before passing to the `options` parameter:
+You can even customize what value to be send back by including a `shiny` option in the `options` parameter. This option should be created in the following format. You may combine it with other interaction-specific options before passing to the `options` parameter:
 
 ```{r, eval = FALSE}
 shiny_opt = list(
@@ -156,17 +160,17 @@ shiny_opt = list(
   suffix1 = list(
     # on event_type1 run callback1 and send the returned value to input$id_suffix1
     event_type1 = JS(callback1),
-    # on event_type2 run callback2 and send the returned value to input$id_suffix1
-    event_type2 = JS(callback2),
+    # on event_type2 or event_type3 run callback2 and send the returned value to input$id_suffix1
+    `event_type2 event_type3` = JS(callback2),
     ...
   ),
   
-  # define shiny input value input$id_suffix2
+  # define another shiny input value input$id_suffix2
   suffix2 = list(
     ...
   ),
   
-  # define other shiny input values
+  # define more shiny input values
   
 )
 
@@ -177,29 +181,27 @@ jqui_draggable('#foo', options = list(
 ))
 ```
 
-Each element of the shiny option list is also a list that define a shiny input value. Its name is used as `siffix` in `input$id_suffix`. Within that list, there are multiple `JS` wrapped javascript callback functions named with corresponding event types. The event triggers the callback to run and the returned value is used to update the shiny input value. The valid event types for each interactions can be found in the [API Documentation](http://api.jqueryui.com/category/interactions/) of jQuery UI. The callcack functions take two arguments, `event` and `ui`. The definition of the `ui` argument can also be found in that document too. Here is a simple example:
+The shiny option list is composed by multiple `suffix` defining units. The unit name is used as `suffix` in `input$<id>_<suffix>`. Within each unit, there are multiple `JS()` wrapped JavaScript callback functions named with corresponding event types. The event triggers the callback and the returned value is send to server in the form of `input$<id>_<suffix>`. The valid event types for each interactions can be found in the [API Documentation](http://api.jqueryui.com/category/interactions/) of jQuery UI. The callback functions take two arguments, `event` and `ui`. The definition of the `ui` argument can also be found in the document too. Here is an example:
 
 ```{r, eval = FALSE}
 # server
 jqui_draggable('#foo', options = list(
   shiny = list(
-    # By default, draggable element has a shiny input value showing the element's 
-    # position (relative to the parent element). Here, another shiny input
-    # value is added. It gives the element's offset (position relative to the 
-    # document). Using input$foo_offset to get access to it . 
+    # By default, draggable element has a shiny input value showing the
+    # element's position (relative to the parent element). Here, another shiny
+    # input value (input$foo_offset) is added. It gives the element's offset
+    # (position relative to the document).
     offset = list(
-      # return the initiated offset value when the draggable is created
-      dragcreate = JS('function(event, ui) { return $(event.target).offset(); }'),
-      # update the offset value while dragging
-      drag = JS('function(event, ui) { return $(event.target).offset(); }')
+      # return the updated offset value when the draggable is created or dragging
+      `dragcreate drag` = JS('function(event, ui) {return $(event.target).offset();}'),
     )
   )
 ))
 ```
 
-When customizing shiny input values by shiny option and callbacks, you may want to get the id of certain element in javascript. For simple shiny tag (e.g. `tags$div`), `element.attr("id")` just works fine, but it dosen't work for shiny inputs (e.g. `textInput`). The id arribute of most shiny inputs is hidden inside a div container. You have to use `.find()` to locate it. The `shinyjqui` package comes with an internal javascript function `shinyjqui.getId()` which will take care of this. You can just simply pass in any shiny element, either simple tag, shiny input or shiny output. It will use the appropriate way to find out the id.
+When customizing shiny input values by shiny option and callbacks, you may want to get the id of certain element in JavaScript. For simple shiny tag (e.g. `tags$div`), `element.attr("id")` just works fine, however, things become more complicated for shiny inputs (e.g. `textInput`). The id attribute of most shiny inputs is hidden inside a div container. You may use jQuery function `.find()` to locate it. The `shinyjqui` package comes with an internal JavaScript function `shinyjqui.getId()` which will take care of this. You can just simply pass in any shiny element, either simple tag, shiny input or shiny output. It will use the appropriate way to find out the id.
 
-The following are some examples for each iteractions.
+The following are some examples to demonstrate how to use each interactions
 
 ### Draggable
 
@@ -228,7 +230,7 @@ jqui_droppable('#foo', options = list(
   ) # a javascrip callback to change class when draggable element is dropped in
 ))
 ```
-Note: When passing a javascrip callback function to the `opations` parameter, please wrap it with `JS()` so that it can be evaled correctly.
+Note: When passing a JavaScript callback function to the `opations` parameter, please wrap it with `JS()` so that it can be evaluated correctly.
 
 ### Resizable
 
@@ -303,13 +305,13 @@ func_intro <- data.frame(Functions = c('jqui_effect', 'jqui_show', 'jqui_hide', 
 knitr::kable(func_intro, row.names = FALSE)
 ```
 
-The above three functions use [jQuery selector](https://api.jquery.com/category/selectors/) to locate the target element(s) and should be used in `server`.
+The above functions use [jQuery selector](https://api.jquery.com/category/selectors/) to locate the target element(s) and should be used in `server`.
 
 The `effect` parameter accept a string that defines which animation effect to apply. Note: The `transfer` effect can only be used in `jqui_effect()`.
 
 The `options` parameter accept a list of effect specific options. Please find more details [here](http://api.jqueryui.com/category/effects/).
 
-The `complete` parameter accept a javascript callback function which will be called after the animation. Please wrap it with `JS()`.
+The `complete` parameter accept a JavaScript callback function which will be called after the animation. Please wrap it with `JS()`.
 
 Here are some examples:
 ```{r, eval=FALSE}

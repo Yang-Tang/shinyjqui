@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Animation effects. °™ Effect_and_visibility ‚Äêı<U+3E32> shinyjqui</title>
+<title>Animation effects. ‚Äî Animation_effects ‚Ä¢ shinyjqui</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,24 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Animation effects. ‚Äî Animation_effects" />
+
+<meta property="og:description" content="Allow element(s) to show animation effects.
+jqui_effect(): Apply an animation effect to matched element(s).
+jqui_hide(): Hide the matched element(s) with animation effect.
+jqui_show(): Display the matched element(s) with animation effect.
+jqui_toggle(): Display or hide the matched element(s) with animation effect.
+" />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +58,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">shinyjqui</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">shinyjqui</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.9001</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -73,10 +88,13 @@
     <li>
       <a href="../articles/orderInput.html">The orderInput</a>
     </li>
+    <li>
+      <a href="../articles/save-and-restore.html">Save and restore</a>
+    </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -99,14 +117,16 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Animation effects.</h1>
+    <small>Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/R/effects.R'><code>R/effects.R</code></a></small>
     </div>
 
     
-    <p>These functions are the R wrappers of
-<a href='http://api.jqueryui.com/effect/'>effect()</a>,
-<a href='http://api.jqueryui.com/hide/'>hide()</a>,
-<a href='http://api.jqueryui.com/show/'>show()</a> in jQuery UI library. They
-should be used in <code>server</code> of a shiny document.</p>
+    <p>Allow element(s) to show animation effects.</p><ul>
+<li><p><code>jqui_effect()</code>: Apply an animation effect to matched element(s).</p></li>
+<li><p><code>jqui_hide()</code>: Hide the matched element(s) with animation effect.</p></li>
+<li><p><code>jqui_show()</code>: Display the matched element(s) with animation effect.</p></li>
+<li><p><code>jqui_toggle()</code>: Display or hide the matched element(s) with animation effect.</p></li>
+</ul>
     
 
     <pre class="usage"><span class='fu'>jqui_effect</span>(<span class='no'>selector</span>, <span class='no'>effect</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>duration</span> <span class='kw'>=</span> <span class='fl'>400</span>,
@@ -121,19 +141,20 @@ should be used in <code>server</code> of a shiny document.</p>
 <span class='fu'>jqui_toggle</span>(<span class='no'>selector</span>, <span class='no'>effect</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>duration</span> <span class='kw'>=</span> <span class='fl'>400</span>,
   <span class='kw'>complete</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>selector</th>
-      <td><p>A <a href='https://api.jquery.com/category/selectors/'>jQuery's
-selector</a> that determines the shiny tag element(s) whose interaction is
-enable or disable interactions.</p></td>
+      <td><p>The target element(s) to be menipulated. Can be a string of
+<a href='https://api.jquery.com/category/selectors/'>jQuery_selector</a> or a
+<a href='http://www.rdocumentation.org/packages/htmlwidgets/topics/JS'>JS()</a> wrapped javascript expression that returns a
+<a href='http://api.jquery.com/Types/#jQuery'>jQuery object</a>.</p></td>
     </tr>
     <tr>
       <th>effect</th>
       <td><p>A string indicating which
-<a href='http://jqueryui.com/effect/'>jQuery UI effect</a> to use for the
+<a href='http://jqueryui.com/effect/'>animation effect</a> to use for the
 transition.</p></td>
     </tr>
     <tr>
@@ -156,12 +177,12 @@ once per matched element.</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <dl class='dl-horizontal'>
-<dt><code>jqui_effect</code></dt><dd><p>Apply an animation effect to matched
-element(s).</p></dd> <dt><code>jqui_hide</code></dt><dd><p>Hide the matched element(s) with
-animation effect.</p></dd> <dt><code>jqui_show</code></dt><dd><p>Display the matched element(s)
-with animation effect.</p></dd> <dt><code>jqui_toggle</code></dt><dd><p>Display or hide the matched
-element(s) with animation effect.</p></dd></dl>
+    <p>These functions are R wrappers of
+<a href='https://api.jqueryui.com/effect/'>effect()</a>,
+<a href='https://api.jqueryui.com/hide/'>hide()</a>,
+<a href='https://api.jqueryui.com/show/'>show()</a> and
+<a href='https://api.jqueryui.com/toggle/'>toggle()</a> from jQuery UI library. They
+should be used in <code>server</code> of a shiny document.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -206,3 +227,4 @@ element(s) with animation effect.</p></dd></dl>
 
   </body>
 </html>
+

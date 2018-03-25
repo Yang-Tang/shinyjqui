@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create radio buttons with sortable choices °™ sortableRadioButtons ‚Äêı<U+3E32> shinyjqui</title>
+<title>Create radio buttons with sortable choices ‚Äî sortableRadioButtons ‚Ä¢ shinyjqui</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,22 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Create radio buttons with sortable choices ‚Äî sortableRadioButtons" />
+
+<meta property="og:description" content="Create a set of radio buttons used to select an item from a list. The choices
+are sortable by drag and drop. In addition to the selected values stored in
+input$&lt;inputId&gt;, the server will also receive the order of choices in
+input$&lt;inputId&gt;_order." />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +56,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">shinyjqui</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">shinyjqui</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.9001</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -73,10 +86,13 @@
     <li>
       <a href="../articles/orderInput.html">The orderInput</a>
     </li>
+    <li>
+      <a href="../articles/save-and-restore.html">Save and restore</a>
+    </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -99,19 +115,20 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create radio buttons with sortable choices</h1>
+    <small>Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/R/sortableRadioButtons.R'><code>R/sortableRadioButtons.R</code></a></small>
     </div>
 
     
     <p>Create a set of radio buttons used to select an item from a list. The choices
 are sortable by drag and drop. In addition to the selected values stored in
-<code>input$inputId</code>, the server will also receive the order of choices in
-<code>input$inputId_order</code>.</p>
+<code>input$&lt;inputId&gt;</code>, the server will also receive the order of choices in
+<code>input$&lt;inputId&gt;_order</code>.</p>
     
 
     <pre class="usage"><span class='fu'>sortableRadioButtons</span>(<span class='no'>inputId</span>, <span class='no'>label</span>, <span class='kw'>choices</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>selected</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>inline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>choiceNames</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>choiceValues</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -176,8 +193,8 @@ Examples.</p></td>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='sortableCheckboxGroupInput.html'>sortableCheckboxGroupInput()</a></code>, <code><a href='sortableTableOutput.html'>sortableTableOutput()</a></code>,
-<code><a href='sortableTabsetPanel.html'>sortableTabsetPanel()</a></code></p>
+    <p><a href='http://www.rdocumentation.org/packages/shiny/topics/radioButtons'>shiny::radioButtons</a>, <a href='sortableCheckboxGroupInput.html'>sortableCheckboxGroupInput</a>,
+<a href='sortableTableOutput.html'>sortableTableOutput</a>, <a href='sortableTabsetPanel.html'>sortableTabsetPanel</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -227,3 +244,4 @@ Examples.</p></td>
 
   </body>
 </html>
+

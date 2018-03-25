@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>All news ‐�<U+3E32> shinyjqui</title>
+<title>Changelog • shinyjqui</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,16 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Changelog" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +50,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">shinyjqui</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">shinyjqui</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.9001</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -73,10 +80,13 @@
     <li>
       <a href="../articles/orderInput.html">The orderInput</a>
     </li>
+    <li>
+      <a href="../articles/save-and-restore.html">Save and restore</a>
+    </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -99,7 +109,8 @@
 
   <div class="col-md-9">
     <div class="page-header">
-      <h1>Change log <small>All releases</small></h1>
+      <h1>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
     <div class="contents">
@@ -107,21 +118,32 @@
 <h2 class="hasAnchor">
 <a href="#shinyjqui-0-2-9001" class="anchor"></a>shinyjqui 0.2.9001</h2>
 <ul>
-<li>Fix a bug that the mouse interaction function <code>-abled()</code> doesn’t work when the same element is inserted again. (#6, #8)</li>
-<li>Fix a bug that resizable interfere other interactions when the target element is a shiny output. (#10)</li>
+<li>
+<strong>New feature:</strong> Introduce <code>save</code> and <code>load</code> operations to mouse-interaction attached html elements. This enabled client-side store and restore the elements’ states (eg. position, size, selection and order). (<a href='https://github.com/yang-tang/shinyjqui/issues/16'>#16</a>)</li>
+<li>
+<strong>New feature:</strong> Adds shiny bookmark supporting to mouse-interaction attached html elements. This enabled server-side or across-client store and restore the elements’ states (eg. position, size, selection and order). (<a href='https://github.com/yang-tang/shinyjqui/issues/12'>#12</a>)</li>
+<li>
+<strong>New feature:</strong> Now, all interaction functions’ <code>selector</code> argument accepts <code><a href="http://www.rdocumentation.org/packages/htmlwidgets/topics/JS">JS()</a></code> wrapped javascript expression. This made the target element selection more flexible.</li>
+<li>
+<strong>New feature:</strong> Add <code><a href="../reference/draggableModalDialog.html">draggableModalDialog()</a></code>, <code><a href="../reference/sortableCheckboxGroupInput.html">sortableCheckboxGroupInput()</a></code>, <code><a href="../reference/sortableRadioButtons.html">sortableRadioButtons()</a></code>, <code><a href="../reference/sortableTabsetPanel.html">sortableTabsetPanel()</a></code>, <code><a href="../reference/sortableTableOutput.html">sortableTableOutput()</a></code> and <code><a href="../reference/selectableTableOutput.html">selectableTableOutput()</a></code> functions to create shiny inputs and outputs with mouse interactions.</li>
+<li>
+<strong>Breaking change:</strong> The <code>switch</code> argument in mouse-interaction functions was replaced with <code>operation</code> argument to support more options.</li>
+<li>
+<strong>Breaking change:</strong> The shiny input values <code>selected</code> from selectable and <code>order</code> from sortable now return elements’ <code>innerText</code> instead of <code>innerHTML</code>.</li>
+<li>Fix a bug that the mouse interaction function <code>-abled()</code> doesn’t work when the same element is inserted again. (<a href='https://github.com/yang-tang/shinyjqui/issues/6'>#6</a>, <a href='https://github.com/yang-tang/shinyjqui/issues/8'>#8</a>)</li>
+<li>Fix a bug that resizable interfere other interactions when the target element is a shiny output. (<a href='https://github.com/yang-tang/shinyjqui/issues/10'>#10</a>)</li>
 <li>Add <code>htmlDependency</code> to <code><a href="../reference/jqui_icon.html">jqui_icon()</a></code> to make it work in version 0.2.0 and above.</li>
-<li>New <code><a href="../reference/sortableCheckboxGroupInput.html">sortableCheckboxGroupInput()</a></code>, <code><a href="../reference/sortableRadioButtons.html">sortableRadioButtons()</a></code>, <code><a href="../reference/sortableTabsetPanel.html">sortableTabsetPanel()</a></code>, <code><a href="../reference/sortableTableOutput.html">sortableTableOutput()</a></code> and <code><a href="../reference/selectableTableOutput.html">selectableTableOutput()</a></code> to create mouse interaction enhanced shiny inputs and outputs</li>
 </ul>
 </div>
     <div id="shinyjqui-0-2-0" class="section level2">
 <h2 class="hasAnchor">
 <a href="#shinyjqui-0-2-0" class="anchor"></a>shinyjqui 0.2.0</h2>
 <ul>
-<li>No longer needed to call <code><a href="../reference/includeJqueryUI.html">includeJqueryUI()</a></code> before using other <code>shinyjqui</code> functions.(#4)</li>
+<li>No longer needed to call <code><a href="../reference/includeJqueryUI.html">includeJqueryUI()</a></code> before using other <code>shinyjqui</code> functions.(<a href='https://github.com/yang-tang/shinyjqui/issues/4'>#4</a>)</li>
 <li>New <code><a href="../reference/jqui_icon.html">jqui_icon()</a></code> to create a jQuery UI icon.</li>
-<li>New <code><a href="../reference/Effect_and_visibility.html">jqui_toggle()</a></code> to toggle display/hide state of a shiny html element with animation.</li>
-<li>New pre-defined interaction-specific shiny input values: <code>is_dragging</code> for draggable; <code>over</code>, <code>drop</code>, <code>dropped</code> and <code>out</code> for droppable; <code>is_resizing</code> for resizable; <code>is_selecting</code> for selectable.(#1) See vignettes for details.</li>
-<li>Minify <code>shinyjqui.js</code>.(#3)</li>
+<li>New <code><a href="../reference/Animation_effects.html">jqui_toggle()</a></code> to toggle display/hide state of a shiny html element with animation.</li>
+<li>New pre-defined interaction-specific shiny input values: <code>is_dragging</code> for draggable; <code>over</code>, <code>drop</code>, <code>dropped</code> and <code>out</code> for droppable; <code>is_resizing</code> for resizable; <code>is_selecting</code> for selectable.(<a href='https://github.com/yang-tang/shinyjqui/issues/1'>#1</a>) See vignettes for details.</li>
+<li>Minify <code>shinyjqui.js</code>.(<a href='https://github.com/yang-tang/shinyjqui/issues/3'>#3</a>)</li>
 <li>Import and export <code><a href="http://www.rdocumentation.org/packages/htmlwidgets/topics/JS">JS()</a></code> from <code>htmlwidgets</code> package.</li>
 <li>Add pkgdown docs.</li>
 <li>Documentation with Roxygen2 6.0.1.</li>
@@ -164,3 +186,4 @@
 
   </body>
 </html>
+

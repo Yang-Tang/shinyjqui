@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference ‐�<U+3E32> shinyjqui</title>
+<title>Function reference • shinyjqui</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,16 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Function reference" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +50,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">shinyjqui</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">shinyjqui</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.9001</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -73,10 +80,13 @@
     <li>
       <a href="../articles/orderInput.html">The orderInput</a>
     </li>
+    <li>
+      <a href="../articles/save-and-restore.html">Save and restore</a>
+    </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -98,10 +108,7 @@
       <div class="row">
   <div class="col-md-9">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.2.9001</small>
-      </h1>
+      <h1>Reference</h1>
     </div>
 
     <div class="contents">
@@ -122,73 +129,85 @@
         <tr>
           <!--  -->
           <td>
-            <p><code><a href="Class_animation.html">jqui_add_class</a></code> <code><a href="Class_animation.html">jqui_remove_class</a></code> <code><a href="Class_animation.html">jqui_switch_class</a></code> </p>
-          </td>
-          <td><p>Class animation.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="Effect_and_visibility.html">jqui_effect</a></code> <code><a href="Effect_and_visibility.html">jqui_show</a></code> <code><a href="Effect_and_visibility.html">jqui_hide</a></code> <code><a href="Effect_and_visibility.html">jqui_toggle</a></code> </p>
+            <p><code><a href="Animation_effects.html">jqui_effect()</a></code> <code><a href="Animation_effects.html">jqui_show()</a></code> <code><a href="Animation_effects.html">jqui_hide()</a></code> <code><a href="Animation_effects.html">jqui_toggle()</a></code> </p>
           </td>
           <td><p>Animation effects.</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="get_jqui_effects.html">get_jqui_effects</a></code> </p>
+            <p><code><a href="Class_effects.html">jqui_add_class()</a></code> <code><a href="Class_effects.html">jqui_remove_class()</a></code> <code><a href="Class_effects.html">jqui_switch_class()</a></code> </p>
+          </td>
+          <td><p>Class effects.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="draggableModalDialog.html">draggableModalDialog()</a></code> </p>
+          </td>
+          <td><p>Create a draggable modal dialog UI</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="get_jqui_effects.html">get_jqui_effects()</a></code> </p>
           </td>
           <td><p>Get available animation effects.</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="includeJqueryUI.html">includeJqueryUI</a></code> </p>
+            <p><code><a href="includeJqueryUI.html">includeJqueryUI()</a></code> </p>
           </td>
           <td><p>Inject necessary js and css assets to the head of a shiny document (deprecated).</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="Interactions.html">jqui_resizabled</a></code> <code><a href="Interactions.html">jqui_sortabled</a></code> <code><a href="Interactions.html">jqui_draggabled</a></code> <code><a href="Interactions.html">jqui_droppabled</a></code> <code><a href="Interactions.html">jqui_selectabled</a></code> <code><a href="Interactions.html">jqui_sortable</a></code> <code><a href="Interactions.html">jqui_draggable</a></code> <code><a href="Interactions.html">jqui_droppable</a></code> <code><a href="Interactions.html">jqui_selectable</a></code> <code><a href="Interactions.html">jqui_resizable</a></code> <code><a href="Interactions.html">jqui_resize</a></code> <code><a href="Interactions.html">jqui_position</a></code> </p>
+            <p><code><a href="Interactions.html">jqui_resizabled()</a></code> <code><a href="Interactions.html">jqui_sortabled()</a></code> <code><a href="Interactions.html">jqui_draggabled()</a></code> <code><a href="Interactions.html">jqui_droppabled()</a></code> <code><a href="Interactions.html">jqui_selectabled()</a></code> <code><a href="Interactions.html">jqui_sortable()</a></code> <code><a href="Interactions.html">jqui_draggable()</a></code> <code><a href="Interactions.html">jqui_droppable()</a></code> <code><a href="Interactions.html">jqui_selectable()</a></code> <code><a href="Interactions.html">jqui_resizable()</a></code> </p>
           </td>
           <td><p>Mouse interactions</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="jqui_icon.html">jqui_icon</a></code> </p>
+            <p><code><a href="jqui_bookmarking.html">jqui_bookmarking()</a></code> </p>
+          </td>
+          <td><p>Enable bookmarking state of mouse interactions</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="jqui_icon.html">jqui_icon()</a></code> </p>
           </td>
           <td><p>Create a jQuery UI icon</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="orderInput.html">orderInput</a></code> </p>
+            <p><code><a href="orderInput.html">orderInput()</a></code> </p>
           </td>
           <td><p>A shiny input control to show the order of a list of items</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="selectableTableOutput.html">selectableTableOutput</a></code> </p>
+            <p><code><a href="selectableTableOutput.html">selectableTableOutput()</a></code> </p>
           </td>
           <td><p>Create a table output element with selectable rows or cells</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="sortableCheckboxGroupInput.html">sortableCheckboxGroupInput</a></code> </p>
+            <p><code><a href="sortableCheckboxGroupInput.html">sortableCheckboxGroupInput()</a></code> </p>
           </td>
           <td><p>Create a Checkbox Group Input Control with Sortable Choices</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="sortableRadioButtons.html">sortableRadioButtons</a></code> </p>
+            <p><code><a href="sortableRadioButtons.html">sortableRadioButtons()</a></code> </p>
           </td>
           <td><p>Create radio buttons with sortable choices</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="sortableTableOutput.html">sortableTableOutput</a></code> </p>
+            <p><code><a href="sortableTableOutput.html">sortableTableOutput()</a></code> </p>
           </td>
           <td><p>Create a table output element with sortable rows</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="sortableTabsetPanel.html">sortableTabsetPanel</a></code> </p>
+            <p><code><a href="sortableTabsetPanel.html">sortableTabsetPanel()</a></code> </p>
           </td>
           <td><p>Create a tabset panel with sortable tabs</p></td>
         </tr>
@@ -219,3 +238,4 @@
 
   </body>
 </html>
+

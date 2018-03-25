@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a jQuery UI icon — jqui_icon • shinyjqui</title>
+<title>Create a draggable modal dialog UI — draggableModalDialog • shinyjqui</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,10 +25,10 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Create a jQuery UI icon — jqui_icon" />
+<meta property="og:title" content="Create a draggable modal dialog UI — draggableModalDialog" />
 
-<meta property="og:description" content="Create an jQuery UI pre-defined icon. For lists of available icons, see
-http://api.jqueryui.com/theming/icons/." />
+<meta property="og:description" content="This creates the UI for a modal dialog similar to shiny::modalDialog except
+its content is draggable." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,44 +112,59 @@ http://api.jqueryui.com/theming/icons/." />
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a jQuery UI icon</h1>
-    <small>Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <h1>Create a draggable modal dialog UI</h1>
+    <small>Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/R/draggableModalDialog.R'><code>R/draggableModalDialog.R</code></a></small>
     </div>
 
     
-    <p>Create an jQuery UI pre-defined icon. For lists of available icons, see
-<a href='http://api.jqueryui.com/theming/icons/'>http://api.jqueryui.com/theming/icons/</a>.</p>
+    <p>This creates the UI for a modal dialog similar to <a href='http://www.rdocumentation.org/packages/shiny/topics/modalDialog'>shiny::modalDialog</a> except
+its content is draggable.</p>
     
 
-    <pre class="usage"><span class='fu'>jqui_icon</span>(<span class='no'>name</span>)</pre>
+    <pre class="usage"><span class='fu'>draggableModalDialog</span>(<span class='no'>...</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>footer</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/modalButton'>modalButton</a></span>(<span class='st'>"Dismiss"</span>), <span class='kw'>size</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"m"</span>, <span class='st'>"s"</span>, <span class='st'>"l"</span>),
+  <span class='kw'>easyClose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fade</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>name</th>
-      <td><p>Class name of icon. The "ui-icon-" prefix can be omitted (i.e.
-use "ui-icon-flag" or "flag" to display a flag icon)</p></td>
+      <th>...</th>
+      <td><p>UI elements for the body of the modal dialog box.</p></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><p>An optional title for the dialog.</p></td>
+    </tr>
+    <tr>
+      <th>footer</th>
+      <td><p>UI for footer. Use <code>NULL</code> for no footer.</p></td>
+    </tr>
+    <tr>
+      <th>size</th>
+      <td><p>One of <code>"s"</code> for small, <code>"m"</code> (the default) for medium,
+or <code>"l"</code> for large.</p></td>
+    </tr>
+    <tr>
+      <th>easyClose</th>
+      <td><p>If <code>TRUE</code>, the modal dialog can be dismissed by
+clicking outside the dialog box, or be pressing the Escape key. If
+<code>FALSE</code> (the default), the modal dialog can't be dismissed in those
+ways; instead it must be dismissed by clicking on the dismiss button, or
+from a call to <code>removeModal</code> on the server.</p></td>
+    </tr>
+    <tr>
+      <th>fade</th>
+      <td><p>If <code>FALSE</code>, the modal dialog will have no fade-in animation
+(it will simply appear rather than fade in to view).</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An icon element</p>
+    <p>A modified shiny modal dialog UI with its content draggable.</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>jqui_icon</span>(<span class='st'>'caret-1-n'</span>)
-
-<span class='fu'>library</span>(<span class='no'>shiny</span>)
-
-<span class='co'># add an icon to an actionButton</span>
-<span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='st'>'button'</span>, <span class='st'>'Button'</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'>jqui_icon</span>(<span class='st'>'refresh'</span>))
-
-<span class='co'># add an icon to a tabPanel</span>
-<span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/tabPanel'>tabPanel</a></span>(<span class='st'>'Help'</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'>jqui_icon</span>(<span class='st'>'help'</span>))
-<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -157,9 +172,7 @@ use "ui-icon-flag" or "flag" to display a flag icon)</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>
