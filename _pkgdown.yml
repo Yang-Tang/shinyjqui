@@ -1,0 +1,49 @@
+reference:
+  - title: "Mouse interactions"
+    desc: >
+      Attach and manipulate mouse-based interactions to shiny html tags and
+      input/output widgets
+    contents:
+      - jqui_draggabled
+      - jqui_droppabled
+      - jqui_resizabled
+      - jqui_selectabled
+      - jqui_sortabled
+      - jqui_draggable
+      - jqui_droppable
+      - jqui_resizable
+      - jqui_selectable
+      - jqui_sortable
+      - jqui_bookmarking
+  - title: "Shiny UI wrappers"
+    desc: "Wrapper functions to create shiny ui with interaction attached."
+    contents:
+      - draggableModalDialog
+      - orderInput
+      - sortableCheckboxGroupInput
+      - sortableRadioButtons
+      - sortableTabsetPanel
+      - sortableTableOutput
+      - selectableTableOutput
+  - title: "Animation effects"
+    desc: >
+      Allow element(s) to show animation effects.
+    contents:
+      - jqui_effect
+      - jqui_show
+      - jqui_hide
+      - jqui_toggle
+      - get_jqui_effects
+  - title: "Class effects"
+    desc:  >
+      Menipulate specified class(es) to matched elements while animating all
+      style changes.
+    contents:
+      - jqui_add_class
+      - jqui_remove_class
+      - jqui_switch_class
+      - jqui_toggle
+  - title: "Others"
+    contents:
+      - includeJqueryUI
+      - jqui_icon

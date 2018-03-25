@@ -266,41 +266,40 @@ operations includes:</p><ul>
 <span class='co'># }</span><span class='co'># NOT RUN {</span>
   <span class='fu'>jqui_draggable</span>(<span class='st'>'#foo'</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>grid</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>80</span>, <span class='fl'>80</span>)))
   <span class='fu'>jqui_droppable</span>(<span class='st'>'.foo'</span>, <span class='kw'>operation</span> <span class='kw'>=</span> <span class='st'>"enable"</span>)
-<span class='co'># }</span># NOT RUN {
-## use shiny input
-if (interactive()) {
-  shinyApp(
-    server = function(input, output) {
-      output$foo <- renderHighchart({
-        hchart(mtcars, "scatter", hcaes(x = cyl, y = mpg))
+<span class='co'># }</span><span class='co'># NOT RUN {</span>
+<span class='co'>## use shiny input</span>
+<span class='kw'>if</span> (<span class='fu'>interactive</span>()) {
+  <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
+    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
+      <span class='no'>output</span>$<span class='no'>foo</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/highcharter/topics/renderHighchart'>renderHighchart</a></span>({
+        <span class='fu'><a href='http://www.rdocumentation.org/packages/highcharter/topics/hchart'>hchart</a></span>(<span class='no'>mtcars</span>, <span class='st'>"scatter"</span>, <span class='fu'><a href='http://www.rdocumentation.org/packages/highcharter/topics/hcaes'>hcaes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>cyl</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>))
       })
-      output$position <- renderPrint({
-        print(input$foo_position)
+      <span class='no'>output</span>$<span class='no'>position</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>({
+        <span class='fu'>print</span>(<span class='no'>input</span>$<span class='no'>foo_position</span>)
       })
-    }
-    ui = fluidPage(
-      verbatimTextOutput('position'),
-      jqui_draggabled(highchartOutput('foo', width = '200px', height = '200px'))
+    },
+    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidPage</a></span>(
+      <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput'>verbatimTextOutput</a></span>(<span class='st'>'position'</span>),
+      <span class='fu'>jqui_draggabled</span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/highcharter/topics/highchartOutput'>highchartOutput</a></span>(<span class='st'>'foo'</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>'200px'</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>'200px'</span>))
     )
   )
 }
 
-## custom shiny input
-func <- JS('function(event, ui){return $(event.target).offset();}')
-options <-  list(
-  shiny = list(
-    abs_position = list(
-      dragcreate = func, # send returned value back to shiny when interaction is created.
-      drag = func # send returned value to shiny when dragging.
+<span class='co'>## custom shiny input</span>
+<span class='no'>func</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/htmlwidgets/topics/JS'>JS</a></span>(<span class='st'>'function(event, ui){return $(event.target).offset();}'</span>)
+<span class='no'>options</span> <span class='kw'>&lt;-</span>  <span class='fu'>list</span>(
+  <span class='kw'>shiny</span> <span class='kw'>=</span> <span class='fu'>list</span>(
+    <span class='kw'>abs_position</span> <span class='kw'>=</span> <span class='fu'>list</span>(
+      <span class='kw'>dragcreate</span> <span class='kw'>=</span> <span class='no'>func</span>, <span class='co'># send returned value back to shiny when interaction is created.</span>
+      <span class='kw'>drag</span> <span class='kw'>=</span> <span class='no'>func</span> <span class='co'># send returned value to shiny when dragging.</span>
     )
   )
 )
-jqui_draggabled(highchartOutput('foo', width = '200px', height = '200px'),
-                options = options)
+<span class='fu'>jqui_draggabled</span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/highcharter/topics/highchartOutput'>highchartOutput</a></span>(<span class='st'>'foo'</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>'200px'</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>'200px'</span>),
+                <span class='kw'>options</span> <span class='kw'>=</span> <span class='no'>options</span>)
 
 
-# }
-</pre>
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

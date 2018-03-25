@@ -1,9 +1,11 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.Rhistory$
+^\.RData$
 ^\.travis\.yml$
 ^README\.Rmd$
 ^examples$
 ^appveyor\.yml$
 ^cran-comments\.md$
 ^docs$
+^_pkgdown\.yml$
