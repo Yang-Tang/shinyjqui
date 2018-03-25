@@ -25,20 +25,16 @@ reference:
       - sortableTabsetPanel
       - sortableTableOutput
       - selectableTableOutput
-  - title: "Animation effects"
+  - title: "Animation and class effects"
     desc: >
-      Allow element(s) to show animation effects.
+      Allow element(s) to show animation effects, or menipulate their class(es)
+      while animating all style changes.
     contents:
       - jqui_effect
       - jqui_show
       - jqui_hide
       - jqui_toggle
       - get_jqui_effects
-  - title: "Class effects"
-    desc:  >
-      Menipulate specified class(es) to matched elements while animating all
-      style changes.
-    contents:
       - jqui_add_class
       - jqui_remove_class
       - jqui_switch_class
