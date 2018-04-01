@@ -76,7 +76,7 @@ selectableTableOutput <- function(outputId, selection_mode = c("row", "cell")) {
   )
 
   jqui_selectable(
-    tag = shiny::tableOutput(outputId),
+    ui = shiny::tableOutput(outputId),
     options = list(
       filter = filter,
       classes = list(`ui-selected` = "ui-state-highlight"),

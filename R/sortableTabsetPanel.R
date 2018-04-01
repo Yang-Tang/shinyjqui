@@ -51,7 +51,7 @@ sortableTabsetPanel <- function(..., id = NULL, selected = NULL,
   shiny_opt <- list(order = list(sortcreate = func, sortupdate = func))
 
   jqui_sortable(
-    tag = shiny::tabsetPanel(
+    ui = shiny::tabsetPanel(
       ..., id = id, selected = selected,
       type = type, position = position
     ),
