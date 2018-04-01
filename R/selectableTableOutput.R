@@ -75,7 +75,7 @@ selectableTableOutput <- function(outputId, selection_mode = c("row", "cell")) {
     row = "tbody tr"
   )
 
-  jqui_selectabled(
+  jqui_selectable(
     tag = shiny::tableOutput(outputId),
     options = list(
       filter = filter,

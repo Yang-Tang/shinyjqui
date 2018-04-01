@@ -20,8 +20,8 @@ func <- JS(
 shiny_opt <- list(order = list(sortcreate = func, sortupdate = func))
 
 ui <- fluidPage(
-  jqui_sortabled(
-    tag = tabsetPanel(
+  jqui_sortable(
+    tabsetPanel(
       id = "tabs",
       tabPanel(title = "A", "AAA"),
       tabPanel(title = "B", "BBB"),

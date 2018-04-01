@@ -72,7 +72,7 @@ orderInput <- function(inputId, label, items,
       )
       if (as_source) {
         options <- list(connectToSortable = connect, helper = "clone", cancel = "")
-        tag <- jqui_draggabled(tag, options = options)
+        tag <- jqui_draggable(tag, options = options)
       }
       return(tag)
     })
@@ -103,7 +103,7 @@ orderInput <- function(inputId, label, items,
         )
       )
     )
-    container <- jqui_sortabled(container, options = options)
+    container <- jqui_sortable(container, options = options)
   }
 
   if (!is.null(placeholder)) {

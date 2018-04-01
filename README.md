@@ -37,7 +37,7 @@ library(highcharter)
 server <- function(input, output) {}
 
 ui <- fluidPage(
-  jqui_draggabled(fileInput('file', 'File'))
+  jqui_draggable(fileInput('file', 'File'))
 )
 
 shinyApp(ui, server)
@@ -55,7 +55,7 @@ server <- function(input, output) {
 }
 
 ui <- fluidPage(
-  jqui_resizabled(plotOutput('gg', width = '200px', height = '200px'))
+  jqui_resizable(plotOutput('gg', width = '200px', height = '200px'))
 )
 
 shinyApp(ui, server)
@@ -79,7 +79,7 @@ server <- function(input, output) {
 }
 
 ui <- fluidPage(
-  jqui_sortabled(div(id = 'plots',
+  jqui_sortable(div(id = 'plots',
                      highchartOutput('hc', width = '200px', height = '200px'),
                      plotOutput('gg', width = '200px', height = '200px')))
 )

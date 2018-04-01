@@ -19,7 +19,7 @@ server <- function(input, output) {
 ui <- function(request) {fluidPage(
   verbatimTextOutput('size'),
   bookmarkButton(),
-  jqui_resizabled(plotOutput('gg', width = '200px', height = '200px'))
+  jqui_resizable(plotOutput('gg', width = '200px', height = '200px'))
 )}
 
 enableBookmarking(store = "url")

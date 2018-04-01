@@ -17,10 +17,8 @@ jqui_switch_class(selector, removeClassName, addClassName, duration = 400,
   easing = "swing", complete = NULL)
 }
 \arguments{
-\item{selector}{The target element(s) to be menipulated. Can be a string of
-\href{https://api.jquery.com/category/selectors/}{jQuery_selector} or a
-\link[htmlwidgets:JS]{JS()} wrapped javascript expression that returns a
-\href{http://api.jquery.com/Types/#jQuery}{jQuery object}.}
+\item{selector}{Deprecated, just keep for backward compatibility.
+Please use \code{ui} and \code{operation} parameters instead.}
 
 \item{className}{One or more class names (space separated) to be added to or
 removed from the class attribute of each matched element.}

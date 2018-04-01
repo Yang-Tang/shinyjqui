@@ -23,7 +23,7 @@ draggableModalDialog <- function(..., title = NULL,
     shiny::div(
       class = "modal-dialog",
       class = switch(size, s = "modal-sm", m = NULL, l = "modal-lg"),
-      jqui_draggabled(shiny::div(
+      jqui_draggable(shiny::div(
         class = "modal-content",
         if (!is.null(title)) {
           shiny::div(

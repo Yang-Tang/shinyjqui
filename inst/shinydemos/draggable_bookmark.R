@@ -19,7 +19,7 @@ server <- function(input, output) {
 ui <- function(request) {fluidPage(
   verbatimTextOutput('position'),
   bookmarkButton(),
-  jqui_draggabled(plotOutput('gg', width = '200px', height = '200px'))
+  jqui_draggable(plotOutput('gg', width = '200px', height = '200px'))
 )}
 
 enableBookmarking(store = "url")

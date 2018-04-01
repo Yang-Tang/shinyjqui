@@ -27,7 +27,7 @@ ui <- fluidPage(
   actionButton('save', "Save"),
   actionButton("load", "Load"),
   # plotOutput('gg', width = '200px', height = '200px')
-  jqui_draggabled(plotOutput('gg', width = '200px', height = '200px'))
+  jqui_draggable(plotOutput('gg', width = '200px', height = '200px'))
 )
 
 shinyApp(ui, server)

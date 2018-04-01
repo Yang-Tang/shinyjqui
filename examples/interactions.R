@@ -2,10 +2,10 @@ library(shiny)
 library(highcharter)
 
 ## used in ui
-jqui_resizabled(actionButton('btn', 'Button'))
-jqui_draggabled(plotOutput('plot', width = '400px', height = '400px'),
+jqui_resizable(actionButton('btn', 'Button'))
+jqui_draggable(plotOutput('plot', width = '400px', height = '400px'),
                 options = list(axis = 'x'))
-jqui_selectabled(
+jqui_selectable(
   div(
     id = 'sel_plots',
     highchartOutput('highchart', width = '300px'),
@@ -15,7 +15,7 @@ jqui_selectabled(
     classes = list(`ui-selected` = 'ui-state-highlight')
   )
 )
-jqui_sortabled(tags$ul(
+jqui_sortable(tags$ul(
   id = 'lst',
   tags$li('A'),
   tags$li('B'),
@@ -41,7 +41,7 @@ if (interactive()) {
     },
     ui = fluidPage(
       verbatimTextOutput('position'),
-      jqui_draggabled(highchartOutput('foo', width = '200px', height = '200px'))
+      jqui_draggable(highchartOutput('foo', width = '200px', height = '200px'))
     )
   )
 }
@@ -56,7 +56,7 @@ options <-  list(
     )
   )
 )
-jqui_draggabled(highchartOutput('foo', width = '200px', height = '200px'),
+jqui_draggable(highchartOutput('foo', width = '200px', height = '200px'),
                 options = options)
 
 

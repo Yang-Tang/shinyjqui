@@ -80,59 +80,59 @@ ui <- fluidPage(
 
     tabPanel(
       title = 'shiny inputs',
-      jqui_resizabled(actionButton('btn', 'Button')),
-      jqui_resizabled(checkboxGroupInput('chbox', 'Checkbox',
+      jqui_resizable(actionButton('btn', 'Button')),
+      jqui_resizable(checkboxGroupInput('chbox', 'Checkbox',
                                          choices = month.name, inline = TRUE,
                                          width = '200px'),
                       options = list(handles = 'e')),
-      jqui_resizabled(dateRangeInput('date', 'Date range'),
+      jqui_resizable(dateRangeInput('date', 'Date range'),
                       options = list(handles = 'e')),
-      jqui_resizabled(fileInput('file', 'File input'),
+      jqui_resizable(fileInput('file', 'File input'),
                       options = list(handles = 'e')),
-      jqui_resizabled(numericInput('num', 'Numeric input', value = 1),
+      jqui_resizable(numericInput('num', 'Numeric input', value = 1),
                       options = list(handles = 'e')),
-      jqui_resizabled(radioButtons('radio', 'Radio input',
+      jqui_resizable(radioButtons('radio', 'Radio input',
                                    choices = month.name, inline = TRUE,
                                    width = '200px'),
                       options = list(handles = 'e')),
-      jqui_resizabled(selectInput('select', 'Select input',
+      jqui_resizable(selectInput('select', 'Select input',
                                    choices = month.name),
                       options = list(handles = 'e')),
-      jqui_resizabled(sliderInput('slider', 'Slider input',
+      jqui_resizable(sliderInput('slider', 'Slider input',
                                   min = 1, max = 100, value = 50),
                       options = list(handles = 'e')),
-      jqui_resizabled(textInput('tex', 'Text input', value = 'text'),
+      jqui_resizable(textInput('tex', 'Text input', value = 'text'),
                       options = list(handles = 'e'))
     ),
 
     tabPanel(
       title = 'text output',
-      jqui_resizabled(textOutput('text'))
+      jqui_resizable(textOutput('text'))
     ),
 
     tabPanel(
       title = 'ui output',
-      jqui_resizabled(uiOutput('ui'))
+      jqui_resizable(uiOutput('ui'))
     ),
 
     tabPanel(
       title = 'ggplot',
-      jqui_resizabled(plotOutput('gg'))
+      jqui_resizable(plotOutput('gg'))
     ),
 
     tabPanel(
       title = 'd3heatmap',
-      jqui_resizabled(d3heatmapOutput('d3'))
+      jqui_resizable(d3heatmapOutput('d3'))
     ),
 
     tabPanel(
       title = 'highchart',
-      jqui_resizabled(highchartOutput('hc'))
+      jqui_resizable(highchartOutput('hc'))
     ),
 
     tabPanel(
       title = 'plotly',
-      jqui_resizabled(plotlyOutput('pl'))
+      jqui_resizable(plotlyOutput('pl'))
     )
 
   )

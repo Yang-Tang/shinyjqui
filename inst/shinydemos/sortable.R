@@ -65,7 +65,7 @@ ui <- fluidPage(
 
   # includeJqueryUI(),
 
-  jqui_sortabled(tags$ul(
+  jqui_sortable(tags$ul(
     id = 'lst',
     tags$li('A'),
     tags$li('B'),
@@ -88,7 +88,7 @@ ui <- fluidPage(
   verbatimTextOutput('order_tabs'),
   hr(),
 
-  jqui_sortabled(
+  jqui_sortable(
     div(
       id = 'plots',
       highchartOutput('highchart', width = '300px'),

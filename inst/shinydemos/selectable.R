@@ -28,7 +28,7 @@ ui <- fluidPage(
 
   # includeJqueryUI(),
 
-  jqui_selectabled(tags$ul(id = 'sel_lst',
+  jqui_selectable(tags$ul(id = 'sel_lst',
                       tags$li('a'),
                       tags$li('b'),
                       tags$li('c'),
@@ -39,7 +39,7 @@ ui <- fluidPage(
   ),
   verbatimTextOutput('lst_selected'),
 
-  jqui_selectabled(
+  jqui_selectable(
     div(
       id = 'sel_plots',
       highchartOutput('highchart', width = '300px'),

@@ -46,7 +46,7 @@ ui <- fluidPage(
   actionButton("save", "Save position"),
   actionButton("restore", "Restore position"),
   # create a draggable textInput
-  jqui_draggabled(textInput("foo", "Textinput"))
+  jqui_draggable(textInput("foo", "Textinput"))
 )
 
 server <- function(input, output) {
@@ -94,7 +94,7 @@ In addition to the client-side mode, cross-session save/retore is also supported
 ui <- function(request) {
   fluidPage(
     bookmarkButton(),
-    jqui_resizabled(plotOutput('gg', width = '200px', height = '200px'))
+    jqui_resizable(plotOutput('gg', width = '200px', height = '200px'))
   )
 }
 

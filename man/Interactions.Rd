@@ -2,70 +2,67 @@
 % Please edit documentation in R/interactions.R
 \name{Interactions}
 \alias{Interactions}
-\alias{jqui_resizabled}
-\alias{jqui_sortabled}
 \alias{jqui_draggabled}
 \alias{jqui_droppabled}
+\alias{jqui_resizabled}
 \alias{jqui_selectabled}
-\alias{jqui_sortable}
+\alias{jqui_sortabled}
 \alias{jqui_draggable}
 \alias{jqui_droppable}
-\alias{jqui_selectable}
 \alias{jqui_resizable}
+\alias{jqui_selectable}
+\alias{jqui_sortable}
 \title{Mouse interactions}
 \usage{
-jqui_resizabled(tag, options = NULL)
-
-jqui_sortabled(tag, options = NULL)
-
 jqui_draggabled(tag, options = NULL)
 
 jqui_droppabled(tag, options = NULL)
 
+jqui_resizabled(tag, options = NULL)
+
 jqui_selectabled(tag, options = NULL)
 
-jqui_sortable(selector, operation = c("enable", "disable", "destroy", "save",
-  "load"), options = NULL, switch = NULL)
+jqui_sortabled(tag, options = NULL)
 
-jqui_draggable(selector, operation = c("enable", "disable", "destroy", "save",
-  "load"), options = NULL, switch = NULL)
+jqui_draggable(ui, operation = c("enable", "disable", "destroy", "save",
+  "load"), options = NULL, selector = NULL, switch = NULL)
 
-jqui_droppable(selector, operation = c("enable", "disable", "destroy", "save",
-  "load"), options = NULL, switch = NULL)
+jqui_droppable(ui, operation = c("enable", "disable", "destroy", "save",
+  "load"), options = NULL, selector = NULL, switch = NULL)
 
-jqui_selectable(selector, operation = c("enable", "disable", "destroy",
-  "save", "load"), options = NULL, switch = NULL)
+jqui_resizable(ui, operation = c("enable", "disable", "destroy", "save",
+  "load"), options = NULL, selector = NULL, switch = NULL)
 
-jqui_resizable(selector, operation = c("enable", "disable", "destroy", "save",
-  "load"), options = NULL, switch = NULL)
+jqui_selectable(ui, operation = c("enable", "disable", "destroy", "save",
+  "load"), options = NULL, selector = NULL, switch = NULL)
+
+jqui_sortable(ui, operation = c("enable", "disable", "destroy", "save",
+  "load"), options = NULL, selector = NULL, switch = NULL)
 }
 \arguments{
-\item{tag}{A shiny tag object to attach mouse interactions to.}
-
 \item{options}{A list of
 \href{http://api.jqueryui.com/category/interactions/}{interaction_specific_options}.
 Ignored when \code{operation} is set as \code{destroy}. This parameter also
 accept a \code{shiny} option that controls the shiny input value returned from
 the element. See Details.}
 
-\item{selector}{The target element(s) to be menipulated. Can be a string of
-\href{https://api.jquery.com/category/selectors/}{jQuery_selector} or a
-\link[htmlwidgets:JS]{JS()} wrapped javascript expression that returns a
-\href{http://api.jquery.com/Types/#jQuery}{jQuery object}.}
+\item{ui}{The target ui element(s) to be menipulated. Can be
+\itemize{
+\item A \code{shiny.tag} or \code{shiny.tag.list} object
+\item A string of \href{https://api.jquery.com/category/selectors/}{jQuery_selector}
+\item A \link[htmlwidgets:JS]{JS()} wrapped javascript expression that returns a
+\href{http://api.jquery.com/Types/#jQuery}{jQuery object}.
+}}
 
 \item{operation}{A string to determine how to menipulate the mosue interaction.
-Should be one of \code{enable}, \code{disable}, \code{destroy}, \code{save} and \code{load}. See
-Details.}
+Should be one of \code{enable}, \code{disable}, \code{destroy}, \code{save} and \code{load}. Ignored
+when \code{ui} is a \code{shiny.tag} or \code{shiny.tag.list} object. See Details.}
 
-\item{switch}{Deprecated, just keep for backward compatibility. Please use
-\code{operation} instead.}
+\item{selector, tag, switch}{Deprecated, just keep for backward compatibility.
+Please use \code{ui} and \code{operation} parameters instead.}
 }
 \value{
-\code{jqui_draggabled()}, \code{jqui_droppabled()}, \code{jqui_resizabled()},
-\code{jqui_selectabled()} and \code{jqui_sortabled()} returns a modified shiny tag
-object with mouse interactions attached. \code{jqui_draggable()},
-\code{jqui_droppable()}, \code{jqui_resizable()}, \code{jqui_selectable()} and
-\code{jqui_sortable()} return their first parameter \code{selector}.
+The same object passed in the \code{ui} parameter
 }
 \description{
 Attach mouse-based interactions to shiny html tags and input/output widgets,
@@ -84,16 +81,20 @@ or grid using the mouse.
 }
 }
 \details{
-The functions \code{jqui_draggabled()}, \code{jqui_droppabled()}, \code{jqui_resizabled()},
-\code{jqui_selectabled()} and \code{jqui_sortabled()} are used to attach mouse
-interactions to a given shiny html widget (defined by \code{tag} parameter) and
-therefore should be used in \code{ui} of a shiny app.
+The first parameter \code{ui} determines the target shiny ui element(s) to work
+with. It accepts objects with different classes. When you provide a
+\code{shiny.tag} (e.g., shiny inputs/outputs or ui created by \link[shiny:tags]{shiny::tags}) or a
+\code{shiny.tag.list} (by \link[shiny:tagList]{tagList()}) object, the functions return the same
+ui object with interaction effects attached. When a
+\href{https://api.jquery.com/category/selectors/}{jQuery_selector} or a javascript
+expression is provided, the functions first use it to locate the target ui
+element(s) in shiny app, and then attach or manipulate the interactions.
+Therefore, you can use the first way in \code{ui} of a shiny app to created
+elements with interaction effects, or use the second way in \code{server} to
+manipulate the interactions.
 
-The functions \code{jqui_draggable()}, \code{jqui_droppable()}, \code{jqui_resizable()},
-\code{jqui_selectable()} and \code{jqui_sortable()} should be used in \code{server} of a
-shiny app. They locate the target element(s) in shiny (by \code{selector}
-parameter) and manipulate their mouse interactions. The currently supported
-operations includes:
+The \code{operation} parameter is valid only in the second way. It determines how
+to manipulate the interaction, which includes:
 \itemize{
 \item \code{enable}: Attach the corresponding mouse interaction to the target(s).
 \item \code{disable}: Attach the interaction if not and disable it at once (only set the options).
@@ -105,19 +106,23 @@ operations includes:
 With mouse interactions attached, the cosrresponding interaction states, e.g.
 \code{position} of draggable, \code{size} of resizable, \code{selected} of selectable and
 \code{order} of sortable, will be send to server in the form of
-\code{input$<id>_<state>}. This default settings can be overriden by setting the
+\code{input$<id>_<state>}. The default values can be overriden by setting the
 \code{shiny} option in the \code{options} parameter. Please see the vignette
 \code{Introduction to shinyjqui} for more details.
+
+The functions \code{jqui_draggabled()}, \code{jqui_droppabled()}, \code{jqui_resizabled()},
+\code{jqui_selectabled()} and \code{jqui_sortabled()} are deprecated. Please use the
+corresponding \code{-able()} functions instead.
 }
 \examples{
 library(shiny)
 library(highcharter)
 
 ## used in ui
-jqui_resizabled(actionButton('btn', 'Button'))
-jqui_draggabled(plotOutput('plot', width = '400px', height = '400px'),
+jqui_resizable(actionButton('btn', 'Button'))
+jqui_draggable(plotOutput('plot', width = '400px', height = '400px'),
                 options = list(axis = 'x'))
-jqui_selectabled(
+jqui_selectable(
   div(
     id = 'sel_plots',
     highchartOutput('highchart', width = '300px'),
@@ -127,7 +132,7 @@ jqui_selectabled(
     classes = list(`ui-selected` = 'ui-state-highlight')
   )
 )
-jqui_sortabled(tags$ul(
+jqui_sortable(tags$ul(
   id = 'lst',
   tags$li('A'),
   tags$li('B'),
@@ -153,7 +158,7 @@ if (interactive()) {
     },
     ui = fluidPage(
       verbatimTextOutput('position'),
-      jqui_draggabled(highchartOutput('foo', width = '200px', height = '200px'))
+      jqui_draggable(highchartOutput('foo', width = '200px', height = '200px'))
     )
   )
 }
@@ -168,7 +173,7 @@ options <-  list(
     )
   )
 )
-jqui_draggabled(highchartOutput('foo', width = '200px', height = '200px'),
+jqui_draggable(highchartOutput('foo', width = '200px', height = '200px'),
                 options = options)
 
 

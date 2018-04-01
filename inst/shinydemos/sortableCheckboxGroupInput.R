@@ -14,8 +14,8 @@ func <- JS(
 shiny_opt <- list(order = list(sortcreate = func, sortupdate = func))
 
 ui <- fluidPage(
-  jqui_sortabled(
-    tag     = checkboxGroupInput("test", "SortableCheckboxGroupInput",
+  jqui_sortable(
+    checkboxGroupInput("test", "SortableCheckboxGroupInput",
                                  choices = month.abb),
     options = list(items = ".checkbox", shiny = shiny_opt)
   ),

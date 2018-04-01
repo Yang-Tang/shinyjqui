@@ -121,7 +121,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {}
 
 ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
-  <span class="kw"><a href="reference/Interactions.html">jqui_draggabled</a></span>(<span class="kw">fileInput</span>(<span class="st">'file'</span>, <span class="st">'File'</span>))
+  <span class="kw"><a href="reference/Interactions.html">jqui_draggable</a></span>(<span class="kw">fileInput</span>(<span class="st">'file'</span>, <span class="st">'File'</span>))
 )
 
 <span class="kw">shinyApp</span>(ui, server)</code></pre></div>
@@ -139,7 +139,7 @@ ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
 }
 
 ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
-  <span class="kw"><a href="reference/Interactions.html">jqui_resizabled</a></span>(<span class="kw">plotOutput</span>(<span class="st">'gg'</span>, <span class="dt">width =</span> <span class="st">'200px'</span>, <span class="dt">height =</span> <span class="st">'200px'</span>))
+  <span class="kw"><a href="reference/Interactions.html">jqui_resizable</a></span>(<span class="kw">plotOutput</span>(<span class="st">'gg'</span>, <span class="dt">width =</span> <span class="st">'200px'</span>, <span class="dt">height =</span> <span class="st">'200px'</span>))
 )
 
 <span class="kw">shinyApp</span>(ui, server)</code></pre></div>
@@ -163,7 +163,7 @@ ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
 }
 
 ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
-  <span class="kw"><a href="reference/Interactions.html">jqui_sortabled</a></span>(<span class="kw">div</span>(<span class="dt">id =</span> <span class="st">'plots'</span>,
+  <span class="kw"><a href="reference/Interactions.html">jqui_sortable</a></span>(<span class="kw">div</span>(<span class="dt">id =</span> <span class="st">'plots'</span>,
                      <span class="kw">highchartOutput</span>(<span class="st">'hc'</span>, <span class="dt">width =</span> <span class="st">'200px'</span>, <span class="dt">height =</span> <span class="st">'200px'</span>),
                      <span class="kw">plotOutput</span>(<span class="st">'gg'</span>, <span class="dt">width =</span> <span class="st">'200px'</span>, <span class="dt">height =</span> <span class="st">'200px'</span>)))
 )

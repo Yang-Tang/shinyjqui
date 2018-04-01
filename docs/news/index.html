@@ -121,6 +121,8 @@
 <li>
 <strong>New feature:</strong> Introduce <code>save</code> and <code>load</code> operations to mouse-interaction attached html elements. This enabled client-side store and restore the elements’ states (eg. position, size, selection and order). (<a href='https://github.com/yang-tang/shinyjqui/issues/16'>#16</a>)</li>
 <li>
+<strong>New feature:</strong> The <code>-able</code> functions can be used in both shiny <code>server</code> and <code>ui</code>, and therefore, the <code>-abled</code> functions are deprecated.</li>
+<li>
 <strong>New feature:</strong> Adds shiny bookmark supporting to mouse-interaction attached html elements. This enabled server-side or across-client store and restore the elements’ states (eg. position, size, selection and order). (<a href='https://github.com/yang-tang/shinyjqui/issues/12'>#12</a>)</li>
 <li>
 <strong>New feature:</strong> Now, all interaction functions’ <code>selector</code> argument accepts <code><a href="http://www.rdocumentation.org/packages/htmlwidgets/topics/JS">JS()</a></code> wrapped javascript expression. This made the target element selection more flexible.</li>
@@ -130,9 +132,12 @@
 <strong>Breaking change:</strong> The <code>switch</code> argument in mouse-interaction functions was replaced with <code>operation</code> argument to support more options.</li>
 <li>
 <strong>Breaking change:</strong> The shiny input values <code>selected</code> from selectable and <code>order</code> from sortable now return elements’ <code>innerText</code> instead of <code>innerHTML</code>.</li>
-<li>Fix a bug that the mouse interaction function <code>-abled()</code> doesn’t work when the same element is inserted again. (<a href='https://github.com/yang-tang/shinyjqui/issues/6'>#6</a>, <a href='https://github.com/yang-tang/shinyjqui/issues/8'>#8</a>)</li>
-<li>Fix a bug that resizable interfere other interactions when the target element is a shiny output. (<a href='https://github.com/yang-tang/shinyjqui/issues/10'>#10</a>)</li>
-<li>Add <code>htmlDependency</code> to <code><a href="../reference/jqui_icon.html">jqui_icon()</a></code> to make it work in version 0.2.0 and above.</li>
+<li>
+<strong>Bug fix:</strong> The mouse interaction function doesn’t work when the same element is inserted again. (<a href='https://github.com/yang-tang/shinyjqui/issues/6'>#6</a>, <a href='https://github.com/yang-tang/shinyjqui/issues/8'>#8</a>)</li>
+<li>
+<strong>Bug fix:</strong> Resizable interferes with other interactions when the target element is a shiny output. (<a href='https://github.com/yang-tang/shinyjqui/issues/10'>#10</a>)</li>
+<li>
+<strong>Bug fix:</strong> Add <code>htmlDependency</code> to <code><a href="../reference/jqui_icon.html">jqui_icon()</a></code> to make it work in version 0.2.0 and above.</li>
 </ul>
 </div>
     <div id="shinyjqui-0-2-0" class="section level2">

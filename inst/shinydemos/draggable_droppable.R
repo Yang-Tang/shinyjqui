@@ -36,21 +36,21 @@ ui <- fluidPage(
     column(
       width = 3,
 
-      jqui_draggabled(div(id = 'drg_div', 'Div', style = 'width:100px; height:100px; background-color:#79BBF2')),
-      jqui_draggabled(div('No id Div', style = 'width:100px; height:100px; background-color:#79BBF2')),
-      jqui_draggabled(actionButton('drg_btn', 'Button'), options = list(cancel = '')),
-      jqui_draggabled(textInput('drg_input', 'Input')),
-      jqui_draggabled(selectInput('drg_sel', 'Select', choices = month.abb)),
-      jqui_draggabled(checkboxGroupInput('drg_chbox', 'Checkbox', choices = month.abb)),
-      jqui_draggabled(dateRangeInput('drg_date', 'Daterange')),
-      jqui_draggabled(fileInput('drg_file', 'File')),
-      jqui_draggabled(sliderInput('drg_slider', 'Slider', 1, 100, 1), options = list(grid = c(80, 80))),
-      jqui_draggabled(textAreaInput('drg_textarea', 'Textarea')),
-      jqui_draggabled(plotOutput('gg', width = '400px', height = '400px'))
+      jqui_draggable(div(id = 'drg_div', 'Div', style = 'width:100px; height:100px; background-color:#79BBF2')),
+      jqui_draggable(div('No id Div', style = 'width:100px; height:100px; background-color:#79BBF2')),
+      jqui_draggable(actionButton('drg_btn', 'Button'), options = list(cancel = '')),
+      jqui_draggable(textInput('drg_input', 'Input')),
+      jqui_draggable(selectInput('drg_sel', 'Select', choices = month.abb)),
+      jqui_draggable(checkboxGroupInput('drg_chbox', 'Checkbox', choices = month.abb)),
+      jqui_draggable(dateRangeInput('drg_date', 'Daterange')),
+      jqui_draggable(fileInput('drg_file', 'File')),
+      jqui_draggable(sliderInput('drg_slider', 'Slider', 1, 100, 1), options = list(grid = c(80, 80))),
+      jqui_draggable(textAreaInput('drg_textarea', 'Textarea')),
+      jqui_draggable(plotOutput('gg', width = '400px', height = '400px'))
 
     ),
 
-    jqui_droppabled(column(
+    jqui_droppable(column(
       width = 9,
       style = 'height: 800px; z-index: -10; border: 1px dashed; border-radius: 10px;',
       id = 'drop_area',

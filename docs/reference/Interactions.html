@@ -143,38 +143,34 @@ or grid using the mouse.</p></li>
 </ul>
     
 
-    <pre class="usage"><span class='fu'>jqui_resizabled</span>(<span class='no'>tag</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-
-<span class='fu'>jqui_sortabled</span>(<span class='no'>tag</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-
-<span class='fu'>jqui_draggabled</span>(<span class='no'>tag</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>jqui_draggabled</span>(<span class='no'>tag</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='fu'>jqui_droppabled</span>(<span class='no'>tag</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
+<span class='fu'>jqui_resizabled</span>(<span class='no'>tag</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
 <span class='fu'>jqui_selectabled</span>(<span class='no'>tag</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>jqui_sortable</span>(<span class='no'>selector</span>, <span class='kw'>operation</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"enable"</span>, <span class='st'>"disable"</span>, <span class='st'>"destroy"</span>, <span class='st'>"save"</span>,
-  <span class='st'>"load"</span>), <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>switch</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>jqui_sortabled</span>(<span class='no'>tag</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>jqui_draggable</span>(<span class='no'>selector</span>, <span class='kw'>operation</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"enable"</span>, <span class='st'>"disable"</span>, <span class='st'>"destroy"</span>, <span class='st'>"save"</span>,
-  <span class='st'>"load"</span>), <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>switch</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>jqui_draggable</span>(<span class='no'>ui</span>, <span class='kw'>operation</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"enable"</span>, <span class='st'>"disable"</span>, <span class='st'>"destroy"</span>, <span class='st'>"save"</span>,
+  <span class='st'>"load"</span>), <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>selector</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>switch</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>jqui_droppable</span>(<span class='no'>selector</span>, <span class='kw'>operation</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"enable"</span>, <span class='st'>"disable"</span>, <span class='st'>"destroy"</span>, <span class='st'>"save"</span>,
-  <span class='st'>"load"</span>), <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>switch</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>jqui_droppable</span>(<span class='no'>ui</span>, <span class='kw'>operation</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"enable"</span>, <span class='st'>"disable"</span>, <span class='st'>"destroy"</span>, <span class='st'>"save"</span>,
+  <span class='st'>"load"</span>), <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>selector</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>switch</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>jqui_selectable</span>(<span class='no'>selector</span>, <span class='kw'>operation</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"enable"</span>, <span class='st'>"disable"</span>, <span class='st'>"destroy"</span>,
-  <span class='st'>"save"</span>, <span class='st'>"load"</span>), <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>switch</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>jqui_resizable</span>(<span class='no'>ui</span>, <span class='kw'>operation</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"enable"</span>, <span class='st'>"disable"</span>, <span class='st'>"destroy"</span>, <span class='st'>"save"</span>,
+  <span class='st'>"load"</span>), <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>selector</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>switch</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>jqui_resizable</span>(<span class='no'>selector</span>, <span class='kw'>operation</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"enable"</span>, <span class='st'>"disable"</span>, <span class='st'>"destroy"</span>, <span class='st'>"save"</span>,
-  <span class='st'>"load"</span>), <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>switch</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>jqui_selectable</span>(<span class='no'>ui</span>, <span class='kw'>operation</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"enable"</span>, <span class='st'>"disable"</span>, <span class='st'>"destroy"</span>, <span class='st'>"save"</span>,
+  <span class='st'>"load"</span>), <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>selector</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>switch</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>jqui_sortable</span>(<span class='no'>ui</span>, <span class='kw'>operation</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"enable"</span>, <span class='st'>"disable"</span>, <span class='st'>"destroy"</span>, <span class='st'>"save"</span>,
+  <span class='st'>"load"</span>), <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>selector</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>switch</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>tag</th>
-      <td><p>A shiny tag object to attach mouse interactions to.</p></td>
-    </tr>
     <tr>
       <th>options</th>
       <td><p>A list of
@@ -184,44 +180,46 @@ accept a <code>shiny</code> option that controls the shiny input value returned 
 the element. See Details.</p></td>
     </tr>
     <tr>
-      <th>selector</th>
-      <td><p>The target element(s) to be menipulated. Can be a string of
-<a href='https://api.jquery.com/category/selectors/'>jQuery_selector</a> or a
-<a href='http://www.rdocumentation.org/packages/htmlwidgets/topics/JS'>JS()</a> wrapped javascript expression that returns a
-<a href='http://api.jquery.com/Types/#jQuery'>jQuery object</a>.</p></td>
+      <th>ui</th>
+      <td><p>The target ui element(s) to be menipulated. Can be</p><ul>
+<li><p>A <code>shiny.tag</code> or <code>shiny.tag.list</code> object</p></li>
+<li><p>A string of <a href='https://api.jquery.com/category/selectors/'>jQuery_selector</a></p></li>
+<li><p>A <a href='http://www.rdocumentation.org/packages/htmlwidgets/topics/JS'>JS()</a> wrapped javascript expression that returns a
+<a href='http://api.jquery.com/Types/#jQuery'>jQuery object</a>.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>operation</th>
       <td><p>A string to determine how to menipulate the mosue interaction.
-Should be one of <code>enable</code>, <code>disable</code>, <code>destroy</code>, <code>save</code> and <code>load</code>. See
-Details.</p></td>
+Should be one of <code>enable</code>, <code>disable</code>, <code>destroy</code>, <code>save</code> and <code>load</code>. Ignored
+when <code>ui</code> is a <code>shiny.tag</code> or <code>shiny.tag.list</code> object. See Details.</p></td>
     </tr>
     <tr>
-      <th>switch</th>
-      <td><p>Deprecated, just keep for backward compatibility. Please use
-<code>operation</code> instead.</p></td>
+      <th>selector, tag, switch</th>
+      <td><p>Deprecated, just keep for backward compatibility.
+Please use <code>ui</code> and <code>operation</code> parameters instead.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>jqui_draggabled()</code>, <code>jqui_droppabled()</code>, <code>jqui_resizabled()</code>,
-<code>jqui_selectabled()</code> and <code>jqui_sortabled()</code> returns a modified shiny tag
-object with mouse interactions attached. <code>jqui_draggable()</code>,
-<code>jqui_droppable()</code>, <code>jqui_resizable()</code>, <code>jqui_selectable()</code> and
-<code>jqui_sortable()</code> return their first parameter <code>selector</code>.</p>
+    <p>The same object passed in the <code>ui</code> parameter</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The functions <code>jqui_draggabled()</code>, <code>jqui_droppabled()</code>, <code>jqui_resizabled()</code>,
-<code>jqui_selectabled()</code> and <code>jqui_sortabled()</code> are used to attach mouse
-interactions to a given shiny html widget (defined by <code>tag</code> parameter) and
-therefore should be used in <code>ui</code> of a shiny app.</p>
-<p>The functions <code>jqui_draggable()</code>, <code>jqui_droppable()</code>, <code>jqui_resizable()</code>,
-<code>jqui_selectable()</code> and <code>jqui_sortable()</code> should be used in <code>server</code> of a
-shiny app. They locate the target element(s) in shiny (by <code>selector</code>
-parameter) and manipulate their mouse interactions. The currently supported
-operations includes:</p><ul>
+    <p>The first parameter <code>ui</code> determines the target shiny ui element(s) to work
+with. It accepts objects with different classes. When you provide a
+<code>shiny.tag</code> (e.g., shiny inputs/outputs or ui created by <a href='http://www.rdocumentation.org/packages/shiny/topics/builder'>shiny::tags</a>) or a
+<code>shiny.tag.list</code> (by <a href='http://www.rdocumentation.org/packages/shiny/topics/tag'>tagList()</a>) object, the functions return the same
+ui object with interaction effects attached. When a
+<a href='https://api.jquery.com/category/selectors/'>jQuery_selector</a> or a javascript
+expression is provided, the functions first use it to locate the target ui
+element(s) in shiny app, and then attach or manipulate the interactions.
+Therefore, you can use the first way in <code>ui</code> of a shiny app to created
+elements with interaction effects, or use the second way in <code>server</code> to
+manipulate the interactions.</p>
+<p>The <code>operation</code> parameter is valid only in the second way. It determines how
+to manipulate the interaction, which includes:</p><ul>
 <li><p><code>enable</code>: Attach the corresponding mouse interaction to the target(s).</p></li>
 <li><p><code>disable</code>: Attach the interaction if not and disable it at once (only set the options).</p></li>
 <li><p><code>destory</code>: Destroy the interaction.</p></li>
@@ -231,9 +229,12 @@ operations includes:</p><ul>
     <p>With mouse interactions attached, the cosrresponding interaction states, e.g.
 <code>position</code> of draggable, <code>size</code> of resizable, <code>selected</code> of selectable and
 <code>order</code> of sortable, will be send to server in the form of
-<code>input$&lt;id&gt;_&lt;state&gt;</code>. This default settings can be overriden by setting the
+<code>input$&lt;id&gt;_&lt;state&gt;</code>. The default values can be overriden by setting the
 <code>shiny</code> option in the <code>options</code> parameter. Please see the vignette
 <code>Introduction to shinyjqui</code> for more details.</p>
+<p>The functions <code>jqui_draggabled()</code>, <code>jqui_droppabled()</code>, <code>jqui_resizabled()</code>,
+<code>jqui_selectabled()</code> and <code>jqui_sortabled()</code> are deprecated. Please use the
+corresponding <code>-able()</code> functions instead.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -242,10 +243,10 @@ operations includes:</p><ul>
 <span class='fu'>library</span>(<span class='no'>highcharter</span>)
 
 <span class='co'>## used in ui</span>
-<span class='fu'>jqui_resizabled</span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='st'>'btn'</span>, <span class='st'>'Button'</span>))
-<span class='fu'>jqui_draggabled</span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/plotOutput'>plotOutput</a></span>(<span class='st'>'plot'</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>'400px'</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>'400px'</span>),
+<span class='fu'>jqui_resizable</span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='st'>'btn'</span>, <span class='st'>'Button'</span>))
+<span class='fu'>jqui_draggable</span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/plotOutput'>plotOutput</a></span>(<span class='st'>'plot'</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>'400px'</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>'400px'</span>),
                 <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>axis</span> <span class='kw'>=</span> <span class='st'>'x'</span>))
-<span class='fu'>jqui_selectabled</span>(
+<span class='fu'>jqui_selectable</span>(
   <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/builder'>div</a></span>(
     <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'sel_plots'</span>,
     <span class='fu'><a href='http://www.rdocumentation.org/packages/highcharter/topics/highchartOutput'>highchartOutput</a></span>(<span class='st'>'highchart'</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>'300px'</span>),
@@ -255,7 +256,7 @@ operations includes:</p><ul>
     <span class='kw'>classes</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>`ui-selected`</span> <span class='kw'>=</span> <span class='st'>'ui-state-highlight'</span>)
   )
 )
-<span class='fu'>jqui_sortabled</span>(<span class='no'>tags</span>$<span class='fu'>ul</span>(
+<span class='fu'>jqui_sortable</span>(<span class='no'>tags</span>$<span class='fu'>ul</span>(
   <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'lst'</span>,
   <span class='no'>tags</span>$<span class='fu'>li</span>(<span class='st'>'A'</span>),
   <span class='no'>tags</span>$<span class='fu'>li</span>(<span class='st'>'B'</span>),
@@ -280,7 +281,7 @@ operations includes:</p><ul>
     },
     <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidPage</a></span>(
       <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput'>verbatimTextOutput</a></span>(<span class='st'>'position'</span>),
-      <span class='fu'>jqui_draggabled</span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/highcharter/topics/highchartOutput'>highchartOutput</a></span>(<span class='st'>'foo'</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>'200px'</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>'200px'</span>))
+      <span class='fu'>jqui_draggable</span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/highcharter/topics/highchartOutput'>highchartOutput</a></span>(<span class='st'>'foo'</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>'200px'</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>'200px'</span>))
     )
   )
 }
@@ -295,7 +296,7 @@ operations includes:</p><ul>
     )
   )
 )
-<span class='fu'>jqui_draggabled</span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/highcharter/topics/highchartOutput'>highchartOutput</a></span>(<span class='st'>'foo'</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>'200px'</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>'200px'</span>),
+<span class='fu'>jqui_draggable</span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/highcharter/topics/highchartOutput'>highchartOutput</a></span>(<span class='st'>'foo'</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>'200px'</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>'200px'</span>),
                 <span class='kw'>options</span> <span class='kw'>=</span> <span class='no'>options</span>)
 
 

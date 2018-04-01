@@ -14,8 +14,8 @@ func <- JS(
 shiny_opt <- list(order = list(sortcreate = func, sortupdate = func))
 
 ui <- fluidPage(
-  jqui_sortabled(
-    tag     = radioButtons("test", "SortableRadioButtons",
+  jqui_sortable(
+    radioButtons("test", "SortableRadioButtons",
                                  choices = month.abb),
     options = list(items = ".radio", shiny = shiny_opt)
   ),

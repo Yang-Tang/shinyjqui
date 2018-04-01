@@ -11,8 +11,8 @@ server <- function(input, output) {
 }
 ui <- fluidPage(
   verbatimTextOutput('position'),
-  jqui_resizabled(jqui_draggabled(highchartOutput('foo', width = '800px', height = '800px')))
-  # jqui_draggabled(jqui_resizabled(highchartOutput('foo', width = '800px', height = '800px')))
+  jqui_resizable(jqui_draggable(highchartOutput('foo', width = '800px', height = '800px')))
+  # jqui_draggable(jqui_resizable(highchartOutput('foo', width = '800px', height = '800px')))
 )
 
 shinyApp(ui, server)

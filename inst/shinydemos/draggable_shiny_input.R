@@ -11,7 +11,7 @@ server <- function(input, output) {
 ui <- fluidPage(
   # includeJqueryUI(),
   verbatimTextOutput('out'),
-  jqui_draggabled(textInput('text', 'Text'))
+  jqui_draggable(textInput('text', 'Text'))
 )
 
 shinyApp(ui, server)
