@@ -3,7 +3,7 @@
 shinyjqui
 =========
 
-[![Travis-CI Build Status](https://travis-ci.org/Yang-Tang/shinyjqui.svg?branch=master)](https://travis-ci.org/Yang-Tang/shinyjqui) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/Yang-Tang/shinyjqui?branch=master&svg=true)](https://ci.appveyor.com/project/Yang-Tang/shinyjqui) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/shinyjqui)](https://cran.r-project.org/package=shinyjqui)
+[![Travis-CI Build Status](https://travis-ci.org/Yang-Tang/shinyjqui.svg?branch=master)](https://travis-ci.org/Yang-Tang/shinyjqui) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/Yang-Tang/shinyjqui?branch=master&svg=true)](https://ci.appveyor.com/project/Yang-Tang/shinyjqui) [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/shinyjqui)](https://cran.r-project.org/package=shinyjqui)
 
 The shinyjqui package is an R wrapper for [jQuery UI](http://jqueryui.com/) javascript library. It allows user to easily add interactions and animation effects to a shiny app.
 
@@ -37,6 +37,7 @@ library(highcharter)
 server <- function(input, output) {}
 
 ui <- fluidPage(
+  # for shinyjqui v0.2.0 or lower, please use jqui_draggabled instead 
   jqui_draggable(fileInput('file', 'File'))
 )
 
@@ -55,6 +56,7 @@ server <- function(input, output) {
 }
 
 ui <- fluidPage(
+  # for shinyjqui v0.2.0 or lower, please use jqui_resizable instead
   jqui_resizable(plotOutput('gg', width = '200px', height = '200px'))
 )
 
@@ -79,6 +81,7 @@ server <- function(input, output) {
 }
 
 ui <- fluidPage(
+  # for shinyjqui v0.2.0 or lower, please use jqui_sortabled instead
   jqui_sortable(div(id = 'plots',
                      highchartOutput('hc', width = '200px', height = '200px'),
                      plotOutput('gg', width = '200px', height = '200px')))
@@ -191,14 +194,14 @@ shinyApp(ui, server)
 
 ``` r
 ui <- fluidPage(
-  verbatimTextOutput("order"),
+  verbatimTextOutput("index"),
   sortableTableOutput("tbl")
 )
 
 server <- function(input, output) {
-  output$order <- renderPrint({
-    cat("Rows order:\n")
-    input$tbl_order
+  output$index <- renderPrint({
+    cat("Row index:\n")
+    input$tbl_row_index
   })
   output$tbl <- renderTable(head(mtcars), rownames = TRUE)
 }
