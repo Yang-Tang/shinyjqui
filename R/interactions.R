@@ -80,10 +80,10 @@ jqui_interaction.shiny.tag.list <- function(ui, interaction,
 #' * `save`: Attach the interaction if not and save the current interaction state.
 #' * `load`: If interaction attached, restore the target(s) to the last saved interaction state.
 #'
-#' With mouse interactions attached, the cosrresponding interaction states, e.g.
+#' With mouse interactions attached, the corresponding interaction states, e.g.
 #' `position` of draggable, `size` of resizable, `selected` of selectable and
 #' `order` of sortable, will be send to server in the form of
-#' `input$<id>_<state>`. The default values can be overriden by setting the
+#' `input$<id>_<state>`. The default values can be overridden by setting the
 #' `shiny` option in the `options` parameter. Please see the vignette
 #' `Introduction to shinyjqui` for more details.
 #'
@@ -91,12 +91,12 @@ jqui_interaction.shiny.tag.list <- function(ui, interaction,
 #' `jqui_selectabled()` and `jqui_sortabled()` are deprecated. Please use the
 #' corresponding `-able()` functions instead.
 #'
-#' @param ui The target ui element(s) to be menipulated. Can be
+#' @param ui The target ui element(s) to be manipulated. Can be
 #'   * A `shiny.tag` or `shiny.tag.list` object
 #'   * A string of [jQuery_selector](https://api.jquery.com/category/selectors/)
 #'   * A [JS()][htmlwidgets::JS()] wrapped javascript expression that returns a
 #'   [jQuery object](http://api.jquery.com/Types/#jQuery).
-#' @param operation A string to determine how to menipulate the mosue interaction.
+#' @param operation A string to determine how to manipulate the mouse interaction.
 #'   Should be one of `enable`, `disable`, `destroy`, `save` and `load`. Ignored
 #'   when `ui` is a `shiny.tag` or `shiny.tag.list` object. See Details.
 #' @param options A list of

@@ -40,12 +40,12 @@ removed from the class attribute of each matched element.}
 the class attribute of each matched element.}
 }
 \description{
-Menipulate specified class(es) to matched elements while animating all style
+Manipulate specified class(es) to matched elements while animating all style
 changes.
 \itemize{
 \item \code{jqui_add_class()}: Add class(es).
 \item \code{jqui_remove_class()}: Remove class(es).
-\item \code{jqui_switch_class()}: Switch cless(es).
+\item \code{jqui_switch_class()}: Switch class(es).
 }
 }
 \details{

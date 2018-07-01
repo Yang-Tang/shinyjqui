@@ -46,7 +46,7 @@ Ignored when \code{operation} is set as \code{destroy}. This parameter also
 accept a \code{shiny} option that controls the shiny input value returned from
 the element. See Details.}
 
-\item{ui}{The target ui element(s) to be menipulated. Can be
+\item{ui}{The target ui element(s) to be manipulated. Can be
 \itemize{
 \item A \code{shiny.tag} or \code{shiny.tag.list} object
 \item A string of \href{https://api.jquery.com/category/selectors/}{jQuery_selector}
@@ -54,7 +54,7 @@ the element. See Details.}
 \href{http://api.jquery.com/Types/#jQuery}{jQuery object}.
 }}
 
-\item{operation}{A string to determine how to menipulate the mosue interaction.
+\item{operation}{A string to determine how to manipulate the mouse interaction.
 Should be one of \code{enable}, \code{disable}, \code{destroy}, \code{save} and \code{load}. Ignored
 when \code{ui} is a \code{shiny.tag} or \code{shiny.tag.list} object. See Details.}
 
@@ -103,10 +103,10 @@ to manipulate the interaction, which includes:
 \item \code{load}: If interaction attached, restore the target(s) to the last saved interaction state.
 }
 
-With mouse interactions attached, the cosrresponding interaction states, e.g.
+With mouse interactions attached, the corresponding interaction states, e.g.
 \code{position} of draggable, \code{size} of resizable, \code{selected} of selectable and
 \code{order} of sortable, will be send to server in the form of
-\code{input$<id>_<state>}. The default values can be overriden by setting the
+\code{input$<id>_<state>}. The default values can be overridden by setting the
 \code{shiny} option in the \code{options} parameter. Please see the vignette
 \code{Introduction to shinyjqui} for more details.
 

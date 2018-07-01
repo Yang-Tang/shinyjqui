@@ -24,7 +24,7 @@ will receive the index of selected rows or cells stored in
 Use mouse click to select single target, lasso (mouse dragging) to select
 multiple targets, and Ctrl + click to add or remove selection. In \code{row}
 selection mode, \code{input$<outputId>_selected} will receive the selected row
-index in the form of numberic vector. In \code{cell} selection mode,
+index in the form of numeric vector. In \code{cell} selection mode,
 \code{input$<outputId>_selected} will receive a dataframe with \code{rows} and
 \code{columns} index of each selected cells.
 }

@@ -7,7 +7,7 @@
 #' Use mouse click to select single target, lasso (mouse dragging) to select
 #' multiple targets, and Ctrl + click to add or remove selection. In `row`
 #' selection mode, `input$<outputId>_selected` will receive the selected row
-#' index in the form of numberic vector. In `cell` selection mode,
+#' index in the form of numeric vector. In `cell` selection mode,
 #' `input$<outputId>_selected` will receive a dataframe with `rows` and
 #' `columns` index of each selected cells.
 #'

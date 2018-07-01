@@ -132,11 +132,11 @@ get_jqui_effects <- function() {
 
 #' Class effects.
 #'
-#' Menipulate specified class(es) to matched elements while animating all style
+#' Manipulate specified class(es) to matched elements while animating all style
 #' changes.
 #' * `jqui_add_class()`: Add class(es).
 #' * `jqui_remove_class()`: Remove class(es).
-#' * `jqui_switch_class()`: Switch cless(es).
+#' * `jqui_switch_class()`: Switch class(es).
 #'
 #' These functions are the R wrappers of
 #' [addClass()](http://api.jqueryui.com/addClass/),
