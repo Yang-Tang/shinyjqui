@@ -21,10 +21,15 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Class effects. — Class_effects" />
 
 <meta property="og:description" content="Menipulate specified class(es) to matched elements while animating all style
@@ -34,6 +39,7 @@ jqui_remove_class(): Remove class(es).
 jqui_switch_class(): Switch cless(es).
 " />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -60,7 +66,7 @@ jqui_switch_class(): Switch cless(es).
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyjqui</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.9001</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.0</span>
       </span>
     </div>
 
@@ -106,6 +112,7 @@ jqui_switch_class(): Switch cless(es).
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -113,13 +120,15 @@ jqui_switch_class(): Switch cless(es).
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Class effects.</h1>
-    <small>Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/R/effects.R'><code>R/effects.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/R/effects.R'><code>R/effects.R</code></a></small>
+    <div class="hidden name"><code>Class_effects.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Menipulate specified class(es) to matched elements while animating all style
 changes.</p><ul>
@@ -128,6 +137,7 @@ changes.</p><ul>
 <li><p><code>jqui_switch_class()</code>: Switch cless(es).</p></li>
 </ul>
     
+    </div>
 
     <pre class="usage"><span class='fu'>jqui_add_class</span>(<span class='no'>selector</span>, <span class='no'>className</span>, <span class='kw'>duration</span> <span class='kw'>=</span> <span class='fl'>400</span>, <span class='kw'>easing</span> <span class='kw'>=</span> <span class='st'>"swing"</span>,
   <span class='kw'>complete</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
@@ -221,6 +231,8 @@ They should be used in <code>server</code> of a shiny app.</p>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

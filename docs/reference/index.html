@@ -21,11 +21,17 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Function reference" />
+
 
 
 <!-- mathjax -->
@@ -52,7 +58,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyjqui</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.9001</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.0</span>
       </span>
     </div>
 
@@ -98,6 +104,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -105,139 +112,138 @@
       
       </header>
 
-      <div class="row">
-  <div class="col-md-9">
+<div class="row">
+  <div class="contents col-md-9">
     <div class="page-header">
       <h1>Reference</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    <table class="ref-index">
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <colgroup>
+      
+      <col class="alias" />
+      <col class="title" />
+    </colgroup>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-mouse-interactions" class="hasAnchor"><a href="#section-mouse-interactions" class="anchor"></a>Mouse interactions</h2>
-            <p class="section-desc"><p>Attach and manipulate mouse-based interactions to shiny html tags and input/output widgets</p></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="Interactions.html">jqui_draggabled()</a></code> <code><a href="Interactions.html">jqui_droppabled()</a></code> <code><a href="Interactions.html">jqui_resizabled()</a></code> <code><a href="Interactions.html">jqui_selectabled()</a></code> <code><a href="Interactions.html">jqui_sortabled()</a></code> <code><a href="Interactions.html">jqui_draggable()</a></code> <code><a href="Interactions.html">jqui_droppable()</a></code> <code><a href="Interactions.html">jqui_resizable()</a></code> <code><a href="Interactions.html">jqui_selectable()</a></code> <code><a href="Interactions.html">jqui_sortable()</a></code> </p>
-          </td>
-          <td><p>Mouse interactions</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="jqui_bookmarking.html">jqui_bookmarking()</a></code> </p>
-          </td>
-          <td><p>Enable bookmarking state of mouse interactions</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-shiny-ui-with-mouse-interactions" class="hasAnchor"><a href="#section-shiny-ui-with-mouse-interactions" class="anchor"></a>Shiny UI with mouse interactions</h2>
-            <p class="section-desc"><p>Wrapper functions to create shiny ui with interaction attached.</p></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="draggableModalDialog.html">draggableModalDialog()</a></code> </p>
-          </td>
-          <td><p>Create a draggable modal dialog UI</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="orderInput.html">orderInput()</a></code> </p>
-          </td>
-          <td><p>A shiny input control to show the order of a list of items</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="sortableCheckboxGroupInput.html">sortableCheckboxGroupInput()</a></code> </p>
-          </td>
-          <td><p>Create a Checkbox Group Input Control with Sortable Choices</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="sortableRadioButtons.html">sortableRadioButtons()</a></code> </p>
-          </td>
-          <td><p>Create radio buttons with sortable choices</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="sortableTabsetPanel.html">sortableTabsetPanel()</a></code> </p>
-          </td>
-          <td><p>Create a tabset panel with sortable tabs</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="sortableTableOutput.html">sortableTableOutput()</a></code> </p>
-          </td>
-          <td><p>Create a table output element with sortable rows</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="selectableTableOutput.html">selectableTableOutput()</a></code> </p>
-          </td>
-          <td><p>Create a table output element with selectable rows or cells</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-animation-and-class-effects" class="hasAnchor"><a href="#section-animation-and-class-effects" class="anchor"></a>Animation and class effects</h2>
-            <p class="section-desc"><p>Allow element(s) to show animation effects, or menipulate their class(es) while animating all style changes.</p></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="Animation_effects.html">jqui_effect()</a></code> <code><a href="Animation_effects.html">jqui_show()</a></code> <code><a href="Animation_effects.html">jqui_hide()</a></code> <code><a href="Animation_effects.html">jqui_toggle()</a></code> </p>
-          </td>
-          <td><p>Animation effects.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_jqui_effects.html">get_jqui_effects()</a></code> </p>
-          </td>
-          <td><p>Get available animation effects.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="Class_effects.html">jqui_add_class()</a></code> <code><a href="Class_effects.html">jqui_remove_class()</a></code> <code><a href="Class_effects.html">jqui_switch_class()</a></code> </p>
-          </td>
-          <td><p>Class effects.</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-others" class="hasAnchor"><a href="#section-others" class="anchor"></a>Others</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="includeJqueryUI.html">includeJqueryUI()</a></code> </p>
-          </td>
-          <td><p>Inject necessary js and css assets to the head of a shiny document (deprecated).</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="jqui_icon.html">jqui_icon()</a></code> </p>
-          </td>
-          <td><p>Create a jQuery UI icon</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+    <tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-mouse-interactions" class="hasAnchor"><a href="#section-mouse-interactions" class="anchor"></a>Mouse interactions</h2>
+          <p class="section-desc"><p>Attach and manipulate mouse-based interactions to shiny html tags and input/output widgets</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="Interactions.html">jqui_draggabled()</a></code> <code><a href="Interactions.html">jqui_droppabled()</a></code> <code><a href="Interactions.html">jqui_resizabled()</a></code> <code><a href="Interactions.html">jqui_selectabled()</a></code> <code><a href="Interactions.html">jqui_sortabled()</a></code> <code><a href="Interactions.html">jqui_draggable()</a></code> <code><a href="Interactions.html">jqui_droppable()</a></code> <code><a href="Interactions.html">jqui_resizable()</a></code> <code><a href="Interactions.html">jqui_selectable()</a></code> <code><a href="Interactions.html">jqui_sortable()</a></code> </p>
+        </td>
+        <td><p>Mouse interactions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="jqui_bookmarking.html">jqui_bookmarking()</a></code> </p>
+        </td>
+        <td><p>Enable bookmarking state of mouse interactions</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-shiny-ui-with-mouse-interactions" class="hasAnchor"><a href="#section-shiny-ui-with-mouse-interactions" class="anchor"></a>Shiny UI with mouse interactions</h2>
+          <p class="section-desc"><p>Wrapper functions to create shiny ui with interaction attached.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="draggableModalDialog.html">draggableModalDialog()</a></code> </p>
+        </td>
+        <td><p>Create a draggable modal dialog UI</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="orderInput.html">orderInput()</a></code> </p>
+        </td>
+        <td><p>A shiny input control to show the order of a list of items</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="sortableCheckboxGroupInput.html">sortableCheckboxGroupInput()</a></code> </p>
+        </td>
+        <td><p>Create a Checkbox Group Input Control with Sortable Choices</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="sortableRadioButtons.html">sortableRadioButtons()</a></code> </p>
+        </td>
+        <td><p>Create radio buttons with sortable choices</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="sortableTabsetPanel.html">sortableTabsetPanel()</a></code> </p>
+        </td>
+        <td><p>Create a tabset panel with sortable tabs</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="sortableTableOutput.html">sortableTableOutput()</a></code> </p>
+        </td>
+        <td><p>Create a table output element with sortable rows</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="selectableTableOutput.html">selectableTableOutput()</a></code> </p>
+        </td>
+        <td><p>Create a table output element with selectable rows or cells</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-animation-and-class-effects" class="hasAnchor"><a href="#section-animation-and-class-effects" class="anchor"></a>Animation and class effects</h2>
+          <p class="section-desc"><p>Allow element(s) to show animation effects, or menipulate their class(es) while animating all style changes.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="Animation_effects.html">jqui_effect()</a></code> <code><a href="Animation_effects.html">jqui_show()</a></code> <code><a href="Animation_effects.html">jqui_hide()</a></code> <code><a href="Animation_effects.html">jqui_toggle()</a></code> </p>
+        </td>
+        <td><p>Animation effects.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_jqui_effects.html">get_jqui_effects()</a></code> </p>
+        </td>
+        <td><p>Get available animation effects.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="Class_effects.html">jqui_add_class()</a></code> <code><a href="Class_effects.html">jqui_remove_class()</a></code> <code><a href="Class_effects.html">jqui_switch_class()</a></code> </p>
+        </td>
+        <td><p>Class effects.</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-others" class="hasAnchor"><a href="#section-others" class="anchor"></a>Others</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="includeJqueryUI.html">includeJqueryUI()</a></code> </p>
+        </td>
+        <td><p>Inject necessary js and css assets to the head of a shiny document (deprecated).</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="jqui_icon.html">jqui_icon()</a></code> </p>
+        </td>
+        <td><p>Create a jQuery UI icon</p></td>
+      </tr>
+    </tbody>
+    </table>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -262,6 +268,8 @@
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

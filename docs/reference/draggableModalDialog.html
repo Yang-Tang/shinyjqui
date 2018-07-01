@@ -21,15 +21,21 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Create a draggable modal dialog UI — draggableModalDialog" />
 
 <meta property="og:description" content="This creates the UI for a modal dialog similar to shiny::modalDialog except
 its content is draggable." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -56,7 +62,7 @@ its content is draggable." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyjqui</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.9001</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.0</span>
       </span>
     </div>
 
@@ -102,6 +108,7 @@ its content is draggable." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -109,17 +116,20 @@ its content is draggable." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create a draggable modal dialog UI</h1>
-    <small>Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/R/draggableModalDialog.R'><code>R/draggableModalDialog.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/R/draggableModalDialog.R'><code>R/draggableModalDialog.R</code></a></small>
+    <div class="hidden name"><code>draggableModalDialog.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>This creates the UI for a modal dialog similar to <a href='http://www.rdocumentation.org/packages/shiny/topics/modalDialog'>shiny::modalDialog</a> except
 its content is draggable.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>draggableModalDialog</span>(<span class='no'>...</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>footer</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/modalButton'>modalButton</a></span>(<span class='st'>"Dismiss"</span>), <span class='kw'>size</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"m"</span>, <span class='st'>"s"</span>, <span class='st'>"l"</span>),
@@ -188,6 +198,8 @@ from a call to <code>removeModal</code> on the server.</p></td>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

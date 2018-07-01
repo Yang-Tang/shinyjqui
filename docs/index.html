@@ -8,8 +8,8 @@
 <title>'jQuery UI' Interactions and Effects for Shiny • shinyjqui</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><meta property="og:title" content="'jQuery UI' Interactions and Effects for Shiny">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="pkgdown.js"></script><meta property="og:title" content="'jQuery UI' Interactions and Effects for Shiny">
 <meta property="og:description" content="An extension to shiny that brings interactions and animation effects from
     'jQuery UI' library.">
 <meta name="twitter:card" content="summary">
@@ -19,7 +19,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-vignette">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">shinyjqui</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.9001</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.0</span>
       </span>
     </div>
 
@@ -84,12 +84,11 @@
 
       
       </header><div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     
 
     
     
-<div class="contents">
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <div id="shinyjqui" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
@@ -121,6 +120,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {}
 
 ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
+  <span class="co"># for shinyjqui v0.2.0 or lower, please use jqui_draggabled instead </span>
   <span class="kw"><a href="reference/Interactions.html">jqui_draggable</a></span>(<span class="kw">fileInput</span>(<span class="st">'file'</span>, <span class="st">'File'</span>))
 )
 
@@ -139,6 +139,7 @@ ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
 }
 
 ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
+  <span class="co"># for shinyjqui v0.2.0 or lower, please use jqui_resizable instead</span>
   <span class="kw"><a href="reference/Interactions.html">jqui_resizable</a></span>(<span class="kw">plotOutput</span>(<span class="st">'gg'</span>, <span class="dt">width =</span> <span class="st">'200px'</span>, <span class="dt">height =</span> <span class="st">'200px'</span>))
 )
 
@@ -163,6 +164,7 @@ ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
 }
 
 ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
+  <span class="co"># for shinyjqui v0.2.0 or lower, please use jqui_sortabled instead</span>
   <span class="kw"><a href="reference/Interactions.html">jqui_sortable</a></span>(<span class="kw">div</span>(<span class="dt">id =</span> <span class="st">'plots'</span>,
                      <span class="kw">highchartOutput</span>(<span class="st">'hc'</span>, <span class="dt">width =</span> <span class="st">'200px'</span>, <span class="dt">height =</span> <span class="st">'200px'</span>),
                      <span class="kw">plotOutput</span>(<span class="st">'gg'</span>, <span class="dt">width =</span> <span class="st">'200px'</span>, <span class="dt">height =</span> <span class="st">'200px'</span>)))
@@ -314,7 +316,6 @@ server &lt;-<span class="st"> </span><span class="cf">function</span>(input, out
 </div>
 </div>
 </div>
-</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -349,7 +350,7 @@ server &lt;-<span class="st"> </span><span class="cf">function</span>(input, out
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/Yang-Tang/shinyjqui"><img src="https://travis-ci.org/Yang-Tang/shinyjqui.svg?branch=master" alt="Travis-CI Build Status"></a></li>
 <li><a href="https://ci.appveyor.com/project/Yang-Tang/shinyjqui"><img src="https://ci.appveyor.com/api/projects/status/github/Yang-Tang/shinyjqui?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
-<li><a href="https://cran.r-project.org/package=shinyjqui"><img src="http://www.r-pkg.org/badges/version/shinyjqui" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://cran.r-project.org/package=shinyjqui"><img src="https://www.r-pkg.org/badges/version/shinyjqui" alt="CRAN_Status_Badge"></a></li>
 </ul>
 </div>
 </div>
@@ -367,6 +368,8 @@ server &lt;-<span class="st"> </span><span class="cf">function</span>(input, out
 
       </footer>
 </div>
+
+  
 
   </body>
 </html>
