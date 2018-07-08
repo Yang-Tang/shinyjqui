@@ -58,7 +58,9 @@ addInteractJS <- function(tag, func, options = NULL) {
     # use `[<-` to keep original attributes of tagList
     tag[] <- lapply(tag, addInteractJS, func = func, options = options)
     return(tag)
+
   } else if (inherits(tag, "shiny.tag")) {
+
     if (is.null(tag$name) ||
       tag$name %in% c("style", "script", "head", "meta", "br", "hr")) {
       return(tag)
@@ -104,8 +106,10 @@ addInteractJS <- function(tag, func, options = NULL) {
       # shiny initialization. The initialization only needs to be run once, so
       # .one() is used here.
       js <- sprintf(
-        '$("%s").one("shiny:value", function(e){%s});',
-        selector, js
+        '$(document).one("shiny:value", function(e){
+            if (e.name === "%s") { %s }
+        });',
+        id, js
       )
     }
 

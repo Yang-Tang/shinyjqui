@@ -1,3 +1,8 @@
+## shinyjqui 0.3.0.9000
+
+* __Bug fix:__ For the shiny output elements created by `insertUI` or `renderUI`, the mouse interaction effects are now working.
+
+
 ## shinyjqui 0.3.0
 
 * __New feature:__ Introduce `save` and `load` operations to mouse-interaction attached html elements. This enabled client-side store and restore the elements' states (eg. position, size, selection and order). (#16)
