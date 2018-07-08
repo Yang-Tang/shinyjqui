@@ -1,5 +1,6 @@
-## shinyjqui 0.3.0.9000
+## shinyjqui 0.3.1
 
+* __Bug fix:__ The interaction functions were not working in `selector` mode duo to the v0.3.0 update.
 * __Bug fix:__ For the shiny output elements created by `insertUI` or `renderUI`, the mouse interaction effects are now working.
 
 
