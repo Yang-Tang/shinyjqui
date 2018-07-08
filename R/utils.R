@@ -76,11 +76,11 @@ addInteractJS <- function(tag, func, options = NULL) {
     }
 
     msg <- list(
-      selector = selector,
-      type = "interaction",
-      func = func,
+      ui        = selector,
+      type      = "interaction",
+      func      = func,
       operation = "enable",
-      options = options
+      options   = options
     )
     msg <- addJSIdx(msg)
 

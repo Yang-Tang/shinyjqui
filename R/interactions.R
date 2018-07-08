@@ -8,7 +8,9 @@ jqui_interaction.character <- function(ui, interaction,
                                        operation = c("enable", "disable", "destroy", "save", "load"),
                                        options = NULL, switch = NULL) {
   type <- "interaction"
+
   func <- interaction
+  rm(interaction)
 
   if (!is.null(switch)) {
     warning(
@@ -20,6 +22,7 @@ jqui_interaction.character <- function(ui, interaction,
   rm(switch)
 
   operation <- match.arg(operation)
+
   sendMsg()
   return(ui)
 }
@@ -63,7 +66,7 @@ jqui_interaction.shiny.tag.list <- function(ui, interaction,
 #' The first parameter `ui` determines the target shiny ui element(s) to work
 #' with. It accepts objects with different classes. When you provide a
 #' `shiny.tag` (e.g., shiny inputs/outputs or ui created by [shiny::tags]) or a
-#' `shiny.tag.list` (by [tagList()][shiny::tagList()]) object, the functions return the same
+#' `shiny.tag.list` (by [tagList()][shiny::tagList]) object, the functions return the same
 #' ui object with interaction effects attached. When a
 #' [jQuery_selector](https://api.jquery.com/category/selectors/) or a javascript
 #' expression is provided, the functions first use it to locate the target ui
@@ -258,7 +261,7 @@ jqui_bookmarking <- function() {
         "sortable" = jqui_sortable,
         "selectable" = jqui_selectable
       )
-      func(selector = selector, operation = "load", options = options)
+      func(ui = selector, operation = "load", options = options)
     }
   })
 }

@@ -87,7 +87,7 @@ shinyjqui = function() {
 
     msg = evalJS(msg);
 
-    var $els = $(msg.selector);
+    var $els = $(msg.ui);
     if(!$els) {
       console.warn("The selector didn't match any element. Operation abort.");
       return;
@@ -110,11 +110,11 @@ shinyjqui = function() {
     console.log('===================');
 
     return {
-      elements  : $els,
-      type      : msg.type,
-      func      : msg.func,
-      operation : msg.operation,
-      options   : msg.options
+      elements    : $els,
+      type        : msg.type,
+      func        : msg.func,
+      operation   : msg.operation,
+      options     : msg.options
     };
   };
 
