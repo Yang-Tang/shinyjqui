@@ -68,7 +68,8 @@ addInteractJS <- function(tag, func, options = NULL) {
 
     id <- tag$attribs$id
     if (!is.null(id)) {
-      selector <- paste0("#", id)
+      # when id contains spaces, `#id` will not work
+      selector <- sprintf("[id='%s']", id)
     } else {
       class <- sprintf("jqui-interaction-%s", randomChars())
       tag <- shiny::tagAppendAttributes(tag, class = class)
