@@ -104,11 +104,14 @@ addInteractJS <- function(tag, func, options = NULL) {
       # we have to call js on "shiny:value" event. This ensures js get the
       # correct element dimension especially when the output element is hiden on
       # shiny initialization. The initialization only needs to be run once, so
-      # .one() is used here.
+      # .one() is used here. Use selector inside .one() to ensure the run-once
+      # js only triggered on the target element
       js <- sprintf(
-        '$(document).one("shiny:value", function(e){
-            if (e.name === "%s") { %s }
-        });',
+        '$(document).one(
+            events   = "shiny:value",
+            selector = "[id=\'%s\']",
+            handler  = function(e) { %s }
+        );',
         id, js
       )
     }
