@@ -1,4 +1,4 @@
-## shinyjqui 0.3.1.9001
+## shinyjqui 0.3.2
 
 * __Bug fix:__ The interaction functions were not working in `ui` mode when the `ui` has an id with spaces.
 * __Bug fix:__ The interaction functions were not working in `ui` mode when there are other output elements exist. (#25)

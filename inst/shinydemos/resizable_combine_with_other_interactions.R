@@ -1,4 +1,5 @@
 library(shiny)
+library(shinyjqui)
 library(highcharter)
 
 server <- function(input, output) {
