@@ -1,7 +1,8 @@
 ## shinyjqui 0.3.1.9001
 
 * __Bug fix:__ The interaction functions were not working in `ui` mode when the `ui` has an id with spaces.
-* __Bug fix:__ The interaction functions were not working in `ui` mode when there are other output elements exit.
+* __Bug fix:__ The interaction functions were not working in `ui` mode when there are other output elements exist.
+* __Bug fix:__ Effect and class functions were not working duo to the upgrade of v0.3.0.
 
 
 ## shinyjqui 0.3.1

@@ -36,6 +36,8 @@ NULL
 #' @export
 jqui_effect <- function(selector, effect, options = NULL,
                         duration = 400, complete = NULL) {
+  ui <- selector
+  remove(selector)
   effect <- match.arg(effect, choices = get_jqui_effects())
   type <- "effect"
   func <- "effect"
@@ -54,6 +56,8 @@ jqui_effect <- function(selector, effect, options = NULL,
 #' @export
 jqui_show <- function(selector, effect, options = NULL,
                       duration = 400, complete = NULL) {
+  ui <- selector
+  remove(selector)
   effect <- match.arg(effect, choices = get_jqui_effects())
   if (effect == "transfer") {
     stop("The transfer effect is not supported in show/hide/toggle.")
@@ -75,6 +79,8 @@ jqui_show <- function(selector, effect, options = NULL,
 #' @export
 jqui_hide <- function(selector, effect, options = NULL,
                       duration = 400, complete = NULL) {
+  ui <- selector
+  remove(selector)
   effect <- match.arg(effect, choices = get_jqui_effects())
   if (effect == "transfer") {
     stop("The transfer effect is not supported in show/hide/toggle.")
@@ -96,6 +102,8 @@ jqui_hide <- function(selector, effect, options = NULL,
 #' @export
 jqui_toggle <- function(selector, effect, options = NULL,
                         duration = 400, complete = NULL) {
+  ui <- selector
+  remove(selector)
   effect <- match.arg(effect, choices = get_jqui_effects())
   if (effect == "transfer") {
     stop("The transfer effect is not supported in show/hide/toggle.")
@@ -169,6 +177,8 @@ NULL
 #' @export
 jqui_add_class <- function(selector, className, duration = 400,
                            easing = "swing", complete = NULL) {
+  ui <- selector
+  remove(selector)
   type <- "class"
   func <- "add"
   options <- list(
@@ -186,6 +196,8 @@ jqui_add_class <- function(selector, className, duration = 400,
 #' @export
 jqui_remove_class <- function(selector, className, duration = 400,
                               easing = "swing", complete = NULL) {
+  ui <- selector
+  remove(selector)
   type <- "class"
   func <- "remove"
   options <- list(
@@ -203,6 +215,8 @@ jqui_remove_class <- function(selector, className, duration = 400,
 #' @export
 jqui_switch_class <- function(selector, removeClassName, addClassName,
                               duration = 400, easing = "swing", complete = NULL) {
+  ui <- selector
+  remove(selector)
   type <- "class"
   func <- "switch"
   options <- list(
