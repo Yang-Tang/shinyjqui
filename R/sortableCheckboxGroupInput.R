@@ -42,12 +42,14 @@ sortableCheckboxGroupInput <- function(inputId, label, choices = NULL,
 
   shiny_opt <- list(order = list(sortcreate = func, sortupdate = func))
 
+  items_opt <- ifelse(inline, ".checkbox-inline", ".checkbox")
+
   jqui_sortable(
     ui = shiny::checkboxGroupInput(
       inputId, label, choices, selected,
       inline, width, choiceNames,
       choiceValues
     ),
-    options = list(items = ".checkbox", shiny = shiny_opt)
+    options = list(items = items_opt, shiny = shiny_opt)
   )
 }

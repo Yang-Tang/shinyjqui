@@ -42,11 +42,13 @@ sortableRadioButtons <- function(inputId, label, choices = NULL,
 
   shiny_opt <- list(order = list(sortcreate = func, sortupdate = func))
 
+  items_opt <- ifelse(inline, ".radio-inline", ".radio")
+
   jqui_sortable(
     ui = shiny::radioButtons(
       inputId, label, choices, selected,
       inline, width, choiceNames, choiceValues
     ),
-    options = list(items = ".radio", shiny = shiny_opt)
+    options = list(items = items_opt, shiny = shiny_opt)
   )
 }
