@@ -1,3 +1,8 @@
+## shinyjqui 0.3.2.9000
+
+* __Bug fix:__ `sortableRadioButtons`/`sortableCheckboxGroupInput` do not work when inlined. (@sam-harvey, #37)
+
+
 ## shinyjqui 0.3.2
 
 * __Bug fix:__ The interaction functions were not working in `ui` mode when the `ui` has an id with spaces.
