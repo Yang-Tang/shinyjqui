@@ -27,8 +27,9 @@ jquiHead <- function() {
     shiny::tags$head(
       shiny::tags$script(src = "shared/jqueryui/jquery-ui.min.js"),
       shiny::tags$link(rel = "stylesheet", href = "shared/jqueryui/jquery-ui.css"),
-      shiny::tags$script(src = "shinyjqui/shinyjqui.js")
+      shiny::tags$script(src = "shinyjqui/shinyjqui.js"),
       # shiny::tags$script(src = 'shinyjqui/shinyjqui.min.js')
+      shiny::tags$script(src = "shinyjqui/jquery.ui.touch-punch.min.js")
     )
   )
 }
