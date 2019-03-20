@@ -102,12 +102,14 @@ shinyjqui = function() {
       return e;
     });
 
-    console.log('===================');
-    console.log('ELEMENTS: ');
-    console.log($els);
-    console.log('MSG: ');
-    console.log(msg);
-    console.log('===================');
+    if(msg.debug) {
+      console.log('===================');
+      console.log('ELEMENTS: ');
+      console.log($els);
+      console.log('MSG: ');
+      console.log(msg);
+      console.log('===================');
+    }
 
     return {
       elements    : $els,

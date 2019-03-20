@@ -1,12 +1,3 @@
-.onLoad <- function(libname, pkgname) {
-  shiny::registerInputHandler("shinyjqui.df", function(data, shinysession, name) {
-    data <- lapply(data, function(x) {
-      `if`(length(x) == 0, NA_character_, unlist(x))
-    })
-    data.frame(data, stringsAsFactors = FALSE)
-  }, force = TRUE)
-}
-
 #' @importFrom htmlwidgets JS
 #' @export
 htmlwidgets::JS
@@ -27,8 +18,9 @@ jquiHead <- function() {
     shiny::tags$head(
       shiny::tags$script(src = "shared/jqueryui/jquery-ui.min.js"),
       shiny::tags$link(rel = "stylesheet", href = "shared/jqueryui/jquery-ui.css"),
-      shiny::tags$script(src = "shinyjqui/shinyjqui.js")
-      # shiny::tags$script(src = 'shinyjqui/shinyjqui.min.js')
+      shiny::tags$script(src = ifelse(getOption("shinyjqui.debug"),
+                                      "shinyjqui/shinyjqui.js",
+                                      "shinyjqui/shinyjqui.min.js"))
     )
   )
 }
@@ -81,7 +73,8 @@ addInteractJS <- function(tag, func, options = NULL) {
       type      = "interaction",
       func      = func,
       operation = "enable",
-      options   = options
+      options   = options,
+      debug     = getOption("shinyjqui.debug")
     )
     msg <- addJSIdx(msg)
 

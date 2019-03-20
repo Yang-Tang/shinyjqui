@@ -23,6 +23,8 @@ jqui_interaction.character <- function(ui, interaction,
 
   operation <- match.arg(operation)
 
+  debug <- getOption("shinyjqui.debug")
+
   sendMsg()
   return(ui)
 }
