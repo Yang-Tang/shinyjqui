@@ -12,15 +12,20 @@ addJSIdx <- function(list) {
 }
 
 ## return a shiny head tag with necessary js and css for shinyjqui
-jquiHead <- function() {
-  shiny::addResourcePath("shinyjqui", system.file("www", package = "shinyjqui"))
-  shiny::singleton(
-    shiny::tags$head(
-      shiny::tags$script(src = "shared/jqueryui/jquery-ui.min.js"),
-      shiny::tags$link(rel = "stylesheet", href = "shared/jqueryui/jquery-ui.css"),
-      shiny::tags$script(src = ifelse(getOption("shinyjqui.debug"),
-                                      "shinyjqui/shinyjqui.js",
-                                      "shinyjqui/shinyjqui.min.js"))
+jquiDep <- function() {
+  list(
+    htmltools::htmlDependency(
+      name       = "jqueryui", version = "1.12.1",
+      package    = "shiny",
+      src        = "www/shared/jqueryui",
+      script     = "jquery-ui.min.js",
+      stylesheet = "jquery-ui.css"
+    ),
+    htmltools::htmlDependency(
+      name    = "shinyjqui-assets", version = "0.3.2",
+      package = "shinyjqui",
+      src     = "www",
+      script  = ifelse(getOption("shinyjqui.debug"), "shinyjqui.js", "shinyjqui.min.js")
     )
   )
 }
@@ -29,7 +34,7 @@ jquiHead <- function() {
 ## http://deanattali.com/blog/htmlwidgets-tips/#widget-to-r-data
 ## with some midifications.
 sendMsg <- function() {
-  shiny::insertUI("body", "afterBegin", jquiHead(), immediate = TRUE)
+  shiny::insertUI("body", "afterBegin", jquiDep(), immediate = TRUE)
   message <- Filter(function(x) !is.symbol(x), as.list(parent.frame(1)))
   message <- addJSIdx(message)
   session <- shiny::getDefaultReactiveDomain()
@@ -82,7 +87,7 @@ addInteractJS <- function(tag, func, options = NULL) {
     # with same selector can be called again
     js <- sprintf(
       'shinyjqui.msgCallback(%s);
-                   $("head .jqui_self_cleaning_script").remove();',
+      $("head .jqui_self_cleaning_script").remove();',
       jsonlite::toJSON(msg, auto_unbox = TRUE, force = TRUE)
     )
 
@@ -113,57 +118,19 @@ addInteractJS <- function(tag, func, options = NULL) {
     # run js on document ready
     js <- sprintf("$(function(){%s});", js)
 
-    shiny::addResourcePath("shinyjqui", system.file("www", package = "shinyjqui"))
-
     shiny::tagList(
-      jquiHead(),
-
+      jquiDep(),
       shiny::tags$head(
         # made this script self removable. shiny::singleton should not be used
         # here. As it prevent the same script from insertion even after the
         # first one was removed
         shiny::tags$script(class = "jqui_self_cleaning_script", js)
       ),
-
       tag
     )
+
   } else {
     warning("The tag provided is not a shiny tag. Action abort.")
     return(tag)
   }
-}
-
-#' Create a jQuery UI icon
-#'
-#' Create an jQuery UI pre-defined icon. For lists of available icons, see
-#' \url{http://api.jqueryui.com/theming/icons/}.
-#'
-#' @param name Class name of icon. The "ui-icon-" prefix can be omitted (i.e.
-#'   use "ui-icon-flag" or "flag" to display a flag icon)
-#'
-#' @return An icon element
-#' @export
-#'
-#' @examples
-#' jqui_icon('caret-1-n')
-#'
-#' library(shiny)
-#'
-#' # add an icon to an actionButton
-#' actionButton('button', 'Button', icon = jqui_icon('refresh'))
-#'
-#' # add an icon to a tabPanel
-#' tabPanel('Help', icon = jqui_icon('help'))
-jqui_icon <- function(name) {
-  if (!grepl("^ui-icon-", name)) {
-    name <- paste0("ui-icon-", name)
-  }
-  icon <- shiny::tags$i(class = paste0("ui-icon ", name))
-  dep <- htmltools::htmlDependency(
-    "jqueryui", "1.12.1",
-    src = c(href = "shared/jqueryui"),
-    script = "jquery-ui.min.js",
-    stylesheet = "jquery-ui.css"
-  )
-  htmltools::attachDependencies(icon, dep)
 }
