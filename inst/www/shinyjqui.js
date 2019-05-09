@@ -45,21 +45,24 @@ shinyjqui = function() {
 
     if(id) {
 
+      // make a hard copy of default_shiny_opt, so, any modification won't hurt the default settings
+      var default_opt = Object.assign({}, default_shiny_opt);
+
       if(opt && opt.hasOwnProperty('shiny')) {
-        // remove keys in default_shiny_opt that have duplicated input_suffix
+        // remove keys in default_opt that have duplicated input_suffix
         // but with a input_handler.
-        var suffix = Object.keys(default_shiny_opt);
+        var suffix = Object.keys(default_opt);
         $.each(suffix, function(i, v){
           if($.inArray(v.replace(/:.+/, ''), Object.keys(opt.shiny)) >= 0) {
-            delete default_shiny_opt[v];
+            delete default_opt[v];
           }
         });
-        // overwrite default_shiny_opt with user provided opt.shiny
-        $.extend(default_shiny_opt, opt.shiny);
+        // overwrite default_opt with user provided opt.shiny
+        $.extend(default_opt, opt.shiny);
         delete opt.shiny;
       }
 
-      regShinyInput(el, id, default_shiny_opt);
+      regShinyInput(el, id, default_opt);
 
     }
 
