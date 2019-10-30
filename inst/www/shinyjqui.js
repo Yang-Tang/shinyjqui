@@ -750,4 +750,10 @@ shinyjqui = function() {
 
 }();
 
-$(function(){ shinyjqui.init(); });
+// Stop using $(shinyjqui.init)
+// as of jQuery 3.x used by shiny 1.4.0 and above, the $(fn) syntax is called asynchronously
+// so, if we still use $(shinyjqui.init), the function `shinyjqui.init` will wait for
+// other js code to run, this will cause shiny clientside to receive the `CustomMessage` by
+// `session$sendCustomMessage("shinyjqui", message)` from server before the correponding
+// `CustomMessageHandler` is registed by `shinyjqui.init()`
+shinyjqui.init();
