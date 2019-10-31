@@ -3,6 +3,7 @@
 * __Bug fix:__ Fixed an incompatibility with Shiny v1.4.0: due to Shiny upgrading from jQuery 1.x to 3.x, the timing of shinjqui initialization routines has changed.
 * __Bug fix:__ `sortableRadioButtons`/`sortableCheckboxGroupInput` do not work when inlined. (@sam-harvey, #37).
 * __Bug fix:__ For interaction functions, the `shiny` options with the same suffix will overwrite the default settings, thus affect the return value of other interaction widgets. (#43)
+* __Bug fix:__ Interaction functions not working in `ui` mode in flexdashboard. (#53)
 * Add global option `shinyjqui.debug`, can be `TURE` or `FALSE`(default), to control whether to load the original/minified `shinyjqui.js` (#39) and to display/hide javascript debug message (#3).
 
 

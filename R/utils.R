@@ -87,7 +87,7 @@ addInteractJS <- function(tag, func, options = NULL) {
     # with same selector can be called again
     js <- sprintf(
       'shinyjqui.msgCallback(%s);
-      $("head .jqui_self_cleaning_script").remove();',
+      $(".jqui_self_cleaning_script").remove();',
       jsonlite::toJSON(msg, auto_unbox = TRUE, force = TRUE)
     )
 
@@ -120,13 +120,17 @@ addInteractJS <- function(tag, func, options = NULL) {
 
     shiny::tagList(
       jquiDep(),
-      shiny::tags$head(
-        # made this script self removable. shiny::singleton should not be used
-        # here. As it prevent the same script from insertion even after the
-        # first one was removed
-        shiny::tags$script(class = "jqui_self_cleaning_script", js)
-      ),
-      tag
+      tag,
+
+      # made this script self removable.
+      # shiny::singleton should not be used here. As it prevent the same script
+      # from insertion even after the first one was removed
+      # shiny::tags$head should not be used to wrap the script. It seems
+      # shiny::tags$head is not working in flexdashboard
+      shiny::tags$script(
+        class = "jqui_self_cleaning_script",
+        shiny::HTML(js)
+      )
     )
 
   } else {
