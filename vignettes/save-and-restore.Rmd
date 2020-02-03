@@ -20,7 +20,7 @@ This vignette introduce the save and restore feature of mouse-interactions in `s
 
 ## What can be save and restored?
 
-The mouse intearctions provide ways to manipulate the state of shiny html elements (listed below) through clicking or dragging. 
+The mouse interactions provide ways to manipulate the state of shiny html elements (listed below) through clicking or dragging. 
 
 ```{r, echo=FALSE, results='asis'}
 tbl <- data.frame(
@@ -39,7 +39,7 @@ These interaction states can be saved and restored in the following two ways.
 
 ## Save and restore within a shiny session (client-side)
 
-This is the case when users want to temporarily save the current interaction state (e.g., position of element) and restore it after certion mouse operations without closing the shiny app or reloading the page. The `save` and `load` opertations from the corresponding interaction functions can serve the purpose:
+This is the case when users want to temporarily save the current interaction state (e.g., position of element) and restore it after mouse operations without closing the shiny app or reloading the page. The `save` and `load` operations from the corresponding interaction functions can serve the purpose:
 
 ```{r, eval=FALSE}
 ui <- fluidPage(
@@ -87,7 +87,7 @@ shinyApp(ui, server)
 
 ## Save and restore cross shiny sessions (shiny bookmarking)
 
-In addition to the client-side mode, cross-session save/retore is also supported, which takes advantage of [shiny bookmarking](https://shiny.rstudio.com/articles/bookmarking-state.html). In this case, users can save the interaction state alone with other shiny input values either by URL-encoding or by save-to-server, and restore them in a different shiny session. All the operations are the same as the native shiny bookmarking except adding a `jqui_bookmarking()` call in server like this:
+In addition to the client-side mode, cross-session save/restore is also supported, which takes advantage of [shiny bookmarking](https://shiny.rstudio.com/articles/bookmarking-state.html). In this case, users can save the interaction state alone with other shiny input values either by URL-encoding or by save-to-server, and restore them in a different shiny session. All the operations are the same as the native shiny bookmarking except adding a `jqui_bookmarking()` call in server like this:
 
 ```{r, eval=FALSE}
 
