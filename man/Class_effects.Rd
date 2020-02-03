@@ -7,14 +7,30 @@
 \alias{jqui_switch_class}
 \title{Class effects.}
 \usage{
-jqui_add_class(selector, className, duration = 400, easing = "swing",
-  complete = NULL)
+jqui_add_class(
+  selector,
+  className,
+  duration = 400,
+  easing = "swing",
+  complete = NULL
+)
 
-jqui_remove_class(selector, className, duration = 400, easing = "swing",
-  complete = NULL)
+jqui_remove_class(
+  selector,
+  className,
+  duration = 400,
+  easing = "swing",
+  complete = NULL
+)
 
-jqui_switch_class(selector, removeClassName, addClassName, duration = 400,
-  easing = "swing", complete = NULL)
+jqui_switch_class(
+  selector,
+  removeClassName,
+  addClassName,
+  duration = 400,
+  easing = "swing",
+  complete = NULL
+)
 }
 \arguments{
 \item{selector}{Deprecated, just keep for backward compatibility.

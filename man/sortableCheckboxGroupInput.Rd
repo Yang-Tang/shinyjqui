@@ -4,8 +4,16 @@
 \alias{sortableCheckboxGroupInput}
 \title{Create a Checkbox Group Input Control with Sortable Choices}
 \usage{
-sortableCheckboxGroupInput(inputId, label, choices = NULL, selected = NULL,
-  inline = FALSE, width = NULL, choiceNames = NULL, choiceValues = NULL)
+sortableCheckboxGroupInput(
+  inputId,
+  label,
+  choices = NULL,
+  selected = NULL,
+  inline = FALSE,
+  width = NULL,
+  choiceNames = NULL,
+  choiceValues = NULL
+)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -23,7 +31,7 @@ types (such as logicals and numbers) will be coerced to strings.}
 \item{inline}{If \code{TRUE}, render the choices inline (i.e. horizontally)}
 
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
-see \code{\link{validateCssUnit}}.}
+see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 
 \item{choiceNames}{List of names and values, respectively,
 that are displayed to the user in the app and correspond to the each
@@ -51,8 +59,8 @@ A list of HTML elements that can be added to a UI definition
 \description{
 Render a group of checkboxes with multiple choices toggleable. The choices
 are also sortable by drag and drop. In addition to the selected values stored
-in \code{input$<inputId>}, the server will also receive the order of choices in
-\code{input$<inputId>_order}.
+in \verb{input$<inputId>}, the server will also receive the order of choices in
+\verb{input$<inputId>_order}.
 }
 \examples{
 ## Only run this example in interactive R sessions

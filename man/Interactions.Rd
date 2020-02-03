@@ -24,20 +24,45 @@ jqui_selectabled(tag, options = NULL)
 
 jqui_sortabled(tag, options = NULL)
 
-jqui_draggable(ui, operation = c("enable", "disable", "destroy", "save",
-  "load"), options = NULL, selector = NULL, switch = NULL)
+jqui_draggable(
+  ui,
+  operation = c("enable", "disable", "destroy", "save", "load"),
+  options = NULL,
+  selector = NULL,
+  switch = NULL
+)
 
-jqui_droppable(ui, operation = c("enable", "disable", "destroy", "save",
-  "load"), options = NULL, selector = NULL, switch = NULL)
+jqui_droppable(
+  ui,
+  operation = c("enable", "disable", "destroy", "save", "load"),
+  options = NULL,
+  selector = NULL,
+  switch = NULL
+)
 
-jqui_resizable(ui, operation = c("enable", "disable", "destroy", "save",
-  "load"), options = NULL, selector = NULL, switch = NULL)
+jqui_resizable(
+  ui,
+  operation = c("enable", "disable", "destroy", "save", "load"),
+  options = NULL,
+  selector = NULL,
+  switch = NULL
+)
 
-jqui_selectable(ui, operation = c("enable", "disable", "destroy", "save",
-  "load"), options = NULL, selector = NULL, switch = NULL)
+jqui_selectable(
+  ui,
+  operation = c("enable", "disable", "destroy", "save", "load"),
+  options = NULL,
+  selector = NULL,
+  switch = NULL
+)
 
-jqui_sortable(ui, operation = c("enable", "disable", "destroy", "save",
-  "load"), options = NULL, selector = NULL, switch = NULL)
+jqui_sortable(
+  ui,
+  operation = c("enable", "disable", "destroy", "save", "load"),
+  options = NULL,
+  selector = NULL,
+  switch = NULL
+)
 }
 \arguments{
 \item{options}{A list of
@@ -106,9 +131,9 @@ to manipulate the interaction, which includes:
 With mouse interactions attached, the corresponding interaction states, e.g.
 \code{position} of draggable, \code{size} of resizable, \code{selected} of selectable and
 \code{order} of sortable, will be send to server in the form of
-\code{input$<id>_<state>}. The default values can be overridden by setting the
+\verb{input$<id>_<state>}. The default values can be overridden by setting the
 \code{shiny} option in the \code{options} parameter. Please see the vignette
-\code{Introduction to shinyjqui} for more details.
+\verb{Introduction to shinyjqui} for more details.
 
 The functions \code{jqui_draggabled()}, \code{jqui_droppabled()}, \code{jqui_resizabled()},
 \code{jqui_selectabled()} and \code{jqui_sortabled()} are deprecated. Please use the

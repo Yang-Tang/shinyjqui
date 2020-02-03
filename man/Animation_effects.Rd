@@ -8,17 +8,13 @@
 \alias{jqui_toggle}
 \title{Animation effects.}
 \usage{
-jqui_effect(selector, effect, options = NULL, duration = 400,
-  complete = NULL)
+jqui_effect(selector, effect, options = NULL, duration = 400, complete = NULL)
 
-jqui_show(selector, effect, options = NULL, duration = 400,
-  complete = NULL)
+jqui_show(selector, effect, options = NULL, duration = 400, complete = NULL)
 
-jqui_hide(selector, effect, options = NULL, duration = 400,
-  complete = NULL)
+jqui_hide(selector, effect, options = NULL, duration = 400, complete = NULL)
 
-jqui_toggle(selector, effect, options = NULL, duration = 400,
-  complete = NULL)
+jqui_toggle(selector, effect, options = NULL, duration = 400, complete = NULL)
 }
 \arguments{
 \item{selector}{Deprecated, just keep for backward compatibility.
@@ -49,10 +45,10 @@ Allow element(s) to show animation effects.
 }
 \details{
 These functions are R wrappers of
-\href{https://api.jqueryui.com/effect/}{effect()},
-\href{https://api.jqueryui.com/hide/}{hide()},
-\href{https://api.jqueryui.com/show/}{show()} and
-\href{https://api.jqueryui.com/toggle/}{toggle()} from jQuery UI library. They
+\href{https://api.jqueryui.com/effect/}{\code{effect()}},
+\href{https://api.jqueryui.com/hide/}{\code{hide()}},
+\href{https://api.jqueryui.com/show/}{\code{show()}} and
+\href{https://api.jqueryui.com/toggle/}{\code{toggle()}} from jQuery UI library. They
 should be used in \code{server} of a shiny document.
 }
 \examples{

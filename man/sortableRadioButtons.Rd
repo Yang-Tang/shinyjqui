@@ -4,8 +4,16 @@
 \alias{sortableRadioButtons}
 \title{Create radio buttons with sortable choices}
 \usage{
-sortableRadioButtons(inputId, label, choices = NULL, selected = NULL,
-  inline = FALSE, width = NULL, choiceNames = NULL, choiceValues = NULL)
+sortableRadioButtons(
+  inputId,
+  label,
+  choices = NULL,
+  selected = NULL,
+  inline = FALSE,
+  width = NULL,
+  choiceNames = NULL,
+  choiceValues = NULL
+)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -24,7 +32,7 @@ to the first value)}
 \item{inline}{If \code{TRUE}, render the choices inline (i.e. horizontally)}
 
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
-see \code{\link{validateCssUnit}}.}
+see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 
 \item{choiceNames}{List of names and values, respectively, that
 are displayed to the user in the app and correspond to the each choice (for
@@ -52,8 +60,8 @@ A set of radio buttons that can be added to a UI definition.
 \description{
 Create a set of radio buttons used to select an item from a list. The choices
 are sortable by drag and drop. In addition to the selected values stored in
-\code{input$<inputId>}, the server will also receive the order of choices in
-\code{input$<inputId>_order}.
+\verb{input$<inputId>}, the server will also receive the order of choices in
+\verb{input$<inputId>_order}.
 }
 \examples{
 ## Only run this example in interactive R sessions

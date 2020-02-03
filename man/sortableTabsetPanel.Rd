@@ -4,16 +4,21 @@
 \alias{sortableTabsetPanel}
 \title{Create a tabset panel with sortable tabs}
 \usage{
-sortableTabsetPanel(..., id = NULL, selected = NULL, type = c("tabs",
-  "pills"), position = NULL)
+sortableTabsetPanel(
+  ...,
+  id = NULL,
+  selected = NULL,
+  type = c("tabs", "pills"),
+  position = NULL
+)
 }
 \arguments{
-\item{...}{\code{\link{tabPanel}} elements to include in the tabset}
+\item{...}{\code{\link[shiny:tabPanel]{tabPanel()}} elements to include in the tabset}
 
 \item{id}{If provided, you can use \code{input$}\emph{\code{id}} in your
 server logic to determine which of the current tabs is active. The value
 will correspond to the \code{value} argument that is passed to
-\code{\link{tabPanel}}.}
+\code{\link[shiny:tabPanel]{tabPanel()}}.}
 
 \item{selected}{The \code{value} (or, if none was supplied, the \code{title})
 of the tab that should be selected by default. If \code{NULL}, the first
@@ -31,8 +36,8 @@ A tabset that can be passed to \link[shiny:mainPanel]{shiny::mainPanel}
 \description{
 Create a tabset that contains \link[shiny:tabPanel]{shiny::tabPanel} elements. The tabs are
 sortable by drag and drop. In addition to the activated tab title stored in
-\code{input$<id>}, the server will also receive the order of tabs in
-\code{input$<id>_order}.
+\verb{input$<id>}, the server will also receive the order of tabs in
+\verb{input$<id>_order}.
 }
 \examples{
 ## Only run this example in interactive R sessions

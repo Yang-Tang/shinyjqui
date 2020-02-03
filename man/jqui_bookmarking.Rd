@@ -10,6 +10,6 @@ jqui_bookmarking()
 Enable shiny
 \href{https://shiny.rstudio.com/articles/bookmarking-state.html}{bookmarking_state}
 of mouse interactions. By calling this function in \code{server}, the elements'
-\code{position}, \code{size}, \code{selection state} and \code{sorting state} changed by mouse
+\code{position}, \code{size}, \verb{selection state} and \verb{sorting state} changed by mouse
 operations can be saved and restored through an URL.
 }

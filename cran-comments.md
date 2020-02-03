@@ -1,13 +1,13 @@
 ## Test environments
-* ubuntu 14.04.5 (on travis-ci), R oldrel, release and devel 
+* Ubuntu 16.04.6 LTS (on travis-ci), R oldrel, release and devel 
 * win-builder (devel and release)
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
-
-checking CRAN incoming feasibility ... NOTE
+0 errors | 0 warnings | 0 note
 
 ## Reverse dependencies
 
-There are currently no downstream dependencies for this package.
+Currently, there are four packages  depand on shinyjqui:
+"CaPO4Sim", "compareGroups", "Factoshiny", "shinydashboardPlus"
+All of them passed the R CMD check.
