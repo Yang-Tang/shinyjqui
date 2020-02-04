@@ -728,7 +728,13 @@ shinyjqui = function() {
 
       } else if(type === 'effect') {
 
-          $els[func](opt);
+          // use variable parameter instead of object parameter to add support
+          // to the effect-specific properties and options
+          //$els[func](opt);
+          $els[func](effect   = opt.effect,
+                     options  = opt.options,
+                     duration = opt.duration,
+                     complete = opt.complete);
 
       } else if(type === 'class') {
 

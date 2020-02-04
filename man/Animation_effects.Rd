@@ -8,17 +8,21 @@
 \alias{jqui_toggle}
 \title{Animation effects.}
 \usage{
-jqui_effect(selector, effect, options = NULL, duration = 400, complete = NULL)
+jqui_effect(ui, effect, options = NULL, duration = 400, complete = NULL)
 
-jqui_show(selector, effect, options = NULL, duration = 400, complete = NULL)
+jqui_show(ui, effect, options = NULL, duration = 400, complete = NULL)
 
-jqui_hide(selector, effect, options = NULL, duration = 400, complete = NULL)
+jqui_hide(ui, effect, options = NULL, duration = 400, complete = NULL)
 
-jqui_toggle(selector, effect, options = NULL, duration = 400, complete = NULL)
+jqui_toggle(ui, effect, options = NULL, duration = 400, complete = NULL)
 }
 \arguments{
-\item{selector}{Deprecated, just keep for backward compatibility.
-Please use \code{ui} and \code{operation} parameters instead.}
+\item{ui}{The target ui element(s) to be manipulated. Can be
+\itemize{
+\item A string of \href{https://api.jquery.com/category/selectors/}{jQuery_selector}
+\item A \link[htmlwidgets:JS]{JS()} wrapped javascript expression that returns a
+\href{http://api.jquery.com/Types/#jQuery}{jQuery object}.
+}}
 
 \item{effect}{A string indicating which
 \href{http://jqueryui.com/effect/}{animation effect} to use for the

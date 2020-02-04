@@ -2,11 +2,6 @@
 % Please edit documentation in R/interactions.R
 \name{Interactions}
 \alias{Interactions}
-\alias{jqui_draggabled}
-\alias{jqui_droppabled}
-\alias{jqui_resizabled}
-\alias{jqui_selectabled}
-\alias{jqui_sortabled}
 \alias{jqui_draggable}
 \alias{jqui_droppable}
 \alias{jqui_resizable}
@@ -14,63 +9,37 @@
 \alias{jqui_sortable}
 \title{Mouse interactions}
 \usage{
-jqui_draggabled(tag, options = NULL)
-
-jqui_droppabled(tag, options = NULL)
-
-jqui_resizabled(tag, options = NULL)
-
-jqui_selectabled(tag, options = NULL)
-
-jqui_sortabled(tag, options = NULL)
-
 jqui_draggable(
   ui,
   operation = c("enable", "disable", "destroy", "save", "load"),
-  options = NULL,
-  selector = NULL,
-  switch = NULL
+  options = NULL
 )
 
 jqui_droppable(
   ui,
   operation = c("enable", "disable", "destroy", "save", "load"),
-  options = NULL,
-  selector = NULL,
-  switch = NULL
+  options = NULL
 )
 
 jqui_resizable(
   ui,
   operation = c("enable", "disable", "destroy", "save", "load"),
-  options = NULL,
-  selector = NULL,
-  switch = NULL
+  options = NULL
 )
 
 jqui_selectable(
   ui,
   operation = c("enable", "disable", "destroy", "save", "load"),
-  options = NULL,
-  selector = NULL,
-  switch = NULL
+  options = NULL
 )
 
 jqui_sortable(
   ui,
   operation = c("enable", "disable", "destroy", "save", "load"),
-  options = NULL,
-  selector = NULL,
-  switch = NULL
+  options = NULL
 )
 }
 \arguments{
-\item{options}{A list of
-\href{http://api.jqueryui.com/category/interactions/}{interaction_specific_options}.
-Ignored when \code{operation} is set as \code{destroy}. This parameter also
-accept a \code{shiny} option that controls the shiny input value returned from
-the element. See Details.}
-
 \item{ui}{The target ui element(s) to be manipulated. Can be
 \itemize{
 \item A \code{shiny.tag} or \code{shiny.tag.list} object
@@ -83,8 +52,11 @@ the element. See Details.}
 Should be one of \code{enable}, \code{disable}, \code{destroy}, \code{save} and \code{load}. Ignored
 when \code{ui} is a \code{shiny.tag} or \code{shiny.tag.list} object. See Details.}
 
-\item{selector, tag, switch}{Deprecated, just keep for backward compatibility.
-Please use \code{ui} and \code{operation} parameters instead.}
+\item{options}{A list of
+\href{http://api.jqueryui.com/category/interactions/}{interaction_specific_options}.
+Ignored when \code{operation} is set as \code{destroy}. This parameter also
+accept a \code{shiny} option that controls the shiny input value returned from
+the element. See Details.}
 }
 \value{
 The same object passed in the \code{ui} parameter

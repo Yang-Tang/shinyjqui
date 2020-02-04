@@ -37,6 +37,7 @@ sendMsg <- function() {
   shiny::insertUI("body", "afterBegin", jquiDep(), immediate = TRUE)
   message <- Filter(function(x) !is.symbol(x), as.list(parent.frame(1)))
   message <- addJSIdx(message)
+  message[["debug"]] <- getOption("shinyjqui.debug")
   session <- shiny::getDefaultReactiveDomain()
   # send message only after session flushed, this ensures the target element is
   # fully rendered when the message contains js codes.

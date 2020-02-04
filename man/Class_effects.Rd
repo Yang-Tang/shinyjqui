@@ -8,7 +8,7 @@
 \title{Class effects.}
 \usage{
 jqui_add_class(
-  selector,
+  ui,
   className,
   duration = 400,
   easing = "swing",
@@ -16,7 +16,7 @@ jqui_add_class(
 )
 
 jqui_remove_class(
-  selector,
+  ui,
   className,
   duration = 400,
   easing = "swing",
@@ -24,7 +24,7 @@ jqui_remove_class(
 )
 
 jqui_switch_class(
-  selector,
+  ui,
   removeClassName,
   addClassName,
   duration = 400,
@@ -33,8 +33,12 @@ jqui_switch_class(
 )
 }
 \arguments{
-\item{selector}{Deprecated, just keep for backward compatibility.
-Please use \code{ui} and \code{operation} parameters instead.}
+\item{ui}{The target ui element(s) to be manipulated. Can be
+\itemize{
+\item A string of \href{https://api.jquery.com/category/selectors/}{jQuery_selector}
+\item A \link[htmlwidgets:JS]{JS()} wrapped javascript expression that returns a
+\href{http://api.jquery.com/Types/#jQuery}{jQuery object}.
+}}
 
 \item{className}{One or more class names (space separated) to be added to or
 removed from the class attribute of each matched element.}
