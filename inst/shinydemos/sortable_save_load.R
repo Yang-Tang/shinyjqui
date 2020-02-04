@@ -12,7 +12,7 @@ ui <- fluidPage(
 server <- function(input, output) {
   output$order <- renderPrint({
     cat("Rows order:\n")
-    input$tbl_index
+    input$tbl_order
   })
   output$tbl <- renderTable(head(mtcars), rownames = TRUE)
 

@@ -595,7 +595,13 @@ shinyjqui = function() {
         },
         "order:shinyjqui.df" : {
           "sortcreate sortupdate" : function(event, ui) {
-            var $items = $(event.target).find('.ui-sortable-handle');
+            // In "copy" mode (by `connectToSortable` option), the items will have
+            // class `ui-draggable-handle` instead of `ui-sortable-handle`, so
+            // we use attr `jqui_sortable_idx` here to find all the items.
+            // The attr `jqui_sortable_idx` was added by function `addIndex` for
+            // bookmarking.
+            //var $items = $(event.target).find('.ui-sortable-handle');
+            var $items = $(event.target).find('[jqui_sortable_idx]');
             var text = $items.map(function(i, e){
               // use empty string for `undefined` to keep the same length as ids
               return e.innerText ? e.innerText : ""

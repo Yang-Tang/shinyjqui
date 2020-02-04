@@ -3,6 +3,7 @@
 * __Breaking change:__ Removed `jqui_draggabled()`, `jqui_droppabled()`, `jqui_resizabled()`, `jqui_selectabled()`, `jqui_sortabled()` and `includeJqueryUI()` as they have been deprecated for a long time.
 * __Breaking change:__ Removed deprecated `selector`, `tag` and `switch` parameters from interation and effect functions.
 * __Bug fix:__ Effect-specific options are no longer ignored by `jqui_effect()`. (#56)
+* __Bug fix:__ `input$id_order` of sortable now return values when the `connectToSortable` option is used.
 
 
 ## shinyjqui 0.3.3

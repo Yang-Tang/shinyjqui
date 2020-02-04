@@ -27,7 +27,7 @@
 #'
 sortableTableOutput <- function(outputId) {
   shinyopt <- list(
-    row_index = list(
+    order = list(
       # on table update, trigger the "sortcreate" to recreate row index, also
       # needs to wait for 10ms until table element refresh.
       `shiny:value` = JS(
