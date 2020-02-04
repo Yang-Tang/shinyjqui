@@ -1,3 +1,6 @@
+## shinyjqui 0.3.3.9000
+
+
 ## shinyjqui 0.3.3
 
 * __Bug fix:__ Fixed an incompatibility with Shiny v1.4.0: due to Shiny upgrading from jQuery 1.x to 3.x, the timing of shinjqui initialization routines has changed.
