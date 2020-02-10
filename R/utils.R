@@ -56,7 +56,7 @@ addInteractJSShiny <- function(tag, func, options = NULL) {
   if (inherits(tag, "shiny.tag.list")) {
 
     # use `[<-` to keep original attributes of tagList
-    tag[] <- lapply(tag, addInteractJS, func = func, options = options)
+    tag[] <- lapply(tag, addInteractJSShiny, func = func, options = options)
     return(tag)
 
   } else if (inherits(tag, "shiny.tag")) {

@@ -57,7 +57,7 @@ jqui_interaction.shiny.tag.list <- function(ui, interaction,
                                                           "save",
                                                           "load"),
                                             options = NULL) {
-  ui[] <- lapply(ui, addInteractJS,
+  ui[] <- lapply(ui, addInteractJSShiny,
                  func = interaction, options = options)
   return(ui)
 }
