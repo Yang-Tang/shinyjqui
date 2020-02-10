@@ -15,14 +15,16 @@ addJSIdx <- function(list) {
 jquiDep <- function() {
   list(
     htmltools::htmlDependency(
-      name       = "jqueryui", version = "1.12.1",
+      name       = "jqueryui",
+      version    = "1.12.1",
       package    = "shiny",
       src        = "www/shared/jqueryui",
       script     = "jquery-ui.min.js",
       stylesheet = "jquery-ui.css"
     ),
     htmltools::htmlDependency(
-      name    = "shinyjqui-assets", version = "0.3.2",
+      name    = "shinyjqui-assets",
+      version = "0.3.3",
       package = "shinyjqui",
       src     = "www",
       script  = ifelse(getOption("shinyjqui.debug"), "shinyjqui.js", "shinyjqui.min.js")
@@ -50,7 +52,7 @@ randomChars <- function() {
   paste0(sample(c(letters, LETTERS, 0:9), size = 8, replace = TRUE), collapse = "")
 }
 
-addInteractJS <- function(tag, func, options = NULL) {
+addInteractJSShiny <- function(tag, func, options = NULL) {
   if (inherits(tag, "shiny.tag.list")) {
 
     # use `[<-` to keep original attributes of tagList
@@ -119,7 +121,7 @@ addInteractJS <- function(tag, func, options = NULL) {
     # run js on document ready
     js <- sprintf("$(function(){%s});", js)
 
-    shiny::tagList(
+    htmltools::tagList(
       jquiDep(),
       tag,
 
@@ -128,7 +130,7 @@ addInteractJS <- function(tag, func, options = NULL) {
       # from insertion even after the first one was removed
       # shiny::tags$head should not be used to wrap the script. It seems
       # shiny::tags$head is not working in flexdashboard
-      shiny::tags$script(
+      htmltools::tags$script(
         class = "jqui_self_cleaning_script",
         shiny::HTML(js)
       )
@@ -138,4 +140,76 @@ addInteractJS <- function(tag, func, options = NULL) {
     warning("The tag provided is not a shiny tag. Action abort.")
     return(tag)
   }
+}
+
+# Add interactions to a static htmlwidget in RStudio Viwer, webpage or RMarkdown
+# This was done by appending a tagList to the htmlwidget object. The tagList contains
+# the dependencies and js code to initiate the interaction
+# For htmlwidgets, the insterction always attached to their wrappers or containers to
+# avoid the destruction of resizable handlers by widget redraw.
+# In the case of RStudio Viwer or webpage, the htmlwidget is already wrapped by
+# div#htmlwidget_container, so no need to add another wrapper
+# In the case of RMarkdown, the div#htmlwidget-xxxxxxxxxxxx is naked, therefore,
+# wrapping is needed
+# According to htmlwidgets.js, the resizing of a staticRendered htmlwidget can be
+# triggered by the "resize" event from window or some other events from document,
+# includeing "shown.htmlwidgets shown.bs.tab.htmlwidgets shown.bs.collapse.htmlwidgets"
+# I found $(window).trigger("resize") is not working (don't know why), so
+# "shown.htmlwidgets" is used here.
+addInteractJSHTMLWidget <- function(x, func, options = NULL) {
+
+  # dep_tag:
+
+  # jquery dependency is needed for htmlwidget mode
+  jquery_dep <- list(
+    htmltools::htmlDependency(
+      name       = "jquery",
+      version    = "3.4.1",
+      package    = "shiny",
+      src        = "www/shared",
+      script     = "jquery.min.js"
+    )
+  )
+  dep_tag <- c(jquery_dep, jquiDep())
+
+  # script_tag:
+
+  # Give an id to the script tag appended. The id will then be used to find the sibling
+  # htmlwidget with id "htmlwidget-xxxxxxxxxxxx" and class "html-widget html-widget-static-bound"
+  script_id <- sprintf("jqui-interaction-%s", randomChars())
+
+  widget_sel <- "div.html-widget-static-bound"
+  # use .parent().find() to locate the sibling htmlwidget. The target htmlwidget could be
+  # a "nephew" if it was already wrapped by div.jqui-wrapper
+  widget <- htmlwidgets::JS(sprintf('$("#%s").parent().find("%s").get(0)', script_id, widget_sel))
+
+  msg <- list(
+    ui        = widget,
+    type      = "interaction",
+    func      = func,
+    operation = "enable",
+    options   = options,
+    debug     = getOption("shinyjqui.debug")
+  )
+  msg <- addJSIdx(msg)
+  msg_json <- jsonlite::toJSON(msg, auto_unbox = TRUE, force = TRUE)
+
+  js <- sprintf("shinyjqui.msgCallback(%s);", msg_json)
+
+  # for resizable, link the resize event to the resizeHandler from htmlwidgets.js by
+  # triggering "shown.htmlwidgets" event
+  if(msg$func == "resizable") {
+    resize_js <- sprintf(
+      '$(%s).parent().on("resize", function() { $(document).trigger("shown.htmlwidgets"); })',
+      msg$ui
+    )
+    js <- paste0(js, resize_js, collapse = "\n")
+  }
+
+  js <- sprintf("HTMLWidgets.addPostRenderHandler(function() {%s});", shiny::HTML(js))
+
+  script_tag <- htmltools::tags$script(id = script_id, js)
+
+  htmlwidgets::appendContent(x, htmltools::tagList(dep_tag, script_tag))
+
 }

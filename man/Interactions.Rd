@@ -42,74 +42,79 @@ jqui_sortable(
 \arguments{
 \item{ui}{The target ui element(s) to be manipulated. Can be
 \itemize{
-\item A \code{shiny.tag} or \code{shiny.tag.list} object
-\item A string of \href{https://api.jquery.com/category/selectors/}{jQuery_selector}
-\item A \link[htmlwidgets:JS]{JS()} wrapped javascript expression that returns a
+\item A \code{shiny.tag}
+or \code{shiny.tag.list} object
+\item A static \code{htmlwidget} object
+\item A string of
+\href{https://api.jquery.com/category/selectors/}{jQuery_selector}
+\item A
+\link[htmlwidgets:JS]{JS()} wrapped javascript expression that returns a
 \href{http://api.jquery.com/Types/#jQuery}{jQuery object}.
 }}
 
-\item{operation}{A string to determine how to manipulate the mouse interaction.
-Should be one of \code{enable}, \code{disable}, \code{destroy}, \code{save} and \code{load}. Ignored
-when \code{ui} is a \code{shiny.tag} or \code{shiny.tag.list} object. See Details.}
+\item{operation}{A string to determine how to manipulate the mouse
+interaction. Should be one of \code{enable}, \code{disable}, \code{destroy}, \code{save} and
+\code{load}. Ignored when \code{ui} is a \code{shiny.tag} or \code{shiny.tag.list} object. See
+Details.}
 
 \item{options}{A list of
 \href{http://api.jqueryui.com/category/interactions/}{interaction_specific_options}.
-Ignored when \code{operation} is set as \code{destroy}. This parameter also
-accept a \code{shiny} option that controls the shiny input value returned from
-the element. See Details.}
+Ignored when \code{operation} is set as \code{destroy}. This parameter also accept a
+\code{shiny} option that controls the shiny input value returned from the
+element. See Details.}
 }
 \value{
 The same object passed in the \code{ui} parameter
 }
 \description{
-Attach mouse-based interactions to shiny html tags and input/output widgets,
-and provide ways to manipulate them. The interactions include:
+Attach mouse-based interactions to shiny html tags, shiny input/output
+widgets or static htmlwidgets and provide ways to manipulate them. The
+interactions include: * \href{http://api.jqueryui.com/draggable/}{draggable}:
+Allow elements to be moved using the mouse.
 \itemize{
-\item \href{http://api.jqueryui.com/draggable/}{draggable}: Allow elements to be
-moved using the mouse.
-\item \href{http://api.jqueryui.com/droppable/}{droppable}: Create targets for
-draggable elements.
-\item \href{http://api.jqueryui.com/resizable/}{resizable}: Change the size of an
-element using the mouse.
+\item \href{http://api.jqueryui.com/droppable/}{droppable}: Create targets for draggable
+elements.
+\item \href{http://api.jqueryui.com/resizable/}{resizable}: Change the size
+of an element using the mouse.
 \item \href{http://api.jqueryui.com/selectable/}{selectable}: Use the mouse to select
 elements, individually or in a group.
-\item \href{http://api.jqueryui.com/sortable/}{sortable}: Reorder elements in a list
-or grid using the mouse.
+\item \href{http://api.jqueryui.com/sortable/}{sortable}: Reorder elements in a list or
+grid using the mouse.
 }
 }
 \details{
-The first parameter \code{ui} determines the target shiny ui element(s) to work
-with. It accepts objects with different classes. When you provide a
-\code{shiny.tag} (e.g., shiny inputs/outputs or ui created by \link[shiny:tags]{shiny::tags}) or a
-\code{shiny.tag.list} (by \link[shiny:tagList]{tagList()}) object, the functions return the same
-ui object with interaction effects attached. When a
+The first parameter \code{ui} determines the target ui and working mode. If the
+target ui is a \code{shiny.tag} (e.g., shiny inputs/outputs or ui created by
+\link[shiny:tags]{shiny::tags}) or a \code{shiny.tag.list} (by \link[shiny:tagList]{tagList()}) object
+or a static \code{htmlwidget}, the functions return the a modified ui object with
+interaction effects attached. When a
 \href{https://api.jquery.com/category/selectors/}{jQuery_selector} or a javascript
-expression is provided, the functions first use it to locate the target ui
-element(s) in shiny app, and then attach or manipulate the interactions.
-Therefore, you can use the first way in \code{ui} of a shiny app to created
-elements with interaction effects, or use the second way in \code{server} to
-manipulate the interactions.
+expression is provided as the \code{ui} parameter, the functions first use it to
+locate the target ui element(s) in shiny app, and then attach or manipulate
+the interactions. Therefore, you can use the first way  in \code{ui} of a shiny
+app to created elements with interaction effects (the ui mode), or use the
+second way  in \code{server} to manipulate the interactions (the server mode).
 
-The \code{operation} parameter is valid only in the second way. It determines how
-to manipulate the interaction, which includes:
+The \code{operation} parameter is valid only in server mode. It determines how to
+manipulate the interaction, which includes:
 \itemize{
-\item \code{enable}: Attach the corresponding mouse interaction to the target(s).
-\item \code{disable}: Attach the interaction if not and disable it at once (only set the options).
+\item \code{enable}: Attach the
+corresponding mouse interaction to the target(s).
+\item \code{disable}: Attach the
+interaction if not and disable it at once (only set the options).
 \item \code{destory}: Destroy the interaction.
-\item \code{save}: Attach the interaction if not and save the current interaction state.
-\item \code{load}: If interaction attached, restore the target(s) to the last saved interaction state.
+\item \code{save}: Attach the interaction if not
+and save the current interaction state.
+\item \code{load}: If interaction attached,
+restore the target(s) to the last saved interaction state.
 }
 
 With mouse interactions attached, the corresponding interaction states, e.g.
 \code{position} of draggable, \code{size} of resizable, \code{selected} of selectable and
-\code{order} of sortable, will be send to server in the form of
+\code{order} of sortable, will be send to serverside in the form of
 \verb{input$<id>_<state>}. The default values can be overridden by setting the
 \code{shiny} option in the \code{options} parameter. Please see the vignette
 \verb{Introduction to shinyjqui} for more details.
-
-The functions \code{jqui_draggabled()}, \code{jqui_droppabled()}, \code{jqui_resizabled()},
-\code{jqui_selectabled()} and \code{jqui_sortabled()} are deprecated. Please use the
-corresponding \code{-able()} functions instead.
 }
 \examples{
 library(shiny)

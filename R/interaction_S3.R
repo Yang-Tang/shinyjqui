@@ -47,7 +47,7 @@ jqui_interaction.shiny.tag <- function(ui, interaction,
                                                      "save",
                                                      "load"),
                                        options = NULL) {
-  addInteractJS(ui, interaction, options)
+  addInteractJSShiny(ui, interaction, options)
 }
 
 jqui_interaction.shiny.tag.list <- function(ui, interaction,
@@ -60,4 +60,14 @@ jqui_interaction.shiny.tag.list <- function(ui, interaction,
   ui[] <- lapply(ui, addInteractJS,
                  func = interaction, options = options)
   return(ui)
+}
+
+jqui_interaction.htmlwidget <- function(ui, interaction,
+                                        operation = c("enable",
+                                                      "disable",
+                                                      "destroy",
+                                                      "save",
+                                                      "load"),
+                                        options = NULL) {
+  addInteractJSHTMLWidget(ui, interaction, options)
 }

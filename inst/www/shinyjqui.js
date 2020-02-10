@@ -1,5 +1,8 @@
 shinyjqui = function() {
 
+  // See if we're running in Shiny mode. Obtained from htmlwidgets htmlwidgets.js
+  var shinyMode = typeof(window.Shiny) !== "undefined" && !!window.Shiny.outputBindings;
+
   // If the target element has class "shiny-bound-input", which usually the case
   // when user uses an id to refer to a shiny input, we should redirect this
   // target element to its shiny-input-container so that the whole shiny input
@@ -40,6 +43,8 @@ shinyjqui = function() {
   };
 
   var handleShinyInput = function(el, opt, default_shiny_opt) {
+
+    if(!shinyMode) {return null;}
 
     var id = shinyjqui.getId(el);
 
@@ -173,8 +178,10 @@ shinyjqui = function() {
   var addWrapper = function(el) {
 
     if($(el).parent().hasClass("jqui-wrapper")) { return el; }
+    // the static htmlwidget is auto-wrapped, return its parent with no more action
+    if($(el).parent().attr("id") == "htmlwidget_container") { return $(el).parent().get(0); }
 
-    var pattern = /action-button|html-widget-output|shiny-.+?-output/;
+    var pattern = /action-button|html-widget-output|shiny-.+?-output|html-widget-static-bound/;
     if(!pattern.test($(el).attr('class'))) { return el; }
 
     var $wrapper = $('<div></div>')
@@ -755,7 +762,9 @@ shinyjqui = function() {
     },
 
     init : function() {
-      Shiny.addCustomMessageHandler('shinyjqui', shinyjqui.msgCallback);
+      if(shinyMode) {
+        Shiny.addCustomMessageHandler('shinyjqui', shinyjqui.msgCallback);
+      }
     }
 
   };

@@ -1,5 +1,6 @@
 ## shinyjqui 0.3.3.9000
 
+* __New feature:__: (Experimentally) Now the interaction functions can work on static htmlwidgets in RStudio Viewer or RMarkdown (e.g. `jqui_resizable(plotly::plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length))`). (#44)
 * __Breaking change:__ Removed `jqui_draggabled()`, `jqui_droppabled()`, `jqui_resizabled()`, `jqui_selectabled()`, `jqui_sortabled()` and `includeJqueryUI()` as they have been deprecated for a long time.
 * __Breaking change:__ Removed deprecated `selector`, `tag` and `switch` parameters from interation and effect functions.
 * __Bug fix:__ Effect-specific options are no longer ignored by `jqui_effect()`. (#56)
@@ -12,7 +13,7 @@
 * __Bug fix:__ `sortableRadioButtons`/`sortableCheckboxGroupInput` do not work when inlined. (@sam-harvey, #37).
 * __Bug fix:__ For interaction functions, the `shiny` options with the same suffix will overwrite the default settings, thus affect the return value of other interaction widgets. (#43)
 * __Bug fix:__ Interaction functions not working in `ui` mode in flexdashboard. (#53)
-* Add global option `shinyjqui.debug`, can be `TURE` or `FALSE`(default), to control whether to load the original/minified `shinyjqui.js` (#39) and to display/hide javascript debug message (#3).
+* Add global option `shinyjqui.debug`, can be `TURE` or `FALSE`(default), to control whether to load the original/minified `shinyjqui.js` (#39) and to display/hide javascript debug message (e.g. `options(shinyjqui.debug = TRUE)`) (#3).
 
 
 ## shinyjqui 0.3.2
