@@ -35,9 +35,20 @@ jquiDep <- function() {
 ## Idea from
 ## http://deanattali.com/blog/htmlwidgets-tips/#widget-to-r-data
 ## with some midifications.
+## Send custom shinyjqui message from server to ui
+## The message usually have the following components:
+##   ui: the target element, selector or jq object
+##   type: charactor, can be "interaction", "effect", "class"
+##   func: charactor, type-specific func name
+##   options: list, func-specific options
+##   operation: charactor, only for interactions
+##   _js_idx: boolean list
+##   debug: boolean
+
 sendMsg <- function() {
   shiny::insertUI("body", "afterBegin", jquiDep(), immediate = TRUE)
-  message <- Filter(function(x) !is.symbol(x), as.list(parent.frame(1)))
+  # message <- Filter(function(x) !is.symbol(x), as.list(parent.frame(1)))
+  message <- Filter(Negate(is.symbol), as.list(parent.frame(1)))
   message <- addJSIdx(message)
   message[["debug"]] <- getOption("shinyjqui.debug")
   session <- shiny::getDefaultReactiveDomain()

@@ -44,7 +44,8 @@ $.extend(orderInputBinding, {
       this.setValue(el, data.items, data.item_class);
 
     if (data.hasOwnProperty('label'))
-      this._updateLabel(data.label, this._getLabelNode(el));
+      //this._updateLabel(data.label, this._getLabelNode(el));
+      $(el).labels().text(data.label);
 
     if (data.hasOwnProperty('connect'))
       this._updateConnect(el, data.connect);

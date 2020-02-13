@@ -47,7 +47,7 @@ the \code{orderInput}.}
 \item{legacy}{A boolean value. Whether to use the old version of the
 \code{orderInput} function.}
 
-\item{...}{Arguments passed to \link[shiny:tags$div]{shiny::tags$div} which is used to build the
+\item{...}{Arguments passed to \code{shiny::tags$div} which is used to build the
 container of the \code{orderInput}.}
 }
 \value{

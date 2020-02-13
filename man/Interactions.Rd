@@ -86,7 +86,7 @@ grid using the mouse.
 \details{
 The first parameter \code{ui} determines the target ui and working mode. If the
 target ui is a \code{shiny.tag} (e.g., shiny inputs/outputs or ui created by
-\link[shiny:tags]{shiny::tags}) or a \code{shiny.tag.list} (by \link[shiny:tagList]{tagList()}) object
+\link[shiny:builder]{tags}) or a \code{shiny.tag.list} (by \link[shiny:tag]{tagList()}) object
 or a static \code{htmlwidget}, the functions return the a modified ui object with
 interaction effects attached. When a
 \href{https://api.jquery.com/category/selectors/}{jQuery_selector} or a javascript

@@ -757,6 +757,12 @@ shinyjqui = function() {
             $els.switchClass(opt.removeClassName, opt.addClassName, opt);
           }
 
+      } else if(type === 'other') {
+
+          if(func === 'position') {
+            $els.position(opt);
+          }
+
       }
 
     },

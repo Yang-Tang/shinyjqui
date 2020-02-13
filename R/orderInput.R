@@ -61,7 +61,7 @@ digestItems <- function(items) {
 #'   [shiny::validateCssUnit].
 #' @param legacy A boolean value. Whether to use the old version of the
 #'   `orderInput` function.
-#' @param ... Arguments passed to [shiny::tags$div] which is used to build the
+#' @param ... Arguments passed to `shiny::tags$div` which is used to build the
 #'   container of the `orderInput`.
 #'
 #' @return An `orderInput` control that can be added to a UI definition.
