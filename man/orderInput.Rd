@@ -2,7 +2,7 @@
 % Please edit documentation in R/orderInput.R
 \name{orderInput}
 \alias{orderInput}
-\title{A shiny input control to show the order of a list of items}
+\title{Create a shiny input control to show the order of a set of items}
 \usage{
 orderInput(
   inputId,
@@ -13,52 +13,72 @@ orderInput(
   item_class = c("default", "primary", "success", "info", "warning", "danger"),
   placeholder = NULL,
   width = "500px",
+  legacy = FALSE,
   ...
 )
 }
 \arguments{
-\item{inputId}{The \code{input} slot that will be used to access the current
-order of items.}
+\item{inputId}{The \code{input} slot that will be used to access the current order
+of items.}
 
 \item{label}{Display label for the control, or \code{NULL} for no label.}
 
 \item{items}{Items to display, can be a list, an atomic vector or a factor.
-For list and atomic vector, if named, the names are displayed and the order
-is given in values. For factor, values are displayed and the order is
-given in levels}
+For list or atomic vector, if named, the names are displayed and the order
+is given in values. For factor, values are displayed and the order is given
+in levels}
 
-\item{as_source}{A boolean value to determine whether the \code{orderInput}
-is set as source mode. If source mode, items in this \code{orderInput} can
-only be dragged (copied) to the connected non-source \code{orderInput}(s)
-defined by \code{connect} argument. If non-source mode, items in the
-\code{orderInput} can be dragged (moved) within or toward other connected
-non-source \code{orderInput}(s) defined by \code{connect} argument.}
+\item{as_source}{A boolean value to determine whether the \code{orderInput} is set
+as source mode. Only works if the \code{connect} argument was set.}
 
-\item{connect}{optional, a vector of \code{inputId}(s) of other
-\code{orderInput}(s) that the current \code{orderInput} connects to. The
-behavior of the connected \code{orderInput}(s) depend on the
-\code{as_source} argument.}
+\item{connect}{Optional. Allow items to be dragged between \code{orderInput}s.
+Should be a vector of \code{inputId}(s) of other \code{orderInput}(s) that the items
+from this \code{orderInput} should be connected to.}
 
-\item{item_class}{One of the
-\href{http://getbootstrap.com/css/#buttons-options}{Bootstrap
-Button Styles} to apply to each item.}
+\item{item_class}{One of the \href{https://getbootstrap.com/docs/4.0/utilities/colors/}{Bootstrap color utility classes} to apply to
+each item.}
 
 \item{placeholder}{A character string to show when there is no item left in
 the \code{orderInput}.}
 
 \item{width}{The width of the input, e.g. '400px', or '100\\%'. Passed to
-\code{\link[shiny]{validateCssUnit}}.}
+\link[shiny:validateCssUnit]{shiny::validateCssUnit}.}
 
-\item{...}{Arguments passed to \code{shiny::tags$div} which is used to build
-the container of the \code{orderInput}.}
+\item{legacy}{A boolean value. Whether to use the old version of the
+\code{orderInput} function.}
+
+\item{...}{Arguments passed to \link[shiny:tags$div]{shiny::tags$div} which is used to build the
+container of the \code{orderInput}.}
 }
 \value{
-A \code{orderInput} control that can be added to a UI definition.
+An \code{orderInput} control that can be added to a UI definition.
 }
 \description{
-Display a list items whose order can be changed by drag and drop within or
-between \code{orderInput}(s). The current items order can be obtained from
-\code{input$inputId_order}.
+Display a set of items whose order can be changed by drag and drop inside or
+between \code{orderInput}(s). The item order is send back to server in the from of
+\code{input$inputId}.
+}
+\details{
+\code{orderInput}s can work in either connected mode or stand-alone mode. In
+stand-alone mode, items can only be drag and drop inside the input control.
+In connected mode, items to be dragged between \code{orderInput}s, which is
+controled by the \code{connect} prarameter. This is a one-way relationship. if
+user want the items to be connected in both directions, the \code{connect}
+prarameter must be set on both \code{orderInput}s.
+
+When in connected mode, \code{orderInput} can be set as source-only through the
+\code{as_source} prarameter. The items in a "source" \code{orderInput} can only be
+copied, instead of moved, to other connected non-source \code{orderInput}(s).
+
+From shinyjqui v0.4.0 and above, the \code{orderInput} function was implemented in
+the similar way as other classical shiny inputs, which brought two changes:
+\enumerate{
+\item The input value was changed from \code{input$inputId_order} to \code{input$inputId};
+\item The new version supports \link{updateOrderInput} function which works in the
+same way as other shiny input updater functions. To keep the backward
+compatibility, a \code{legacy} argument was provided if user wanted to use the old
+version.
+}
 }
 \examples{
 orderInput('items1', 'Items1', items = month.abb, item_class = 'info')

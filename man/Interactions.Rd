@@ -53,7 +53,7 @@ or \code{shiny.tag.list} object
 }}
 
 \item{operation}{A string to determine how to manipulate the mouse
-interaction. Should be one of \code{enable}, \code{disable}, \code{destroy}, \code{save} and
+interaction. Can be one of \code{enable}, \code{disable}, \code{destroy}, \code{save} and
 \code{load}. Ignored when \code{ui} is a \code{shiny.tag} or \code{shiny.tag.list} object. See
 Details.}
 
@@ -69,9 +69,10 @@ The same object passed in the \code{ui} parameter
 \description{
 Attach mouse-based interactions to shiny html tags, shiny input/output
 widgets or static htmlwidgets and provide ways to manipulate them. The
-interactions include: * \href{http://api.jqueryui.com/draggable/}{draggable}:
-Allow elements to be moved using the mouse.
+interactions include:
 \itemize{
+\item \href{http://api.jqueryui.com/draggable/}{draggable}:
+Allow elements to be moved using the mouse.
 \item \href{http://api.jqueryui.com/droppable/}{droppable}: Create targets for draggable
 elements.
 \item \href{http://api.jqueryui.com/resizable/}{resizable}: Change the size

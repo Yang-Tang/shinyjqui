@@ -1,41 +1,46 @@
 library(shiny)
 library(shinyjqui)
 
-server <- function(input, output) {
+ui <- fluidPage(
+  orderInput("foo", "foo",
+             items = month.abb[1:3],
+             item_class = 'info'),
+  orderInput("bar", "bar",
+             items = month.abb[4:6],
+             item_class = 'info'),
+  verbatimTextOutput("order"),
+  actionButton("update", "update")
+)
 
-  output$lst_order <- renderPrint({
-    cat('List1: ')
-    cat(input$lst1_order)
-    cat('\n')
-
-    cat('List2: ')
-    cat(input$lst2_order)
-    cat('\n')
-
-    cat('List3: ')
-    cat(input$lst3_order)
-    cat('\n')
-
-    cat('List4: ')
-    cat(input$lst4_order)
-    cat('\n')
+server <- function(input, output, session) {
+  output$order <- renderPrint({input$bar})
+  observeEvent(input$update, {
+    updateOrderInput(session, "foo",
+                     items = month.abb[1:6],
+                     connect = "bar",
+                     item_class = "success")
   })
-
 }
 
+shinyApp(ui, server)
+
+
+
+
 ui <- fluidPage(
-  # includeJqueryUI(),
-
-  orderInput('lst1', 'List1', items = month.abb, item_class = 'info'),
-  orderInput('lst2', 'List2 (can be moved to List1 and List4)', items = month.abb,
-             connect = c('lst1', 'lst4'), item_class = 'primary'),
-  orderInput('lst3', 'List3 (can be copied to List2 and List4)', items = month.abb,
-             as_source = TRUE, connect = c('lst2', 'lst4'), item_class = 'success'),
-  orderInput('lst4', 'List4 (can be moved to List2)', items = NULL, connect = 'lst2',
-             placeholder = 'Drag items here...'),
-
-  verbatimTextOutput('lst_order')
-
+  orderInput("foo", "label", letters[1:5], as_source = T, connect = "bar", placeholder = "empty1"),
+  orderInput("bar", "label2", LETTERS[1:5], connect = "foo", placeholder = "empty2"),
+  verbatimTextOutput("order"),
+  verbatimTextOutput("order2"),
+  actionButton("add", "Add")
 )
+
+server <- function(input, output, session) {
+  output$order <- renderPrint({input$foo})
+  output$order2 <- renderPrint({input$bar})
+  observeEvent(input$add, {
+    updateOrderInput(session, "bar", items = c("y", "k"), item_class = "success")
+  })
+}
 
 shinyApp(ui, server)
