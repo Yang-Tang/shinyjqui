@@ -13,7 +13,7 @@ addJSIdx <- function(list) {
 
 ## return a shiny head tag with necessary js and css for shinyjqui
 jquiDep <- function() {
-  list(
+  htmltools::tagList(
     htmltools::htmlDependency(
       name       = "jqueryui",
       version    = "1.12.1",
@@ -68,6 +68,11 @@ addInteractJSShiny <- function(tag, func, options = NULL) {
 
     # use `[<-` to keep original attributes of tagList
     tag[] <- lapply(tag, addInteractJSShiny, func = func, options = options)
+    return(tag)
+
+  } else if (inherits(tag, "html_dependency")) {
+    # leave the jquiDep() from a shiny.tag.list as is, without checking the
+    # `shiny.tag` class
     return(tag)
 
   } else if (inherits(tag, "shiny.tag")) {
