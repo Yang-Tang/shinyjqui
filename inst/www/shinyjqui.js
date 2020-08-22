@@ -100,9 +100,11 @@ shinyjqui = function() {
       console.warn("The selector didn't match any element. Operation abort.");
       return;
     }
-    $els.removeClass(function(index, className){
-      return (className.match (/(^|\s)jqui-interaction-\S+/g) || []).join(' ');
-    });
+    // stop removing the jqui-interaction-xxx class as it will cause the nested
+    // interactions stop working.
+    //$els.removeClass(function(index, className){
+    //  return (className.match (/(^|\s)jqui-interaction-\S+/g) || []).join(' ');
+    //});
     $els = $els.map(function(i, e){
       e = getInputContainer(e);
       e = addWrapper(e);

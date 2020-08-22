@@ -77,10 +77,15 @@ addInteractJSShiny <- function(tag, func, options = NULL) {
       return(tag)
     }
 
-    id <- tag$attribs$id
+    id <- shiny::tagGetAttribute(tag, "id")
+    class <- shiny::tagGetAttribute(tag, "class")
     if (!is.null(id)) {
       # when id contains spaces, `#id` will not work
       selector <- sprintf("[id='%s']", id)
+    } else if (!is.null(class) && grepl("jqui-interaction-", class)) {
+      class <- unlist(strsplit(class, " "))
+      class <- grep("jqui-interaction-", class, value = TRUE)
+      selector <- paste0(".", class)
     } else {
       class <- sprintf("jqui-interaction-%s", randomChars())
       tag <- shiny::tagAppendAttributes(tag, class = class)
