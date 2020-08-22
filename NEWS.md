@@ -8,6 +8,7 @@
 * __Bug fix:__ Effect-specific options are no longer ignored by `jqui_effect()`. (#56)
 * __Bug fix:__ `input$id_order` of sortable now return values when the `connectToSortable` option is used.
 * __Bug fix:__ Nested interaction functions was not working with a shiny tag without an id (e.g. `jqui_resizable(jqui_draggable(div("aaa")))`). (#66)
+* __Bug fix:__ Nested interaction functions showed "Action abort" warning to a shiny tag without an id. (#66)
 
 
 ## shinyjqui 0.3.3
