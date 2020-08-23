@@ -536,7 +536,7 @@ shinyjqui = function() {
       getState : function(el) {
         // .ui-draggable are items from draggable-connectToSortable,
         // this should be more restrict in later changes
-        var $items = $(el).find(".ui-sortable-handle,.ui-draggable");
+        var $items = $(el).find(".ui-sortable-handle,.ui-draggable").clone();
         // don't use toArray here
         var index = $items.map(function(i, e) {
           return $(e).attr("jqui_sortable_idx");
@@ -551,13 +551,16 @@ shinyjqui = function() {
         var $el = $(el);
 
         var $items_to_restore;
+        var mode;
         if(state.items instanceof jQuery) {
           // client mode
+          mode = "client";
           $items_to_restore = state.items;
         } else {
           // shiny bookmarking mode
+          mode = "bookmarking";
           if(!Array.isArray(state.index)) {
-            // if there is only one index, change it to an array
+            // if there is only one index, convert it to an array
             state.index = Array(state.index);
           }
           $items_to_restore = $(state.index).map(function(i, v) {
@@ -566,32 +569,50 @@ shinyjqui = function() {
 
         }
 
-        var $items_to_remove = $el.find(".ui-sortable-handle");
-
+        // Identify the container of sortable items. Note, the container is not
+        // necessarily has `.ui-sortable` class
+        var $current_Items = $el.find(".ui-sortable-handle,.ui-draggable");
         // use $el instead in case no item to remove
-        var $container = $items_to_remove.length ? $items_to_remove.parent() : $el
+        var $container = $current_Items.length ? $current_Items.parent() : $el
 
-        // Use this to store the container of restore items. if the item is from
-        // other sortable group, its container will be different from current
-        // $el, then should trigger "sortupdate" of that sortable group to update
-        // shiny input values.
-        var $thiscontainer;
-        $items_to_restore.each(function(i, e) {
-          if($(e).hasClass("ui-draggable")) {
-            $(e).clone().appendTo($container);
-          } else {
-            $thiscontainer = $(e).closest(".ui-sortable");
-            $(e).appendTo($container);
-            // also trigger "sortupdate" of other container
-            if(!$thiscontainer.is($el)) {
-              $thiscontainer.trigger("sortupdate");
+        // The restoration is performed differently in client and bookmarking
+        // mode.
+        if(mode == "client") {
+          // In client mode, we can safely remove all the current sortable items
+          // before appending the new items, because all the items have backups
+          // (deep copied) in `$(el).data("shinyjqui")`
+          $container.empty().append($items_to_restore);
+        } else if(mode == "bookmarking") {
+          // However, in bookmarking mode, we don't have backups. The
+          // restoration was performed based on indexing. So, we should be very
+          // careful and try to avoid accidently removing the items that could be
+          // needed for other sortable elements
+          // The `.ui-draggable` items were copied from source element, so
+          // they can be removed safely
+          $container.children(".ui-draggable").remove();
+          var $source_el;
+          $items_to_restore.each(function(i, e) {
+            if($(e).hasClass("ui-draggable")) {
+              // For `.ui-draggable` items, just copy and paste
+              $(e).clone().appendTo($container);
+            } else if($(e).hasClass("ui-sortable-handle")) {
+              // For `ui-sortable-handle` items, need to locate their own
+              // sortable element ($source_el), after cut and paste, we should
+              // trigger the `sortupdate` of the original sortable element.
+              $source_el = $(e).closest(".ui-sortable");
+              $(e).appendTo($container);
+              if(!$source_el.is($el)) {
+                $source_el.trigger("sortupdate");
+              }
             }
-          }
-        });
-        //$container.append($items_to_restore);
+          });
+        }
+        // Trigger update of the current sortable element to update shiny values.
+        $el.trigger("sortupdate");
+
         // this doesn't trigger "sortupdate" ?
         //$el.data("uiSortable")._mouseStop(null);
-        $el.trigger("sortupdate");
+
       },
 
       shiny : {

@@ -9,6 +9,7 @@
 * __Bug fix:__ `input$id_order` of sortable now return values when the `connectToSortable` option is used.
 * __Bug fix:__ Nested interaction functions was not working with a shiny tag without an id (e.g. `jqui_resizable(jqui_draggable(div("aaa")))`). (#66)
 * __Bug fix:__ Nested interaction functions showed "Action abort" warning to a shiny tag without an id. (#66)
+* __Bug fix:__ When using `load` operation to a sortable element or `orderInput`, the items from other "source" `orderInput`s were not removed. (#70)
 
 
 ## shinyjqui 0.3.3

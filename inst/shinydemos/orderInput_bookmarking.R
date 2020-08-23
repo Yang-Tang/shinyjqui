@@ -5,19 +5,19 @@ server <- function(input, output) {
 
   output$lst_order <- renderPrint({
     cat('List1: ')
-    cat(input$lst1_order)
+    cat(input$lst1)
     cat('\n')
 
     cat('List2: ')
-    cat(input$lst2_order)
+    cat(input$lst2)
     cat('\n')
 
     cat('List3: ')
-    cat(input$lst3_order)
+    cat(input$lst3)
     cat('\n')
 
     cat('List4: ')
-    cat(input$lst4_order)
+    cat(input$lst4)
     cat('\n')
   })
 
