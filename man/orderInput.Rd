@@ -42,7 +42,7 @@ each item.}
 the \code{orderInput}.}
 
 \item{width}{The width of the input, e.g. '400px', or '100\\%'. Passed to
-\link[shiny:validateCssUnit]{shiny::validateCssUnit}.}
+\link[shiny:reexports]{shiny::validateCssUnit}.}
 
 \item{legacy}{A boolean value. Whether to use the old version of the
 \code{orderInput} function.}
@@ -68,7 +68,12 @@ prarameter must be set on both \code{orderInput}s.
 
 When in connected mode, \code{orderInput} can be set as source-only through the
 \code{as_source} prarameter. The items in a "source" \code{orderInput} can only be
-copied, instead of moved, to other connected non-source \code{orderInput}(s).
+copied, instead of moved, to other connected non-source \code{orderInput}(s). From
+shinyjqui v0.4.0, A "source" \code{orderInput} will become a "recycle bin" for
+items from other \code{orderInput}s as well. This means, if you want to delete an
+item, you can drag and drop it into a "source" \code{orderInput}. This feature can
+be disabled by setting the \code{options} of non-source \code{orderInput}(s) as
+\code{list(helper = "clone")}.
 
 From shinyjqui v0.4.0 and above, the \code{orderInput} function was implemented in
 the similar way as other classical shiny inputs, which brought two changes:

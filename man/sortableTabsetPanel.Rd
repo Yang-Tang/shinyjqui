@@ -15,7 +15,7 @@ sortableTabsetPanel(
 \arguments{
 \item{...}{\code{\link[shiny:tabPanel]{tabPanel()}} elements to include in the tabset}
 
-\item{id}{If provided, you can use \code{input$}\emph{\code{id}} in your
+\item{id}{If provided, you can use \verb{input$}\emph{\code{id}} in your
 server logic to determine which of the current tabs is active. The value
 will correspond to the \code{value} argument that is passed to
 \code{\link[shiny:tabPanel]{tabPanel()}}.}
@@ -24,14 +24,19 @@ will correspond to the \code{value} argument that is passed to
 of the tab that should be selected by default. If \code{NULL}, the first
 tab will be selected.}
 
-\item{type}{Use "tabs" for the standard look; Use "pills" for a more plain
-look where tabs are selected using a background fill color.}
+\item{type}{\describe{
+\item{\code{"tabs"}}{Standard tab look}
+\item{\code{"pills"}}{Selected tabs use the background fill color}
+\item{\code{"hidden"}}{Hides the selectable tabs. Use \code{type = "hidden"} in
+conjunction with \code{\link[shiny:tabPanel]{tabPanelBody()}} and \code{\link[shiny:updateTabsetPanel]{updateTabsetPanel()}} to control the
+active tab via other input controls. (See example below)}
+}}
 
 \item{position}{This argument is deprecated; it has been discontinued in
 Bootstrap 3.}
 }
 \value{
-A tabset that can be passed to \link[shiny:mainPanel]{shiny::mainPanel}
+A tabset that can be passed to \link[shiny:sidebarLayout]{shiny::mainPanel}
 }
 \description{
 Create a tabset that contains \link[shiny:tabPanel]{shiny::tabPanel} elements. The tabs are

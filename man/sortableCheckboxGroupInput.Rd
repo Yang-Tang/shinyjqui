@@ -31,7 +31,7 @@ types (such as logicals and numbers) will be coerced to strings.}
 \item{inline}{If \code{TRUE}, render the choices inline (i.e. horizontally)}
 
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
-see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
+see \code{\link[shiny:reexports]{validateCssUnit()}}.}
 
 \item{choiceNames}{List of names and values, respectively,
 that are displayed to the user in the app and correspond to the each

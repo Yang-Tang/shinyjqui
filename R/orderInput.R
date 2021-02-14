@@ -30,7 +30,12 @@ digestItems <- function(items) {
 #'
 #' When in connected mode, `orderInput` can be set as source-only through the
 #' `as_source` prarameter. The items in a "source" `orderInput` can only be
-#' copied, instead of moved, to other connected non-source `orderInput`(s).
+#' copied, instead of moved, to other connected non-source `orderInput`(s). From
+#' shinyjqui v0.4.0, A "source" `orderInput` will become a "recycle bin" for
+#' items from other `orderInput`s as well. This means, if you want to delete an
+#' item, you can drag and drop it into a "source" `orderInput`. This feature can
+#' be disabled by setting the `options` of non-source `orderInput`(s) as
+#' `list(helper = "clone")`.
 #'
 #' From shinyjqui v0.4.0 and above, the `orderInput` function was implemented in
 #' the similar way as other classical shiny inputs, which brought two changes:
@@ -113,10 +118,14 @@ orderInput <- function(inputId, label, items,
       label
     )
     if (as_source) {
-      options <- list(connectToSortable = connect,
-                      helper            = "clone",
-                      cancel            = "")
-      tag <- jqui_draggable(tag, options = options)
+      draggable_opt <- list(connectToSortable = connect,
+                            helper            = "clone",
+                            cancel            = "")
+      tag <- jqui_draggable(tag, options = draggable_opt)
+      # make the "source" orderInput a recycle bin as well,
+      # idea from https://community.rstudio.com/t/customizing-shinyjqui-package/48140/4
+      droppable_opt <- list(drop = htmlwidgets::JS("function(e, ui) { $(ui.helper).remove(); }"))
+      tag <- jqui_droppable(tag, options = droppable_opt)
     }
     return(tag)
   }
