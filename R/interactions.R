@@ -17,7 +17,7 @@
 #'
 #' The first parameter `ui` determines the target ui and working mode. If the
 #' target ui is a `shiny.tag` (e.g., shiny inputs/outputs or ui created by
-#' [tags][shiny::builder]) or a `shiny.tag.list` (by [tagList()][shiny::tag]) object
+#' [tags][htmltools::builder]) or a `shiny.tag.list` (by [tagList()][shiny::tag]) object
 #' or a static `htmlwidget`, the functions return the a modified ui object with
 #' interaction effects attached. When a
 #' [jQuery_selector](https://api.jquery.com/category/selectors/) or a javascript
