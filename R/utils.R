@@ -125,7 +125,7 @@ addInteractJSShiny <- function(tag, func, options = NULL) {
       grepl("html-widget-output|shiny-.+?-output", tag$attribs$class)) {
       # For shiny/htmlwidgets output elements, in addition to wait for a while,
       # we have to call js on "shiny:value" event. This ensures js get the
-      # correct element dimension especially when the output element is hiden on
+      # correct element dimension especially when the output element is hidden on
       # shiny initialization. The initialization only needs to be run once, so
       # .one() is used here. Use selector inside .one() to ensure the run-once
       # js only triggered on the target element
@@ -151,9 +151,25 @@ addInteractJSShiny <- function(tag, func, options = NULL) {
       # from insertion even after the first one was removed
       # shiny::tags$head should not be used to wrap the script. It seems
       # shiny::tags$head is not working in flexdashboard
-      htmltools::tags$script(
-        class = "jqui_self_cleaning_script",
-        shiny::HTML(js)
+      # When a tagList like this is inserted by `insertUI`, the embedded
+      # tags$script() will not be executed, but tags$head(tags$script()) will.
+      # However, for the compatibility to flexdashboard, we can't use tags$head here.
+      # So, an invisible iframe with onload is used to get around
+      # idea from https://github.com/rstudio/shiny/issues/1545#issuecomment-287903607
+
+      # htmltools::tags$head(htmltools::tags$script(
+      #   class = "jqui_self_cleaning_script",
+      #   shiny::HTML(js)
+      # )),
+      # htmltools::tags$script(
+      #   class = "jqui_self_cleaning_script",
+      #   shiny::HTML(js),
+      # ),
+      htmltools::tags$iframe(
+        srcdoc = "<p>Hello world!</p>",
+        class  = "jqui_self_cleaning_script",
+        style  = "width:0;height:0;border:none;display:none !important",
+        onload = shiny::HTML(js)
       )
     )
 

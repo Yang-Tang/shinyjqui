@@ -12,6 +12,7 @@
 * __Bug fix:__ Nested interaction functions showed "Action abort" warning to a shiny tag without an id. (#66)
 * __Bug fix:__ When using `load` operation to a sortable element or `orderInput`, the items from other "source" `orderInput`s were not removed. (#70)
 * __Bug fix:__ Enable `NULL` label in `orderInput()`. (#63)
+* __Bug fix:__ A regression bug introduced in v0.3.3 that interactive tag is not effective when inserted by `insertUI`. (#58)
 
 
 ## shinyjqui 0.3.3

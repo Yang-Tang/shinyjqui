@@ -1,0 +1,67 @@
+---
+title: "reprex"
+output: 
+    flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: fill
+    source_code: embed
+runtime: shiny_prerendered
+---
+
+```{r global, include=FALSE}
+library(flexdashboard)
+library(shinyjqui)
+```
+
+
+```{r context="server"}
+output$selected_context <- renderPrint({
+  cat("Selected:\n")
+  input$tbl_selected
+})
+
+output$selected_start <- renderPrint({
+  cat("Selected:\n")
+  input$tbl_selected_start
+})
+
+output$selected_render <- renderPrint({
+  cat("Selected:\n")
+  input$tbl_selected_render
+})
+
+output$tbl <- renderTable(head(mtcars), rownames = TRUE)
+```
+
+
+Row 
+----
+
+### Table
+
+```{r}
+selectableTableOutput("tbl", selection_mode = "cell")
+```
+
+### Context=Data
+
+```{r}
+verbatimTextOutput("selected_context")
+```
+
+
+Row 
+----
+
+### Context=sever-start
+
+```{r}
+verbatimTextOutput("selected_start")
+```
+
+
+### Context=render
+
+```{r}
+verbatimTextOutput("selected_render")
+```
