@@ -1,7 +1,7 @@
 ## shinyjqui 0.3.3.9000
 
 * __New feature:__ (Experimentally) Now the interaction functions can work on static htmlwidgets in RStudio Viewer or RMarkdown (e.g. `jqui_resizable(plotly::plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length))`). (#44)
-* __New feature:__ Now `orderInput()` can be updated with `updateOrderInput()`. (#41)
+* __New feature:__ Now `orderInput()` can be updated with `updateOrderInput()`. (#41, #57)
 * __New feature:__ Items of an `orderInput()` can now be deleted by drag and drop them to an "source" `orderInput()`. (Idea from [raytong](https://community.rstudio.com/t/customizing-shinyjqui-package/48140/4) #65)
 * __New feature:__ New `jqui_position()` function to position a shiny ui relative to another.
 * __Breaking change:__ Removed `jqui_draggabled()`, `jqui_droppabled()`, `jqui_resizabled()`, `jqui_selectabled()`, `jqui_sortabled()` and `includeJqueryUI()` as they have been deprecated for a long time.

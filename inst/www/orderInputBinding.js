@@ -17,11 +17,14 @@ $.extend(orderInputBinding, {
   },
 
   setValue: function(el, items, item_class) {
+    // ensure typeof array even with lenght == 1
+    var labels = Array.isArray(items.labels)? items.labels : Array(items.labels);
+    var values = Array.isArray(items.values)? items.values : Array(items.values);
     $(el).empty();
     item_class = "btn btn-" + item_class + " ui-sortable-handle";
-    $.each(items.values, function(idx, val) {
+    $.each(values, function(idx, val) {
       $('<div></div>')
-        .text(items.labels[idx])
+        .text(labels[idx])
         .attr("data-value", val)
         .addClass(item_class)
         .css("margin", "1px")
