@@ -23,6 +23,13 @@ jquiDep <- function() {
       stylesheet = "jquery-ui.css"
     ),
     htmltools::htmlDependency(
+      name    = "touch-punch",
+      version = "0.2.3",
+      package = "shinyjqui",
+      src     = "www",
+      script  = "jquery.ui.touch-punch.min.js"
+    ),
+    htmltools::htmlDependency(
       name    = "shinyjqui-assets",
       version = "0.3.3",
       package = "shinyjqui",
