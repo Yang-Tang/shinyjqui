@@ -105,8 +105,12 @@ orderInput <- function(inputId, label, items,
                          inputId, placeholder)
   placeholder <- shiny::singleton(shiny::tags$head(shiny::tags$style(shiny::HTML(placeholder))))
 
-
-  label <- shiny::tags$label(label, `for` = inputId)
+  # code from shiny:::shinyInputLabel
+  label <- shiny::tags$label(label,
+                             class = "control-label",
+                             class = if (is.null(label)) "shiny-label-null",
+                             id    = paste0(inputId, "-label"),
+                             `for` = inputId)
 
   items <- digestItems(items)
 
