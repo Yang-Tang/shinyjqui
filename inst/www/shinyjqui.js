@@ -688,9 +688,10 @@ shinyjqui = function() {
 
     load : function(el, interaction, save) {
       var $el = $(el);
+      // Always initiate interaction if not yet.
       if(!$el.hasClass("ui-" + interaction)) {
-        console.warn("Interaction not initiated. Operation abort.");
-        return;
+        console.warn("Interaction not initiated. Will run initiation first.");
+        $el[interaction]();
       }
       var saving = save ? save : $el.data("shinyjqui")[interaction].save;
       if(!saving) {

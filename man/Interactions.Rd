@@ -106,7 +106,7 @@ interaction if not and disable it at once (only set the options).
 \item \code{destory}: Destroy the interaction.
 \item \code{save}: Attach the interaction if not
 and save the current interaction state.
-\item \code{load}: If interaction attached,
+\item \code{load}: Attach the interaction if not and
 restore the target(s) to the last saved interaction state.
 }
 

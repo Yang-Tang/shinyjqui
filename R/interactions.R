@@ -36,7 +36,7 @@
 #' * `destory`: Destroy the interaction.
 #' * `save`: Attach the interaction if not
 #' and save the current interaction state.
-#' * `load`: If interaction attached,
+#' * `load`: Attach the interaction if not and
 #' restore the target(s) to the last saved interaction state.
 #'
 #' With mouse interactions attached, the corresponding interaction states, e.g.
