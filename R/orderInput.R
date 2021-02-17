@@ -15,6 +15,51 @@ digestItems <- function(items) {
   return(list(values = item_values, labels = item_labels))
 }
 
+
+orderInputNonSource <- function(x) {
+
+  dep <- htmltools::htmlDependency(
+    name    = "orderInputBinding",
+    version = "0.3.3",
+    package = "shinyjqui",
+    src     = "www",
+    script  = "orderInputBinding.js"
+  )
+
+  container <- htmltools::tagAppendAttributes(x$container, class = "jqui-orderInput")
+  container <- htmltools::tagSetChildren(container, list = x$item_tags)
+  cb <- "function(e, ui){if(!$(e.target).children().length)$(e.target).empty();}"
+  sortable_opt <- list(connectWith = x$connect,
+                       remove      = htmlwidgets::JS(cb))
+  container <- jqui_sortable(container, options = sortable_opt)
+
+  return(htmltools::tagList(dep, x$placeholder, x$label, container))
+
+}
+
+orderInputSource <- function(x) {
+
+  item_tags <- lapply(x$item_tags, function(tag) {
+    draggable_opt <- list(connectToSortable = x$connect,
+                          helper            = "clone",
+                          cancel            = "")
+    jqui_draggable(tag, options = draggable_opt)
+  })
+
+  container <- htmltools::tagAppendAttributes(x$container, class = "jqui-orderInput-source")
+  container <- htmltools::tagSetChildren(container, list = item_tags)
+  # make the "source" orderInput a recycle bin as well,
+  # idea from https://community.rstudio.com/t/customizing-shinyjqui-package/48140/4
+  cb <- "function(e, ui) { $(ui.helper).remove(); }"
+  droppable_opt <- list(drop = htmlwidgets::JS(cb),
+                        classes = list(`ui-droppable-hover` = "ui-state-error"))
+  container <- jqui_droppable(container, options = droppable_opt)
+
+  return(htmltools::tagList(x$placeholder, x$label, container))
+
+}
+
+
 #' Create a shiny input control to show the order of a set of items
 #'
 #' Display a set of items whose order can be changed by drag and drop inside or
@@ -88,19 +133,6 @@ orderInput <- function(inputId, label, items,
   connect <- `if`(is.null(connect),
                   "false", paste0("#", connect, collapse = ", "))
 
-  item_class <- sprintf("btn btn-%s", match.arg(item_class))
-
-  width <- shiny::validateCssUnit(width)
-
-
-  dep <- htmltools::htmlDependency(
-    name    = "orderInputBinding",
-    version = "0.3.3",
-    package = "shinyjqui",
-    src     = "www",
-    script  = "orderInputBinding.js"
-  )
-
   placeholder <- sprintf('#%s:empty:before{content: "%s"; font-size: 14px; opacity: 0.5;}',
                          inputId, placeholder)
   placeholder <- shiny::singleton(shiny::tags$head(shiny::tags$style(shiny::HTML(placeholder))))
@@ -112,49 +144,36 @@ orderInput <- function(inputId, label, items,
                              id    = paste0(inputId, "-label"),
                              `for` = inputId)
 
-  items <- digestItems(items)
 
+  width <- shiny::validateCssUnit(width)
+  style <- sprintf("width: %s; font-size: 0px; min-height: 25px;", width)
+  container <- shiny::tags$div(id = inputId, style = style, ...)
+
+  item_class <- sprintf("btn btn-%s", match.arg(item_class))
   tagsBuilder <- function(value, label) {
-    tag <- shiny::tags$div(
+    shiny::tags$div(
       `data-value` = value,
       class = item_class,
       style = "margin: 1px",
       label
     )
-    if (as_source) {
-      draggable_opt <- list(connectToSortable = connect,
-                            helper            = "clone",
-                            cancel            = "")
-      tag <- jqui_draggable(tag, options = draggable_opt)
-      # make the "source" orderInput a recycle bin as well,
-      # idea from https://community.rstudio.com/t/customizing-shinyjqui-package/48140/4
-      droppable_opt <- list(drop = htmlwidgets::JS("function(e, ui) { $(ui.helper).remove(); }"))
-      tag <- jqui_droppable(tag, options = droppable_opt)
-    }
-    return(tag)
   }
+  items <- digestItems(items)
   item_tags <- mapply(tagsBuilder, items$values, items$labels,
                       SIMPLIFY = FALSE, USE.NAMES = FALSE)
 
-  style <- sprintf("width: %s; font-size: 0px; min-height: 25px;", width)
-  container <- shiny::tags$div(
-    id    = inputId,
-    style = style,
-    # `data-order` = list(a = 1, b = 2),
-    class = ifelse(as_source,
-                   "jqui-orderInput-source",
-                   "jqui-orderInput"),
-    ...
-  )
-  container <- shiny::tagSetChildren(container, list = item_tags)
-  if (!as_source) {
-    cb <- "function(e, ui){if(!$(e.target).children().length)$(e.target).empty();}"
-    options <- list(connectWith = connect,
-                    remove      = htmlwidgets::JS(cb))
-    container <- jqui_sortable(container, options = options)
-  }
 
-  return(shiny::tagList(dep, placeholder, label, container))
+  x <- list(connect = connect,
+            placeholder = placeholder,
+            label = label,
+            container = container,
+            item_tags = item_tags)
+
+  if(as_source) {
+    return(orderInputSource(x))
+  } else {
+    return(orderInputNonSource(x))
+  }
 
 }
 
