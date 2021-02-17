@@ -14,11 +14,11 @@ library(shiny)
 library(shinyjqui)
 ```
 
-The `shinyjqui` package provides APIs to `jQuery UI` JavaScript library that can be used to add mouse-interactions and animation effects to shiny ui. This vignette provides general introductions and examples of them.
+`shinyjqui` package provides APIs to the `jQuery UI` JavaScript library that can be used to add mouse-interactions and animation effects to shiny app. The vignette provides general introductions and examples of them.
 
 ## Mouse interactions
 
-There are five kinds of mouse interactions in jQuery UI library:
+There are five kinds of mouse interactions in `jQuery UI` library:
 
 * __Draggable:__ Allow elements to be moved using the mouse.
 
@@ -30,63 +30,157 @@ There are five kinds of mouse interactions in jQuery UI library:
 
 * __Sortable:__ Reorder elements in a list or grid using the mouse.
 
-The corresponding R wrappers in `shinyjqui` are `jqui_draggable()`, `jqui_droppable()`, `jqui_resizable()`, `jqui_selectable()` and `jqui_sortable()`. They can be used to add interaction effects to ui element(s) in different context of a shiny app.
+The R wrappers provided in this package are `jqui_draggable()`, `jqui_droppable()`, `jqui_resizable()`, `jqui_selectable()` and `jqui_sortable()`, which are designed to add corresponding interaction effects to shiny ui element(s). 
 
-In shiny `ui`, the functions accept a shiny ui element (tag, tagList, input or output) and return the same one with interaction attached. For example:
+### The ui mode and server mode
+
+These mouse interaction functions can be used in either shiny `ui` (ui mode) or `server` function (server mode)
+
+In ui mode, the functions accept a shiny ui object (tag, tagList, input or output) and return a modified one with mouse interaction effect attached. For example:
 
 ```{r, eval = FALSE}
 # create a draggable textInput in shiny ui
 ui <- fluidPage(
-  jqui_draggable(textInput('foo', 'Input'))
+  jqui_draggable(textInput("foo", "Input"))
 )
 ```
 
-In shiny `server`, the functions modify the interactivity of the existing (pre-defined in `ui`) elements:
+In server mode, the functions add, modify or remove the interactivity of an existing (pre-defined in `ui`) ui element:
 
 ```{r, eval = FALSE}
-# create a textInput in shiny ui
+# create a textInput in shiny ui without mouse interaction
 ui <- fluidPage(
-  textInput('foo', 'Input')
+  textInput("foo", "Input")
 )
 
-# make the textInput with id "foo" draggable in shiny server
+# make the ui element with id "foo" draggable
 server <- function(input, output) {
-  jqui_draggable(ui = '#foo')
+  jqui_draggable(ui = "#foo", operation = "enable")
 }
 ```
 
-The first way is straight forward, however, the second way is more flexible:
+The ui mode is the most straight forward way to create an ui element with mouse interactions, however, the server mode is more flexible. For example, in server mode, you can reactively control element's interactivity through `observe()` or `ovservEvent()`, you can use a jQuery selector or even a JavaScript expression to locate the target element(s), and you can control the interaction effects with the `operation` parameter. (see introduction in the following sections).
 
-1. You can reactively control the element's interactivity by using them inside an `observe()` or `ovservEvent()`.
-2. In the context of shiny `server`, the functions are more flexible in selecting the target shiny html element(s). Their first parameter `ui` accepts either a string of [jQuery selector](https://api.jquery.com/category/selectors/) or a `JS()` wrapped JavaScript expression that returns a jQuery object. In the above example, which used the jQuery selector mode, the string `#foo` refers to the element with id `foo`. To select a set of elements, their `class name` can be used, e.g., use `jqui_draggable(selector = ".shiny-bound-input")` to make all the shiny inputs draggable. The JavaScript expression mode gives even more freedom to make your selection. You can write your own JavaScript expression that returns a jQuery object to refer to any element(s) you want, e.g., use `jqui_resizable(selector = JS("$('#foo').parent()"))` to make the parent of element with id `foo` resizable.
-3. In addition to `enable` the interactions, in the context of shiny `server`, the functions also support `disable`, `destory`, `save` and `load` the interactions. This behavior is controlled by the `operation` parameter with the default value `enable`. The difference between `disable` and `destory` is that the `disable` operation only disable the effect of interaction temporarily without removing the corresponding settings, whereas the `destory` operation removes the interaction totally. The `save` and `load` operations are used to save and restore the interaction state (e.g., the current position of a draggable element). Please see the vignette `Save and restore` for more details.
+### The `ui` parameter
 
-To make multiple elements interactive, you can either use the `tagList()` function in shiny `ui`:
+This parameter `ui` determine the target ui element(s) to be manipulated. The following table summarized the type of object it accepts in different context:
+
+
+```{r, echo=FALSE}
+tbl <- data.frame(
+  Mode = c("ui", "server", "server", "non-shiny"),
+  Type = c("A `shiny.tag` or `shiny.tag.list` object",
+           "A string of [jQuery_selector](https://api.jquery.com/category/selectors/)",
+           "A `htmlwidgets::JS()` wrapped javascript expression that returns a [jQuery object](http://api.jquery.com/Types/#jQuery)",
+           "A static `htmlwidget` object"),
+  Example = c("`tags$p('hello world')`, `textInput('caption', 'Caption', 'Data Summary')`, `plotOutput('myplot')`",
+              "`'#id1,#id2,#id3'`, `'.shiny-plot-output'`, `'div > p'`",
+              "`JS(\"$('#id').children()\")`",
+              "`plot_ly(z = ~volcano, type = \"surface\")`")
+)
+knitr::kable(tbl, escape = T)
+```
+
+
+### The `operation` parameter
+
+This parameter is valid only in server mode. It determines how to manipulate the interaction, which includes:
+
+* `enable`: Initiate the corresponding mouse interaction to the target(s).
+* `disable`: Initiate the interaction if not and temporary disable it (only set the options).
+* `destory`: Completely remove the interaction.
+* `save`: Initiate the interaction if not and save the current interaction state.
+* `load`: Initiate the interaction if not and restore the target(s) to an user defined interaction state or the last saved state.
+
+`enable` is the default setting of the parameter. `save` and `load` can be used to save and restore the state (e.g. size, position, order) of an element. More details in the Vignette `Save and restore`.
+
+### The `options` parameter
+
+The `options` parameter can be used to further specify the behavior of interaction. The full list of the available options can be found in jQuery UI's  [API Documentation](http://api.jqueryui.com/category/interactions/) page. Here are some examples:
+
+#### Draggable
+
+Draggable element can be moved by mouse. You can custom its movement by some options: 
 
 ```{r, eval = FALSE}
-# in shiny ui, make each element in the tagList draggable
-ui <- fluidPage(
-  jqui_draggable(
-    tagList(
-      selectInput('sel', 'Select', choices = month.abb),
-      checkboxGroupInput('chbox', 'Checkbox', choices = month.abb),
-      plotOutput('plot', width = '400px', height = '400px')
-    )
-  )
+# drag only horizontally
+jqui_draggable('#foo', options = list(axis = 'x'))
+# make movement snapping to a 80 x 80 grid
+jqui_draggable('#foo', options = list(grid = c(80, 80)))
+```
+
+#### Droppable
+
+With the droppable interaction enabled, the element can sense the behavior of accepted draggable elements and make changes (e.g. change display style) accordingly:
+
+```{r, eval = FALSE}
+jqui_droppable('#foo', options = list(
+  accept = '#bar', # jQuery selector to define which draggable element to monitor. Accept anything if not set.
+  classes = list(
+    `ui-droppable-active` = 'ui-state-focus', # change class when draggable element is dragging
+    `ui-droppable-hover` = 'ui-state-highlight' # change class when draggable element is dragging over
+  ),
+  drop = JS(
+    'function(event, ui){$(this).addClass("ui-state-active");}'
+  ) # a javascrip callback to change class when draggable element is dropped in
+))
+```
+Note: When passing a JavaScript callback function to the `opations` parameter, please wrap it with `JS()` so that it can be evaluated correctly.
+
+#### Resizable
+
+You can change the size of a resizable element by dragging the resize-handles around it. Several examples are listed here:
+
+```{r, eval = FALSE}
+# keep aspect ratio when resizing
+jqui_resizable('#foo', options = list(aspectRatio = TRUE))
+
+# Limit the resizable element to a maximum or minimum height or width
+jqui_resizable('#foo', options = list(minHeight = 100, maxHeight = 300,
+                                      minWidth = 200, maxWidth = 400))
+
+# make the two plotOutputs resize synchronously
+jqui_resizable(plotOutput('plot1', width = '400px', height = '400px'), 
+                  options = list(alsoResize = '#plot2')),
+plotOutput('plot2', width = '400px', height = '400px')
+```
+
+#### Selectable
+
+The selectable interaction make target element's children selectable. You can select by click, Ctrl+click or dragging a box (lasso selection). The selected elements may change display styles if specified in `options`:
+
+```{r, eval = FALSE}
+# highlight the selected plotOutput
+jqui_selectable(
+  div(
+    plotOutput('plot1', width = '400px', height = '400px'),
+    plotOutput('plot2', width = '400px', height = '400px')
+  ),
+  options = list(classes = list(`ui-selected` = 'ui-state-highlight'))
 )
 ```
 
-or use jQuery selector:
+#### Sortable
+
+The sortable interaction makes target element's children sortable. You can re-arrange them by drag and drop. Some examples here:
 
 ```{r, eval = FALSE}
-server <- function(input, output) {
-  jqui_draggable("#sel,#chbox,#plot")
-}
+# change opacity while sorting
+jqui_sortable('#foo', options = list(opacity = 0.5))
+
+# only items with class "items" inside the element become sortable
+jqui_sortable('#foo', options = list(items = '> .items'))
+
+# connect two sortable elements, so that items in one element can be dragged to another
+jqui_sortable('#foo1', options = list(connectWith = '#foo2'))
+jqui_sortable('#foo2', options = list(connectWith = '#foo1'))
+
 ```
 
-The `options` parameter can be used to further specify the behavior of interaction. The full list of the available options can be found in jQuery UI's  [API Documentation](http://api.jqueryui.com/category/interactions/) page. The example sections below showed how to use them.
 
-In shiny, the user input values are send back to server in the form of `input$<id>`. Similarly, once enabled, some interaction-specific state values are returned to server and can be accessed by `input$<id>_<suffix>`, where the `id` is the element id (`id` attribute for shiny tag, `inputId` for shiny inputs, `outputId` for shiny outputs) and the `suffix` depends on the type of interaction enabled. The currently deployed interaction state values are listed here:
+### The input values and `shiny` options 
+
+In shiny, the user input values are send back to server in the form of `input$<id>`. Similarly, once enabled, the interaction-specific state values are returned to server and can be accessed by `input$<id>_<suffix>`, where the `id` is the element id (`id` attribute for shiny tag, `inputId` for shiny inputs, `outputId` for shiny outputs) and the `suffix` depends on the type of interaction enabled. The currently deployed interaction state values are listed here:
 
 ```{r, echo=FALSE}
 draggable_shiny <- data.frame(
@@ -191,88 +285,6 @@ jqui_draggable('#foo', options = list(
 
 When customizing shiny input values by shiny option and callbacks, you may want to get the id of certain element in JavaScript. For simple shiny tag (e.g. `tags$div`), `element.attr("id")` just works fine, however, things become more complicated for shiny inputs (e.g. `textInput`). The id attribute of most shiny inputs is hidden inside a div container. You may use jQuery function `.find()` to locate it. The `shinyjqui` package comes with an internal JavaScript function `shinyjqui.getId()` which will take care of this. You can just simply pass in any shiny element, either simple tag, shiny input or shiny output. It will use the appropriate way to find out the id.
 
-The following are some examples to demonstrate how to use each interactions
-
-### Draggable
-
-Draggable element can be moved by mouse. You can custom its movement by some options: 
-
-```{r, eval = FALSE}
-# drag only horizontally
-jqui_draggable('#foo', options = list(axis = 'x'))
-# make movement snapping to a 80 x 80 grid
-jqui_draggable('#foo', options = list(grid = c(80, 80)))
-```
-
-### Droppable
-
-With the droppable interaction enabled, the element can sense the behavior of accepted draggable elements and make changes (e.g. change display style) accordingly:
-
-```{r, eval = FALSE}
-jqui_droppable('#foo', options = list(
-  accept = '#bar', # jQuery selector to define which draggable element to monitor. Accept anything if not set.
-  classes = list(
-    `ui-droppable-active` = 'ui-state-focus', # change class when draggable element is dragging
-    `ui-droppable-hover` = 'ui-state-highlight' # change class when draggable element is dragging over
-  ),
-  drop = JS(
-    'function(event, ui){$(this).addClass("ui-state-active");}'
-  ) # a javascrip callback to change class when draggable element is dropped in
-))
-```
-Note: When passing a JavaScript callback function to the `opations` parameter, please wrap it with `JS()` so that it can be evaluated correctly.
-
-### Resizable
-
-You can change the size of a resizable element by dragging the resize-handles around it. Several examples are listed here:
-
-```{r, eval = FALSE}
-# keep aspect ratio when resizing
-jqui_resizable('#foo', options = list(aspectRatio = TRUE))
-
-# Limit the resizable element to a maximum or minimum height or width
-jqui_resizable('#foo', options = list(minHeight = 100, maxHeight = 300,
-                                      minWidth = 200, maxWidth = 400))
-
-# make the two plotOutputs resize synchronously
-jqui_resizable(plotOutput('plot1', width = '400px', height = '400px'), 
-                  options = list(alsoResize = '#plot2')),
-plotOutput('plot2', width = '400px', height = '400px')
-```
-
-### Selectable
-
-The selectable interaction make target element's children selectable. You can select by click, Ctrl+click or dragging a box (lasso selection). The selected elements may change display styles if specified in `options`:
-
-```{r, eval = FALSE}
-# highlight the selected plotOutput
-jqui_selectable(
-  div(
-    plotOutput('plot1', width = '400px', height = '400px'),
-    plotOutput('plot2', width = '400px', height = '400px')
-  ),
-  options = list(classes = list(`ui-selected` = 'ui-state-highlight'))
-)
-```
-
-### Sortable
-
-The sortable interaction makes target element's children sortable. You can re-arrange them by drag and drop. Some examples here:
-
-```{r, eval = FALSE}
-# change opacity while sorting
-jqui_sortable('#foo', options = list(opacity = 0.5))
-
-# only items with class "items" inside the element become sortable
-jqui_sortable('#foo', options = list(items = '> .items'))
-
-# connect two sortable elements, so that items in one element can be dragged to another
-jqui_sortable('#foo1', options = list(connectWith = '#foo2'))
-jqui_sortable('#foo2', options = list(connectWith = '#foo1'))
-
-```
-
-`shinyjqui` has a function called `orderInput()` which takes advantage of sortable interaction. You can use it to display a list of items in shiny and can change their order by drag and drop. The changed items order is send back to server as an input value. Please see the Vignette `orderInput` for details.
 
 ## Animation effects
 
@@ -282,7 +294,7 @@ jQuery UI library comes with 15 internal animation effects. You can get a full l
 get_jqui_effects()
 ```
 
-There is a live demo for each effect [here](http://jqueryui.com/effect/). By use following functions, you can apply these effects to a shiny element:
+There is a live demo for each effect [here](http://jqueryui.com/effect/). By use following functions, you can apply these effects to a shiny ui element as well:
 
 ```{r, echo=FALSE}
 func_intro <- data.frame(Functions = c('jqui_effect', 'jqui_show', 'jqui_hide', 'jqui_toggle'), 
@@ -295,7 +307,7 @@ func_intro <- data.frame(Functions = c('jqui_effect', 'jqui_show', 'jqui_hide', 
 knitr::kable(func_intro, row.names = FALSE)
 ```
 
-The above functions use [jQuery selector](https://api.jquery.com/category/selectors/) to locate the target element(s) and should be used in `server`.
+The above functions works only in server mode.
 
 The `effect` parameter accept a string that defines which animation effect to apply. Note: The `transfer` effect can only be used in `jqui_effect()`.
 
@@ -329,6 +341,6 @@ func_intro <- data.frame(Functions = c('jqui_add_class', 'jqui_remove_class', 'j
 knitr::kable(func_intro, row.names = FALSE)
 ```
 
-Similar to the animation effects functions, these functions need a [jQuery selector](https://api.jquery.com/category/selectors/) and please use them in `server`.
+Similar to the animation effects functions, these functions are all server-only.
 
 The `easing` parameter defines the speed style of the animation progresses. More details can be found [here](http://api.jqueryui.com/easings/)
