@@ -18,7 +18,7 @@ The `orderInput` display a list of strings and return their order as a vector in
 
 ```{r, eval=FALSE}
 server <- function(input, output) {
-  output$order <- renderPrint({input$foo_order})
+  output$order <- renderPrint({input$foo})
 }
 
 ui <- fluidPage(
@@ -31,9 +31,9 @@ shinyApp(ui, server)
 
 ![](fig/orderInput1.gif)
 
-As showed in the above example, use `input$inputId_order` to get current order, where the "inputId" is the `inputId` parameter passed to the `orderInput` function.
+As showed in the above example, use `input$inputId` to get current order, where the "inputId" is the `inputId` parameter passed to the `orderInput` function.
 
-The `items` parameter can either accept a list, an atomic vector or a factor. Based on the type of data provided, the displayed strings and their corresponding order (returned in the shiny input value) may not always the same. 
+The `items` parameter can either be a list, an atomic vector or a factor. Based on the type of data provided, the displayed strings and their corresponding order (returned in the shiny input value) are different. 
 
 * For fully named list and vector (e.g. `c(A = "a", B = "b")`), orderInput display names (`A` and `B`) but return values (`a` and `b`) as order.
 * For unnamed or partial named list and vector (e.g. `c("a", B = "b")`), values (`a` and `b`) are used both for display and order.
@@ -50,7 +50,7 @@ orderInput('B', 'B', items = 4:6, connect = 'A')
 
 ![](fig/orderInput2.gif)
 
-A connected `orderInput` can run in source mode by setting `as_source = TRUE`. If an item is dragged from a source-mode-`orderInput` to other `orderInput`s, the item will not be removed from the original `orderInput`, that is, drag become copy instead of cut. See the following demonstration:
+A connected `orderInput` can run in source mode by setting `as_source = TRUE`. If an item is dragged from a source-mode-`orderInput` to other `orderInput`s, the item will not be removed from the original `orderInput`, that is, the operation become "copy" instead of "cut". See the following demonstration:
 
 ```{r, eval=FALSE}
 # In source mode, items dragged to B are copied
@@ -60,7 +60,36 @@ orderInput('B', 'B', items = 4:6)
 
 ![](fig/orderInput3.gif)
 
-If `placeholder` is set, `orderInput` shows it when there is no item in it:
+Items from non-source `orderInput` can be deleted by dragging them to a source `orderInput`:
+
+```{r, eval=FALSE}
+# Anything dropped into a "source" orderInput will be deleted
+orderInput('A', 'A', items = 1:3, as_source = TRUE),
+orderInput('B', 'B', items = 4:6)
+```
+
+![](fig/orderInput6.gif)
+
+`orderInput` support `jqui_sortable`'s `save` and `load` operations and [shiny bookmarking](https://shiny.rstudio.com/articles/bookmarking-state.html). See Vignette `Save and restore` for more information. Here is an example:
+
+```{r, eval=FALSE}
+ui <- fluidPage(
+  orderInput('A', 'A', items = 1:3, as_source = TRUE, connect = c("B", "C")),
+  orderInput('B', 'B', items = 4:6, connect = "C"),
+  orderInput('C', 'C', items = 7:9, connect = "B"),
+  hr(),
+  actionButton("save", "Save"),
+  actionButton("load", "Load")
+)
+server <- function(input, output, session) {
+  observeEvent(input$save, jqui_sortable("#B,#C", "save"))
+  observeEvent(input$load, jqui_sortable("#B,#C", "load"))
+}
+```
+
+![](fig/orderInput7.gif)
+
+`placeholder` shows when there is no item in `orderInput`:
 
 ```{r, eval=FALSE}
 orderInput('A', 'A', items = 1:3, connect = 'B')
