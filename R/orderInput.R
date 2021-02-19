@@ -50,9 +50,14 @@ orderInputSource <- function(x) {
   container <- htmltools::tagSetChildren(container, list = item_tags)
   # make the "source" orderInput a recycle bin as well,
   # idea from https://community.rstudio.com/t/customizing-shinyjqui-package/48140/4
-  cb <- "function(e, ui) { $(ui.helper).remove(); }"
-  droppable_opt <- list(drop = htmlwidgets::JS(cb),
-                        classes = list(`ui-droppable-hover` = "ui-state-error"))
+  droppable_opt <- list(
+    # remove the dropped item when its helper = "origin" (default)
+    drop    = htmlwidgets::JS("function(e, ui) { $(ui.helper).remove(); }"),
+    # show red warning color when hover
+    classes = list(`ui-droppable-hover` = "ui-state-error"),
+    # don't show red color for its own items
+    accept  = ":not(.jqui-orderInput-source *)"
+  )
   container <- jqui_droppable(container, options = droppable_opt)
 
   return(htmltools::tagList(x$placeholder, x$label, container))
