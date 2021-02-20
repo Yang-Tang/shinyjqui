@@ -6,20 +6,20 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>jQuery UI Interactions and Effects for Shiny • shinyjqui</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
+<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="jQuery UI Interactions and Effects for Shiny">
 <meta property="og:description" content="An extension to shiny that brings interactions and animation effects from
     jQuery UI library.">
-<meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">shinyjqui</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -40,7 +40,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -71,8 +71,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/yang-tang/shinyjqui">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/yang-tang/shinyjqui/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -97,216 +97,223 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the stable version from CRAN, or the development version from github with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># install from CRAN</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'shinyjqui'</span>)</a>
-<a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="co"># for the development version</span></a>
-<a class="sourceLine" id="cb1-5" title="5">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"yang-tang/shinyjqui"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install from CRAN</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'shinyjqui'</span><span class="op">)</span>
+
+<span class="co"># for the development version</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"yang-tang/shinyjqui"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shiny)</a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shinyjqui)</a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(highcharter)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># load packages</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yang-tang/shinyjqui">shinyjqui</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://jkunst.com/highcharter">highcharter</a></span><span class="op">)</span></code></pre></div>
 <ul>
 <li>
 <strong>Draggable:</strong> Allow elements to be moved using the mouse</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {}</a>
-<a class="sourceLine" id="cb3-2" title="2"></a>
-<a class="sourceLine" id="cb3-3" title="3">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
-<a class="sourceLine" id="cb3-4" title="4">  <span class="co"># for shinyjqui v0.2.0 or lower, please use jqui_draggabled instead </span></a>
-<a class="sourceLine" id="cb3-5" title="5">  <span class="kw"><a href="reference/Interactions.html">jqui_draggable</a></span>(<span class="kw">fileInput</span>(<span class="st">'file'</span>, <span class="st">'File'</span>))</a>
-<a class="sourceLine" id="cb3-6" title="6">)</a>
-<a class="sourceLine" id="cb3-7" title="7"></a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
+<!-- end list --><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span>
+
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="reference/Interactions.html">jqui_draggable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fileInput.html">fileInput</a></span><span class="op">(</span><span class="st">'file'</span>, <span class="st">'File'</span><span class="op">)</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p><img src="inst/fig/README-draggable.gif"></p>
 <ul>
 <li>
 <strong>Resizable:</strong> Change the size of an element using the mouse.</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {</a>
-<a class="sourceLine" id="cb4-2" title="2">  output<span class="op">$</span>gg &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</a>
-<a class="sourceLine" id="cb4-3" title="3">    <span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> cyl, <span class="dt">y =</span> mpg)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</a>
-<a class="sourceLine" id="cb4-4" title="4">  })</a>
-<a class="sourceLine" id="cb4-5" title="5">}</a>
-<a class="sourceLine" id="cb4-6" title="6"></a>
-<a class="sourceLine" id="cb4-7" title="7">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
-<a class="sourceLine" id="cb4-8" title="8">  <span class="co"># for shinyjqui v0.2.0 or lower, please use jqui_resizabled instead</span></a>
-<a class="sourceLine" id="cb4-9" title="9">  <span class="kw"><a href="reference/Interactions.html">jqui_resizable</a></span>(<span class="kw">plotOutput</span>(<span class="st">'gg'</span>, <span class="dt">width =</span> <span class="st">'200px'</span>, <span class="dt">height =</span> <span class="st">'200px'</span>))</a>
-<a class="sourceLine" id="cb4-10" title="10">)</a>
-<a class="sourceLine" id="cb4-11" title="11"></a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
+<!-- end list --><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">gg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">cyl</span>, y <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="op">}</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="reference/Interactions.html">jqui_resizable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span><span class="op">(</span><span class="st">'gg'</span>, width <span class="op">=</span> <span class="st">'200px'</span>, height <span class="op">=</span> <span class="st">'200px'</span><span class="op">)</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p><img src="inst/fig/README-resizable.gif"></p>
 <ul>
 <li>
 <strong>Sortable:</strong> Reorder elements in a list or grid using the mouse.</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {</a>
-<a class="sourceLine" id="cb5-2" title="2">  output<span class="op">$</span>hc &lt;-<span class="st"> </span><span class="kw">renderHighchart</span>({</a>
-<a class="sourceLine" id="cb5-3" title="3">    <span class="kw">hchart</span>(mtcars, <span class="st">"scatter"</span>, <span class="kw">hcaes</span>(<span class="dt">x =</span> cyl, <span class="dt">y =</span> mpg, <span class="dt">group =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(vs))) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="st">      </span><span class="kw">hc_legend</span>(<span class="dt">enabled =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb5-5" title="5">  })</a>
-<a class="sourceLine" id="cb5-6" title="6">  output<span class="op">$</span>gg &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</a>
-<a class="sourceLine" id="cb5-7" title="7">    <span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> cyl, <span class="dt">y =</span> mpg, <span class="dt">color =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(vs))) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="st">      </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-9" title="9"><span class="st">      </span><span class="kw">theme</span>(<span class="dt">legend.position=</span> <span class="st">"none"</span>)</a>
-<a class="sourceLine" id="cb5-10" title="10">  })</a>
-<a class="sourceLine" id="cb5-11" title="11">}</a>
-<a class="sourceLine" id="cb5-12" title="12"></a>
-<a class="sourceLine" id="cb5-13" title="13">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
-<a class="sourceLine" id="cb5-14" title="14">  <span class="co"># for shinyjqui v0.2.0 or lower, please use jqui_sortabled instead</span></a>
-<a class="sourceLine" id="cb5-15" title="15">  <span class="kw"><a href="reference/Interactions.html">jqui_sortable</a></span>(<span class="kw">div</span>(<span class="dt">id =</span> <span class="st">'plots'</span>,</a>
-<a class="sourceLine" id="cb5-16" title="16">                     <span class="kw">highchartOutput</span>(<span class="st">'hc'</span>, <span class="dt">width =</span> <span class="st">'200px'</span>, <span class="dt">height =</span> <span class="st">'200px'</span>),</a>
-<a class="sourceLine" id="cb5-17" title="17">                     <span class="kw">plotOutput</span>(<span class="st">'gg'</span>, <span class="dt">width =</span> <span class="st">'200px'</span>, <span class="dt">height =</span> <span class="st">'200px'</span>)))</a>
-<a class="sourceLine" id="cb5-18" title="18">)</a>
-<a class="sourceLine" id="cb5-19" title="19"></a>
-<a class="sourceLine" id="cb5-20" title="20"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
+<!-- end list --><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">hc</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://jkunst.com/highcharter/reference/renderHighchart.html">renderHighchart</a></span><span class="op">(</span><span class="op">{</span>
+    <span class="fu"><a href="http://jkunst.com/highcharter/reference/hchart.html">hchart</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="st">"scatter"</span>, <span class="fu"><a href="http://jkunst.com/highcharter/reference/hcaes.html">hcaes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">cyl</span>, y <span class="op">=</span> <span class="va">mpg</span>, group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">vs</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+      <span class="fu"><a href="http://jkunst.com/highcharter/reference/hc_legend.html">hc_legend</a></span><span class="op">(</span>enabled <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+  <span class="op">}</span><span class="op">)</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">gg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">cyl</span>, y <span class="op">=</span> <span class="va">mpg</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">vs</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position<span class="op">=</span> <span class="st">"none"</span><span class="op">)</span>
+  <span class="op">}</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="reference/Interactions.html">jqui_sortable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">div</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'plots'</span>,
+                     <span class="fu"><a href="http://jkunst.com/highcharter/reference/highchartOutput.html">highchartOutput</a></span><span class="op">(</span><span class="st">'hc'</span>, width <span class="op">=</span> <span class="st">'200px'</span>, height <span class="op">=</span> <span class="st">'200px'</span><span class="op">)</span>,
+                     <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span><span class="op">(</span><span class="st">'gg'</span>, width <span class="op">=</span> <span class="st">'200px'</span>, height <span class="op">=</span> <span class="st">'200px'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p><img src="inst/fig/README-sortable.gif"></p>
 <ul>
 <li>
 <strong>Animation Effects:</strong> Apply an animation effect to an element. Effects can also be used in hide or show.</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {</a>
-<a class="sourceLine" id="cb6-2" title="2">  <span class="kw">observeEvent</span>(input<span class="op">$</span>show, {</a>
-<a class="sourceLine" id="cb6-3" title="3">    <span class="kw"><a href="reference/Animation_effects.html">jqui_show</a></span>(<span class="st">'#gg'</span>, <span class="dt">effect =</span> input<span class="op">$</span>effect)</a>
-<a class="sourceLine" id="cb6-4" title="4">  })</a>
-<a class="sourceLine" id="cb6-5" title="5">  </a>
-<a class="sourceLine" id="cb6-6" title="6">  <span class="kw">observeEvent</span>(input<span class="op">$</span>hide, {</a>
-<a class="sourceLine" id="cb6-7" title="7">    <span class="kw"><a href="reference/Animation_effects.html">jqui_hide</a></span>(<span class="st">'#gg'</span>, <span class="dt">effect =</span> input<span class="op">$</span>effect)</a>
-<a class="sourceLine" id="cb6-8" title="8">  })</a>
-<a class="sourceLine" id="cb6-9" title="9">  </a>
-<a class="sourceLine" id="cb6-10" title="10">  output<span class="op">$</span>gg &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</a>
-<a class="sourceLine" id="cb6-11" title="11">    <span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> cyl, <span class="dt">y =</span> mpg, <span class="dt">color =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(gear))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-12" title="12"><span class="st">      </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-13" title="13"><span class="st">      </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">"transparent"</span>,<span class="dt">colour =</span> <span class="ot">NA</span>))</a>
-<a class="sourceLine" id="cb6-14" title="14">  }, <span class="dt">bg =</span> <span class="st">"transparent"</span>)</a>
-<a class="sourceLine" id="cb6-15" title="15">}</a>
-<a class="sourceLine" id="cb6-16" title="16"></a>
-<a class="sourceLine" id="cb6-17" title="17">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
-<a class="sourceLine" id="cb6-18" title="18">  <span class="kw">div</span>(<span class="dt">style =</span> <span class="st">'width: 400px; height: 400px'</span>,</a>
-<a class="sourceLine" id="cb6-19" title="19">      <span class="kw">plotOutput</span>(<span class="st">'gg'</span>, <span class="dt">width =</span> <span class="st">'100%'</span>, <span class="dt">height =</span> <span class="st">'100%'</span>)),</a>
-<a class="sourceLine" id="cb6-20" title="20">  <span class="kw">selectInput</span>(<span class="st">'effect'</span>, <span class="ot">NULL</span>, <span class="dt">choices =</span> <span class="kw"><a href="reference/get_jqui_effects.html">get_jqui_effects</a></span>()),</a>
-<a class="sourceLine" id="cb6-21" title="21">  <span class="kw">actionButton</span>(<span class="st">'show'</span>, <span class="st">'Show'</span>),</a>
-<a class="sourceLine" id="cb6-22" title="22">  <span class="kw">actionButton</span>(<span class="st">'hide'</span>, <span class="st">'Hide'</span>)</a>
-<a class="sourceLine" id="cb6-23" title="23">)</a>
-<a class="sourceLine" id="cb6-24" title="24"></a>
-<a class="sourceLine" id="cb6-25" title="25"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
+<!-- end list --><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">show</span>, <span class="op">{</span>
+    <span class="fu"><a href="reference/Animation_effects.html">jqui_show</a></span><span class="op">(</span><span class="st">'#gg'</span>, effect <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">effect</span><span class="op">)</span>
+  <span class="op">}</span><span class="op">)</span>
+  
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">hide</span>, <span class="op">{</span>
+    <span class="fu"><a href="reference/Animation_effects.html">jqui_hide</a></span><span class="op">(</span><span class="st">'#gg'</span>, effect <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">effect</span><span class="op">)</span>
+  <span class="op">}</span><span class="op">)</span>
+  
+  <span class="va">output</span><span class="op">$</span><span class="va">gg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">cyl</span>, y <span class="op">=</span> <span class="va">mpg</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"transparent"</span>,colour <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span><span class="op">)</span>
+  <span class="op">}</span>, bg <span class="op">=</span> <span class="st">"transparent"</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">div</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">'width: 400px; height: 400px'</span>,
+      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span><span class="op">(</span><span class="st">'gg'</span>, width <span class="op">=</span> <span class="st">'100%'</span>, height <span class="op">=</span> <span class="st">'100%'</span><span class="op">)</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/selectInput.html">selectInput</a></span><span class="op">(</span><span class="st">'effect'</span>, <span class="cn">NULL</span>, choices <span class="op">=</span> <span class="fu"><a href="reference/get_jqui_effects.html">get_jqui_effects</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span><span class="op">(</span><span class="st">'show'</span>, <span class="st">'Show'</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span><span class="op">(</span><span class="st">'hide'</span>, <span class="st">'Hide'</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p><img src="inst/fig/README-effects.gif"></p>
 <ul>
 <li>
 <strong>Classes transformation:</strong> Add and remove class(es) to elements while animating all style changes.</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {</a>
-<a class="sourceLine" id="cb7-2" title="2"></a>
-<a class="sourceLine" id="cb7-3" title="3">  current_class &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>()</a>
-<a class="sourceLine" id="cb7-4" title="4"></a>
-<a class="sourceLine" id="cb7-5" title="5">  <span class="kw">observe</span>({</a>
-<a class="sourceLine" id="cb7-6" title="6">    input<span class="op">$</span>class</a>
-<a class="sourceLine" id="cb7-7" title="7">    class_to_remove &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span>(current_class, input<span class="op">$</span>class)</a>
-<a class="sourceLine" id="cb7-8" title="8">    class_to_add &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span>(input<span class="op">$</span>class, current_class)</a>
-<a class="sourceLine" id="cb7-9" title="9">    current_class &lt;&lt;-<span class="st"> </span>input<span class="op">$</span>class</a>
-<a class="sourceLine" id="cb7-10" title="10">    <span class="cf">if</span>(<span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(class_to_remove) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb7-11" title="11">      <span class="kw"><a href="reference/Class_effects.html">jqui_remove_class</a></span>(<span class="st">'#foo'</span>, <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(class_to_remove, <span class="dt">collapse =</span> <span class="st">' '</span>), <span class="dt">duration =</span> <span class="dv">1000</span>)}</a>
-<a class="sourceLine" id="cb7-12" title="12">    <span class="cf">if</span>(<span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(class_to_add) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb7-13" title="13">      <span class="kw"><a href="reference/Class_effects.html">jqui_add_class</a></span>(<span class="st">'#foo'</span>, <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(class_to_add, <span class="dt">collapse =</span> <span class="st">' '</span>), <span class="dt">duration =</span> <span class="dv">1000</span>)}</a>
-<a class="sourceLine" id="cb7-14" title="14">  })</a>
-<a class="sourceLine" id="cb7-15" title="15"></a>
-<a class="sourceLine" id="cb7-16" title="16">}</a>
-<a class="sourceLine" id="cb7-17" title="17"></a>
-<a class="sourceLine" id="cb7-18" title="18">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
-<a class="sourceLine" id="cb7-19" title="19"></a>
-<a class="sourceLine" id="cb7-20" title="20">  tags<span class="op">$</span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(</a>
-<a class="sourceLine" id="cb7-21" title="21">    tags<span class="op">$</span><span class="kw">style</span>(</a>
-<a class="sourceLine" id="cb7-22" title="22">      <span class="kw">HTML</span>(<span class="st">'.class1 { width: 410px; height: 100px; }</span></a>
-<a class="sourceLine" id="cb7-23" title="23"><span class="st">            .class2 { text-indent: 40px; letter-spacing: .2em; }</span></a>
-<a class="sourceLine" id="cb7-24" title="24"><span class="st">            .class3 { padding: 30px; margin: 10px; }</span></a>
-<a class="sourceLine" id="cb7-25" title="25"><span class="st">            .class4 { font-size: 1.1em; }'</span>)</a>
-<a class="sourceLine" id="cb7-26" title="26">    )</a>
-<a class="sourceLine" id="cb7-27" title="27">  ),</a>
-<a class="sourceLine" id="cb7-28" title="28"></a>
-<a class="sourceLine" id="cb7-29" title="29">  <span class="kw">div</span>(<span class="dt">id =</span> <span class="st">'foo'</span>, <span class="st">'Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed pede.'</span>),</a>
-<a class="sourceLine" id="cb7-30" title="30">  <span class="kw">hr</span>(),</a>
-<a class="sourceLine" id="cb7-31" title="31">  <span class="kw">checkboxGroupInput</span>(<span class="st">'class'</span>, <span class="st">'Class'</span>,</a>
-<a class="sourceLine" id="cb7-32" title="32">                     <span class="dt">choices =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">`</span><span class="dt">width: 410px; height: 100px;</span><span class="st">`</span> =<span class="st"> 'class1'</span>,</a>
-<a class="sourceLine" id="cb7-33" title="33">                                    <span class="st">`</span><span class="dt">text-indent: 40px; letter-spacing: .2em;</span><span class="st">`</span> =<span class="st"> 'class2'</span>,</a>
-<a class="sourceLine" id="cb7-34" title="34">                                    <span class="st">`</span><span class="dt">padding: 30px; margin: 10px;</span><span class="st">`</span> =<span class="st"> 'class3'</span>,</a>
-<a class="sourceLine" id="cb7-35" title="35">                                    <span class="st">`</span><span class="dt">font-size: 1.1em;</span><span class="st">`</span> =<span class="st"> 'class4'</span>))</a>
-<a class="sourceLine" id="cb7-36" title="36"></a>
-<a class="sourceLine" id="cb7-37" title="37"></a>
-<a class="sourceLine" id="cb7-38" title="38">)</a>
-<a class="sourceLine" id="cb7-39" title="39"></a>
-<a class="sourceLine" id="cb7-40" title="40"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
+<!-- end list --><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
+
+  <span class="va">current_class</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observe.html">observe</a></span><span class="op">(</span><span class="op">{</span>
+    <span class="va">input</span><span class="op">$</span><span class="va">class</span>
+    <span class="va">class_to_remove</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="va">current_class</span>, <span class="va">input</span><span class="op">$</span><span class="va">class</span><span class="op">)</span>
+    <span class="va">class_to_add</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">class</span>, <span class="va">current_class</span><span class="op">)</span>
+    <span class="va">current_class</span> <span class="op">&lt;&lt;-</span> <span class="va">input</span><span class="op">$</span><span class="va">class</span>
+    <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">class_to_remove</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
+      <span class="fu"><a href="reference/Class_effects.html">jqui_remove_class</a></span><span class="op">(</span><span class="st">'#foo'</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">class_to_remove</span>, collapse <span class="op">=</span> <span class="st">' '</span><span class="op">)</span>, duration <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span><span class="op">}</span>
+    <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">class_to_add</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
+      <span class="fu"><a href="reference/Class_effects.html">jqui_add_class</a></span><span class="op">(</span><span class="st">'#foo'</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">class_to_add</span>, collapse <span class="op">=</span> <span class="st">' '</span><span class="op">)</span>, duration <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span><span class="op">}</span>
+  <span class="op">}</span><span class="op">)</span>
+
+<span class="op">}</span>
+
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+
+  <span class="va">tags</span><span class="op">$</span><span class="fu">head</span><span class="op">(</span>
+    <span class="va">tags</span><span class="op">$</span><span class="fu">style</span><span class="op">(</span>
+      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/HTML.html">HTML</a></span><span class="op">(</span><span class="st">'.class1 { width: 410px; height: 100px; }
+            .class2 { text-indent: 40px; letter-spacing: .2em; }
+            .class3 { padding: 30px; margin: 10px; }
+            .class4 { font-size: 1.1em; }'</span><span class="op">)</span>
+    <span class="op">)</span>
+  <span class="op">)</span>,
+
+  <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">div</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'foo'</span>, <span class="st">'Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed pede.'</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">hr</a></span><span class="op">(</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/checkboxGroupInput.html">checkboxGroupInput</a></span><span class="op">(</span><span class="st">'class'</span>, <span class="st">'Class'</span>,
+                     choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>`width: 410px; height: 100px;` <span class="op">=</span> <span class="st">'class1'</span>,
+                                    `text-indent: 40px; letter-spacing: .2em;` <span class="op">=</span> <span class="st">'class2'</span>,
+                                    `padding: 30px; margin: 10px;` <span class="op">=</span> <span class="st">'class3'</span>,
+                                    `font-size: 1.1em;` <span class="op">=</span> <span class="st">'class4'</span><span class="op">)</span><span class="op">)</span>
+
+
+<span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p><img src="inst/fig/README-classes.gif"></p>
 <ul>
 <li>
 <strong>orderInput():</strong> Display a list of items. Their order can be changed by drag and drop.</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {</a>
-<a class="sourceLine" id="cb8-2" title="2">  output<span class="op">$</span>order &lt;-<span class="st"> </span><span class="kw">renderPrint</span>({ <span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(input<span class="op">$</span>dest_order) })</a>
-<a class="sourceLine" id="cb8-3" title="3">}</a>
-<a class="sourceLine" id="cb8-4" title="4"></a>
-<a class="sourceLine" id="cb8-5" title="5">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
-<a class="sourceLine" id="cb8-6" title="6">  <span class="kw"><a href="reference/orderInput.html">orderInput</a></span>(<span class="st">'source'</span>, <span class="st">'Source'</span>, <span class="dt">items =</span> month.abb,</a>
-<a class="sourceLine" id="cb8-7" title="7">             <span class="dt">as_source =</span> <span class="ot">TRUE</span>, <span class="dt">connect =</span> <span class="st">'dest'</span>),</a>
-<a class="sourceLine" id="cb8-8" title="8">  <span class="kw"><a href="reference/orderInput.html">orderInput</a></span>(<span class="st">'dest'</span>, <span class="st">'Dest'</span>, <span class="dt">items =</span> <span class="ot">NULL</span>, <span class="dt">placeholder =</span> <span class="st">'Drag items here...'</span>),</a>
-<a class="sourceLine" id="cb8-9" title="9">  <span class="kw">verbatimTextOutput</span>(<span class="st">'order'</span>)</a>
-<a class="sourceLine" id="cb8-10" title="10">)</a>
-<a class="sourceLine" id="cb8-11" title="11"></a>
-<a class="sourceLine" id="cb8-12" title="12"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
+<!-- end list --><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">order</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderPrint</a></span><span class="op">(</span><span class="op">{</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">dest_order</span><span class="op">)</span> <span class="op">}</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">'source'</span>, <span class="st">'Source'</span>, items <span class="op">=</span> <span class="va">month.abb</span>,
+             as_source <span class="op">=</span> <span class="cn">TRUE</span>, connect <span class="op">=</span> <span class="st">'dest'</span><span class="op">)</span>,
+  <span class="fu"><a href="reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">'dest'</span>, <span class="st">'Dest'</span>, items <span class="op">=</span> <span class="cn">NULL</span>, placeholder <span class="op">=</span> <span class="st">'Drag items here...'</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html">verbatimTextOutput</a></span><span class="op">(</span><span class="st">'order'</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p><img src="inst/fig/README-orderInput.gif"></p>
 <ul>
 <li>
 <strong>sortableTableOutput():</strong> Render a HTML table with sortable rows.</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
-<a class="sourceLine" id="cb9-2" title="2">  <span class="kw">verbatimTextOutput</span>(<span class="st">"index"</span>),</a>
-<a class="sourceLine" id="cb9-3" title="3">  <span class="kw"><a href="reference/sortableTableOutput.html">sortableTableOutput</a></span>(<span class="st">"tbl"</span>)</a>
-<a class="sourceLine" id="cb9-4" title="4">)</a>
-<a class="sourceLine" id="cb9-5" title="5"></a>
-<a class="sourceLine" id="cb9-6" title="6">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {</a>
-<a class="sourceLine" id="cb9-7" title="7">  output<span class="op">$</span>index &lt;-<span class="st"> </span><span class="kw">renderPrint</span>({</a>
-<a class="sourceLine" id="cb9-8" title="8">    <span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="st">"Row index:</span><span class="ch">\n</span><span class="st">"</span>)</a>
-<a class="sourceLine" id="cb9-9" title="9">    input<span class="op">$</span>tbl_row_index</a>
-<a class="sourceLine" id="cb9-10" title="10">  })</a>
-<a class="sourceLine" id="cb9-11" title="11">  output<span class="op">$</span>tbl &lt;-<span class="st"> </span><span class="kw">renderTable</span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(mtcars), <span class="dt">rownames =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb9-12" title="12">}</a>
-<a class="sourceLine" id="cb9-13" title="13"></a>
-<a class="sourceLine" id="cb9-14" title="14"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
+<!-- end list --><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"index"</span><span class="op">)</span>,
+  <span class="fu"><a href="reference/sortableTableOutput.html">sortableTableOutput</a></span><span class="op">(</span><span class="st">"tbl"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">index</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderPrint</a></span><span class="op">(</span><span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Row index:\n"</span><span class="op">)</span>
+    <span class="va">input</span><span class="op">$</span><span class="va">tbl_row_index</span>
+  <span class="op">}</span><span class="op">)</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderTable.html">renderTable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span>, rownames <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p><img src="inst/fig/README-sortableTableOutput.gif"></p>
 <ul>
 <li>
 <strong>selectableTableOutput():</strong> Render a HTML table with selectable rows or cells.</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
-<a class="sourceLine" id="cb10-2" title="2">  <span class="kw"><a href="reference/selectableTableOutput.html">selectableTableOutput</a></span>(<span class="st">"tbl"</span>, <span class="dt">selection_mode =</span> <span class="st">"cell"</span>),</a>
-<a class="sourceLine" id="cb10-3" title="3">  <span class="kw">verbatimTextOutput</span>(<span class="st">"selected"</span>)</a>
-<a class="sourceLine" id="cb10-4" title="4">)</a>
-<a class="sourceLine" id="cb10-5" title="5"></a>
-<a class="sourceLine" id="cb10-6" title="6">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {</a>
-<a class="sourceLine" id="cb10-7" title="7">  output<span class="op">$</span>selected &lt;-<span class="st"> </span><span class="kw">renderPrint</span>({</a>
-<a class="sourceLine" id="cb10-8" title="8">    <span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="st">"Selected:</span><span class="ch">\n</span><span class="st">"</span>)</a>
-<a class="sourceLine" id="cb10-9" title="9">    input<span class="op">$</span>tbl_selected</a>
-<a class="sourceLine" id="cb10-10" title="10">  })</a>
-<a class="sourceLine" id="cb10-11" title="11">  output<span class="op">$</span>tbl &lt;-<span class="st"> </span><span class="kw">renderTable</span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(mtcars), <span class="dt">rownames =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb10-12" title="12">}</a>
-<a class="sourceLine" id="cb10-13" title="13"></a>
-<a class="sourceLine" id="cb10-14" title="14"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
+<!-- end list --><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="reference/selectableTableOutput.html">selectableTableOutput</a></span><span class="op">(</span><span class="st">"tbl"</span>, selection_mode <span class="op">=</span> <span class="st">"cell"</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"selected"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">selected</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderPrint</a></span><span class="op">(</span><span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Selected:\n"</span><span class="op">)</span>
+    <span class="va">input</span><span class="op">$</span><span class="va">tbl_selected</span>
+  <span class="op">}</span><span class="op">)</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderTable.html">renderTable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span>, rownames <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p><img src="inst/fig/README-selectableTableOutput_cell.gif"></p>
 </div>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=shinyjqui">https://​cloud.r-project.org/​package=shinyjqui</a>
 </li>
-<li>Browse source code at <br><a href="https://github.com/yang-tang/shinyjqui">https://​github.com/​yang-tang/​shinyjqui</a>
+<li>Browse source code at <br><a href="https://github.com/yang-tang/shinyjqui/">https://​github.com/​yang-tang/​shinyjqui/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/yang-tang/shinyjqui/issues">https://​github.com/​yang-tang/​shinyjqui/​issues</a>
 </li>
@@ -344,7 +351,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

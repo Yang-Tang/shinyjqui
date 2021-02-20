@@ -1,9 +1,11 @@
+url: https://yang-tang.github.io/shinyjqui
+
 reference:
   - title: "Mouse interactions"
     desc: >
       Attach and manipulate mouse-based interactions to shiny html tags and
       input/output widgets
-    contents:
+  - contents:
       - jqui_draggable
       - jqui_droppable
       - jqui_resizable
@@ -12,9 +14,10 @@ reference:
       - jqui_bookmarking
   - title: "Shiny UI with mouse interactions"
     desc: "Wrapper functions to create shiny ui with interaction attached."
-    contents:
-      - draggableModalDialog
+  - contents:
       - orderInput
+      - updateOrderInput
+      - draggableModalDialog
       - sortableCheckboxGroupInput
       - sortableRadioButtons
       - sortableTabsetPanel
@@ -24,7 +27,7 @@ reference:
     desc: >
       Allow element(s) to show animation effects, or menipulate their class(es)
       while animating all style changes.
-    contents:
+  - contents:
       - jqui_effect
       - jqui_show
       - jqui_hide
@@ -33,8 +36,7 @@ reference:
       - jqui_add_class
       - jqui_remove_class
       - jqui_switch_class
-      - jqui_toggle
   - title: "Others"
-    contents:
-      - includeJqueryUI
+  - contents:
       - jqui_icon
+      - jqui_position

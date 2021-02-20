@@ -45,7 +45,6 @@ library(highcharter)
 server <- function(input, output) {}
 
 ui <- fluidPage(
-  # for shinyjqui v0.2.0 or lower, please use jqui_draggabled instead 
   jqui_draggable(fileInput('file', 'File'))
 )
 
@@ -65,7 +64,6 @@ server <- function(input, output) {
 }
 
 ui <- fluidPage(
-  # for shinyjqui v0.2.0 or lower, please use jqui_resizabled instead
   jqui_resizable(plotOutput('gg', width = '200px', height = '200px'))
 )
 
@@ -91,7 +89,6 @@ server <- function(input, output) {
 }
 
 ui <- fluidPage(
-  # for shinyjqui v0.2.0 or lower, please use jqui_sortabled instead
   jqui_sortable(div(id = 'plots',
                      highchartOutput('hc', width = '200px', height = '200px'),
                      plotOutput('gg', width = '200px', height = '200px')))

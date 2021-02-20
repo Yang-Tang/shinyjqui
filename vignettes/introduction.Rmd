@@ -59,7 +59,7 @@ server <- function(input, output) {
 }
 ```
 
-The ui mode is the most straight forward way to create an ui element with mouse interactions, however, the server mode is more flexible. For example, in server mode, you can reactively control element's interactivity through `observe()` or `ovservEvent()`, you can use a jQuery selector or even a JavaScript expression to locate the target element(s), and you can control the interaction effects with the `operation` parameter. (see introduction in the following sections).
+The ui mode is the most straight forward way to create an ui element with mouse interactions, however, the server mode is more flexible. For example, in server mode, you can reactively control element's interactivity through `observe()` or `observEvent()`, you can use a jQuery selector or even a JavaScript expression to locate the target element(s), and you can control the interaction effects with the `operation` parameter. (see introduction in the following sections).
 
 ### The `ui` parameter
 

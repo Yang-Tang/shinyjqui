@@ -20,7 +20,7 @@ orderInputNonSource <- function(x) {
 
   dep <- htmltools::htmlDependency(
     name    = "orderInputBinding",
-    version = "0.3.3",
+    version = "0.4.0",
     package = "shinyjqui",
     src     = "www",
     script  = "orderInputBinding.js"

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a tabset panel with sortable tabs — sortableTabsetPanel • shinyjqui</title>
+<title>Change the value of an orderInput on the client — updateOrderInput • shinyjqui</title>
 
 
 <!-- jquery -->
@@ -39,11 +39,12 @@
 
 
 
-<meta property="og:title" content="Create a tabset panel with sortable tabs — sortableTabsetPanel" />
-<meta property="og:description" content="Create a tabset that contains shiny::tabPanel elements. The tabs are
-sortable by drag and drop. In addition to the activated tab title stored in
-input$&amp;lt;id&amp;gt;, the server will also receive the order of tabs in
-input$&amp;lt;id&amp;gt;_order." />
+<meta property="og:title" content="Change the value of an orderInput on the client — updateOrderInput" />
+<meta property="og:description" content="Similar to the input updater functions of shiny package, this function send a
+message to the client, telling it to change the settings of an orderInput
+object. Any arguments with NULL values will be ignored; they will not result
+in any changes to the input object on the client. The function can't update
+the &quot;source&quot; orderInputs." />
 
 
 
@@ -132,91 +133,91 @@ input$&amp;lt;id&amp;gt;_order." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a tabset panel with sortable tabs</h1>
-    <small class="dont-index">Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/R/sortableTabsetPanel.R'><code>R/sortableTabsetPanel.R</code></a></small>
-    <div class="hidden name"><code>sortableTabsetPanel.Rd</code></div>
+    <h1>Change the value of an orderInput on the client</h1>
+    <small class="dont-index">Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/R/orderInput.R'><code>R/orderInput.R</code></a></small>
+    <div class="hidden name"><code>updateOrderInput.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create a tabset that contains <a href='https://rdrr.io/pkg/shiny/man/tabPanel.html'>shiny::tabPanel</a> elements. The tabs are
-sortable by drag and drop. In addition to the activated tab title stored in
-<code>input$&lt;id&gt;</code>, the server will also receive the order of tabs in
-<code>input$&lt;id&gt;_order</code>.</p>
+    <p>Similar to the input updater functions of shiny package, this function send a
+message to the client, telling it to change the settings of an <a href='orderInput.html'>orderInput</a>
+object. Any arguments with NULL values will be ignored; they will not result
+in any changes to the input object on the client. The function can't update
+the "source" <code>orderInput</code>s.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sortableTabsetPanel</span><span class='op'>(</span>
-  <span class='va'>...</span>,
-  id <span class='op'>=</span> <span class='cn'>NULL</span>,
-  selected <span class='op'>=</span> <span class='cn'>NULL</span>,
-  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"tabs"</span>, <span class='st'>"pills"</span><span class='op'>)</span>,
-  position <span class='op'>=</span> <span class='cn'>NULL</span>
+    <pre class="usage"><span class='fu'>updateOrderInput</span><span class='op'>(</span>
+  <span class='va'>session</span>,
+  <span class='va'>inputId</span>,
+  label <span class='op'>=</span> <span class='cn'>NULL</span>,
+  items <span class='op'>=</span> <span class='cn'>NULL</span>,
+  connect <span class='op'>=</span> <span class='cn'>NULL</span>,
+  item_class <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p><code><a href='https://rdrr.io/pkg/shiny/man/tabPanel.html'>tabPanel()</a></code> elements to include in the tabset</p></td>
+      <th>session</th>
+      <td><p>The <code>session</code> object passed to function given to
+<code>shinyServer</code>.</p></td>
     </tr>
     <tr>
-      <th>id</th>
-      <td><p>If provided, you can use <code>input$</code><em><code>id</code></em> in your
-server logic to determine which of the current tabs is active. The value
-will correspond to the <code>value</code> argument that is passed to
-<code><a href='https://rdrr.io/pkg/shiny/man/tabPanel.html'>tabPanel()</a></code>.</p></td>
+      <th>inputId</th>
+      <td><p>The <code>input</code> slot that will be used to access the current order
+of items.</p></td>
     </tr>
     <tr>
-      <th>selected</th>
-      <td><p>The <code>value</code> (or, if none was supplied, the <code>title</code>)
-of the tab that should be selected by default. If <code>NULL</code>, the first
-tab will be selected.</p></td>
+      <th>label</th>
+      <td><p>Display label for the control, or <code>NULL</code> for no label.</p></td>
     </tr>
     <tr>
-      <th>type</th>
-      <td><dl>
-<dt><code>"tabs"</code></dt><dd><p>Standard tab look</p></dd>
-<dt><code>"pills"</code></dt><dd><p>Selected tabs use the background fill color</p></dd>
-<dt><code>"hidden"</code></dt><dd><p>Hides the selectable tabs. Use <code>type = "hidden"</code> in
-conjunction with <code><a href='https://rdrr.io/pkg/shiny/man/tabPanel.html'>tabPanelBody()</a></code> and <code><a href='https://rdrr.io/pkg/shiny/man/updateTabsetPanel.html'>updateTabsetPanel()</a></code> to control the
-active tab via other input controls. (See example below)</p></dd>
-
-</dl></td>
+      <th>items</th>
+      <td><p>Items to display, can be a list, an atomic vector or a factor.
+For list or atomic vector, if named, the names are displayed and the order
+is given in values. For factor, values are displayed and the order is given
+in levels</p></td>
     </tr>
     <tr>
-      <th>position</th>
-      <td><p>This argument is deprecated; it has been discontinued in
-Bootstrap 3.</p></td>
+      <th>connect</th>
+      <td><p>Optional. Allow items to be dragged between <code>orderInput</code>s.
+Should be a vector of <code>inputId</code>(s) of other <code>orderInput</code>(s) that the items
+from this <code>orderInput</code> should be connected to.</p></td>
+    </tr>
+    <tr>
+      <th>item_class</th>
+      <td><p>One of the <a href='https://getbootstrap.com/docs/4.0/utilities/colors/'>Bootstrap color utility classes</a> to apply to
+each item.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A tabset that can be passed to <a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>shiny::mainPanel</a></p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><a href='https://rdrr.io/pkg/shiny/man/tabsetPanel.html'>shiny::tabsetPanel</a>, <a href='sortableRadioButtons.html'>sortableRadioButtons</a>,
-<a href='sortableCheckboxGroupInput.html'>sortableCheckboxGroupInput</a>, <a href='sortableTableOutput.html'>sortableTableOutput</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>## Only run this example in interactive R sessions</span>
-<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
-    ui <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
-      <span class='fu'>sortableTabsetPanel</span><span class='op'>(</span>
-        id <span class='op'>=</span> <span class='st'>"tabs"</span>,
-        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tabPanel.html'>tabPanel</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"A"</span>, <span class='st'>"AAA"</span><span class='op'>)</span>,
-        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tabPanel.html'>tabPanel</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"B"</span>, <span class='st'>"BBB"</span><span class='op'>)</span>,
-        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tabPanel.html'>tabPanel</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"C"</span>, <span class='st'>"CCC"</span><span class='op'>)</span>
-      <span class='op'>)</span>,
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"order"</span><span class='op'>)</span>
-    <span class='op'>)</span>,
-    server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
-      <span class='va'>output</span><span class='op'>$</span><span class='va'>order</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='op'>{</span><span class='va'>input</span><span class='op'>$</span><span class='va'>tabs_order</span><span class='op'>}</span><span class='op'>)</span>
-    <span class='op'>}</span>
-  <span class='op'>)</span>
-<span class='op'>}</span>
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
 
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+
+  <span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
+    <span class='fu'><a href='orderInput.html'>orderInput</a></span><span class='op'>(</span><span class='st'>"foo"</span>, <span class='st'>"foo"</span>,
+               items <span class='op'>=</span> <span class='va'>month.abb</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>,
+               item_class <span class='op'>=</span> <span class='st'>'info'</span><span class='op'>)</span>,
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"order"</span><span class='op'>)</span>,
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span><span class='op'>(</span><span class='st'>"update"</span>, <span class='st'>"update"</span><span class='op'>)</span>
+  <span class='op'>)</span>
+
+  <span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='va'>output</span><span class='op'>$</span><span class='va'>order</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='op'>{</span><span class='va'>input</span><span class='op'>$</span><span class='va'>foo</span><span class='op'>}</span><span class='op'>)</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>update</span>, <span class='op'>{</span>
+      <span class='fu'>updateOrderInput</span><span class='op'>(</span><span class='va'>session</span>, <span class='st'>"foo"</span>,
+                       items <span class='op'>=</span> <span class='va'>month.abb</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>,
+                       item_class <span class='op'>=</span> <span class='st'>"success"</span><span class='op'>)</span>
+    <span class='op'>}</span><span class='op'>)</span>
+  <span class='op'>}</span>
+
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span><span class='va'>ui</span>, <span class='va'>server</span><span class='op'>)</span>
+
+<span class='op'>}</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

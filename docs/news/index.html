@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -53,7 +57,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -67,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyjqui</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -75,7 +79,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -106,8 +110,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/yang-tang/shinyjqui">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/yang-tang/shinyjqui/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -124,13 +128,45 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
+      <h1 data-toc-skip>Changelog <small></small></h1>
       <small>Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="shinyjqui-0339000" class="section level2">
+    <div id="shinyjqui-040" class="section level2">
 <h2 class="hasAnchor">
-<a href="#shinyjqui-0339000" class="anchor"></a>shinyjqui 0.3.3.9000</h2>
+<a href="#shinyjqui-040" class="anchor"></a>shinyjqui 0.4.0</h2>
+<ul>
+<li>
+<strong>New feature:</strong> (Experimentally) Now the interaction functions can work on static htmlwidgets in RStudio Viewer or RMarkdown (e.g. <code><a href="../reference/Interactions.html">jqui_resizable(plotly::plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length))</a></code>). (<a href='https://github.com/yang-tang/shinyjqui/issues/44'>#44</a>)</li>
+<li>
+<strong>New feature:</strong> Now <code><a href="../reference/orderInput.html">orderInput()</a></code> can be updated with <code><a href="../reference/updateOrderInput.html">updateOrderInput()</a></code>. (<a href='https://github.com/yang-tang/shinyjqui/issues/41'>#41</a>, <a href='https://github.com/yang-tang/shinyjqui/issues/57'>#57</a>)</li>
+<li>
+<strong>New feature:</strong> Items of an <code><a href="../reference/orderInput.html">orderInput()</a></code> can now be deleted by drag and drop them to an “source” <code><a href="../reference/orderInput.html">orderInput()</a></code>. (Idea from <a href="https://community.rstudio.com/t/customizing-shinyjqui-package/48140/4">raytong</a> <a href='https://github.com/yang-tang/shinyjqui/issues/65'>#65</a>)</li>
+<li>
+<strong>New feature:</strong> New <code><a href="../reference/jqui_position.html">jqui_position()</a></code> function to position a shiny ui relative to another.</li>
+<li>
+<strong>New feature:</strong> Uses <a href="https://github.com/furf/jquery-ui-touch-punch">TouchPunch</a> to enable mobile use. (Thanks <a href='https://github.com/rquitales'>@rquitales</a>, <a href='https://github.com/yang-tang/shinyjqui/issues/45'>#45</a>)</li>
+<li>
+<strong>Breaking change:</strong> The <code>orderInput</code> function is now implemented in the similar way as other shiny inputs, so its input value has been changed from <code>input$inputId_order</code> to <code>input$inputId</code>.</li>
+<li>
+<strong>Breaking change:</strong> Removed <code>jqui_draggabled()</code>, <code>jqui_droppabled()</code>, <code>jqui_resizabled()</code>, <code>jqui_selectabled()</code>, <code>jqui_sortabled()</code> and <code>includeJqueryUI()</code> as they have been deprecated for a long time.</li>
+<li>
+<strong>Breaking change:</strong> Removed deprecated <code>selector</code>, <code>tag</code> and <code>switch</code> parameters from interation and effect functions.</li>
+<li>
+<strong>Bug fix:</strong> Effect-specific options are no longer ignored by <code><a href="../reference/Animation_effects.html">jqui_effect()</a></code>. (<a href='https://github.com/yang-tang/shinyjqui/issues/56'>#56</a>)</li>
+<li>
+<strong>Bug fix:</strong> <code>input$id_order</code> of sortable now return values when the <code>connectToSortable</code> option is used.</li>
+<li>
+<strong>Bug fix:</strong> Nested interaction functions was not working with a shiny tag without an id (e.g. <code><a href="../reference/Interactions.html">jqui_resizable(jqui_draggable(div("aaa")))</a></code>). (<a href='https://github.com/yang-tang/shinyjqui/issues/66'>#66</a>)</li>
+<li>
+<strong>Bug fix:</strong> Nested interaction functions showed “Action abort” warning to a shiny tag without an id. (<a href='https://github.com/yang-tang/shinyjqui/issues/66'>#66</a>)</li>
+<li>
+<strong>Bug fix:</strong> When using <code>load</code> operation to a sortable element or <code>orderInput</code>, the items from other “source” <code>orderInput</code>s were not removed. (<a href='https://github.com/yang-tang/shinyjqui/issues/70'>#70</a>)</li>
+<li>
+<strong>Bug fix:</strong> Enable <code>NULL</code> label in <code><a href="../reference/orderInput.html">orderInput()</a></code>. (<a href='https://github.com/yang-tang/shinyjqui/issues/63'>#63</a>)</li>
+<li>
+<strong>Bug fix:</strong> A regression bug introduced in v0.3.3 that interactive tag is not effective when inserted by <code>insertUI</code>. (<a href='https://github.com/yang-tang/shinyjqui/issues/58'>#58</a>)</li>
+</ul>
 </div>
     <div id="shinyjqui-033" class="section level2">
 <h2 class="hasAnchor">
@@ -144,7 +180,7 @@
 <strong>Bug fix:</strong> For interaction functions, the <code>shiny</code> options with the same suffix will overwrite the default settings, thus affect the return value of other interaction widgets. (<a href='https://github.com/yang-tang/shinyjqui/issues/43'>#43</a>)</li>
 <li>
 <strong>Bug fix:</strong> Interaction functions not working in <code>ui</code> mode in flexdashboard. (<a href='https://github.com/yang-tang/shinyjqui/issues/53'>#53</a>)</li>
-<li>Add global option <code>shinyjqui.debug</code>, can be <code>TURE</code> or <code>FALSE</code>(default), to control whether to load the original/minified <code>shinyjqui.js</code> (<a href='https://github.com/yang-tang/shinyjqui/issues/39'>#39</a>) and to display/hide javascript debug message (<a href='https://github.com/yang-tang/shinyjqui/issues/3'>#3</a>).</li>
+<li>Add global option <code>shinyjqui.debug</code>, can be <code>TURE</code> or <code>FALSE</code>(default), to control whether to load the original/minified <code>shinyjqui.js</code> (<a href='https://github.com/yang-tang/shinyjqui/issues/39'>#39</a>) and to display/hide javascript debug message (e.g. <code><a href="https://rdrr.io/r/base/options.html">options(shinyjqui.debug = TRUE)</a></code>) (<a href='https://github.com/yang-tang/shinyjqui/issues/3'>#3</a>).</li>
 </ul>
 </div>
     <div id="shinyjqui-032" class="section level2">
@@ -199,7 +235,7 @@
 <h2 class="hasAnchor">
 <a href="#shinyjqui-020" class="anchor"></a>shinyjqui 0.2.0</h2>
 <ul>
-<li>No longer needed to call <code><a href="../reference/includeJqueryUI.html">includeJqueryUI()</a></code> before using other <code>shinyjqui</code> functions.(<a href='https://github.com/yang-tang/shinyjqui/issues/4'>#4</a>)</li>
+<li>No longer needed to call <code>includeJqueryUI()</code> before using other <code>shinyjqui</code> functions.(<a href='https://github.com/yang-tang/shinyjqui/issues/4'>#4</a>)</li>
 <li>New <code><a href="../reference/jqui_icon.html">jqui_icon()</a></code> to create a jQuery UI icon.</li>
 <li>New <code><a href="../reference/Animation_effects.html">jqui_toggle()</a></code> to toggle display/hide state of a shiny html element with animation.</li>
 <li>New pre-defined interaction-specific shiny input values: <code>is_dragging</code> for draggable; <code>over</code>, <code>drop</code>, <code>dropped</code> and <code>out</code> for droppable; <code>is_resizing</code> for resizable; <code>is_selecting</code> for selectable.(<a href='https://github.com/yang-tang/shinyjqui/issues/1'>#1</a>) See vignettes for details.</li>
@@ -218,19 +254,10 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#shinyjqui-0339000">0.3.3.9000</a></li>
-        <li><a href="#shinyjqui-033">0.3.3</a></li>
-        <li><a href="#shinyjqui-032">0.3.2</a></li>
-        <li><a href="#shinyjqui-031">0.3.1</a></li>
-        <li><a href="#shinyjqui-030">0.3.0</a></li>
-        <li><a href="#shinyjqui-020">0.2.0</a></li>
-        <li><a href="#shinyjqui-010">0.1.0</a></li>
-      </ul>
-    </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 
 </div>
@@ -242,7 +269,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

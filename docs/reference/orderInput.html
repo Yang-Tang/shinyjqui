@@ -6,27 +6,31 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>A shiny input control to show the order of a list of items — orderInput • shinyjqui</title>
+<title>Create a shiny input control to show the order of a set of items — orderInput • shinyjqui</title>
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -35,11 +39,10 @@
 
 
 
-<meta property="og:title" content="A shiny input control to show the order of a list of items — orderInput" />
-<meta property="og:description" content="Display a list items whose order can be changed by drag and drop within or
-between orderInput(s). The current items order can be obtained from
-input$inputId_order." />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Create a shiny input control to show the order of a set of items — orderInput" />
+<meta property="og:description" content="Display a set of items whose order can be changed by drag and drop inside or
+between orderInput(s). The item order is send back to server in the from of
+input$inputId." />
 
 
 
@@ -57,7 +60,7 @@ input$inputId_order." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -71,7 +74,7 @@ input$inputId_order." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyjqui</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -79,7 +82,7 @@ input$inputId_order." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -110,8 +113,8 @@ input$inputId_order." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/yang-tang/shinyjqui">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/yang-tang/shinyjqui/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -128,36 +131,37 @@ input$inputId_order." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>A shiny input control to show the order of a list of items</h1>
+    <h1>Create a shiny input control to show the order of a set of items</h1>
     <small class="dont-index">Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/R/orderInput.R'><code>R/orderInput.R</code></a></small>
     <div class="hidden name"><code>orderInput.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Display a list items whose order can be changed by drag and drop within or
-between <code>orderInput</code>(s). The current items order can be obtained from
-<code>input$inputId_order</code>.</p>
+    <p>Display a set of items whose order can be changed by drag and drop inside or
+between <code>orderInput</code>(s). The item order is send back to server in the from of
+<code>input$inputId</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>orderInput</span>(
-  <span class='no'>inputId</span>,
-  <span class='no'>label</span>,
-  <span class='no'>items</span>,
-  <span class='kw'>as_source</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>connect</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>item_class</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"default"</span>, <span class='st'>"primary"</span>, <span class='st'>"success"</span>, <span class='st'>"info"</span>, <span class='st'>"warning"</span>, <span class='st'>"danger"</span>),
-  <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"500px"</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>orderInput</span><span class='op'>(</span>
+  <span class='va'>inputId</span>,
+  <span class='va'>label</span>,
+  <span class='va'>items</span>,
+  as_source <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  connect <span class='op'>=</span> <span class='cn'>NULL</span>,
+  item_class <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"default"</span>, <span class='st'>"primary"</span>, <span class='st'>"success"</span>, <span class='st'>"info"</span>, <span class='st'>"warning"</span>, <span class='st'>"danger"</span><span class='op'>)</span>,
+  placeholder <span class='op'>=</span> <span class='cn'>NULL</span>,
+  width <span class='op'>=</span> <span class='st'>"500px"</span>,
+  legacy <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>inputId</th>
-      <td><p>The <code>input</code> slot that will be used to access the current
-order of items.</p></td>
+      <td><p>The <code>input</code> slot that will be used to access the current order
+of items.</p></td>
     </tr>
     <tr>
       <th>label</th>
@@ -166,31 +170,25 @@ order of items.</p></td>
     <tr>
       <th>items</th>
       <td><p>Items to display, can be a list, an atomic vector or a factor.
-For list and atomic vector, if named, the names are displayed and the order
-is given in values. For factor, values are displayed and the order is
-given in levels</p></td>
+For list or atomic vector, if named, the names are displayed and the order
+is given in values. For factor, values are displayed and the order is given
+in levels</p></td>
     </tr>
     <tr>
       <th>as_source</th>
-      <td><p>A boolean value to determine whether the <code>orderInput</code>
-is set as source mode. If source mode, items in this <code>orderInput</code> can
-only be dragged (copied) to the connected non-source <code>orderInput</code>(s)
-defined by <code>connect</code> argument. If non-source mode, items in the
-<code>orderInput</code> can be dragged (moved) within or toward other connected
-non-source <code>orderInput</code>(s) defined by <code>connect</code> argument.</p></td>
+      <td><p>A boolean value to determine whether the <code>orderInput</code> is set
+as source mode. Only works if the <code>connect</code> argument was set.</p></td>
     </tr>
     <tr>
       <th>connect</th>
-      <td><p>optional, a vector of <code>inputId</code>(s) of other
-<code>orderInput</code>(s) that the current <code>orderInput</code> connects to. The
-behavior of the connected <code>orderInput</code>(s) depend on the
-<code>as_source</code> argument.</p></td>
+      <td><p>Optional. Allow items to be dragged between <code>orderInput</code>s.
+Should be a vector of <code>inputId</code>(s) of other <code>orderInput</code>(s) that the items
+from this <code>orderInput</code> should be connected to.</p></td>
     </tr>
     <tr>
       <th>item_class</th>
-      <td><p>One of the
-<a href='http://getbootstrap.com/css/#buttons-options'>Bootstrap
-Button Styles</a> to apply to each item.</p></td>
+      <td><p>One of the <a href='https://getbootstrap.com/docs/4.0/utilities/colors/'>Bootstrap color utility classes</a> to apply to
+each item.</p></td>
     </tr>
     <tr>
       <th>placeholder</th>
@@ -200,22 +198,53 @@ the <code>orderInput</code>.</p></td>
     <tr>
       <th>width</th>
       <td><p>The width of the input, e.g. '400px', or '100\<!-- %'. Passed to -->
-<code><a href='https://rdrr.io/pkg/shiny/man/validateCssUnit.html'>validateCssUnit</a></code>.</p></td>
+shiny::validateCssUnit.</p></td>
+    </tr>
+    <tr>
+      <th>legacy</th>
+      <td><p>A boolean value. Whether to use the old version of the
+<code>orderInput</code> function.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed to <code>shiny::tags$div</code> which is used to build
-the container of the <code>orderInput</code>.</p></td>
+      <td><p>Arguments passed to <code>shiny::tags$div</code> which is used to build the
+container of the <code>orderInput</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>orderInput</code> control that can be added to a UI definition.</p>
+    <p>An <code>orderInput</code> control that can be added to a UI definition.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>orderInput</code>s can work in either connected mode or stand-alone mode. In
+stand-alone mode, items can only be drag and drop inside the input control.
+In connected mode, items to be dragged between <code>orderInput</code>s, which is
+controled by the <code>connect</code> prarameter. This is a one-way relationship. if
+user want the items to be connected in both directions, the <code>connect</code>
+prarameter must be set on both <code>orderInput</code>s.</p>
+<p>When in connected mode, <code>orderInput</code> can be set as source-only through the
+<code>as_source</code> prarameter. The items in a "source" <code>orderInput</code> can only be
+copied, instead of moved, to other connected non-source <code>orderInput</code>(s). From
+shinyjqui v0.4.0, A "source" <code>orderInput</code> will become a "recycle bin" for
+items from other <code>orderInput</code>s as well. This means, if you want to delete an
+item, you can drag and drop it into a "source" <code>orderInput</code>. This feature can
+be disabled by setting the <code>options</code> of non-source <code>orderInput</code>(s) as
+<code><a href='https://rdrr.io/r/base/list.html'>list(helper = "clone")</a></code>.</p>
+<p>From shinyjqui v0.4.0 and above, the <code>orderInput</code> function was implemented in
+the similar way as other classical shiny inputs, which brought two changes:</p><ol>
+<li><p>The input value was changed from <code>input$inputId_order</code> to <code>input$inputId</code>;</p></li>
+<li><p>The new version supports <a href='updateOrderInput.html'>updateOrderInput</a> function which works in the
+same way as other shiny input updater functions. To keep the backward
+compatibility, a <code>legacy</code> argument was provided if user wanted to use the old
+version.</p></li>
+</ol>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>orderInput</span>(<span class='st'>'items1'</span>, <span class='st'>'Items1'</span>, <span class='kw'>items</span> <span class='kw'>=</span> <span class='no'>month.abb</span>, <span class='kw'>item_class</span> <span class='kw'>=</span> <span class='st'>'info'</span>)</div><div class='output co'>#&gt; &lt;label for="items1"&gt;Items1&lt;/label&gt;
-#&gt; &lt;div id="items1" style="width: 500px; font-size: 0px; min-height: 25px;"&gt;
+    <pre class="examples"><div class='input'><span class='fu'>orderInput</span><span class='op'>(</span><span class='st'>'items1'</span>, <span class='st'>'Items1'</span>, items <span class='op'>=</span> <span class='va'>month.abb</span>, item_class <span class='op'>=</span> <span class='st'>'info'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; &lt;label class="control-label" id="items1-label" for="items1"&gt;Items1&lt;/label&gt;
+#&gt; &lt;div id="items1" style="width: 500px; font-size: 0px; min-height: 25px;" class="jqui-orderInput"&gt;
 #&gt;   &lt;div data-value="Jan" class="btn btn-info" style="margin: 1px"&gt;Jan&lt;/div&gt;
 #&gt;   &lt;div data-value="Feb" class="btn btn-info" style="margin: 1px"&gt;Feb&lt;/div&gt;
 #&gt;   &lt;div data-value="Mar" class="btn btn-info" style="margin: 1px"&gt;Mar&lt;/div&gt;
@@ -229,12 +258,12 @@ the container of the <code>orderInput</code>.</p></td>
 #&gt;   &lt;div data-value="Nov" class="btn btn-info" style="margin: 1px"&gt;Nov&lt;/div&gt;
 #&gt;   &lt;div data-value="Dec" class="btn btn-info" style="margin: 1px"&gt;Dec&lt;/div&gt;
 #&gt; &lt;/div&gt;
-#&gt; &lt;script class="jqui_self_cleaning_script"&gt;$(function(){setTimeout(function(){shinyjqui.msgCallback({"ui":"[id='items1']","type":"interaction","func":"sortable","operation":"enable","options":{"connectWith":"false","remove":"function(e, ui){if(!$(e.target).children().length)$(e.target).empty();}","shiny":{"order":{"sortcreate":"function(event, ui){\n      return $(event.target).children().map(function(i, e){\n        return $(e).attr(\"data-value\");\n      }).get();\n    }","sortupdate":"function(event, ui){\n      return $(event.target).children().map(function(i, e){\n        return $(e).attr(\"data-value\");\n      }).get();\n    }"}}},"debug":false,"_js_idx":{"ui":false,"type":false,"func":false,"operation":false,"options":{"connectWith":false,"remove":true,"shiny":{"order":{"sortcreate":true,"sortupdate":true}}},"debug":false}});
-#&gt;       $(".jqui_self_cleaning_script").remove();}, 10);});&lt;/script&gt;</div><div class='input'>
+#&gt; &lt;iframe srcdoc="&amp;lt;p&amp;gt;Hello world!&amp;lt;/p&amp;gt;" class="jqui_self_cleaning_script" style="width:0;height:0;border:none;display:none !important" onload="$(function(){setTimeout(function(){shinyjqui.msgCallback({&amp;quot;ui&amp;quot;:&amp;quot;[id=&amp;#39;items1&amp;#39;]&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;interaction&amp;quot;,&amp;quot;func&amp;quot;:&amp;quot;sortable&amp;quot;,&amp;quot;operation&amp;quot;:&amp;quot;enable&amp;quot;,&amp;quot;options&amp;quot;:{&amp;quot;connectWith&amp;quot;:&amp;quot;false&amp;quot;,&amp;quot;remove&amp;quot;:&amp;quot;function(e, ui){if(!$(e.target).children().length)$(e.target).empty();}&amp;quot;},&amp;quot;debug&amp;quot;:false,&amp;quot;_js_idx&amp;quot;:{&amp;quot;ui&amp;quot;:false,&amp;quot;type&amp;quot;:false,&amp;quot;func&amp;quot;:false,&amp;quot;operation&amp;quot;:false,&amp;quot;options&amp;quot;:{&amp;quot;connectWith&amp;quot;:false,&amp;quot;remove&amp;quot;:true},&amp;quot;debug&amp;quot;:false}});&amp;#10;      $(&amp;quot;.jqui_self_cleaning_script&amp;quot;).remove();}, 10);});"&gt;&lt;/iframe&gt;</div><div class='input'>
 <span class='co'>## build connections between orderInputs</span>
-<span class='fu'>orderInput</span>(<span class='st'>'items2'</span>, <span class='st'>'Items2 (can be moved to Items1 and Items4)'</span>, <span class='kw'>items</span> <span class='kw'>=</span> <span class='no'>month.abb</span>,
-           <span class='kw'>connect</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'items1'</span>, <span class='st'>'items4'</span>), <span class='kw'>item_class</span> <span class='kw'>=</span> <span class='st'>'primary'</span>)</div><div class='output co'>#&gt; &lt;label for="items2"&gt;Items2 (can be moved to Items1 and Items4)&lt;/label&gt;
-#&gt; &lt;div id="items2" style="width: 500px; font-size: 0px; min-height: 25px;"&gt;
+<span class='fu'>orderInput</span><span class='op'>(</span><span class='st'>'items2'</span>, <span class='st'>'Items2 (can be moved to Items1 and Items4)'</span>, items <span class='op'>=</span> <span class='va'>month.abb</span>,
+           connect <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'items1'</span>, <span class='st'>'items4'</span><span class='op'>)</span>, item_class <span class='op'>=</span> <span class='st'>'primary'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; &lt;label class="control-label" id="items2-label" for="items2"&gt;Items2 (can be moved to Items1 and Items4)&lt;/label&gt;
+#&gt; &lt;div id="items2" style="width: 500px; font-size: 0px; min-height: 25px;" class="jqui-orderInput"&gt;
 #&gt;   &lt;div data-value="Jan" class="btn btn-primary" style="margin: 1px"&gt;Jan&lt;/div&gt;
 #&gt;   &lt;div data-value="Feb" class="btn btn-primary" style="margin: 1px"&gt;Feb&lt;/div&gt;
 #&gt;   &lt;div data-value="Mar" class="btn btn-primary" style="margin: 1px"&gt;Mar&lt;/div&gt;
@@ -248,64 +277,49 @@ the container of the <code>orderInput</code>.</p></td>
 #&gt;   &lt;div data-value="Nov" class="btn btn-primary" style="margin: 1px"&gt;Nov&lt;/div&gt;
 #&gt;   &lt;div data-value="Dec" class="btn btn-primary" style="margin: 1px"&gt;Dec&lt;/div&gt;
 #&gt; &lt;/div&gt;
-#&gt; &lt;script class="jqui_self_cleaning_script"&gt;$(function(){setTimeout(function(){shinyjqui.msgCallback({"ui":"[id='items2']","type":"interaction","func":"sortable","operation":"enable","options":{"connectWith":"#items1, #items4","remove":"function(e, ui){if(!$(e.target).children().length)$(e.target).empty();}","shiny":{"order":{"sortcreate":"function(event, ui){\n      return $(event.target).children().map(function(i, e){\n        return $(e).attr(\"data-value\");\n      }).get();\n    }","sortupdate":"function(event, ui){\n      return $(event.target).children().map(function(i, e){\n        return $(e).attr(\"data-value\");\n      }).get();\n    }"}}},"debug":false,"_js_idx":{"ui":false,"type":false,"func":false,"operation":false,"options":{"connectWith":false,"remove":true,"shiny":{"order":{"sortcreate":true,"sortupdate":true}}},"debug":false}});
-#&gt;       $(".jqui_self_cleaning_script").remove();}, 10);});&lt;/script&gt;</div><div class='input'>
+#&gt; &lt;iframe srcdoc="&amp;lt;p&amp;gt;Hello world!&amp;lt;/p&amp;gt;" class="jqui_self_cleaning_script" style="width:0;height:0;border:none;display:none !important" onload="$(function(){setTimeout(function(){shinyjqui.msgCallback({&amp;quot;ui&amp;quot;:&amp;quot;[id=&amp;#39;items2&amp;#39;]&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;interaction&amp;quot;,&amp;quot;func&amp;quot;:&amp;quot;sortable&amp;quot;,&amp;quot;operation&amp;quot;:&amp;quot;enable&amp;quot;,&amp;quot;options&amp;quot;:{&amp;quot;connectWith&amp;quot;:&amp;quot;#items1, #items4&amp;quot;,&amp;quot;remove&amp;quot;:&amp;quot;function(e, ui){if(!$(e.target).children().length)$(e.target).empty();}&amp;quot;},&amp;quot;debug&amp;quot;:false,&amp;quot;_js_idx&amp;quot;:{&amp;quot;ui&amp;quot;:false,&amp;quot;type&amp;quot;:false,&amp;quot;func&amp;quot;:false,&amp;quot;operation&amp;quot;:false,&amp;quot;options&amp;quot;:{&amp;quot;connectWith&amp;quot;:false,&amp;quot;remove&amp;quot;:true},&amp;quot;debug&amp;quot;:false}});&amp;#10;      $(&amp;quot;.jqui_self_cleaning_script&amp;quot;).remove();}, 10);});"&gt;&lt;/iframe&gt;</div><div class='input'>
 <span class='co'>## build connections in source mode</span>
-<span class='fu'>orderInput</span>(<span class='st'>'items3'</span>, <span class='st'>'Items3 (can be copied to Items2 and Items4)'</span>, <span class='kw'>items</span> <span class='kw'>=</span> <span class='no'>month.abb</span>,
-           <span class='kw'>as_source</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>connect</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'items2'</span>, <span class='st'>'items4'</span>), <span class='kw'>item_class</span> <span class='kw'>=</span> <span class='st'>'success'</span>)</div><div class='output co'>#&gt; &lt;label for="items3"&gt;Items3 (can be copied to Items2 and Items4)&lt;/label&gt;
-#&gt; &lt;div id="items3" style="width: 500px; font-size: 0px; min-height: 25px;"&gt;
-#&gt;   &lt;div class="btn btn-success jqui-interaction-SwlKLUUE" data-value="Jan" style="margin: 1px"&gt;Jan&lt;/div&gt;
-#&gt;   &lt;script class="jqui_self_cleaning_script"&gt;$(function(){setTimeout(function(){shinyjqui.msgCallback({"ui":".jqui-interaction-SwlKLUUE","type":"interaction","func":"draggable","operation":"enable","options":{"connectToSortable":"#items2, #items4","helper":"clone","cancel":""},"debug":false,"_js_idx":{"ui":false,"type":false,"func":false,"operation":false,"options":{"connectToSortable":false,"helper":false,"cancel":false},"debug":false}});
-#&gt;       $(".jqui_self_cleaning_script").remove();}, 10);});&lt;/script&gt;
-#&gt;   &lt;div class="btn btn-success jqui-interaction-dLieexom" data-value="Feb" style="margin: 1px"&gt;Feb&lt;/div&gt;
-#&gt;   &lt;script class="jqui_self_cleaning_script"&gt;$(function(){setTimeout(function(){shinyjqui.msgCallback({"ui":".jqui-interaction-dLieexom","type":"interaction","func":"draggable","operation":"enable","options":{"connectToSortable":"#items2, #items4","helper":"clone","cancel":""},"debug":false,"_js_idx":{"ui":false,"type":false,"func":false,"operation":false,"options":{"connectToSortable":false,"helper":false,"cancel":false},"debug":false}});
-#&gt;       $(".jqui_self_cleaning_script").remove();}, 10);});&lt;/script&gt;
-#&gt;   &lt;div class="btn btn-success jqui-interaction-b92Q9Qeu" data-value="Mar" style="margin: 1px"&gt;Mar&lt;/div&gt;
-#&gt;   &lt;script class="jqui_self_cleaning_script"&gt;$(function(){setTimeout(function(){shinyjqui.msgCallback({"ui":".jqui-interaction-b92Q9Qeu","type":"interaction","func":"draggable","operation":"enable","options":{"connectToSortable":"#items2, #items4","helper":"clone","cancel":""},"debug":false,"_js_idx":{"ui":false,"type":false,"func":false,"operation":false,"options":{"connectToSortable":false,"helper":false,"cancel":false},"debug":false}});
-#&gt;       $(".jqui_self_cleaning_script").remove();}, 10);});&lt;/script&gt;
-#&gt;   &lt;div class="btn btn-success jqui-interaction-R8HfdVHI" data-value="Apr" style="margin: 1px"&gt;Apr&lt;/div&gt;
-#&gt;   &lt;script class="jqui_self_cleaning_script"&gt;$(function(){setTimeout(function(){shinyjqui.msgCallback({"ui":".jqui-interaction-R8HfdVHI","type":"interaction","func":"draggable","operation":"enable","options":{"connectToSortable":"#items2, #items4","helper":"clone","cancel":""},"debug":false,"_js_idx":{"ui":false,"type":false,"func":false,"operation":false,"options":{"connectToSortable":false,"helper":false,"cancel":false},"debug":false}});
-#&gt;       $(".jqui_self_cleaning_script").remove();}, 10);});&lt;/script&gt;
-#&gt;   &lt;div class="btn btn-success jqui-interaction-yvQgF0fi" data-value="May" style="margin: 1px"&gt;May&lt;/div&gt;
-#&gt;   &lt;script class="jqui_self_cleaning_script"&gt;$(function(){setTimeout(function(){shinyjqui.msgCallback({"ui":".jqui-interaction-yvQgF0fi","type":"interaction","func":"draggable","operation":"enable","options":{"connectToSortable":"#items2, #items4","helper":"clone","cancel":""},"debug":false,"_js_idx":{"ui":false,"type":false,"func":false,"operation":false,"options":{"connectToSortable":false,"helper":false,"cancel":false},"debug":false}});
-#&gt;       $(".jqui_self_cleaning_script").remove();}, 10);});&lt;/script&gt;
-#&gt;   &lt;div class="btn btn-success jqui-interaction-vjF0HqZ3" data-value="Jun" style="margin: 1px"&gt;Jun&lt;/div&gt;
-#&gt;   &lt;script class="jqui_self_cleaning_script"&gt;$(function(){setTimeout(function(){shinyjqui.msgCallback({"ui":".jqui-interaction-vjF0HqZ3","type":"interaction","func":"draggable","operation":"enable","options":{"connectToSortable":"#items2, #items4","helper":"clone","cancel":""},"debug":false,"_js_idx":{"ui":false,"type":false,"func":false,"operation":false,"options":{"connectToSortable":false,"helper":false,"cancel":false},"debug":false}});
-#&gt;       $(".jqui_self_cleaning_script").remove();}, 10);});&lt;/script&gt;
-#&gt;   &lt;div class="btn btn-success jqui-interaction-vEafHYTa" data-value="Jul" style="margin: 1px"&gt;Jul&lt;/div&gt;
-#&gt;   &lt;script class="jqui_self_cleaning_script"&gt;$(function(){setTimeout(function(){shinyjqui.msgCallback({"ui":".jqui-interaction-vEafHYTa","type":"interaction","func":"draggable","operation":"enable","options":{"connectToSortable":"#items2, #items4","helper":"clone","cancel":""},"debug":false,"_js_idx":{"ui":false,"type":false,"func":false,"operation":false,"options":{"connectToSortable":false,"helper":false,"cancel":false},"debug":false}});
-#&gt;       $(".jqui_self_cleaning_script").remove();}, 10);});&lt;/script&gt;
-#&gt;   &lt;div class="btn btn-success jqui-interaction-yUXKhGFR" data-value="Aug" style="margin: 1px"&gt;Aug&lt;/div&gt;
-#&gt;   &lt;script class="jqui_self_cleaning_script"&gt;$(function(){setTimeout(function(){shinyjqui.msgCallback({"ui":".jqui-interaction-yUXKhGFR","type":"interaction","func":"draggable","operation":"enable","options":{"connectToSortable":"#items2, #items4","helper":"clone","cancel":""},"debug":false,"_js_idx":{"ui":false,"type":false,"func":false,"operation":false,"options":{"connectToSortable":false,"helper":false,"cancel":false},"debug":false}});
-#&gt;       $(".jqui_self_cleaning_script").remove();}, 10);});&lt;/script&gt;
-#&gt;   &lt;div class="btn btn-success jqui-interaction-sBBVkzIb" data-value="Sep" style="margin: 1px"&gt;Sep&lt;/div&gt;
-#&gt;   &lt;script class="jqui_self_cleaning_script"&gt;$(function(){setTimeout(function(){shinyjqui.msgCallback({"ui":".jqui-interaction-sBBVkzIb","type":"interaction","func":"draggable","operation":"enable","options":{"connectToSortable":"#items2, #items4","helper":"clone","cancel":""},"debug":false,"_js_idx":{"ui":false,"type":false,"func":false,"operation":false,"options":{"connectToSortable":false,"helper":false,"cancel":false},"debug":false}});
-#&gt;       $(".jqui_self_cleaning_script").remove();}, 10);});&lt;/script&gt;
-#&gt;   &lt;div class="btn btn-success jqui-interaction-wPcLdPaM" data-value="Oct" style="margin: 1px"&gt;Oct&lt;/div&gt;
-#&gt;   &lt;script class="jqui_self_cleaning_script"&gt;$(function(){setTimeout(function(){shinyjqui.msgCallback({"ui":".jqui-interaction-wPcLdPaM","type":"interaction","func":"draggable","operation":"enable","options":{"connectToSortable":"#items2, #items4","helper":"clone","cancel":""},"debug":false,"_js_idx":{"ui":false,"type":false,"func":false,"operation":false,"options":{"connectToSortable":false,"helper":false,"cancel":false},"debug":false}});
-#&gt;       $(".jqui_self_cleaning_script").remove();}, 10);});&lt;/script&gt;
-#&gt;   &lt;div class="btn btn-success jqui-interaction-fvs4bNaB" data-value="Nov" style="margin: 1px"&gt;Nov&lt;/div&gt;
-#&gt;   &lt;script class="jqui_self_cleaning_script"&gt;$(function(){setTimeout(function(){shinyjqui.msgCallback({"ui":".jqui-interaction-fvs4bNaB","type":"interaction","func":"draggable","operation":"enable","options":{"connectToSortable":"#items2, #items4","helper":"clone","cancel":""},"debug":false,"_js_idx":{"ui":false,"type":false,"func":false,"operation":false,"options":{"connectToSortable":false,"helper":false,"cancel":false},"debug":false}});
-#&gt;       $(".jqui_self_cleaning_script").remove();}, 10);});&lt;/script&gt;
-#&gt;   &lt;div class="btn btn-success jqui-interaction-Ggl1OPbL" data-value="Dec" style="margin: 1px"&gt;Dec&lt;/div&gt;
-#&gt;   &lt;script class="jqui_self_cleaning_script"&gt;$(function(){setTimeout(function(){shinyjqui.msgCallback({"ui":".jqui-interaction-Ggl1OPbL","type":"interaction","func":"draggable","operation":"enable","options":{"connectToSortable":"#items2, #items4","helper":"clone","cancel":""},"debug":false,"_js_idx":{"ui":false,"type":false,"func":false,"operation":false,"options":{"connectToSortable":false,"helper":false,"cancel":false},"debug":false}});
-#&gt;       $(".jqui_self_cleaning_script").remove();}, 10);});&lt;/script&gt;
-#&gt; &lt;/div&gt;</div><div class='input'>
+<span class='fu'>orderInput</span><span class='op'>(</span><span class='st'>'items3'</span>, <span class='st'>'Items3 (can be copied to Items2 and Items4)'</span>, items <span class='op'>=</span> <span class='va'>month.abb</span>,
+           as_source <span class='op'>=</span> <span class='cn'>TRUE</span>, connect <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'items2'</span>, <span class='st'>'items4'</span><span class='op'>)</span>, item_class <span class='op'>=</span> <span class='st'>'success'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; &lt;label class="control-label" id="items3-label" for="items3"&gt;Items3 (can be copied to Items2 and Items4)&lt;/label&gt;
+#&gt; &lt;div id="items3" style="width: 500px; font-size: 0px; min-height: 25px;" class="jqui-orderInput-source"&gt;
+#&gt;   &lt;div class="btn btn-success jqui-interaction-wlKLUUEd" data-value="Jan" style="margin: 1px"&gt;Jan&lt;/div&gt;
+#&gt;   &lt;iframe srcdoc="&amp;lt;p&amp;gt;Hello world!&amp;lt;/p&amp;gt;" class="jqui_self_cleaning_script" style="width:0;height:0;border:none;display:none !important" onload="$(function(){setTimeout(function(){shinyjqui.msgCallback({&amp;quot;ui&amp;quot;:&amp;quot;.jqui-interaction-wlKLUUEd&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;interaction&amp;quot;,&amp;quot;func&amp;quot;:&amp;quot;draggable&amp;quot;,&amp;quot;operation&amp;quot;:&amp;quot;enable&amp;quot;,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:&amp;quot;#items2, #items4&amp;quot;,&amp;quot;helper&amp;quot;:&amp;quot;clone&amp;quot;,&amp;quot;cancel&amp;quot;:&amp;quot;&amp;quot;},&amp;quot;debug&amp;quot;:false,&amp;quot;_js_idx&amp;quot;:{&amp;quot;ui&amp;quot;:false,&amp;quot;type&amp;quot;:false,&amp;quot;func&amp;quot;:false,&amp;quot;operation&amp;quot;:false,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:false,&amp;quot;helper&amp;quot;:false,&amp;quot;cancel&amp;quot;:false},&amp;quot;debug&amp;quot;:false}});&amp;#10;      $(&amp;quot;.jqui_self_cleaning_script&amp;quot;).remove();}, 10);});"&gt;&lt;/iframe&gt;
+#&gt;   &lt;div class="btn btn-success jqui-interaction-Lieexomb" data-value="Feb" style="margin: 1px"&gt;Feb&lt;/div&gt;
+#&gt;   &lt;iframe srcdoc="&amp;lt;p&amp;gt;Hello world!&amp;lt;/p&amp;gt;" class="jqui_self_cleaning_script" style="width:0;height:0;border:none;display:none !important" onload="$(function(){setTimeout(function(){shinyjqui.msgCallback({&amp;quot;ui&amp;quot;:&amp;quot;.jqui-interaction-Lieexomb&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;interaction&amp;quot;,&amp;quot;func&amp;quot;:&amp;quot;draggable&amp;quot;,&amp;quot;operation&amp;quot;:&amp;quot;enable&amp;quot;,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:&amp;quot;#items2, #items4&amp;quot;,&amp;quot;helper&amp;quot;:&amp;quot;clone&amp;quot;,&amp;quot;cancel&amp;quot;:&amp;quot;&amp;quot;},&amp;quot;debug&amp;quot;:false,&amp;quot;_js_idx&amp;quot;:{&amp;quot;ui&amp;quot;:false,&amp;quot;type&amp;quot;:false,&amp;quot;func&amp;quot;:false,&amp;quot;operation&amp;quot;:false,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:false,&amp;quot;helper&amp;quot;:false,&amp;quot;cancel&amp;quot;:false},&amp;quot;debug&amp;quot;:false}});&amp;#10;      $(&amp;quot;.jqui_self_cleaning_script&amp;quot;).remove();}, 10);});"&gt;&lt;/iframe&gt;
+#&gt;   &lt;div class="btn btn-success jqui-interaction-92Q9QeuR" data-value="Mar" style="margin: 1px"&gt;Mar&lt;/div&gt;
+#&gt;   &lt;iframe srcdoc="&amp;lt;p&amp;gt;Hello world!&amp;lt;/p&amp;gt;" class="jqui_self_cleaning_script" style="width:0;height:0;border:none;display:none !important" onload="$(function(){setTimeout(function(){shinyjqui.msgCallback({&amp;quot;ui&amp;quot;:&amp;quot;.jqui-interaction-92Q9QeuR&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;interaction&amp;quot;,&amp;quot;func&amp;quot;:&amp;quot;draggable&amp;quot;,&amp;quot;operation&amp;quot;:&amp;quot;enable&amp;quot;,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:&amp;quot;#items2, #items4&amp;quot;,&amp;quot;helper&amp;quot;:&amp;quot;clone&amp;quot;,&amp;quot;cancel&amp;quot;:&amp;quot;&amp;quot;},&amp;quot;debug&amp;quot;:false,&amp;quot;_js_idx&amp;quot;:{&amp;quot;ui&amp;quot;:false,&amp;quot;type&amp;quot;:false,&amp;quot;func&amp;quot;:false,&amp;quot;operation&amp;quot;:false,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:false,&amp;quot;helper&amp;quot;:false,&amp;quot;cancel&amp;quot;:false},&amp;quot;debug&amp;quot;:false}});&amp;#10;      $(&amp;quot;.jqui_self_cleaning_script&amp;quot;).remove();}, 10);});"&gt;&lt;/iframe&gt;
+#&gt;   &lt;div class="btn btn-success jqui-interaction-8HfdVHIy" data-value="Apr" style="margin: 1px"&gt;Apr&lt;/div&gt;
+#&gt;   &lt;iframe srcdoc="&amp;lt;p&amp;gt;Hello world!&amp;lt;/p&amp;gt;" class="jqui_self_cleaning_script" style="width:0;height:0;border:none;display:none !important" onload="$(function(){setTimeout(function(){shinyjqui.msgCallback({&amp;quot;ui&amp;quot;:&amp;quot;.jqui-interaction-8HfdVHIy&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;interaction&amp;quot;,&amp;quot;func&amp;quot;:&amp;quot;draggable&amp;quot;,&amp;quot;operation&amp;quot;:&amp;quot;enable&amp;quot;,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:&amp;quot;#items2, #items4&amp;quot;,&amp;quot;helper&amp;quot;:&amp;quot;clone&amp;quot;,&amp;quot;cancel&amp;quot;:&amp;quot;&amp;quot;},&amp;quot;debug&amp;quot;:false,&amp;quot;_js_idx&amp;quot;:{&amp;quot;ui&amp;quot;:false,&amp;quot;type&amp;quot;:false,&amp;quot;func&amp;quot;:false,&amp;quot;operation&amp;quot;:false,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:false,&amp;quot;helper&amp;quot;:false,&amp;quot;cancel&amp;quot;:false},&amp;quot;debug&amp;quot;:false}});&amp;#10;      $(&amp;quot;.jqui_self_cleaning_script&amp;quot;).remove();}, 10);});"&gt;&lt;/iframe&gt;
+#&gt;   &lt;div class="btn btn-success jqui-interaction-vQgF0fiv" data-value="May" style="margin: 1px"&gt;May&lt;/div&gt;
+#&gt;   &lt;iframe srcdoc="&amp;lt;p&amp;gt;Hello world!&amp;lt;/p&amp;gt;" class="jqui_self_cleaning_script" style="width:0;height:0;border:none;display:none !important" onload="$(function(){setTimeout(function(){shinyjqui.msgCallback({&amp;quot;ui&amp;quot;:&amp;quot;.jqui-interaction-vQgF0fiv&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;interaction&amp;quot;,&amp;quot;func&amp;quot;:&amp;quot;draggable&amp;quot;,&amp;quot;operation&amp;quot;:&amp;quot;enable&amp;quot;,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:&amp;quot;#items2, #items4&amp;quot;,&amp;quot;helper&amp;quot;:&amp;quot;clone&amp;quot;,&amp;quot;cancel&amp;quot;:&amp;quot;&amp;quot;},&amp;quot;debug&amp;quot;:false,&amp;quot;_js_idx&amp;quot;:{&amp;quot;ui&amp;quot;:false,&amp;quot;type&amp;quot;:false,&amp;quot;func&amp;quot;:false,&amp;quot;operation&amp;quot;:false,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:false,&amp;quot;helper&amp;quot;:false,&amp;quot;cancel&amp;quot;:false},&amp;quot;debug&amp;quot;:false}});&amp;#10;      $(&amp;quot;.jqui_self_cleaning_script&amp;quot;).remove();}, 10);});"&gt;&lt;/iframe&gt;
+#&gt;   &lt;div class="btn btn-success jqui-interaction-jF0HqZ3v" data-value="Jun" style="margin: 1px"&gt;Jun&lt;/div&gt;
+#&gt;   &lt;iframe srcdoc="&amp;lt;p&amp;gt;Hello world!&amp;lt;/p&amp;gt;" class="jqui_self_cleaning_script" style="width:0;height:0;border:none;display:none !important" onload="$(function(){setTimeout(function(){shinyjqui.msgCallback({&amp;quot;ui&amp;quot;:&amp;quot;.jqui-interaction-jF0HqZ3v&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;interaction&amp;quot;,&amp;quot;func&amp;quot;:&amp;quot;draggable&amp;quot;,&amp;quot;operation&amp;quot;:&amp;quot;enable&amp;quot;,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:&amp;quot;#items2, #items4&amp;quot;,&amp;quot;helper&amp;quot;:&amp;quot;clone&amp;quot;,&amp;quot;cancel&amp;quot;:&amp;quot;&amp;quot;},&amp;quot;debug&amp;quot;:false,&amp;quot;_js_idx&amp;quot;:{&amp;quot;ui&amp;quot;:false,&amp;quot;type&amp;quot;:false,&amp;quot;func&amp;quot;:false,&amp;quot;operation&amp;quot;:false,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:false,&amp;quot;helper&amp;quot;:false,&amp;quot;cancel&amp;quot;:false},&amp;quot;debug&amp;quot;:false}});&amp;#10;      $(&amp;quot;.jqui_self_cleaning_script&amp;quot;).remove();}, 10);});"&gt;&lt;/iframe&gt;
+#&gt;   &lt;div class="btn btn-success jqui-interaction-EafHYTay" data-value="Jul" style="margin: 1px"&gt;Jul&lt;/div&gt;
+#&gt;   &lt;iframe srcdoc="&amp;lt;p&amp;gt;Hello world!&amp;lt;/p&amp;gt;" class="jqui_self_cleaning_script" style="width:0;height:0;border:none;display:none !important" onload="$(function(){setTimeout(function(){shinyjqui.msgCallback({&amp;quot;ui&amp;quot;:&amp;quot;.jqui-interaction-EafHYTay&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;interaction&amp;quot;,&amp;quot;func&amp;quot;:&amp;quot;draggable&amp;quot;,&amp;quot;operation&amp;quot;:&amp;quot;enable&amp;quot;,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:&amp;quot;#items2, #items4&amp;quot;,&amp;quot;helper&amp;quot;:&amp;quot;clone&amp;quot;,&amp;quot;cancel&amp;quot;:&amp;quot;&amp;quot;},&amp;quot;debug&amp;quot;:false,&amp;quot;_js_idx&amp;quot;:{&amp;quot;ui&amp;quot;:false,&amp;quot;type&amp;quot;:false,&amp;quot;func&amp;quot;:false,&amp;quot;operation&amp;quot;:false,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:false,&amp;quot;helper&amp;quot;:false,&amp;quot;cancel&amp;quot;:false},&amp;quot;debug&amp;quot;:false}});&amp;#10;      $(&amp;quot;.jqui_self_cleaning_script&amp;quot;).remove();}, 10);});"&gt;&lt;/iframe&gt;
+#&gt;   &lt;div class="btn btn-success jqui-interaction-UXKhGFRs" data-value="Aug" style="margin: 1px"&gt;Aug&lt;/div&gt;
+#&gt;   &lt;iframe srcdoc="&amp;lt;p&amp;gt;Hello world!&amp;lt;/p&amp;gt;" class="jqui_self_cleaning_script" style="width:0;height:0;border:none;display:none !important" onload="$(function(){setTimeout(function(){shinyjqui.msgCallback({&amp;quot;ui&amp;quot;:&amp;quot;.jqui-interaction-UXKhGFRs&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;interaction&amp;quot;,&amp;quot;func&amp;quot;:&amp;quot;draggable&amp;quot;,&amp;quot;operation&amp;quot;:&amp;quot;enable&amp;quot;,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:&amp;quot;#items2, #items4&amp;quot;,&amp;quot;helper&amp;quot;:&amp;quot;clone&amp;quot;,&amp;quot;cancel&amp;quot;:&amp;quot;&amp;quot;},&amp;quot;debug&amp;quot;:false,&amp;quot;_js_idx&amp;quot;:{&amp;quot;ui&amp;quot;:false,&amp;quot;type&amp;quot;:false,&amp;quot;func&amp;quot;:false,&amp;quot;operation&amp;quot;:false,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:false,&amp;quot;helper&amp;quot;:false,&amp;quot;cancel&amp;quot;:false},&amp;quot;debug&amp;quot;:false}});&amp;#10;      $(&amp;quot;.jqui_self_cleaning_script&amp;quot;).remove();}, 10);});"&gt;&lt;/iframe&gt;
+#&gt;   &lt;div class="btn btn-success jqui-interaction-BBVkzIbw" data-value="Sep" style="margin: 1px"&gt;Sep&lt;/div&gt;
+#&gt;   &lt;iframe srcdoc="&amp;lt;p&amp;gt;Hello world!&amp;lt;/p&amp;gt;" class="jqui_self_cleaning_script" style="width:0;height:0;border:none;display:none !important" onload="$(function(){setTimeout(function(){shinyjqui.msgCallback({&amp;quot;ui&amp;quot;:&amp;quot;.jqui-interaction-BBVkzIbw&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;interaction&amp;quot;,&amp;quot;func&amp;quot;:&amp;quot;draggable&amp;quot;,&amp;quot;operation&amp;quot;:&amp;quot;enable&amp;quot;,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:&amp;quot;#items2, #items4&amp;quot;,&amp;quot;helper&amp;quot;:&amp;quot;clone&amp;quot;,&amp;quot;cancel&amp;quot;:&amp;quot;&amp;quot;},&amp;quot;debug&amp;quot;:false,&amp;quot;_js_idx&amp;quot;:{&amp;quot;ui&amp;quot;:false,&amp;quot;type&amp;quot;:false,&amp;quot;func&amp;quot;:false,&amp;quot;operation&amp;quot;:false,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:false,&amp;quot;helper&amp;quot;:false,&amp;quot;cancel&amp;quot;:false},&amp;quot;debug&amp;quot;:false}});&amp;#10;      $(&amp;quot;.jqui_self_cleaning_script&amp;quot;).remove();}, 10);});"&gt;&lt;/iframe&gt;
+#&gt;   &lt;div class="btn btn-success jqui-interaction-PcLdPaMf" data-value="Oct" style="margin: 1px"&gt;Oct&lt;/div&gt;
+#&gt;   &lt;iframe srcdoc="&amp;lt;p&amp;gt;Hello world!&amp;lt;/p&amp;gt;" class="jqui_self_cleaning_script" style="width:0;height:0;border:none;display:none !important" onload="$(function(){setTimeout(function(){shinyjqui.msgCallback({&amp;quot;ui&amp;quot;:&amp;quot;.jqui-interaction-PcLdPaMf&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;interaction&amp;quot;,&amp;quot;func&amp;quot;:&amp;quot;draggable&amp;quot;,&amp;quot;operation&amp;quot;:&amp;quot;enable&amp;quot;,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:&amp;quot;#items2, #items4&amp;quot;,&amp;quot;helper&amp;quot;:&amp;quot;clone&amp;quot;,&amp;quot;cancel&amp;quot;:&amp;quot;&amp;quot;},&amp;quot;debug&amp;quot;:false,&amp;quot;_js_idx&amp;quot;:{&amp;quot;ui&amp;quot;:false,&amp;quot;type&amp;quot;:false,&amp;quot;func&amp;quot;:false,&amp;quot;operation&amp;quot;:false,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:false,&amp;quot;helper&amp;quot;:false,&amp;quot;cancel&amp;quot;:false},&amp;quot;debug&amp;quot;:false}});&amp;#10;      $(&amp;quot;.jqui_self_cleaning_script&amp;quot;).remove();}, 10);});"&gt;&lt;/iframe&gt;
+#&gt;   &lt;div class="btn btn-success jqui-interaction-vs4bNaBG" data-value="Nov" style="margin: 1px"&gt;Nov&lt;/div&gt;
+#&gt;   &lt;iframe srcdoc="&amp;lt;p&amp;gt;Hello world!&amp;lt;/p&amp;gt;" class="jqui_self_cleaning_script" style="width:0;height:0;border:none;display:none !important" onload="$(function(){setTimeout(function(){shinyjqui.msgCallback({&amp;quot;ui&amp;quot;:&amp;quot;.jqui-interaction-vs4bNaBG&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;interaction&amp;quot;,&amp;quot;func&amp;quot;:&amp;quot;draggable&amp;quot;,&amp;quot;operation&amp;quot;:&amp;quot;enable&amp;quot;,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:&amp;quot;#items2, #items4&amp;quot;,&amp;quot;helper&amp;quot;:&amp;quot;clone&amp;quot;,&amp;quot;cancel&amp;quot;:&amp;quot;&amp;quot;},&amp;quot;debug&amp;quot;:false,&amp;quot;_js_idx&amp;quot;:{&amp;quot;ui&amp;quot;:false,&amp;quot;type&amp;quot;:false,&amp;quot;func&amp;quot;:false,&amp;quot;operation&amp;quot;:false,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:false,&amp;quot;helper&amp;quot;:false,&amp;quot;cancel&amp;quot;:false},&amp;quot;debug&amp;quot;:false}});&amp;#10;      $(&amp;quot;.jqui_self_cleaning_script&amp;quot;).remove();}, 10);});"&gt;&lt;/iframe&gt;
+#&gt;   &lt;div class="btn btn-success jqui-interaction-gl1OPbLM" data-value="Dec" style="margin: 1px"&gt;Dec&lt;/div&gt;
+#&gt;   &lt;iframe srcdoc="&amp;lt;p&amp;gt;Hello world!&amp;lt;/p&amp;gt;" class="jqui_self_cleaning_script" style="width:0;height:0;border:none;display:none !important" onload="$(function(){setTimeout(function(){shinyjqui.msgCallback({&amp;quot;ui&amp;quot;:&amp;quot;.jqui-interaction-gl1OPbLM&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;interaction&amp;quot;,&amp;quot;func&amp;quot;:&amp;quot;draggable&amp;quot;,&amp;quot;operation&amp;quot;:&amp;quot;enable&amp;quot;,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:&amp;quot;#items2, #items4&amp;quot;,&amp;quot;helper&amp;quot;:&amp;quot;clone&amp;quot;,&amp;quot;cancel&amp;quot;:&amp;quot;&amp;quot;},&amp;quot;debug&amp;quot;:false,&amp;quot;_js_idx&amp;quot;:{&amp;quot;ui&amp;quot;:false,&amp;quot;type&amp;quot;:false,&amp;quot;func&amp;quot;:false,&amp;quot;operation&amp;quot;:false,&amp;quot;options&amp;quot;:{&amp;quot;connectToSortable&amp;quot;:false,&amp;quot;helper&amp;quot;:false,&amp;quot;cancel&amp;quot;:false},&amp;quot;debug&amp;quot;:false}});&amp;#10;      $(&amp;quot;.jqui_self_cleaning_script&amp;quot;).remove();}, 10);});"&gt;&lt;/iframe&gt;
+#&gt; &lt;/div&gt;
+#&gt; &lt;iframe srcdoc="&amp;lt;p&amp;gt;Hello world!&amp;lt;/p&amp;gt;" class="jqui_self_cleaning_script" style="width:0;height:0;border:none;display:none !important" onload="$(function(){setTimeout(function(){shinyjqui.msgCallback({&amp;quot;ui&amp;quot;:&amp;quot;[id=&amp;#39;items3&amp;#39;]&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;interaction&amp;quot;,&amp;quot;func&amp;quot;:&amp;quot;droppable&amp;quot;,&amp;quot;operation&amp;quot;:&amp;quot;enable&amp;quot;,&amp;quot;options&amp;quot;:{&amp;quot;drop&amp;quot;:&amp;quot;function(e, ui) { $(ui.helper).remove(); }&amp;quot;,&amp;quot;classes&amp;quot;:{&amp;quot;ui-droppable-hover&amp;quot;:&amp;quot;ui-state-error&amp;quot;},&amp;quot;accept&amp;quot;:&amp;quot;:not(.jqui-orderInput-source *)&amp;quot;},&amp;quot;debug&amp;quot;:false,&amp;quot;_js_idx&amp;quot;:{&amp;quot;ui&amp;quot;:false,&amp;quot;type&amp;quot;:false,&amp;quot;func&amp;quot;:false,&amp;quot;operation&amp;quot;:false,&amp;quot;options&amp;quot;:{&amp;quot;drop&amp;quot;:true,&amp;quot;classes&amp;quot;:{&amp;quot;ui-droppable-hover&amp;quot;:false},&amp;quot;accept&amp;quot;:false},&amp;quot;debug&amp;quot;:false}});&amp;#10;      $(&amp;quot;.jqui_self_cleaning_script&amp;quot;).remove();}, 10);});"&gt;&lt;/iframe&gt;</div><div class='input'>
 <span class='co'>## show placeholder</span>
-<span class='fu'>orderInput</span>(<span class='st'>'items4'</span>, <span class='st'>'Items4 (can be moved to Items2)'</span>, <span class='kw'>items</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>connect</span> <span class='kw'>=</span> <span class='st'>'items2'</span>,
-           <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='st'>'Drag items here...'</span>)</div><div class='output co'>#&gt; &lt;label for="items4"&gt;Items4 (can be moved to Items2)&lt;/label&gt;
-#&gt; &lt;div id="items4" style="width: 500px; font-size: 0px; min-height: 25px;"&gt;&lt;/div&gt;
-#&gt; &lt;script class="jqui_self_cleaning_script"&gt;$(function(){setTimeout(function(){shinyjqui.msgCallback({"ui":"[id='items4']","type":"interaction","func":"sortable","operation":"enable","options":{"connectWith":"#items2","remove":"function(e, ui){if(!$(e.target).children().length)$(e.target).empty();}","shiny":{"order":{"sortcreate":"function(event, ui){\n      return $(event.target).children().map(function(i, e){\n        return $(e).attr(\"data-value\");\n      }).get();\n    }","sortupdate":"function(event, ui){\n      return $(event.target).children().map(function(i, e){\n        return $(e).attr(\"data-value\");\n      }).get();\n    }"}}},"debug":false,"_js_idx":{"ui":false,"type":false,"func":false,"operation":false,"options":{"connectWith":false,"remove":true,"shiny":{"order":{"sortcreate":true,"sortupdate":true}}},"debug":false}});
-#&gt;       $(".jqui_self_cleaning_script").remove();}, 10);});&lt;/script&gt;</div></pre>
+<span class='fu'>orderInput</span><span class='op'>(</span><span class='st'>'items4'</span>, <span class='st'>'Items4 (can be moved to Items2)'</span>, items <span class='op'>=</span> <span class='cn'>NULL</span>, connect <span class='op'>=</span> <span class='st'>'items2'</span>,
+           placeholder <span class='op'>=</span> <span class='st'>'Drag items here...'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; &lt;label class="control-label" id="items4-label" for="items4"&gt;Items4 (can be moved to Items2)&lt;/label&gt;
+#&gt; &lt;div id="items4" style="width: 500px; font-size: 0px; min-height: 25px;" class="jqui-orderInput"&gt;&lt;/div&gt;
+#&gt; &lt;iframe srcdoc="&amp;lt;p&amp;gt;Hello world!&amp;lt;/p&amp;gt;" class="jqui_self_cleaning_script" style="width:0;height:0;border:none;display:none !important" onload="$(function(){setTimeout(function(){shinyjqui.msgCallback({&amp;quot;ui&amp;quot;:&amp;quot;[id=&amp;#39;items4&amp;#39;]&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;interaction&amp;quot;,&amp;quot;func&amp;quot;:&amp;quot;sortable&amp;quot;,&amp;quot;operation&amp;quot;:&amp;quot;enable&amp;quot;,&amp;quot;options&amp;quot;:{&amp;quot;connectWith&amp;quot;:&amp;quot;#items2&amp;quot;,&amp;quot;remove&amp;quot;:&amp;quot;function(e, ui){if(!$(e.target).children().length)$(e.target).empty();}&amp;quot;},&amp;quot;debug&amp;quot;:false,&amp;quot;_js_idx&amp;quot;:{&amp;quot;ui&amp;quot;:false,&amp;quot;type&amp;quot;:false,&amp;quot;func&amp;quot;:false,&amp;quot;operation&amp;quot;:false,&amp;quot;options&amp;quot;:{&amp;quot;connectWith&amp;quot;:false,&amp;quot;remove&amp;quot;:true},&amp;quot;debug&amp;quot;:false}});&amp;#10;      $(&amp;quot;.jqui_self_cleaning_script&amp;quot;).remove();}, 10);});"&gt;&lt;/iframe&gt;</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -316,7 +330,7 @@ the container of the <code>orderInput</code>.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

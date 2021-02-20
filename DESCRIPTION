@@ -1,7 +1,7 @@
 Package: shinyjqui
 Type: Package
 Title: 'jQuery UI' Interactions and Effects for Shiny
-Version: 0.3.3.9000
+Version: 0.4.0
 Authors@R: person("Yang", "Tang", email = "tang_yang@outlook.com",
   role = c("aut", "cre"))
 Maintainer: Yang Tang <tang_yang@outlook.com>
@@ -22,7 +22,7 @@ Suggests:
     highcharter,
     knitr,
     rmarkdown
-URL: https://github.com/yang-tang/shinyjqui
+URL: https://github.com/yang-tang/shinyjqui, https://yang-tang.github.io/shinyjqui
 BugReports: https://github.com/yang-tang/shinyjqui/issues
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)

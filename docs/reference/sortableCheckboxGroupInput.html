@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -40,7 +44,6 @@
 are also sortable by drag and drop. In addition to the selected values stored
 in input$&amp;lt;inputId&amp;gt;, the server will also receive the order of choices in
 input$&amp;lt;inputId&amp;gt;_order." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -58,7 +61,7 @@ input$&amp;lt;inputId&amp;gt;_order." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -72,7 +75,7 @@ input$&amp;lt;inputId&amp;gt;_order." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyjqui</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -80,7 +83,7 @@ input$&amp;lt;inputId&amp;gt;_order." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -111,8 +114,8 @@ input$&amp;lt;inputId&amp;gt;_order." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/yang-tang/shinyjqui">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/yang-tang/shinyjqui/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -141,16 +144,16 @@ in <code>input$&lt;inputId&gt;</code>, the server will also receive the order of
 <code>input$&lt;inputId&gt;_order</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sortableCheckboxGroupInput</span>(
-  <span class='no'>inputId</span>,
-  <span class='no'>label</span>,
-  <span class='kw'>choices</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>selected</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>choiceNames</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>choiceValues</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>sortableCheckboxGroupInput</span><span class='op'>(</span>
+  <span class='va'>inputId</span>,
+  <span class='va'>label</span>,
+  choices <span class='op'>=</span> <span class='cn'>NULL</span>,
+  selected <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inline <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  width <span class='op'>=</span> <span class='cn'>NULL</span>,
+  choiceNames <span class='op'>=</span> <span class='cn'>NULL</span>,
+  choiceValues <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -182,7 +185,7 @@ types (such as logicals and numbers) will be coerced to strings.</p></td>
     <tr>
       <th>width</th>
       <td><p>The width of the input, e.g. <code>'400px'</code>, or <code>'100%'</code>;
-see <code><a href='https://rdrr.io/pkg/shiny/man/validateCssUnit.html'>validateCssUnit()</a></code>.</p></td>
+see <code><a href='https://rdrr.io/pkg/htmltools/man/validateCssUnit.html'>validateCssUnit()</a></code>.</p></td>
     </tr>
     <tr>
       <th>choiceNames</th>
@@ -220,28 +223,25 @@ type of UI object to be passed through (tag objects, icons, HTML code,
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Only run this example in interactive R sessions</span>
-<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
-  <span class='fu'>shinyApp</span>(
-    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'>fluidPage</span>(
-      <span class='fu'>sortableCheckboxGroupInput</span>(<span class='st'>"foo"</span>, <span class='st'>"SortableCheckboxGroupInput"</span>,
-                                 <span class='kw'>choices</span> <span class='kw'>=</span> <span class='no'>month.abb</span>),
-      <span class='fu'>verbatimTextOutput</span>(<span class='st'>"order"</span>)
-    ),
-    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
-      <span class='no'>output</span>$<span class='no'>order</span> <span class='kw'>&lt;-</span> <span class='fu'>renderPrint</span>({<span class='no'>input</span>$<span class='no'>foo_order</span>})
-    }
-  )
-}</div></pre>
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+    ui <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
+      <span class='fu'>sortableCheckboxGroupInput</span><span class='op'>(</span><span class='st'>"foo"</span>, <span class='st'>"SortableCheckboxGroupInput"</span>,
+                                 choices <span class='op'>=</span> <span class='va'>month.abb</span><span class='op'>)</span>,
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"order"</span><span class='op'>)</span>
+    <span class='op'>)</span>,
+    server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
+      <span class='va'>output</span><span class='op'>$</span><span class='va'>order</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='op'>{</span><span class='va'>input</span><span class='op'>$</span><span class='va'>foo_order</span><span class='op'>}</span><span class='op'>)</span>
+    <span class='op'>}</span>
+  <span class='op'>)</span>
+<span class='op'>}</span>
 
+</div></pre>
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -252,7 +252,7 @@ type of UI object to be passed through (tag objects, icons, HTML code,
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -31,7 +31,7 @@ jquiDep <- function() {
     ),
     htmltools::htmlDependency(
       name    = "shinyjqui-assets",
-      version = "0.3.3",
+      version = "0.4.0",
       package = "shinyjqui",
       src     = "www",
       script  = ifelse(getOption("shinyjqui.debug"), "shinyjqui.js", "shinyjqui.min.js")
