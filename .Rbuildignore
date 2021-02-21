@@ -10,3 +10,5 @@
 ^docs$
 ^_pkgdown\.yml$
 ^CRAN-RELEASE$
+^\.github$
+^revdep$

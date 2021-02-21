@@ -50,8 +50,6 @@
 #'   matching element will be used.
 #'
 #' @export
-#'
-#' @examples
 jqui_position <- function(ui, my = "center", at = "center", of,
                           collision = "flip", within = JS("$(window)")) {
   type <- "other"

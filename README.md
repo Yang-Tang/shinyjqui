@@ -3,11 +3,15 @@
 
 # shinyjqui
 
-[![Travis-CI Build
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/Yang-Tang/shinyjqui/workflows/R-CMD-check/badge.svg)](https://github.com/Yang-Tang/shinyjqui/actions)[![Travis-CI
+Build
 Status](https://travis-ci.org/Yang-Tang/shinyjqui.svg?branch=master)](https://travis-ci.org/Yang-Tang/shinyjqui)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/Yang-Tang/shinyjqui?branch=master&svg=true)](https://ci.appveyor.com/project/Yang-Tang/shinyjqui)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/shinyjqui)](https://cran.r-project.org/package=shinyjqui)
+<!-- badges: end -->
 
 The shinyjqui package is an R wrapper for [jQuery
 UI](http://jqueryui.com/) javascript library. It allows user to easily
