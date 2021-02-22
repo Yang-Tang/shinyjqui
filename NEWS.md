@@ -7,7 +7,7 @@
 * __New feature:__ Uses [TouchPunch](https://github.com/furf/jquery-ui-touch-punch) to enable mobile use. (Thanks @rquitales, #45)
 * __Breaking change:__ The `orderInput` function is now implemented in the similar way as other shiny inputs, so its input value has been changed from `input$inputId_order` to `input$inputId`.
 * __Breaking change:__ Removed `jqui_draggabled()`, `jqui_droppabled()`, `jqui_resizabled()`, `jqui_selectabled()`, `jqui_sortabled()` and `includeJqueryUI()` as they have been deprecated for a long time.
-* __Breaking change:__ Removed deprecated `selector`, `tag` and `switch` parameters from interation and effect functions.
+* __Breaking change:__ Removed deprecated `selector`, `tag` and `switch` parameters from interaction and effect functions.
 * __Bug fix:__ Effect-specific options are no longer ignored by `jqui_effect()`. (#56)
 * __Bug fix:__ `input$id_order` of sortable now return values when the `connectToSortable` option is used.
 * __Bug fix:__ Nested interaction functions was not working with a shiny tag without an id (e.g. `jqui_resizable(jqui_draggable(div("aaa")))`). (#66)
@@ -20,7 +20,7 @@
 ## shinyjqui 0.3.3
 
 * __Bug fix:__ Fixed an incompatibility with Shiny v1.4.0: due to Shiny upgrading from jQuery 1.x to 3.x, the timing of shinjqui initialization routines has changed.
-* __Bug fix:__ `sortableRadioButtons`/`sortableCheckboxGroupInput` do not work when inlined. (@sam-harvey, #37).
+* __Bug fix:__ `sortableRadioButtons`/`sortableCheckboxGroupInput` do not work when inline. (@sam-harvey, #37).
 * __Bug fix:__ For interaction functions, the `shiny` options with the same suffix will overwrite the default settings, thus affect the return value of other interaction widgets. (#43)
 * __Bug fix:__ Interaction functions not working in `ui` mode in flexdashboard. (#53)
 * Add global option `shinyjqui.debug`, can be `TURE` or `FALSE`(default), to control whether to load the original/minified `shinyjqui.js` (#39) and to display/hide javascript debug message (e.g. `options(shinyjqui.debug = TRUE)`) (#3).

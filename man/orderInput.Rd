@@ -62,12 +62,12 @@ between \code{orderInput}(s). The item order is send back to server in the from 
 \code{orderInput}s can work in either connected mode or stand-alone mode. In
 stand-alone mode, items can only be drag and drop inside the input control.
 In connected mode, items to be dragged between \code{orderInput}s, which is
-controled by the \code{connect} prarameter. This is a one-way relationship. if
+controlled by the \code{connect} parameter. This is a one-way relationship. if
 user want the items to be connected in both directions, the \code{connect}
-prarameter must be set on both \code{orderInput}s.
+parameter must be set on both \code{orderInput}s.
 
 When in connected mode, \code{orderInput} can be set as source-only through the
-\code{as_source} prarameter. The items in a "source" \code{orderInput} can only be
+\code{as_source} parameter. The items in a "source" \code{orderInput} can only be
 copied, instead of moved, to other connected non-source \code{orderInput}(s). From
 shinyjqui v0.4.0, A "source" \code{orderInput} will become a "recycle bin" for
 items from other \code{orderInput}s as well. This means, if you want to delete an

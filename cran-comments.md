@@ -1,10 +1,7 @@
 ## Test environments
 * Ubuntu 16.04.6 LTS (on travis-ci), R oldrel, release and devel 
 * win-builder (devel and release)
-* R-hub
-    + Windows Server 2008 R2 SP1, R-devel, 32/64 bit
-    + Ubuntu Linux 16.04 LTS, R-release, GCC
-    + Fedora Linux, R-devel, clang, gfortran
+* macos-10.15 (Github Actions), R 4.0.4
 
 ## R CMD check results
 
@@ -12,4 +9,4 @@
 
 ## Reverse dependencies
 
-Currently, there are four packages depending on shinyjqui: "CaPO4Sim", "compareGroups", "Factoshiny", "shinydashboardPlus". All of them passed the R CMD check.
+Currently, there are 8 packages depending on shinyjqui: CaPO4Sim, Factoshiny, ggquickeda, html2R, Prostar, rsqliteadmin, singleCellTK and systemPipeShiny. All of them passed the R CMD check.

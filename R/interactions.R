@@ -33,7 +33,7 @@
 #' corresponding mouse interaction to the target(s).
 #' * `disable`: Attach the
 #' interaction if not and disable it at once (only set the options).
-#' * `destory`: Destroy the interaction.
+#' * `destroy`: Destroy the interaction.
 #' * `save`: Attach the interaction if not
 #' and save the current interaction state.
 #' * `load`: Attach the interaction if not and
@@ -41,7 +41,7 @@
 #'
 #' With mouse interactions attached, the corresponding interaction states, e.g.
 #' `position` of draggable, `size` of resizable, `selected` of selectable and
-#' `order` of sortable, will be send to serverside in the form of
+#' `order` of sortable, will be send to server side in the form of
 #' `input$<id>_<state>`. The default values can be overridden by setting the
 #' `shiny` option in the `options` parameter. Please see the vignette
 #' `Introduction to shinyjqui` for more details.

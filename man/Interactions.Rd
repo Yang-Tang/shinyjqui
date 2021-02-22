@@ -103,7 +103,7 @@ manipulate the interaction, which includes:
 corresponding mouse interaction to the target(s).
 \item \code{disable}: Attach the
 interaction if not and disable it at once (only set the options).
-\item \code{destory}: Destroy the interaction.
+\item \code{destroy}: Destroy the interaction.
 \item \code{save}: Attach the interaction if not
 and save the current interaction state.
 \item \code{load}: Attach the interaction if not and
@@ -112,7 +112,7 @@ restore the target(s) to the last saved interaction state.
 
 With mouse interactions attached, the corresponding interaction states, e.g.
 \code{position} of draggable, \code{size} of resizable, \code{selected} of selectable and
-\code{order} of sortable, will be send to serverside in the form of
+\code{order} of sortable, will be send to server side in the form of
 \verb{input$<id>_<state>}. The default values can be overridden by setting the
 \code{shiny} option in the \code{options} parameter. Please see the vignette
 \verb{Introduction to shinyjqui} for more details.
