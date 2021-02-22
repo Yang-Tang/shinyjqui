@@ -49,7 +49,7 @@ or \code{shiny.tag.list} object
 \href{https://api.jquery.com/category/selectors/}{jQuery_selector}
 \item A
 \link[htmlwidgets:JS]{JS()} wrapped javascript expression that returns a
-\href{http://api.jquery.com/Types/#jQuery}{jQuery object}.
+\href{https://api.jquery.com/Types/}{jQuery object}.
 }}
 
 \item{operation}{A string to determine how to manipulate the mouse
@@ -58,7 +58,7 @@ interaction. Can be one of \code{enable}, \code{disable}, \code{destroy}, \code{
 Details.}
 
 \item{options}{A list of
-\href{http://api.jqueryui.com/category/interactions/}{interaction_specific_options}.
+\href{https://api.jqueryui.com/category/interactions/}{interaction_specific_options}.
 Ignored when \code{operation} is set as \code{destroy}. This parameter also accept a
 \code{shiny} option that controls the shiny input value returned from the
 element. See Details.}
@@ -71,15 +71,15 @@ Attach mouse-based interactions to shiny html tags, shiny input/output
 widgets or static htmlwidgets and provide ways to manipulate them. The
 interactions include:
 \itemize{
-\item \href{http://api.jqueryui.com/draggable/}{draggable}:
+\item \href{https://api.jqueryui.com/draggable/}{draggable}:
 Allow elements to be moved using the mouse.
-\item \href{http://api.jqueryui.com/droppable/}{droppable}: Create targets for draggable
+\item \href{https://api.jqueryui.com/droppable/}{droppable}: Create targets for draggable
 elements.
-\item \href{http://api.jqueryui.com/resizable/}{resizable}: Change the size
+\item \href{https://api.jqueryui.com/resizable/}{resizable}: Change the size
 of an element using the mouse.
-\item \href{http://api.jqueryui.com/selectable/}{selectable}: Use the mouse to select
+\item \href{https://api.jqueryui.com/selectable/}{selectable}: Use the mouse to select
 elements, individually or in a group.
-\item \href{http://api.jqueryui.com/sortable/}{sortable}: Reorder elements in a list or
+\item \href{https://api.jqueryui.com/sortable/}{sortable}: Reorder elements in a list or
 grid using the mouse.
 }
 }

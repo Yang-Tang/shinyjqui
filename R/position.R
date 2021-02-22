@@ -7,7 +7,7 @@
 #' @param ui Which element to be positioned. Can be a string of
 #'   [jQuery_selector](https://api.jquery.com/category/selectors/) or a
 #'   [JS()][htmlwidgets::JS()] wrapped javascript expression that returns a
-#'   [jQuery object](http://api.jquery.com/Types/#jQuery). Only the first
+#'   [jQuery object](https://api.jquery.com/Types/). Only the first
 #'   matching element will be used.
 #' @param my String. Defines which position __on the element being positioned__
 #'   to align with the target element: "horizontal vertical" alignment. A single
@@ -24,7 +24,7 @@
 #' @param of Which element to position against. Can be a string of
 #'   [jQuery_selector](https://api.jquery.com/category/selectors/) or a
 #'   [JS()][htmlwidgets::JS()] wrapped javascript expression that returns a
-#'   [jQuery object](http://api.jquery.com/Types/#jQuery). Only the first
+#'   [jQuery object](https://api.jquery.com/Types/). Only the first
 #'   matching element will be used.
 #' @param collision String. When the positioned element overflows the window in
 #'   some direction, move it to an alternative position. Similar to `my` and
@@ -46,7 +46,7 @@
 #'   be a string of
 #'   [jQuery_selector](https://api.jquery.com/category/selectors/) or a
 #'   [JS()][htmlwidgets::JS()] wrapped javascript expression that returns a
-#'   [jQuery object](http://api.jquery.com/Types/#jQuery). Only the first
+#'   [jQuery object](https://api.jquery.com/Types/). Only the first
 #'   matching element will be used.
 #'
 #' @export

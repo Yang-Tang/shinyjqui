@@ -91,7 +91,7 @@
       <h1 data-toc-skip>Introduction to shinyjqui</h1>
                         <h4 class="author">Yang Tang</h4>
             
-            <h4 class="date">2021-02-20</h4>
+            <h4 class="date">2021-02-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/yang-tang/shinyjqui/blob/master/vignettes/introduction.Rmd"><code>vignettes/introduction.Rmd</code></a></small>
       <div class="hidden name"><code>introduction.Rmd</code></div>
@@ -143,8 +143,8 @@
 <table class="table">
 <colgroup>
 <col width="4%">
-<col width="52%">
-<col width="43%">
+<col width="51%">
+<col width="44%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">Mode</th>
@@ -169,7 +169,7 @@
 </tr>
 <tr class="odd">
 <td align="left">server</td>
-<td align="left">A <code><a href="https://rdrr.io/pkg/htmlwidgets/man/JS.html">htmlwidgets::JS()</a></code> wrapped javascript expression that returns a <a href="http://api.jquery.com/Types/#jQuery">jQuery object</a>
+<td align="left">A <code><a href="https://rdrr.io/pkg/htmlwidgets/man/JS.html">htmlwidgets::JS()</a></code> wrapped javascript expression that returns a <a href="https://api.jquery.com/Types/">jQuery object</a>
 </td>
 <td align="left"><code><a href="https://rdrr.io/pkg/htmlwidgets/man/JS.html">JS("$('#id').children()")</a></code></td>
 </tr>
@@ -202,7 +202,7 @@
 <div id="the-options-parameter" class="section level3">
 <h3 class="hasAnchor">
 <a href="#the-options-parameter" class="anchor"></a>The <code>options</code> parameter</h3>
-<p>The <code>options</code> parameter can be used to further specify the behavior of interaction. The full list of the available options can be found in jQuery UI’s <a href="http://api.jqueryui.com/category/interactions/">API Documentation</a> page. Here are some examples:</p>
+<p>The <code>options</code> parameter can be used to further specify the behavior of interaction. The full list of the available options can be found in jQuery UI’s <a href="https://api.jqueryui.com/category/interactions/">API Documentation</a> page. Here are some examples:</p>
 <div id="draggable" class="section level4">
 <h4 class="hasAnchor">
 <a href="#draggable" class="anchor"></a>Draggable</h4>
@@ -381,7 +381,7 @@
   shiny <span class="op">=</span> <span class="va">shiny_opt</span>, 
   <span class="co">#other draggable-specific options</span>
 <span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>The shiny option list is composed by multiple <code>suffix</code> definition units. The unit name is used as <code>suffix</code> in <code>input$&lt;id&gt;_&lt;suffix&gt;</code>. Within each unit, there are multiple <code><a href="https://rdrr.io/pkg/htmlwidgets/man/JS.html">JS()</a></code> wrapped JavaScript callback functions named with corresponding event types. The event triggers the callback and the returned value is send to server in the form of <code>input$&lt;id&gt;_&lt;suffix&gt;</code>. The valid event types for each interactions can be found in the <a href="http://api.jqueryui.com/category/interactions/">API Documentation</a> of jQuery UI. The callback functions take two parameters, <code>event</code> and <code>ui</code>. The definition of the <code>ui</code> parameter can also be found in the document too. Here is an example:</p>
+<p>The shiny option list is composed by multiple <code>suffix</code> definition units. The unit name is used as <code>suffix</code> in <code>input$&lt;id&gt;_&lt;suffix&gt;</code>. Within each unit, there are multiple <code><a href="https://rdrr.io/pkg/htmlwidgets/man/JS.html">JS()</a></code> wrapped JavaScript callback functions named with corresponding event types. The event triggers the callback and the returned value is send to server in the form of <code>input$&lt;id&gt;_&lt;suffix&gt;</code>. The valid event types for each interactions can be found in the <a href="https://api.jqueryui.com/category/interactions/">API Documentation</a> of jQuery UI. The callback functions take two parameters, <code>event</code> and <code>ui</code>. The definition of the <code>ui</code> parameter can also be found in the document too. Here is an example:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># server</span>
 <span class="fu"><a href="../reference/Interactions.html">jqui_draggable</a></span><span class="op">(</span><span class="st">'#foo'</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
@@ -403,10 +403,10 @@
 <h2 class="hasAnchor">
 <a href="#animation-effects" class="anchor"></a>Animation effects</h2>
 <p>jQuery UI library comes with 15 internal animation effects. You can get a full list of them by R function <code><a href="../reference/get_jqui_effects.html">get_jqui_effects()</a></code>:</p>
-<pre><code>##  [1] "blind"     "bounce"    "clip"      "drop"      "explode"   "fade"     
-##  [7] "fold"      "highlight" "puff"      "pulsate"   "scale"     "shake"    
-## [13] "size"      "slide"     "transfer"</code></pre>
-<p>There is a live demo for each effect <a href="http://jqueryui.com/effect/">here</a>. By use following functions, you can apply these effects to a shiny ui element as well:</p>
+<pre><code>#&gt;  [1] "blind"     "bounce"    "clip"      "drop"      "explode"   "fade"     
+#&gt;  [7] "fold"      "highlight" "puff"      "pulsate"   "scale"     "shake"    
+#&gt; [13] "size"      "slide"     "transfer"</code></pre>
+<p>There is a live demo for each effect <a href="https://jqueryui.com/effect/">here</a>. By use following functions, you can apply these effects to a shiny ui element as well:</p>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Functions</th>
@@ -438,7 +438,7 @@
 </table>
 <p>The above functions works only in server mode.</p>
 <p>The <code>effect</code> parameter accept a string that defines which animation effect to apply. Note: The <code>transfer</code> effect can only be used in <code><a href="../reference/Animation_effects.html">jqui_effect()</a></code>.</p>
-<p>The <code>options</code> parameter accept a list of effect specific options. Please find more details <a href="http://api.jqueryui.com/category/effects/">here</a>.</p>
+<p>The <code>options</code> parameter accept a list of effect specific options. Please find more details <a href="https://api.jqueryui.com/category/effects/">here</a>.</p>
 <p>The <code>complete</code> parameter accept a JavaScript callback function which will be called after the animation. Please wrap it with <code><a href="https://rdrr.io/pkg/htmlwidgets/man/JS.html">JS()</a></code>.</p>
 <p>Here are some examples:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -485,7 +485,7 @@
 </tbody>
 </table>
 <p>Similar to the animation effects functions, these functions are all server-only.</p>
-<p>The <code>easing</code> parameter defines the speed style of the animation progresses. More details can be found <a href="http://api.jqueryui.com/easings/">here</a></p>
+<p>The <code>easing</code> parameter defines the speed style of the animation progresses. More details can be found <a href="https://api.jqueryui.com/easings/">here</a></p>
 </div>
   </div>
 

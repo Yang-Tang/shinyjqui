@@ -4,15 +4,15 @@
 #' Attach mouse-based interactions to shiny html tags, shiny input/output
 #' widgets or static htmlwidgets and provide ways to manipulate them. The
 #' interactions include:
-#' * [draggable](http://api.jqueryui.com/draggable/):
+#' * [draggable](https://api.jqueryui.com/draggable/):
 #' Allow elements to be moved using the mouse.
-#' * [droppable](http://api.jqueryui.com/droppable/): Create targets for draggable
+#' * [droppable](https://api.jqueryui.com/droppable/): Create targets for draggable
 #' elements.
-#' * [resizable](http://api.jqueryui.com/resizable/): Change the size
+#' * [resizable](https://api.jqueryui.com/resizable/): Change the size
 #' of an element using the mouse.
-#' * [selectable](http://api.jqueryui.com/selectable/): Use the mouse to select
+#' * [selectable](https://api.jqueryui.com/selectable/): Use the mouse to select
 #' elements, individually or in a group.
-#' * [sortable](http://api.jqueryui.com/sortable/): Reorder elements in a list or
+#' * [sortable](https://api.jqueryui.com/sortable/): Reorder elements in a list or
 #' grid using the mouse.
 #'
 #' The first parameter `ui` determines the target ui and working mode. If the
@@ -54,13 +54,13 @@
 #'   [jQuery_selector](https://api.jquery.com/category/selectors/)
 #'   * A
 #'   [JS()][htmlwidgets::JS()] wrapped javascript expression that returns a
-#'   [jQuery object](http://api.jquery.com/Types/#jQuery).
+#'   [jQuery object](https://api.jquery.com/Types/).
 #' @param operation A string to determine how to manipulate the mouse
 #'   interaction. Can be one of `enable`, `disable`, `destroy`, `save` and
 #'   `load`. Ignored when `ui` is a `shiny.tag` or `shiny.tag.list` object. See
 #'   Details.
 #' @param options A list of
-#'   [interaction_specific_options](http://api.jqueryui.com/category/interactions/).
+#'   [interaction_specific_options](https://api.jqueryui.com/category/interactions/).
 #'    Ignored when `operation` is set as `destroy`. This parameter also accept a
 #'   `shiny` option that controls the shiny input value returned from the
 #'   element. See Details.

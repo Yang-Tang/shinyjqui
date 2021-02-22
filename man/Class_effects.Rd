@@ -37,7 +37,7 @@ jqui_switch_class(
 \itemize{
 \item A string of \href{https://api.jquery.com/category/selectors/}{jQuery_selector}
 \item A \link[htmlwidgets:JS]{JS()} wrapped javascript expression that returns a
-\href{http://api.jquery.com/Types/#jQuery}{jQuery object}.
+\href{https://api.jquery.com/Types/}{jQuery object}.
 }}
 
 \item{className}{One or more class names (space separated) to be added to or
@@ -47,7 +47,7 @@ removed from the class attribute of each matched element.}
 run.}
 
 \item{easing}{A string indicating which
-\href{http://api.jqueryui.com/easings/}{easing} function to use for the
+\href{https://api.jqueryui.com/easings/}{easing} function to use for the
 transition.}
 
 \item{complete}{A js function to call once the animation is complete, called
@@ -70,9 +70,9 @@ changes.
 }
 \details{
 These functions are the R wrappers of
-\href{http://api.jqueryui.com/addClass/}{addClass()},
-\href{http://api.jqueryui.com/removeClass/}{removeClass()} and
-\href{http://api.jqueryui.com/switchClass/}{switchClass()} from jQuery UI library.
+\href{https://api.jqueryui.com/addClass/}{addClass()},
+\href{https://api.jqueryui.com/removeClass/}{removeClass()} and
+\href{https://api.jqueryui.com/switchClass/}{switchClass()} from jQuery UI library.
 They should be used in \code{server} of a shiny app.
 }
 \examples{

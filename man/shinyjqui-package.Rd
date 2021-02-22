@@ -13,7 +13,7 @@ An extension to shiny that brings interactions and animation effects from
 Useful links:
 \itemize{
   \item \url{https://github.com/yang-tang/shinyjqui}
-  \item \url{https://yang-tang.github.io/shinyjqui}
+  \item \url{https://yang-tang.github.io/shinyjqui/}
   \item Report bugs at \url{https://github.com/yang-tang/shinyjqui/issues}
 }
 

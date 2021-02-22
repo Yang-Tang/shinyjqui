@@ -78,7 +78,7 @@ tbl <- data.frame(
   Mode = c("ui", "server", "server", "non-shiny"),
   Type = c("A `shiny.tag` or `shiny.tag.list` object",
            "A string of [jQuery_selector](https://api.jquery.com/category/selectors/)",
-           "A `htmlwidgets::JS()` wrapped javascript expression that returns a [jQuery object](http://api.jquery.com/Types/#jQuery)",
+           "A `htmlwidgets::JS()` wrapped javascript expression that returns a [jQuery object](https://api.jquery.com/Types/)",
            "A static `htmlwidget` object"),
   Example = c("`tags$p('hello world')`, `textInput('caption', 'Caption', 'Data Summary')`, `plotOutput('myplot')`",
               "`'#id1,#id2,#id3'`, `'.shiny-plot-output'`, `'div > p'`",
@@ -103,7 +103,7 @@ This parameter is valid only in server mode. It determines how to manipulate the
 
 ### The `options` parameter
 
-The `options` parameter can be used to further specify the behavior of interaction. The full list of the available options can be found in jQuery UI's  [API Documentation](http://api.jqueryui.com/category/interactions/) page. Here are some examples:
+The `options` parameter can be used to further specify the behavior of interaction. The full list of the available options can be found in jQuery UI's  [API Documentation](https://api.jqueryui.com/category/interactions/) page. Here are some examples:
 
 #### Draggable
 
@@ -272,7 +272,7 @@ jqui_draggable('#foo', options = list(
 ))
 ```
 
-The shiny option list is composed by multiple `suffix` definition units. The unit name is used as `suffix` in `input$<id>_<suffix>`. Within each unit, there are multiple `JS()` wrapped JavaScript callback functions named with corresponding event types. The event triggers the callback and the returned value is send to server in the form of `input$<id>_<suffix>`. The valid event types for each interactions can be found in the [API Documentation](http://api.jqueryui.com/category/interactions/) of jQuery UI. The callback functions take two parameters, `event` and `ui`. The definition of the `ui` parameter can also be found in the document too. Here is an example:
+The shiny option list is composed by multiple `suffix` definition units. The unit name is used as `suffix` in `input$<id>_<suffix>`. Within each unit, there are multiple `JS()` wrapped JavaScript callback functions named with corresponding event types. The event triggers the callback and the returned value is send to server in the form of `input$<id>_<suffix>`. The valid event types for each interactions can be found in the [API Documentation](https://api.jqueryui.com/category/interactions/) of jQuery UI. The callback functions take two parameters, `event` and `ui`. The definition of the `ui` parameter can also be found in the document too. Here is an example:
 
 ```{r, eval = FALSE}
 # server
@@ -301,7 +301,7 @@ jQuery UI library comes with 15 internal animation effects. You can get a full l
 get_jqui_effects()
 ```
 
-There is a live demo for each effect [here](http://jqueryui.com/effect/). By use following functions, you can apply these effects to a shiny ui element as well:
+There is a live demo for each effect [here](https://jqueryui.com/effect/). By use following functions, you can apply these effects to a shiny ui element as well:
 
 ```{r, echo=FALSE}
 func_intro <- data.frame(Functions = c('jqui_effect', 'jqui_show', 'jqui_hide', 'jqui_toggle'), 
@@ -318,7 +318,7 @@ The above functions works only in server mode.
 
 The `effect` parameter accept a string that defines which animation effect to apply. Note: The `transfer` effect can only be used in `jqui_effect()`.
 
-The `options` parameter accept a list of effect specific options. Please find more details [here](http://api.jqueryui.com/category/effects/).
+The `options` parameter accept a list of effect specific options. Please find more details [here](https://api.jqueryui.com/category/effects/).
 
 The `complete` parameter accept a JavaScript callback function which will be called after the animation. Please wrap it with `JS()`.
 
@@ -350,4 +350,4 @@ knitr::kable(func_intro, row.names = FALSE)
 
 Similar to the animation effects functions, these functions are all server-only.
 
-The `easing` parameter defines the speed style of the animation progresses. More details can be found [here](http://api.jqueryui.com/easings/)
+The `easing` parameter defines the speed style of the animation progresses. More details can be found [here](https://api.jqueryui.com/easings/)

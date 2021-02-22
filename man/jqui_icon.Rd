@@ -15,7 +15,7 @@ An icon element
 }
 \description{
 Create an jQuery UI pre-defined icon. For lists of available icons, see
-\url{http://api.jqueryui.com/theming/icons/}.
+\url{https://api.jqueryui.com/theming/icons/}.
 }
 \examples{
 jqui_icon('caret-1-n')

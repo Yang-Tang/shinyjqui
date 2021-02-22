@@ -14,7 +14,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/Yang-Tang/shinyjqui?b
 <!-- badges: end -->
 
 The shinyjqui package is an R wrapper for [jQuery
-UI](http://jqueryui.com/) javascript library. It allows user to easily
+UI](https://jqueryui.com/) javascript library. It allows user to easily
 add interactions and animation effects to a shiny app.
 
 ## Installation

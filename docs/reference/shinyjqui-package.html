@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Position an element relative to another — jqui_position • shinyjqui</title>
+<title>shinyjqui: 'jQuery UI' Interactions and Effects for Shiny — shinyjqui-package • shinyjqui</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,9 @@
 
 
 
-<meta property="og:title" content="Position an element relative to another — jqui_position" />
-<meta property="og:description" content="Wrapper of the jQuery UI .position()
-method, allows you to position an element relative to the window, document,
-another element, or the cursor/mouse, without worrying about offset parents." />
+<meta property="og:title" content="shinyjqui: 'jQuery UI' Interactions and Effects for Shiny — shinyjqui-package" />
+<meta property="og:description" content="An extension to shiny that brings interactions and animation effects from
+    'jQuery UI' library." />
 
 
 
@@ -131,90 +130,30 @@ another element, or the cursor/mouse, without worrying about offset parents." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Position an element relative to another</h1>
-    <small class="dont-index">Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/R/position.R'><code>R/position.R</code></a></small>
-    <div class="hidden name"><code>jqui_position.Rd</code></div>
+    <h1>shinyjqui: 'jQuery UI' Interactions and Effects for Shiny</h1>
+    <small class="dont-index">Source: <a href='https://github.com/yang-tang/shinyjqui/blob/master/R/shinyjqui-package.R'><code>R/shinyjqui-package.R</code></a></small>
+    <div class="hidden name"><code>shinyjqui-package.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Wrapper of the jQuery UI <a href='https://api.jqueryui.com/position/'>.position()</a>
-method, allows you to position an element relative to the window, document,
-another element, or the cursor/mouse, without worrying about offset parents.</p>
+    <p>An extension to shiny that brings interactions and animation effects from
+    'jQuery UI' library.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>jqui_position</span><span class='op'>(</span>
-  <span class='va'>ui</span>,
-  my <span class='op'>=</span> <span class='st'>"center"</span>,
-  at <span class='op'>=</span> <span class='st'>"center"</span>,
-  <span class='va'>of</span>,
-  collision <span class='op'>=</span> <span class='st'>"flip"</span>,
-  within <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmlwidgets/man/JS.html'>JS</a></span><span class='op'>(</span><span class='st'>"$(window)"</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>ui</th>
-      <td><p>Which element to be positioned. Can be a string of
-<a href='https://api.jquery.com/category/selectors/'>jQuery_selector</a> or a
-<a href='https://rdrr.io/pkg/htmlwidgets/man/JS.html'>JS()</a> wrapped javascript expression that returns a
-<a href='https://api.jquery.com/Types/'>jQuery object</a>. Only the first
-matching element will be used.</p></td>
-    </tr>
-    <tr>
-      <th>my</th>
-      <td><p>String. Defines which position <strong>on the element being positioned</strong>
-to align with the target element: "horizontal vertical" alignment. A single
-value such as "right" will be normalized to "right center", "top" will be
-normalized to "center top" (following CSS convention). Acceptable
-horizontal values: "left", "center", "right". Acceptable vertical values:
-"top", "center", "bottom". Example: "left top" or "center center". Each
-dimension can also contain offsets, in pixels or percent, e.g., "right+10
-top-25%". Percentage offsets are relative to the element being positioned.</p></td>
-    </tr>
-    <tr>
-      <th>at</th>
-      <td><p>String. Defines which position <strong>on the target element</strong> to align
-the positioned element against: "horizontal vertical" alignment. See the
-<code>my</code> option for full details on possible values. Percentage offsets are
-relative to the target element.</p></td>
-    </tr>
-    <tr>
-      <th>of</th>
-      <td><p>Which element to position against. Can be a string of
-<a href='https://api.jquery.com/category/selectors/'>jQuery_selector</a> or a
-<a href='https://rdrr.io/pkg/htmlwidgets/man/JS.html'>JS()</a> wrapped javascript expression that returns a
-<a href='https://api.jquery.com/Types/'>jQuery object</a>. Only the first
-matching element will be used.</p></td>
-    </tr>
-    <tr>
-      <th>collision</th>
-      <td><p>String. When the positioned element overflows the window in
-some direction, move it to an alternative position. Similar to <code>my</code> and
-<code>at</code>, this accepts a single value or a pair for horizontal/vertical, e.g.,
-"flip", "fit", "fit flip", "fit none".</p><ul>
-<li><p>"flip": Flips the element to the opposite side of the target and the
-collision detection is run again to see if it will fit. Whichever side
-allows more of the element to be visible will be used.</p></li>
-<li><p>"fit": Shift the element away from the edge of the window.</p></li>
-<li><p>"flipfit": First applies the flip logic, placing the element on whichever
-side allows more of the element to be visible. Then the fit logic is
-applied to ensure as much of the element is visible as possible.</p></li>
-<li><p>"none": Does not apply any collision detection.</p></li>
-</ul></td>
-    </tr>
-    <tr>
-      <th>within</th>
-      <td><p>Element to position within, affecting collision detection. Can
-be a string of
-<a href='https://api.jquery.com/category/selectors/'>jQuery_selector</a> or a
-<a href='https://rdrr.io/pkg/htmlwidgets/man/JS.html'>JS()</a> wrapped javascript expression that returns a
-<a href='https://api.jquery.com/Types/'>jQuery object</a>. Only the first
-matching element will be used.</p></td>
-    </tr>
-    </table>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Useful links:</p><ul>
+<li><p><a href='https://github.com/yang-tang/shinyjqui'>https://github.com/yang-tang/shinyjqui</a></p></li>
+<li><p><a href='https://yang-tang.github.io/shinyjqui/'>https://yang-tang.github.io/shinyjqui/</a></p></li>
+<li><p>Report bugs at <a href='https://github.com/yang-tang/shinyjqui/issues'>https://github.com/yang-tang/shinyjqui/issues</a></p></li>
+</ul>
+
+</div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p><strong>Maintainer</strong>: Yang Tang <a href='mailto:tang_yang@outlook.com'>tang_yang@outlook.com</a></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

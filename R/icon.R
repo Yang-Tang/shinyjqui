@@ -1,7 +1,7 @@
 #' Create a jQuery UI icon
 #'
 #' Create an jQuery UI pre-defined icon. For lists of available icons, see
-#' \url{http://api.jqueryui.com/theming/icons/}.
+#' \url{https://api.jqueryui.com/theming/icons/}.
 #'
 #' @param name Class name of icon. The "ui-icon-" prefix can be omitted (i.e.
 #'   use "ui-icon-flag" or "flag" to display a flag icon)

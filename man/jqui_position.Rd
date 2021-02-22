@@ -17,7 +17,7 @@ jqui_position(
 \item{ui}{Which element to be positioned. Can be a string of
 \href{https://api.jquery.com/category/selectors/}{jQuery_selector} or a
 \link[htmlwidgets:JS]{JS()} wrapped javascript expression that returns a
-\href{http://api.jquery.com/Types/#jQuery}{jQuery object}. Only the first
+\href{https://api.jquery.com/Types/}{jQuery object}. Only the first
 matching element will be used.}
 
 \item{my}{String. Defines which position \strong{on the element being positioned}
@@ -37,7 +37,7 @@ relative to the target element.}
 \item{of}{Which element to position against. Can be a string of
 \href{https://api.jquery.com/category/selectors/}{jQuery_selector} or a
 \link[htmlwidgets:JS]{JS()} wrapped javascript expression that returns a
-\href{http://api.jquery.com/Types/#jQuery}{jQuery object}. Only the first
+\href{https://api.jquery.com/Types/}{jQuery object}. Only the first
 matching element will be used.}
 
 \item{collision}{String. When the positioned element overflows the window in
@@ -59,7 +59,7 @@ applied to ensure as much of the element is visible as possible.
 be a string of
 \href{https://api.jquery.com/category/selectors/}{jQuery_selector} or a
 \link[htmlwidgets:JS]{JS()} wrapped javascript expression that returns a
-\href{http://api.jquery.com/Types/#jQuery}{jQuery object}. Only the first
+\href{https://api.jquery.com/Types/}{jQuery object}. Only the first
 matching element will be used.}
 }
 \description{

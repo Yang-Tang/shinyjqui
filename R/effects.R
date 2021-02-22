@@ -34,13 +34,13 @@ animationEffects <- function(ui, func, effect, options, duration, complete) {
 #' @param ui The target ui element(s) to be manipulated. Can be
 #'   * A string of [jQuery_selector](https://api.jquery.com/category/selectors/)
 #'   * A [JS()][htmlwidgets::JS()] wrapped javascript expression that returns a
-#'   [jQuery object](http://api.jquery.com/Types/#jQuery).
+#'   [jQuery object](https://api.jquery.com/Types/).
 #' @param effect A string indicating which
-#'   [animation effect](http://jqueryui.com/effect/) to use for the
+#'   [animation effect](https://jqueryui.com/effect/) to use for the
 #'   transition.
 #' @param options A list of effect-specific
-#'   [properties](http://api.jqueryui.com/category/effects/) and
-#'   [easing](http://api.jqueryui.com/easings/).
+#'   [properties](https://api.jqueryui.com/category/effects/) and
+#'   [easing](https://api.jqueryui.com/easings/).
 #' @param duration A string or number determining how long the animation will
 #'   run.
 #' @param complete A function to call once the animation is complete, called
@@ -113,21 +113,21 @@ get_jqui_effects <- function() {
 #' * `jqui_switch_class()`: Switch class(es).
 #'
 #' These functions are the R wrappers of
-#' [addClass()](http://api.jqueryui.com/addClass/),
-#' [removeClass()](http://api.jqueryui.com/removeClass/) and
-#' [switchClass()](http://api.jqueryui.com/switchClass/) from jQuery UI library.
+#' [addClass()](https://api.jqueryui.com/addClass/),
+#' [removeClass()](https://api.jqueryui.com/removeClass/) and
+#' [switchClass()](https://api.jqueryui.com/switchClass/) from jQuery UI library.
 #' They should be used in `server` of a shiny app.
 #'
 #' @param ui The target ui element(s) to be manipulated. Can be
 #'   * A string of [jQuery_selector](https://api.jquery.com/category/selectors/)
 #'   * A [JS()][htmlwidgets::JS()] wrapped javascript expression that returns a
-#'   [jQuery object](http://api.jquery.com/Types/#jQuery).
+#'   [jQuery object](https://api.jquery.com/Types/).
 #' @param className One or more class names (space separated) to be added to or
 #'   removed from the class attribute of each matched element.
 #' @param duration A string or number determining how long the animation will
 #'   run.
 #' @param easing A string indicating which
-#'   [easing](http://api.jqueryui.com/easings/) function to use for the
+#'   [easing](https://api.jqueryui.com/easings/) function to use for the
 #'   transition.
 #' @param complete A js function to call once the animation is complete, called
 #'   once per matched element.
