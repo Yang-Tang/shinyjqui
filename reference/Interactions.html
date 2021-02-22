@@ -152,15 +152,15 @@ grid using the mouse.
     <p>Attach mouse-based interactions to shiny html tags, shiny input/output
 widgets or static htmlwidgets and provide ways to manipulate them. The
 interactions include:</p><ul>
-<li><p><a href='http://api.jqueryui.com/draggable/'>draggable</a>:
+<li><p><a href='https://api.jqueryui.com/draggable/'>draggable</a>:
 Allow elements to be moved using the mouse.</p></li>
-<li><p><a href='http://api.jqueryui.com/droppable/'>droppable</a>: Create targets for draggable
+<li><p><a href='https://api.jqueryui.com/droppable/'>droppable</a>: Create targets for draggable
 elements.</p></li>
-<li><p><a href='http://api.jqueryui.com/resizable/'>resizable</a>: Change the size
+<li><p><a href='https://api.jqueryui.com/resizable/'>resizable</a>: Change the size
 of an element using the mouse.</p></li>
-<li><p><a href='http://api.jqueryui.com/selectable/'>selectable</a>: Use the mouse to select
+<li><p><a href='https://api.jqueryui.com/selectable/'>selectable</a>: Use the mouse to select
 elements, individually or in a group.</p></li>
-<li><p><a href='http://api.jqueryui.com/sortable/'>sortable</a>: Reorder elements in a list or
+<li><p><a href='https://api.jqueryui.com/sortable/'>sortable</a>: Reorder elements in a list or
 grid using the mouse.</p></li>
 </ul>
 
@@ -209,7 +209,7 @@ or <code>shiny.tag.list</code> object</p></li>
 <a href='https://api.jquery.com/category/selectors/'>jQuery_selector</a></p></li>
 <li><p>A
 <a href='https://rdrr.io/pkg/htmlwidgets/man/JS.html'>JS()</a> wrapped javascript expression that returns a
-<a href='http://api.jquery.com/Types/#jQuery'>jQuery object</a>.</p></li>
+<a href='https://api.jquery.com/Types/'>jQuery object</a>.</p></li>
 </ul></td>
     </tr>
     <tr>
@@ -222,7 +222,7 @@ Details.</p></td>
     <tr>
       <th>options</th>
       <td><p>A list of
-<a href='http://api.jqueryui.com/category/interactions/'>interaction_specific_options</a>.
+<a href='https://api.jqueryui.com/category/interactions/'>interaction_specific_options</a>.
 Ignored when <code>operation</code> is set as <code>destroy</code>. This parameter also accept a
 <code>shiny</code> option that controls the shiny input value returned from the
 element. See Details.</p></td>
@@ -251,7 +251,7 @@ manipulate the interaction, which includes:</p><ul>
 corresponding mouse interaction to the target(s).</p></li>
 <li><p><code>disable</code>: Attach the
 interaction if not and disable it at once (only set the options).</p></li>
-<li><p><code>destory</code>: Destroy the interaction.</p></li>
+<li><p><code>destroy</code>: Destroy the interaction.</p></li>
 <li><p><code>save</code>: Attach the interaction if not
 and save the current interaction state.</p></li>
 <li><p><code>load</code>: Attach the interaction if not and
@@ -260,7 +260,7 @@ restore the target(s) to the last saved interaction state.</p></li>
 
 <p>With mouse interactions attached, the corresponding interaction states, e.g.
 <code>position</code> of draggable, <code>size</code> of resizable, <code>selected</code> of selectable and
-<code>order</code> of sortable, will be send to serverside in the form of
+<code>order</code> of sortable, will be send to server side in the form of
 <code>input$&lt;id&gt;_&lt;state&gt;</code>. The default values can be overridden by setting the
 <code>shiny</code> option in the <code>options</code> parameter. Please see the vignette
 <code>Introduction to shinyjqui</code> for more details.</p>
