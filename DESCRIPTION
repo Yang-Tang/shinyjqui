@@ -21,6 +21,7 @@ Suggests:
     ggplot2,
     highcharter,
     knitr,
+    markdown,
     rmarkdown
 URL: https://github.com/yang-tang/shinyjqui, https://yang-tang.github.io/shinyjqui/
 BugReports: https://github.com/yang-tang/shinyjqui/issues
