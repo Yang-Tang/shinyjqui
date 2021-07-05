@@ -1,7 +1,7 @@
 Package: shinyjqui
 Type: Package
 Title: 'jQuery UI' Interactions and Effects for Shiny
-Version: 0.4.0
+Version: 0.4.1
 Authors@R: person("Yang", "Tang", email = "tang_yang@outlook.com",
   role = c("aut", "cre"))
 Maintainer: Yang Tang <tang_yang@outlook.com>

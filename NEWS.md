@@ -1,3 +1,5 @@
+# shinyjqui 0.4.1
+
 ## shinyjqui 0.4.0
 
 * __New feature:__ (Experimentally) Now the interaction functions can work on static htmlwidgets in RStudio Viewer or RMarkdown (e.g. `jqui_resizable(plotly::plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length))`). (#44)
