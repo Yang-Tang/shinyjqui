@@ -1,4 +1,7 @@
-# shinyjqui 0.4.1
+## shinyjqui 0.4.1
+
+* __Bug fix:__ `jqui_resizable()` cannot return the current size in time. (#77)
+
 
 ## shinyjqui 0.4.0
 

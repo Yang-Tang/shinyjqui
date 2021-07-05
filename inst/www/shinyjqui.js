@@ -35,6 +35,9 @@ shinyjqui = function() {
       var input_name = id + '_' + suffix;
       $.each(callbacks, function(event_type, func){
         $(el).on(event_type, function(event, ui){
+          // when the resizing is about to stop, the last resize event has an
+          // undefined ui???, should skip the operation.
+          if(event.type == "resize" && typeof(ui) == "undefined") {return;}
           var input_value = func(event, ui);
           Shiny.onInputChange(input_name, input_value);
         });
@@ -434,7 +437,14 @@ shinyjqui = function() {
           }
         },
         size : {
-          "resizecreate resize resizestop" : function(event, ui) {
+          "resize resizestop" : function(event, ui) {
+            return {
+                width : ui.size.width,
+                height : ui.size.height
+            };
+          },
+          "resizecreate" : function(event, ui) {
+            // no ui.size defined
             return {
               width : $(event.target).width(),
               height : $(event.target).height()
