@@ -52,7 +52,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](draggable.gif)
+![](man/figures/README-draggable.gif)
 
 -   **Resizable:** Change the size of an element using the mouse.
 
@@ -70,7 +70,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](resizable.gif)
+![](man/figures/README-resizable.gif)
 
 -   **Sortable:** Reorder elements in a list or grid using the mouse.
 
@@ -96,7 +96,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](sortable.gif)
+![](man/figures/README-sortable.gif)
 
 -   **Animation Effects:** Apply an animation effect to an element.
     Effects can also be used in hide or show.
@@ -129,7 +129,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](effects.gif)
+![](man/figures/README-effects.gif)
 
 -   **Classes transformation:** Add and remove class(es) to elements
     while animating all style changes.
@@ -177,7 +177,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](classes.gif)
+![](man/figures/README-classes.gif)
 
 -   **orderInput():** Display a list of items. Their order can be
     changed by drag and drop.
@@ -197,7 +197,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](orderInput.gif)
+![](man/figures/README-orderInput.gif)
 
 -   **sortableTableOutput():** Render a HTML table with sortable rows.
 
@@ -218,7 +218,7 @@ server <- function(input, output) {
 shinyApp(ui, server)
 ```
 
-![](sortableTableOutput.gif)
+![](man/figures/README-sortableTableOutput.gif)
 
 -   **selectableTableOutput():** Render a HTML table with selectable
     rows or cells.
@@ -240,4 +240,4 @@ server <- function(input, output) {
 shinyApp(ui, server)
 ```
 
-![](selectableTableOutput_cell.gif)
+![](man/figures/README-selectableTableOutput_cell.gif)
