@@ -652,7 +652,13 @@ shinyjqui = function() {
             // The attr `jqui_sortable_idx` was added by function `addIndex` for
             // bookmarking.
             //var $items = $(event.target).find('.ui-sortable-handle');
-            var $items = $(event.target).find('[jqui_sortable_idx]');
+            //var $items = $(event.target).find('[jqui_sortable_idx]');
+
+            // (Update) Using items_selector is a simpler way to find the items
+            // When items were insterted by insertUI, they don't have arrt
+            // `jqui_sortable_idx`
+            var items_selector = $(event.target).sortable( "option", "items" );
+            var $items = $(event.target).find(items_selector);
             var text = $items.map(function(i, e){
               // use empty string for `undefined` to keep the same length as ids
               return e.innerText ? e.innerText : ""
