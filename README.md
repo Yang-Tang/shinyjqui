@@ -5,14 +5,17 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/Yang-Tang/shinyjqui/workflows/R-CMD-check/badge.svg)](https://github.com/Yang-Tang/shinyjqui/actions) [![Travis-CI Build
-Status](https://travis-ci.org/Yang-Tang/shinyjqui.svg?branch=master)](https://travis-ci.org/Yang-Tang/shinyjqui) [![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/Yang-Tang/shinyjqui?branch=master&svg=true)](https://ci.appveyor.com/project/Yang-Tang/shinyjqui) [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/shinyjqui)](https://cran.r-project.org/package=shinyjqui)
+[![R-CMD-check](https://github.com/Yang-Tang/shinyjqui/workflows/R-CMD-check/badge.svg)](https://github.com/Yang-Tang/shinyjqui/actions)
+[![Travis-CI Build
+Status](https://travis-ci.org/Yang-Tang/shinyjqui.svg?branch=master)](https://travis-ci.org/Yang-Tang/shinyjqui)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/Yang-Tang/shinyjqui?branch=master&svg=true)](https://ci.appveyor.com/project/Yang-Tang/shinyjqui)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/shinyjqui)](https://cran.r-project.org/package=shinyjqui)
 <!-- badges: end -->
 
-The shinyjqui package is an R wrapper for [jQuery
-UI](https://jqueryui.com/) javascript library. It allows user to easily
-add interactions and animation effects to a shiny app.
+shinyjqui package is an R wrapper of [jQuery UI](https://jqueryui.com/)
+javascript library. It can be used to easily add interactions and
+animation effects to a shiny app.
 
 ## Installation
 
@@ -49,7 +52,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](inst/fig/README-draggable.gif)
+![](draggable.gif)
 
 -   **Resizable:** Change the size of an element using the mouse.
 
@@ -67,7 +70,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](inst/fig/README-resizable.gif)
+![](resizable.gif)
 
 -   **Sortable:** Reorder elements in a list or grid using the mouse.
 
@@ -93,7 +96,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](inst/fig/README-sortable.gif)
+![](sortable.gif)
 
 -   **Animation Effects:** Apply an animation effect to an element.
     Effects can also be used in hide or show.
@@ -126,7 +129,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](inst/fig/README-effects.gif)
+![](effects.gif)
 
 -   **Classes transformation:** Add and remove class(es) to elements
     while animating all style changes.
@@ -174,7 +177,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](inst/fig/README-classes.gif)
+![](classes.gif)
 
 -   **orderInput():** Display a list of items. Their order can be
     changed by drag and drop.
@@ -194,7 +197,7 @@ ui <- fluidPage(
 shinyApp(ui, server)
 ```
 
-![](inst/fig/README-orderInput.gif)
+![](orderInput.gif)
 
 -   **sortableTableOutput():** Render a HTML table with sortable rows.
 
@@ -215,7 +218,7 @@ server <- function(input, output) {
 shinyApp(ui, server)
 ```
 
-![](inst/fig/README-sortableTableOutput.gif)
+![](sortableTableOutput.gif)
 
 -   **selectableTableOutput():** Render a HTML table with selectable
     rows or cells.
@@ -237,4 +240,4 @@ server <- function(input, output) {
 shinyApp(ui, server)
 ```
 
-![](inst/fig/README-selectableTableOutput_cell.gif)
+![](selectableTableOutput_cell.gif)
