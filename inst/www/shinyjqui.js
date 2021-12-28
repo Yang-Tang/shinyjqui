@@ -758,18 +758,18 @@ shinyjqui = function() {
           .attr('id');
       }
 
-      // for shiny output
-      if(!id) {
-        id = $(el)
-          .closest('.shiny-bound-output')
-          .attr('id');
-      }
-
       // for shiny output that is wrapped with a resizable div
       if(!id) {
         id = $(el)
           .closest('.jqui-wrapper')
           .find('.shiny-bound-output')
+          .attr('id');
+      }
+
+      // for other shiny outputs
+      if(!id) {
+        id = $(el)
+          .closest('.shiny-bound-output')
           .attr('id');
       }
 
