@@ -16,7 +16,8 @@ Imports:
     shiny (>= 0.14.0),
     htmltools,
     htmlwidgets,
-    jsonlite
+    jsonlite,
+    rlang
 Suggests:
     ggplot2,
     highcharter,

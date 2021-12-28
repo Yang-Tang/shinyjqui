@@ -4,10 +4,19 @@ digestItems <- function(items) {
     item_values <- list()
     item_labels <- list()
   } else if(is.vector(items)) {
-    item_values <- unlist(items, recursive = FALSE, use.names = TRUE)
-    nms <- names(item_values)
-    item_labels <- `if`(is.null(nms) || any(nms == "") || any(is.na(nms)),
-                        item_values, nms)
+    # item_values <- unlist(items, recursive = FALSE, use.names = TRUE)
+    # nms <- names(item_values)
+    # item_values <- unname(item_values)
+    # item_labels <- `if`(is.null(nms) || any(nms == "") || any(is.na(nms)),
+                        # item_values, nms)
+
+    items <- unlist(items, recursive = FALSE, use.names = TRUE)
+    # jsonlite doesn't support named vector any more
+    item_values <- unname(items)
+    # use names2() to handle NA or Null
+    item_labels <- rlang::names2(items)
+    item_labels[item_labels == ""] <- item_values[item_labels == ""]
+
   } else if (is.factor(items)) {
     item_values <- as.numeric(items)
     item_labels <- as.character(items)
