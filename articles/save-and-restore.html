@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyjqui</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -70,7 +66,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/yang-tang/shinyjqui/">
+  <a href="https://github.com/yang-tang/shinyjqui/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -89,11 +85,11 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Save and restore</h1>
-                        <h4 class="author">Yang Tang</h4>
+                        <h4 data-toc-skip class="author">Yang Tang</h4>
             
-            <h4 class="date">2021-07-05</h4>
+            <h4 data-toc-skip class="date">2021-12-28</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/yang-tang/shinyjqui/blob/master/vignettes/save-and-restore.Rmd"><code>vignettes/save-and-restore.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/yang-tang/shinyjqui/blob/HEAD/vignettes/save-and-restore.Rmd" class="external-link"><code>vignettes/save-and-restore.Rmd</code></a></small>
       <div class="hidden name"><code>save-and-restore.Rmd</code></div>
 
     </div>
@@ -101,9 +97,9 @@
     
     
 <p>This vignette introduce the save and restore feature of the mouse-interaction functions.</p>
-<div id="what-can-be-save-and-restored" class="section level2">
-<h2 class="hasAnchor">
-<a href="#what-can-be-save-and-restored" class="anchor"></a>What can be save and restored?</h2>
+<div class="section level2">
+<h2 id="what-can-be-save-and-restored">What can be save and restored?<a class="anchor" aria-label="anchor" href="#what-can-be-save-and-restored"></a>
+</h2>
 <p>The current state of a mouse-interaction enabled shiny ui element can be captured and loaded. See this table:</p>
 <table class="table">
 <thead><tr class="header">
@@ -130,111 +126,111 @@
 </tbody>
 </table>
 </div>
-<div id="save-and-restore-within-a-shiny-session-client-side" class="section level2">
-<h2 class="hasAnchor">
-<a href="#save-and-restore-within-a-shiny-session-client-side" class="anchor"></a>Save and restore within a shiny session (client-side)</h2>
+<div class="section level2">
+<h2 id="save-and-restore-within-a-shiny-session-client-side">Save and restore within a shiny session (client-side)<a class="anchor" aria-label="anchor" href="#save-and-restore-within-a-shiny-session-client-side"></a>
+</h2>
 <p>This is the case when users want to temporarily save the current interaction state (e.g., position of element) and restore it later in the same shiny session (without closing the app or reloading the page). The <code>save</code> and <code>load</code> operations from the corresponding interaction functions can serve the purpose:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span><span class="op">(</span><span class="st">"save"</span>, <span class="st">"Save position"</span><span class="op">)</span>,
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span><span class="op">(</span><span class="st">"restore"</span>, <span class="st">"Restore position"</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"save"</span>, <span class="st">"Save position"</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"restore"</span>, <span class="st">"Restore position"</span><span class="op">)</span>,
   <span class="co"># create a draggable textInput</span>
-  <span class="fu"><a href="../reference/Interactions.html">jqui_draggable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textInput.html">textInput</a></span><span class="op">(</span><span class="st">"foo"</span>, <span class="st">"Textinput"</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="../reference/Interactions.html">jqui_draggable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textInput.html" class="external-link">textInput</a></span><span class="op">(</span><span class="st">"foo"</span>, <span class="st">"Textinput"</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span>
 
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
   <span class="co"># on save button clicked, save the current position of the textInput</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">save</span>, <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">save</span>, <span class="op">{</span>
     <span class="fu"><a href="../reference/Interactions.html">jqui_draggable</a></span><span class="op">(</span><span class="st">"#foo"</span>, operation <span class="op">=</span> <span class="st">"save"</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
   <span class="co"># on restore button clicked, move the textInput back to the last saved position</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">restore</span>, <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">restore</span>, <span class="op">{</span>
     <span class="fu"><a href="../reference/Interactions.html">jqui_draggable</a></span><span class="op">(</span><span class="st">"#foo"</span>, operation <span class="op">=</span> <span class="st">"load"</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p>This method also applies to interaction shortcuts like <code><a href="../reference/orderInput.html">orderInput()</a></code>, <code><a href="../reference/selectableTableOutput.html">selectableTableOutput()</a></code> and <code><a href="../reference/sortableTabsetPanel.html">sortableTabsetPanel()</a></code>. For example,</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span><span class="op">(</span><span class="st">"save"</span>, <span class="st">"Save order"</span><span class="op">)</span>,
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span><span class="op">(</span><span class="st">"restore"</span>, <span class="st">"Restore order"</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"save"</span>, <span class="st">"Save order"</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"restore"</span>, <span class="st">"Restore order"</span><span class="op">)</span>,
   <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">"foo1"</span>, label <span class="op">=</span> <span class="cn">NULL</span>, items <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, connect <span class="op">=</span> <span class="st">"foo2"</span><span class="op">)</span>,
   <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">"foo2"</span>, label <span class="op">=</span> <span class="cn">NULL</span>, items <span class="op">=</span> <span class="cn">NULL</span>, placeholder <span class="op">=</span> <span class="st">"empty"</span><span class="op">)</span>
 <span class="op">)</span>
 
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">save</span>, <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">save</span>, <span class="op">{</span>
     <span class="fu"><a href="../reference/Interactions.html">jqui_sortable</a></span><span class="op">(</span><span class="st">"#foo1,#foo2"</span>, operation <span class="op">=</span> <span class="st">"save"</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">restore</span>, <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">restore</span>, <span class="op">{</span>
     <span class="fu"><a href="../reference/Interactions.html">jqui_sortable</a></span><span class="op">(</span><span class="st">"#foo1,#foo2"</span>, operation <span class="op">=</span> <span class="st">"load"</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p>The <code>load</code> operation also supports user-defined-state if a <code>state</code> exists in <code>options</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span><span class="op">(</span><span class="st">"s"</span>, <span class="st">"Small"</span><span class="op">)</span>,
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span><span class="op">(</span><span class="st">"m"</span>, <span class="st">"Medium"</span><span class="op">)</span>,
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"Large"</span><span class="op">)</span>,
-  <span class="fu"><a href="../reference/Interactions.html">jqui_resizable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span><span class="op">(</span><span class="st">'gg'</span>, width <span class="op">=</span> <span class="st">'200px'</span>, height <span class="op">=</span> <span class="st">'200px'</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"s"</span>, <span class="st">"Small"</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"m"</span>, <span class="st">"Medium"</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"Large"</span><span class="op">)</span>,
+  <span class="fu"><a href="../reference/Interactions.html">jqui_resizable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">'gg'</span>, width <span class="op">=</span> <span class="st">'200px'</span>, height <span class="op">=</span> <span class="st">'200px'</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span>
 
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">output</span><span class="op">$</span><span class="va">gg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">cyl</span>, y <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">gg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">cyl</span>, y <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">s</span>, 
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">s</span>, 
                <span class="fu"><a href="../reference/Interactions.html">jqui_resizable</a></span><span class="op">(</span>
                  ui        <span class="op">=</span> <span class="st">"#gg"</span>, 
                  operation <span class="op">=</span> <span class="st">"load"</span>, 
-                 options   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>width  <span class="op">=</span> <span class="fl">100</span>, height <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span>
+                 options   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>width  <span class="op">=</span> <span class="fl">100</span>, height <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span>
                <span class="op">)</span>
   <span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">m</span>, 
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">m</span>, 
                <span class="fu"><a href="../reference/Interactions.html">jqui_resizable</a></span><span class="op">(</span>
                  ui        <span class="op">=</span> <span class="st">"#gg"</span>, 
                  operation <span class="op">=</span> <span class="st">"load"</span>, 
-                 options   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>width  <span class="op">=</span> <span class="fl">200</span>, height <span class="op">=</span> <span class="fl">200</span><span class="op">)</span><span class="op">)</span>
+                 options   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>width  <span class="op">=</span> <span class="fl">200</span>, height <span class="op">=</span> <span class="fl">200</span><span class="op">)</span><span class="op">)</span>
                <span class="op">)</span>
   <span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">l</span>, 
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">l</span>, 
                <span class="fu"><a href="../reference/Interactions.html">jqui_resizable</a></span><span class="op">(</span>
                  ui        <span class="op">=</span> <span class="st">"#gg"</span>, 
                  operation <span class="op">=</span> <span class="st">"load"</span>, 
-                 options   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>width  <span class="op">=</span> <span class="fl">400</span>, height <span class="op">=</span> <span class="fl">400</span><span class="op">)</span><span class="op">)</span>
+                 options   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>width  <span class="op">=</span> <span class="fl">400</span>, height <span class="op">=</span> <span class="fl">400</span><span class="op">)</span><span class="op">)</span>
                <span class="op">)</span>
   <span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="save-and-restore-cross-shiny-sessions-shiny-bookmarking" class="section level2">
-<h2 class="hasAnchor">
-<a href="#save-and-restore-cross-shiny-sessions-shiny-bookmarking" class="anchor"></a>Save and restore cross shiny sessions (shiny bookmarking)</h2>
-<p>In addition to the client-side mode, cross-session save/restore is also supported, which takes advantage of <a href="https://shiny.rstudio.com/articles/bookmarking-state.html">shiny bookmarking</a>. In this case, users can save the interaction state alone with other shiny input values either by URL-encoding or by save-to-server, and restore them in another shiny session. The only thing needs to do is to include a <code><a href="../reference/jqui_bookmarking.html">jqui_bookmarking()</a></code> call in server function. All the other operations are the same as the native shiny bookmarking:</p>
+<div class="section level2">
+<h2 id="save-and-restore-cross-shiny-sessions-shiny-bookmarking">Save and restore cross shiny sessions (shiny bookmarking)<a class="anchor" aria-label="anchor" href="#save-and-restore-cross-shiny-sessions-shiny-bookmarking"></a>
+</h2>
+<p>In addition to the client-side mode, cross-session save/restore is also supported, which takes advantage of <a href="https://shiny.rstudio.com/articles/bookmarking-state.html" class="external-link">shiny bookmarking</a>. In this case, users can save the interaction state alone with other shiny input values either by URL-encoding or by save-to-server, and restore them in another shiny session. The only thing needs to do is to include a <code><a href="../reference/jqui_bookmarking.html">jqui_bookmarking()</a></code> call in server function. All the other operations are the same as the native shiny bookmarking:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">ui</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">request</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/bookmarkButton.html">bookmarkButton</a></span><span class="op">(</span><span class="op">)</span>,
-    <span class="fu"><a href="../reference/Interactions.html">jqui_resizable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span><span class="op">(</span><span class="st">'gg'</span>, width <span class="op">=</span> <span class="st">'200px'</span>, height <span class="op">=</span> <span class="st">'200px'</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/bookmarkButton.html" class="external-link">bookmarkButton</a></span><span class="op">(</span><span class="op">)</span>,
+    <span class="fu"><a href="../reference/Interactions.html">jqui_resizable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">'gg'</span>, width <span class="op">=</span> <span class="st">'200px'</span>, height <span class="op">=</span> <span class="st">'200px'</span><span class="op">)</span><span class="op">)</span>
   <span class="op">)</span>
 <span class="op">}</span>
 
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">output</span><span class="op">$</span><span class="va">gg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">cyl</span>, y <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">gg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">cyl</span>, y <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
   <span class="co"># enable interaction state bookmarking</span>
   <span class="fu"><a href="../reference/jqui_bookmarking.html">jqui_bookmarking</a></span><span class="op">(</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/enableBookmarking.html">enableBookmarking</a></span><span class="op">(</span>store <span class="op">=</span> <span class="st">"url"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/enableBookmarking.html" class="external-link">enableBookmarking</a></span><span class="op">(</span>store <span class="op">=</span> <span class="st">"url"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 </div>
   </div>
 
@@ -249,11 +245,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Yang Tang.</p>
+  <p></p>
+<p>Developed by Yang Tang.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -261,6 +259,8 @@
 
   
 
+
+  
 
   </body>
 </html>

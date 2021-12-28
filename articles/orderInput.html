@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyjqui</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -70,7 +66,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/yang-tang/shinyjqui/">
+  <a href="https://github.com/yang-tang/shinyjqui/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -89,11 +85,11 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>The orderInput</h1>
-                        <h4 class="author">Yang Tang</h4>
+                        <h4 data-toc-skip class="author">Yang Tang</h4>
             
-            <h4 class="date">2021-07-05</h4>
+            <h4 data-toc-skip class="date">2021-12-28</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/yang-tang/shinyjqui/blob/master/vignettes/orderInput.Rmd"><code>vignettes/orderInput.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/yang-tang/shinyjqui/blob/HEAD/vignettes/orderInput.Rmd" class="external-link"><code>vignettes/orderInput.Rmd</code></a></small>
       <div class="hidden name"><code>orderInput.Rmd</code></div>
 
     </div>
@@ -103,22 +99,22 @@
 <p>The <code>orderInput</code> display a list of strings and return their order as a vector in shiny input value. Users can drag and drop the strings to change their display order, and the binding shiny input value will update accordingly. Here is a simple example:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">output</span><span class="op">$</span><span class="va">order</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderPrint</a></span><span class="op">(</span><span class="op">{</span><span class="va">input</span><span class="op">$</span><span class="va">foo</span><span class="op">}</span><span class="op">)</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">order</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="op">{</span><span class="va">input</span><span class="op">$</span><span class="va">foo</span><span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
-  <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">'foo'</span>, label <span class="op">=</span> <span class="st">'A simple example'</span>, items <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span><span class="op">)</span><span class="op">)</span>,
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html">verbatimTextOutput</a></span><span class="op">(</span><span class="st">'order'</span><span class="op">)</span>
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">'foo'</span>, label <span class="op">=</span> <span class="st">'A simple example'</span>, items <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span><span class="op">)</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">'order'</span><span class="op">)</span>
 <span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p><img src="fig/orderInput1.gif"></p>
 <p>As showed in the above example, use <code>input$inputId</code> to get current order, where the “inputId” is the <code>inputId</code> parameter passed to the <code>orderInput</code> function.</p>
 <p>The <code>items</code> parameter can either be a list, an atomic vector or a factor. Based on the type of data provided, the displayed strings and their corresponding order (returned in the shiny input value) are different.</p>
 <ul>
-<li>For fully named list and vector (e.g. <code><a href="https://rdrr.io/r/base/c.html">c(A = "a", B = "b")</a></code>), orderInput display names (<code>A</code> and <code>B</code>) but return values (<code>a</code> and <code>b</code>) as order.</li>
-<li>For unnamed or partial named list and vector (e.g. <code><a href="https://rdrr.io/r/base/c.html">c("a", B = "b")</a></code>), values (<code>a</code> and <code>b</code>) are used both for display and order.</li>
-<li>For factor (e.g. <code><a href="https://rdrr.io/r/base/factor.html">factor("a", "b")</a></code>), values (<code>a</code> and <code>b</code>) are displayed while it’s levels (<code>1</code> and <code>2</code>) are used for order.</li>
+<li>For fully named list and vector (e.g. <code>c(A = "a", B = "b")</code>), orderInput display names (<code>A</code> and <code>B</code>) but return values (<code>a</code> and <code>b</code>) as order.</li>
+<li>For unnamed or partial named list and vector (e.g. <code>c("a", B = "b")</code>), values (<code>a</code> and <code>b</code>) are used both for display and order.</li>
+<li>For factor (e.g. <code>factor("a", "b")</code>), values (<code>a</code> and <code>b</code>) are displayed while it’s levels (<code>1</code> and <code>2</code>) are used for order.</li>
 </ul>
 <p>Multiple <code>orderInput</code>s can be connected to each other by passing their <code>inputId</code>s to the <code>connect</code> parameter. When connected, items from one <code>orderInput</code> can be dragged to another. See the following example:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -138,19 +134,19 @@
 <span id="cb4-2"><a href="#cb4-2"></a><span class="kw">orderInput</span>(<span class="st">'A'</span>, <span class="st">'A'</span>, <span class="dt">items =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">as_source =</span> <span class="ot">TRUE</span>),</span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="kw">orderInput</span>(<span class="st">'B'</span>, <span class="st">'B'</span>, <span class="dt">items =</span> <span class="dv">4</span><span class="op">:</span><span class="dv">6</span>)</span></code></pre></div>
 <p><img src="fig/orderInput6.gif"></p>
-<p><code>orderInput</code> support <code>jqui_sortable</code>’s <code>save</code> and <code>load</code> operations and <a href="https://shiny.rstudio.com/articles/bookmarking-state.html">shiny bookmarking</a>. See Vignette <code>Save and restore</code> for more information. Here is an example:</p>
+<p><code>orderInput</code> support <code>jqui_sortable</code>’s <code>save</code> and <code>load</code> operations and <a href="https://shiny.rstudio.com/articles/bookmarking-state.html" class="external-link">shiny bookmarking</a>. See Vignette <code>Save and restore</code> for more information. Here is an example:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
-  <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'A'</span>, items <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, as_source <span class="op">=</span> <span class="cn">TRUE</span>, connect <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'A'</span>, items <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, as_source <span class="op">=</span> <span class="cn">TRUE</span>, connect <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span><span class="op">)</span>,
   <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">'B'</span>, <span class="st">'B'</span>, items <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">6</span>, connect <span class="op">=</span> <span class="st">"C"</span><span class="op">)</span>,
   <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">'C'</span>, <span class="st">'C'</span>, items <span class="op">=</span> <span class="fl">7</span><span class="op">:</span><span class="fl">9</span>, connect <span class="op">=</span> <span class="st">"B"</span><span class="op">)</span>,
-  <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">hr</a></span><span class="op">(</span><span class="op">)</span>,
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span><span class="op">(</span><span class="st">"save"</span>, <span class="st">"Save"</span><span class="op">)</span>,
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span><span class="op">(</span><span class="st">"load"</span>, <span class="st">"Load"</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">hr</a></span><span class="op">(</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"save"</span>, <span class="st">"Save"</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"load"</span>, <span class="st">"Load"</span><span class="op">)</span>
 <span class="op">)</span>
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">save</span>, <span class="fu"><a href="../reference/Interactions.html">jqui_sortable</a></span><span class="op">(</span><span class="st">"#B,#C"</span>, <span class="st">"save"</span><span class="op">)</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">load</span>, <span class="fu"><a href="../reference/Interactions.html">jqui_sortable</a></span><span class="op">(</span><span class="st">"#B,#C"</span>, <span class="st">"load"</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">save</span>, <span class="fu"><a href="../reference/Interactions.html">jqui_sortable</a></span><span class="op">(</span><span class="st">"#B,#C"</span>, <span class="st">"save"</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">load</span>, <span class="fu"><a href="../reference/Interactions.html">jqui_sortable</a></span><span class="op">(</span><span class="st">"#B,#C"</span>, <span class="st">"load"</span><span class="op">)</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p><img src="fig/orderInput7.gif"></p>
 <p><code>placeholder</code> shows when there is no item in <code>orderInput</code>:</p>
@@ -178,11 +174,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Yang Tang.</p>
+  <p></p>
+<p>Developed by Yang Tang.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -190,6 +188,8 @@
 
   
 
+
+  
 
   </body>
 </html>
