@@ -2,7 +2,8 @@
 
 * __Bug fix:__ `jqui_resizable()` cannot return the current size in time. (#77)
 * __Bug fix:__ `orderInput()` not work with named vector/list duo to the update of `jsonlite`. (#81)
-* __Bug fix:__ The interaction related input values were not assigned to the correct id in the nested shiny outputs. (#77)
+* __Bug fix:__ The interaction related shiny input values were not assigned to the correct id in the nested shiny outputs. (#77)
+* __Bug fix:__ The interaction related shiny input values react with non-shinyjqui-binding elements. (#83)
 
 
 # shinyjqui 0.4.0

@@ -35,6 +35,9 @@ shinyjqui = function() {
       var input_name = id + '_' + suffix;
       $.each(callbacks, function(event_type, func){
         $(el).on(event_type, function(event, ui){
+          // only react on element with "shinyjqui" class but not others that
+          // could trigger jquery ui events as well
+          if(!$(event.target).hasClass("shinyjqui")) {return;}
           // when the resizing is about to stop, the last resize event has an
           // undefined ui???, should skip the operation.
           if(event.type == "resize" && typeof(ui) == "undefined") {return;}
@@ -112,6 +115,9 @@ shinyjqui = function() {
       e = getInputContainer(e);
       e = addWrapper(e);
       e = getWrapper(e);
+      // add a shinyjqui class to the target element to distinguish it from
+      // other non-shinyjqui elements that could also trigger jquery ui events
+      e.classList.add("shinyjqui");
       return e;
     });
 
@@ -701,6 +707,7 @@ shinyjqui = function() {
       removeJquiData(el);
       removeWrapper(el);
       removeIndex(el);
+      $el.removeClass("shinyjqui")
     },
 
     save : function(el, interaction, opt) {
