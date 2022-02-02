@@ -31,9 +31,6 @@ tab will be selected.}
 conjunction with \code{\link[shiny:tabPanel]{tabPanelBody()}} and \code{\link[shiny:updateTabsetPanel]{updateTabsetPanel()}} to control the
 active tab via other input controls. (See example below)}
 }}
-
-\item{position}{This argument is deprecated; it has been discontinued in
-Bootstrap 3.}
 }
 \value{
 A tabset that can be passed to \link[shiny:sidebarLayout]{shiny::mainPanel}

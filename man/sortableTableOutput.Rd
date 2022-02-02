@@ -33,7 +33,7 @@ if (interactive()) {
 
 }
 \seealso{
-\link[shiny:tableOutput]{shiny::tableOutput}, \link{sortableRadioButtons},
+\link[shiny:renderTable]{shiny::tableOutput}, \link{sortableRadioButtons},
 \link{sortableCheckboxGroupInput}, \link{sortableTabsetPanel},
 \link{selectableTableOutput}
 }

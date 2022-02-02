@@ -23,9 +23,10 @@ Suggests:
     highcharter,
     knitr,
     markdown,
-    rmarkdown
+    rmarkdown,
+    plotly
 URL: https://github.com/yang-tang/shinyjqui, https://yang-tang.github.io/shinyjqui/
 BugReports: https://github.com/yang-tang/shinyjqui/issues
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr

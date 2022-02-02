@@ -62,9 +62,9 @@ between \code{orderInput}(s). The item order is send back to server in the from 
 \code{orderInput}s can work in either connected mode or stand-alone mode. In
 stand-alone mode, items can only be drag and drop inside the input control.
 In connected mode, items to be dragged between \code{orderInput}s, which is
-controlled by the \code{connect} parameter. This is a one-way relationship. if
-user want the items to be connected in both directions, the \code{connect}
-parameter must be set on both \code{orderInput}s.
+controlled by the \code{connect} parameter. This is a one-way relationship. To
+connect items in both directions, the \code{connect} parameter must be set in both
+\code{orderInput}s.
 
 When in connected mode, \code{orderInput} can be set as source-only through the
 \code{as_source} parameter. The items in a "source" \code{orderInput} can only be

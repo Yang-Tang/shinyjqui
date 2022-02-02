@@ -91,10 +91,10 @@ or a static \code{htmlwidget}, the functions return the a modified ui object wit
 interaction effects attached. When a
 \href{https://api.jquery.com/category/selectors/}{jQuery_selector} or a javascript
 expression is provided as the \code{ui} parameter, the functions first use it to
-locate the target ui element(s) in shiny app, and then attach or manipulate
-the interactions. Therefore, you can use the first way  in \code{ui} of a shiny
-app to created elements with interaction effects (the ui mode), or use the
-second way  in \code{server} to manipulate the interactions (the server mode).
+locate the target ui element(s) in the shiny app, and then attach or manipulate
+the interactions. Therefore, you can use the first way  in the \code{ui} of a shiny
+app to create elements with interaction effects (the ui mode), or use the
+second way  in the \code{server} to manipulate the interactions (the server mode).
 
 The \code{operation} parameter is valid only in server mode. It determines how to
 manipulate the interaction, which includes:
@@ -112,7 +112,7 @@ restore the target(s) to the last saved interaction state.
 
 With mouse interactions attached, the corresponding interaction states, e.g.
 \code{position} of draggable, \code{size} of resizable, \code{selected} of selectable and
-\code{order} of sortable, will be send to server side in the form of
+\code{order} of sortable, will be sent to server side in the form of
 \verb{input$<id>_<state>}. The default values can be overridden by setting the
 \code{shiny} option in the \code{options} parameter. Please see the vignette
 \verb{Introduction to shinyjqui} for more details.

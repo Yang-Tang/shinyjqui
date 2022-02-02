@@ -6,8 +6,7 @@
 \alias{shinyjqui-package}
 \title{shinyjqui: 'jQuery UI' Interactions and Effects for Shiny}
 \description{
-An extension to shiny that brings interactions and animation effects from
-    'jQuery UI' library.
+An extension to shiny that brings interactions and animation effects from 'jQuery UI' library.
 }
 \seealso{
 Useful links:

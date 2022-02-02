@@ -116,7 +116,7 @@ jqui_draggable(ui = JS("$('#foo').children()"))
 
 From `shinyjqui` v0.4.0, the interaction functions can work on static htmlwidgets. For example, you can pass a `plotly` htmlwidget object:
 
-```{r, eval = TRUE}
+```{r, eval = FALSE}
 # render a resizable plotly htmlwidget in RStudio Viewer or RMarkdown
 jqui_resizable(ui = plot_ly(z = ~volcano, type = "surface"))
 ```

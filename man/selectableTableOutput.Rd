@@ -45,5 +45,5 @@ if (interactive()) {
 
 }
 \seealso{
-\link[shiny:tableOutput]{shiny::tableOutput}, \link{sortableTableOutput}
+\link[shiny:renderTable]{shiny::tableOutput}, \link{sortableTableOutput}
 }
