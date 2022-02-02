@@ -1,11 +1,11 @@
 pandoc: 2.7.3
-pkgdown: 2.0.1
+pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
   introduction: introduction.html
   orderInput: orderInput.html
   save-and-restore: save-and-restore.html
-last_built: 2021-12-29T03:42Z
+last_built: 2022-02-02T14:51Z
 urls:
   reference: https://yang-tang.github.io/shinyjqui/reference
   article: https://yang-tang.github.io/shinyjqui/articles
