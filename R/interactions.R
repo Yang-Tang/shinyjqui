@@ -22,10 +22,10 @@
 #' interaction effects attached. When a
 #' [jQuery_selector](https://api.jquery.com/category/selectors/) or a javascript
 #' expression is provided as the `ui` parameter, the functions first use it to
-#' locate the target ui element(s) in shiny app, and then attach or manipulate
-#' the interactions. Therefore, you can use the first way  in `ui` of a shiny
-#' app to created elements with interaction effects (the ui mode), or use the
-#' second way  in `server` to manipulate the interactions (the server mode).
+#' locate the target ui element(s) in the shiny app, and then attach or manipulate
+#' the interactions. Therefore, you can use the first way  in the `ui` of a shiny
+#' app to create elements with interaction effects (the ui mode), or use the
+#' second way  in the `server` to manipulate the interactions (the server mode).
 #'
 #' The `operation` parameter is valid only in server mode. It determines how to
 #' manipulate the interaction, which includes:
@@ -41,7 +41,7 @@
 #'
 #' With mouse interactions attached, the corresponding interaction states, e.g.
 #' `position` of draggable, `size` of resizable, `selected` of selectable and
-#' `order` of sortable, will be send to server side in the form of
+#' `order` of sortable, will be sent to server side in the form of
 #' `input$<id>_<state>`. The default values can be overridden by setting the
 #' `shiny` option in the `options` parameter. Please see the vignette
 #' `Introduction to shinyjqui` for more details.

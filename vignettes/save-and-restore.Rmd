@@ -16,11 +16,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-This vignette introduce the save and restore feature of the mouse-interaction functions.
+This vignette introduces the save and restore feature of the mouse-interaction functions.
 
 ## What can be save and restored?
 
-The current state of a mouse-interaction enabled shiny ui element can be captured and loaded. See this table:
+It is based on the type of interactions. See the following table:
 
 ```{r, echo=FALSE, results='asis'}
 tbl <- data.frame(
@@ -36,9 +36,9 @@ knitr::kable(tbl)
 ```
 
 
-## Save and restore within a shiny session (client-side)
+## How to save and restore inside a shiny session (client-side)?
 
-This is the case when users want to temporarily save the current interaction state (e.g., position of element) and restore it later in the same shiny session (without closing the app or reloading the page). The `save` and `load` operations from the corresponding interaction functions can serve the purpose:
+This is the case when users want to temporarily save the current interaction state (e.g., position of element) and restore it later in the same shiny session (without closing the app or reloading the page). The interaction functions offer the `save` and `load` operations to serve the purpose:
 
 ```{r, eval=FALSE}
 ui <- fluidPage(
@@ -62,7 +62,7 @@ server <- function(input, output) {
 shinyApp(ui, server)
 ```
 
-This method also applies to interaction shortcuts like `orderInput()`, `selectableTableOutput()` and `sortableTabsetPanel()`. For example,
+The operations also work in `orderInput()`, `selectableTableOutput()` and `sortableTabsetPanel()`. For example,
 
 ```{r, eval=FALSE}
 ui <- fluidPage(
@@ -84,7 +84,7 @@ server <- function(input, output) {
 shinyApp(ui, server)
 ```
 
-The `load` operation also supports user-defined-state if a `state` exists in `options`.
+The `load` operation can also work independently to load an user-defined-state if a `state` option exists.
 ```{r, eval=FALSE}
 ui <- fluidPage(
   actionButton("s", "Small"),
@@ -124,9 +124,9 @@ shinyApp(ui, server)
 ```
 
 
-## Save and restore cross shiny sessions (shiny bookmarking)
+## How to save and restore between shiny sessions (shiny bookmarking)?
 
-In addition to the client-side mode, cross-session save/restore is also supported, which takes advantage of [shiny bookmarking](https://shiny.rstudio.com/articles/bookmarking-state.html). In this case, users can save the interaction state alone with other shiny input values either by URL-encoding or by save-to-server, and restore them in another shiny session. The only thing needs to do is to include a `jqui_bookmarking()` call in server function. All the other operations are the same as the native shiny bookmarking:
+In addition to the client-side mode, cross-session save/restore is also supported, which takes advantage of [shiny bookmarking](https://shiny.rstudio.com/articles/bookmarking-state.html). In this case, users can save the interaction state alone with other shiny input values either by URL-encoding or by save-to-server, and restore them in another shiny session. The only thing needed to do is to include a `jqui_bookmarking()` call in server function. All the other operations are the same as the native shiny bookmarking:
 
 ```{r, eval=FALSE}
 

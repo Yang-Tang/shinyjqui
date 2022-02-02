@@ -1,5 +1,7 @@
 url: https://yang-tang.github.io/shinyjqui/
 
+template:
+  bootstrap: 5
 reference:
   - title: "Mouse interactions"
     desc: >

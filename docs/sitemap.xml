@@ -1,66 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//index.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/404.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//reference/Animation_effects.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//reference/Class_effects.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/articles/introduction.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//reference/draggableModalDialog.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/articles/introduction_files/jqueryui-1.12.1/index.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//reference/get_jqui_effects.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/articles/orderInput.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//reference/Interactions.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/articles/save-and-restore.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//reference/jqui_bookmarking.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/authors.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//reference/jqui_icon.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/index.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//reference/jqui_position.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//reference/orderInput.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/news/index.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//reference/reexports.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/reference/Animation_effects.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//reference/selectableTableOutput.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/reference/Class_effects.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//reference/shinyjqui-package.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/reference/draggableModalDialog.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//reference/sortableCheckboxGroupInput.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/reference/get_jqui_effects.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//reference/sortableRadioButtons.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//reference/sortableTableOutput.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/reference/Interactions.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//reference/sortableTabsetPanel.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/reference/jqui_bookmarking.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//reference/updateOrderInput.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/reference/jqui_icon.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//articles/introduction.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/reference/jqui_position.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//articles/orderInput.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/reference/orderInput.html</loc>
   </url>
   <url>
-    <loc>https://yang-tang.github.io/shinyjqui//articles/save-and-restore.html</loc>
+    <loc>https://yang-tang.github.io/shinyjqui/reference/reexports.html</loc>
+  </url>
+  <url>
+    <loc>https://yang-tang.github.io/shinyjqui/reference/selectableTableOutput.html</loc>
+  </url>
+  <url>
+    <loc>https://yang-tang.github.io/shinyjqui/reference/shinyjqui-package.html</loc>
+  </url>
+  <url>
+    <loc>https://yang-tang.github.io/shinyjqui/reference/sortableCheckboxGroupInput.html</loc>
+  </url>
+  <url>
+    <loc>https://yang-tang.github.io/shinyjqui/reference/sortableRadioButtons.html</loc>
+  </url>
+  <url>
+    <loc>https://yang-tang.github.io/shinyjqui/reference/sortableTableOutput.html</loc>
+  </url>
+  <url>
+    <loc>https://yang-tang.github.io/shinyjqui/reference/sortableTabsetPanel.html</loc>
+  </url>
+  <url>
+    <loc>https://yang-tang.github.io/shinyjqui/reference/updateOrderInput.html</loc>
   </url>
 </urlset>

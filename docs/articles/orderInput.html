@@ -4,121 +4,105 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="shinyjqui">
 <title>The orderInput • shinyjqui</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="The orderInput">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="The orderInput">
 <meta property="og:description" content="shinyjqui">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">shinyjqui</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
-      </span>
-    </div>
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
+    
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">shinyjqui</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/introduction.html">Introduction to shinyjqui</a>
-    </li>
-    <li>
-      <a href="../articles/orderInput.html">The orderInput</a>
-    </li>
-    <li>
-      <a href="../articles/save-and-restore.html">Save and restore</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/yang-tang/shinyjqui/">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
-</div>
-<!--/.nav-collapse -->
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/introduction.html">Introduction to shinyjqui</a>
+    <a class="dropdown-item" href="../articles/orderInput.html">The orderInput</a>
+    <a class="dropdown-item" href="../articles/save-and-restore.html">Save and restore</a>
   </div>
-<!--/.container -->
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/yang-tang/shinyjqui/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
 
-      
+    
+  </div>
+</nav><div class="container template-article">
 
-      </header><script src="orderInput_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>The orderInput</h1>
-                        <h4 class="author">Yang Tang</h4>
+
+
+
+<div class="row">
+  <main id="main"><div class="page-header">
+      <img src="" class="logo" alt=""><h1>The orderInput</h1>
+                        <h4 data-toc-skip class="author">Yang Tang</h4>
             
-            <h4 class="date">2021-02-22</h4>
+            <h4 data-toc-skip class="date">2022-02-02</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/yang-tang/shinyjqui/blob/master/vignettes/orderInput.Rmd"><code>vignettes/orderInput.Rmd</code></a></small>
-      <div class="hidden name"><code>orderInput.Rmd</code></div>
-
+      <small class="dont-index">Source: <a href="https://github.com/yang-tang/shinyjqui/blob/HEAD/vignettes/orderInput.Rmd" class="external-link"><code>vignettes/orderInput.Rmd</code></a></small>
+      <div class="d-none name"><code>orderInput.Rmd</code></div>
     </div>
 
     
     
-<p>The <code>orderInput</code> display a list of strings and return their order as a vector in shiny input value. Users can drag and drop the strings to change their display order, and the binding shiny input value will update accordingly. Here is a simple example:</p>
+<p>The <code>orderInput</code> display a list of items and return their order as a vector in shiny input value. You can drag and drop the items to change their display order, and the binding shiny input value will update accordingly. Here is a simple example:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">output</span><span class="op">$</span><span class="va">order</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderPrint</a></span><span class="op">(</span><span class="op">{</span><span class="va">input</span><span class="op">$</span><span class="va">foo</span><span class="op">}</span><span class="op">)</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">order</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="op">{</span><span class="va">input</span><span class="op">$</span><span class="va">foo</span><span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
-  <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">'foo'</span>, label <span class="op">=</span> <span class="st">'A simple example'</span>, items <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span><span class="op">)</span><span class="op">)</span>,
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html">verbatimTextOutput</a></span><span class="op">(</span><span class="st">'order'</span><span class="op">)</span>
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">'foo'</span>, label <span class="op">=</span> <span class="st">'A simple example'</span>, items <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span><span class="op">)</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">'order'</span><span class="op">)</span>
 <span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p><img src="fig/orderInput1.gif"></p>
-<p>As showed in the above example, use <code>input$inputId</code> to get current order, where the “inputId” is the <code>inputId</code> parameter passed to the <code>orderInput</code> function.</p>
-<p>The <code>items</code> parameter can either be a list, an atomic vector or a factor. Based on the type of data provided, the displayed strings and their corresponding order (returned in the shiny input value) are different.</p>
+<p>The shiny input value <code>input$inputId</code> records the current item order, where the “inputId” is the <code>inputId</code> parameter passed to the function.</p>
+<p>The <code>items</code> parameter can either be a list, an atomic vector or a factor.</p>
 <ul>
-<li>For fully named list and vector (e.g. <code><a href="https://rdrr.io/r/base/c.html">c(A = "a", B = "b")</a></code>), orderInput display names (<code>A</code> and <code>B</code>) but return values (<code>a</code> and <code>b</code>) as order.</li>
-<li>For unnamed or partial named list and vector (e.g. <code><a href="https://rdrr.io/r/base/c.html">c("a", B = "b")</a></code>), values (<code>a</code> and <code>b</code>) are used both for display and order.</li>
-<li>For factor (e.g. <code><a href="https://rdrr.io/r/base/factor.html">factor("a", "b")</a></code>), values (<code>a</code> and <code>b</code>) are displayed while it’s levels (<code>1</code> and <code>2</code>) are used for order.</li>
+<li>For fully named list and vector (e.g. <code>c(A = "a", B = "b")</code>), orderInput displays their names (<code>A</code> and <code>B</code>) in items and returns their values (<code>a</code> and <code>b</code>) as order.</li>
+<li>For unnamed or partial named list and vector (e.g. <code>c("a", B = "b")</code>), the values (<code>a</code> and <code>b</code>) are used for both display and order.</li>
+<li>For factor (e.g. <code>factor("a", "b")</code>), the values (<code>a</code> and <code>b</code>) are displayed while their levels (<code>1</code> and <code>2</code>) are used as itme order.</li>
 </ul>
 <p>Multiple <code>orderInput</code>s can be connected to each other by passing their <code>inputId</code>s to the <code>connect</code> parameter. When connected, items from one <code>orderInput</code> can be dragged to another. See the following example:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -127,38 +111,38 @@
 <span class="co"># items in B can be dragged to A</span>
 <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">'B'</span>, <span class="st">'B'</span>, items <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">6</span>, connect <span class="op">=</span> <span class="st">'A'</span><span class="op">)</span></code></pre></div>
 <p><img src="fig/orderInput2.gif"></p>
-<p>A connected <code>orderInput</code> can run in source mode by setting <code>as_source = TRUE</code>. If an item is dragged from a source-mode-<code>orderInput</code> to other <code>orderInput</code>s, the item will not be removed from the original <code>orderInput</code>, that is, the operation become “copy” instead of “cut”. See the following demonstration:</p>
+<p>A connected <code>orderInput</code> can work in the source mode by setting <code>as_source = TRUE</code>. If an item is dragged from a source-mode-<code>orderInput</code> to other <code>orderInput</code>s, the item will not be removed from the original <code>orderInput</code>, that is, the operation become “copy” instead of “cut”. See the following example:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># In source mode, items dragged to B are copied</span>
 <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'A'</span>, items <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, connect <span class="op">=</span> <span class="st">'B'</span>, as_source <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">'B'</span>, <span class="st">'B'</span>, items <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></code></pre></div>
 <p><img src="fig/orderInput3.gif"></p>
 <p>Items from non-source <code>orderInput</code> can be deleted by dragging them to a source <code>orderInput</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Anything dropped into a "source" orderInput will be deleted</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">orderInput</span>(<span class="st">'A'</span>, <span class="st">'A'</span>, <span class="dt">items =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">as_source =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="kw">orderInput</span>(<span class="st">'B'</span>, <span class="st">'B'</span>, <span class="dt">items =</span> <span class="dv">4</span><span class="op">:</span><span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Anything dropped into a "source" orderInput will be deleted</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">orderInput</span>(<span class="st">'A'</span>, <span class="st">'A'</span>, <span class="at">items =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">as_source =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">orderInput</span>(<span class="st">'B'</span>, <span class="st">'B'</span>, <span class="at">items =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>)</span></code></pre></div>
 <p><img src="fig/orderInput6.gif"></p>
-<p><code>orderInput</code> support <code>jqui_sortable</code>’s <code>save</code> and <code>load</code> operations and <a href="https://shiny.rstudio.com/articles/bookmarking-state.html">shiny bookmarking</a>. See Vignette <code>Save and restore</code> for more information. Here is an example:</p>
+<p><code>orderInput</code> supports the <code>save</code> and <code>load</code> operations and <a href="https://shiny.rstudio.com/articles/bookmarking-state.html" class="external-link">shiny bookmarking</a>. See Vignette <code>Save and restore</code> for more information. Here is an example:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
-  <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'A'</span>, items <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, as_source <span class="op">=</span> <span class="cn">TRUE</span>, connect <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'A'</span>, items <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, as_source <span class="op">=</span> <span class="cn">TRUE</span>, connect <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span><span class="op">)</span>,
   <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">'B'</span>, <span class="st">'B'</span>, items <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">6</span>, connect <span class="op">=</span> <span class="st">"C"</span><span class="op">)</span>,
   <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">'C'</span>, <span class="st">'C'</span>, items <span class="op">=</span> <span class="fl">7</span><span class="op">:</span><span class="fl">9</span>, connect <span class="op">=</span> <span class="st">"B"</span><span class="op">)</span>,
-  <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">hr</a></span><span class="op">(</span><span class="op">)</span>,
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span><span class="op">(</span><span class="st">"save"</span>, <span class="st">"Save"</span><span class="op">)</span>,
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span><span class="op">(</span><span class="st">"load"</span>, <span class="st">"Load"</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">hr</a></span><span class="op">(</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"save"</span>, <span class="st">"Save"</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"load"</span>, <span class="st">"Load"</span><span class="op">)</span>
 <span class="op">)</span>
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">save</span>, <span class="fu"><a href="../reference/Interactions.html">jqui_sortable</a></span><span class="op">(</span><span class="st">"#B,#C"</span>, <span class="st">"save"</span><span class="op">)</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">load</span>, <span class="fu"><a href="../reference/Interactions.html">jqui_sortable</a></span><span class="op">(</span><span class="st">"#B,#C"</span>, <span class="st">"load"</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">save</span>, <span class="fu"><a href="../reference/Interactions.html">jqui_sortable</a></span><span class="op">(</span><span class="st">"#B,#C"</span>, <span class="st">"save"</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">load</span>, <span class="fu"><a href="../reference/Interactions.html">jqui_sortable</a></span><span class="op">(</span><span class="st">"#B,#C"</span>, <span class="st">"load"</span><span class="op">)</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p><img src="fig/orderInput7.gif"></p>
-<p><code>placeholder</code> shows when there is no item in <code>orderInput</code>:</p>
+<p><code>placeholder</code> shows when there is no item in an <code>orderInput</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'A'</span>, items <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, connect <span class="op">=</span> <span class="st">'B'</span><span class="op">)</span>
 <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">'B'</span>, <span class="st">'B'</span>, items <span class="op">=</span> <span class="cn">NULL</span>, placeholder <span class="op">=</span> <span class="st">'Drag item here...'</span><span class="op">)</span></code></pre></div>
 <p><img src="fig/orderInput4.gif"></p>
-<p><code>orderInput</code> uses the six predefined Bootstrap button classes to style the displayed items. Choose one of them and set in the <code>item_class</code> parameter:</p>
+<p><code>orderInput</code> uses the six predefined Bootstrap button classes to style the displayed items. Set it in the <code>item_class</code> parameter:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">'default'</span>, <span class="st">'default'</span>, items <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, item_class <span class="op">=</span> <span class="st">'default'</span><span class="op">)</span>
 <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">'primary'</span>, <span class="st">'primary'</span>, items <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, item_class <span class="op">=</span> <span class="st">'primary'</span><span class="op">)</span>
@@ -167,29 +151,27 @@
 <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">'warning'</span>, <span class="st">'warning'</span>, items <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, item_class <span class="op">=</span> <span class="st">'warning'</span><span class="op">)</span>
 <span class="fu"><a href="../reference/orderInput.html">orderInput</a></span><span class="op">(</span><span class="st">'danger'</span>, <span class="st">'danger'</span>, items <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, item_class <span class="op">=</span> <span class="st">'danger'</span><span class="op">)</span></code></pre></div>
 <p><img src="fig/orderInput5.png"></p>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-      </div>
-
+  </main>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p>Developed by Yang Tang.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p></p>
+<p>Developed by Yang Tang.</p>
 </div>
 
-<div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+<div class="pkgdown-footer-right">
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
 
+  
 
   </body>
 </html>

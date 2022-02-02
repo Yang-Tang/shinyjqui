@@ -241,3 +241,6 @@ shinyApp(ui, server)
 ```
 
 ![](man/figures/README-selectableTableOutput_cell.gif)
+
+For more information, please visit the [package
+website](https://yang-tang.github.io/shinyjqui/).

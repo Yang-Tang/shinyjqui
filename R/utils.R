@@ -173,7 +173,7 @@ addInteractJSShiny <- function(tag, func, options = NULL) {
       #   shiny::HTML(js),
       # ),
       htmltools::tags$iframe(
-        srcdoc = "<p>Hello world!</p>",
+        srcdoc = "<p>cant catch me</p>",
         class  = "jqui_self_cleaning_script",
         style  = "width:0;height:0;border:none;display:none !important",
         onload = shiny::HTML(js)
