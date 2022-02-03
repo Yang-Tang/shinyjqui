@@ -72,8 +72,9 @@ sortable by drag and drop. In addition to the activated tab title stored in
   <span class="va">...</span>,
   id <span class="op">=</span> <span class="cn">NULL</span>,
   selected <span class="op">=</span> <span class="cn">NULL</span>,
-  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tabs"</span>, <span class="st">"pills"</span><span class="op">)</span>,
-  position <span class="op">=</span> <span class="cn">NULL</span>
+  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tabs"</span>, <span class="st">"pills"</span>, <span class="st">"hidden"</span><span class="op">)</span>,
+  header <span class="op">=</span> <span class="cn">NULL</span>,
+  footer <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -104,6 +105,12 @@ active tab via other input controls. (See example below)</p></dd>
 
 
 </dl></dd>
+<dt>header</dt>
+<dd><p>Tag or list of tags to display as a common header above all
+tabPanels.</p></dd>
+<dt>footer</dt>
+<dd><p>Tag or list of tags to display as a common footer below all
+tabPanels</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
