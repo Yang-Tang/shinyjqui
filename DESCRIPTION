@@ -13,7 +13,7 @@ LazyData: true
 Depends:
     R (>= 3.2.0)
 Imports:
-    shiny (>= 0.14.0),
+    shiny (>= 1.5.0),
     htmltools,
     htmlwidgets,
     jsonlite,
