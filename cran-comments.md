@@ -1,7 +1,7 @@
 ## Test environments
-* Ubuntu 16.04.6 LTS (on travis-ci), R oldrel, release and devel 
-* win-builder (devel and release)
-* macos-10.15 (Github Actions), R 4.0.4
+* Ubuntu 20.04.3 LTS (Github Actions), R oldrel, release and devel 
+* Windows Server 2019 10.0.17763 (Github Actions), R release (4.1.2) 
+* macOS 11.6.2 (Github Actions), R release (4.1.2)
 
 ## R CMD check results
 
@@ -9,4 +9,4 @@
 
 ## Reverse dependencies
 
-Currently, there are 8 packages depending on shinyjqui: CaPO4Sim, Factoshiny, ggquickeda, html2R, Prostar, rsqliteadmin, singleCellTK and systemPipeShiny. All of them passed the R CMD check.
+Currently, there are 11 packages depending on shinyjqui: bulkAnalyseR, CaPO4Sim, Factoshiny, FielDHub, ggquickeda, html2R, musicatk, Prostar, rsqliteadmin, SPARTAAS and systemPipeShiny. All of them passed the R CMD check.
