@@ -2,6 +2,7 @@ url: https://yang-tang.github.io/shinyjqui/
 
 template:
   bootstrap: 5
+  bootswatch: simplex
 reference:
   - title: "Mouse interactions"
     desc: >

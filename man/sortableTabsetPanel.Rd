@@ -8,8 +8,9 @@ sortableTabsetPanel(
   ...,
   id = NULL,
   selected = NULL,
-  type = c("tabs", "pills"),
-  position = NULL
+  type = c("tabs", "pills", "hidden"),
+  header = NULL,
+  footer = NULL
 )
 }
 \arguments{
@@ -31,6 +32,12 @@ tab will be selected.}
 conjunction with \code{\link[shiny:tabPanel]{tabPanelBody()}} and \code{\link[shiny:updateTabsetPanel]{updateTabsetPanel()}} to control the
 active tab via other input controls. (See example below)}
 }}
+
+\item{header}{Tag or list of tags to display as a common header above all
+tabPanels.}
+
+\item{footer}{Tag or list of tags to display as a common footer below all
+tabPanels}
 }
 \value{
 A tabset that can be passed to \link[shiny:sidebarLayout]{shiny::mainPanel}
