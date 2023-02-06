@@ -129,8 +129,9 @@ addInteractJSShiny <- function(tag, func, options = NULL) {
     js <- sprintf("setTimeout(function(){%s}, 10);", js)
 
     if (!is.null(tag$attribs$class) &&
-      grepl("html-widget-output|shiny-.+?-output", tag$attribs$class)) {
-      # For shiny/htmlwidgets output elements, in addition to wait for a while,
+      grepl("html-widget-output|shiny-.+?-output$|shiny-spinner-output-container", tag$attribs$class)) {
+      # For shiny/htmlwidgets/shiny-spinner(from the shinycssloaders package)
+      # output elements, in addition to wait for a while,
       # we have to call js on "shiny:value" event. This ensures js get the
       # correct element dimension especially when the output element is hidden on
       # shiny initialization. The initialization only needs to be run once, so
@@ -139,10 +140,10 @@ addInteractJSShiny <- function(tag, func, options = NULL) {
       js <- sprintf(
         '$(document).one(
             events   = "shiny:value",
-            selector = "[id=\'%s\']",
+            selector = "%s",
             handler  = function(e) { %s }
         );',
-        id, js
+        selector, js
       )
     }
 

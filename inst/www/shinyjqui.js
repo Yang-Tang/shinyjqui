@@ -189,12 +189,45 @@ shinyjqui = function() {
   var addWrapper = function(el) {
 
     if($(el).parent().hasClass("jqui-wrapper")) { return el; }
+
     // the static htmlwidget is auto-wrapped, return its parent with no more action
     if($(el).parent().attr("id") == "htmlwidget_container") { return $(el).parent().get(0); }
 
     var pattern = /action-button|html-widget-output|shiny-.+?-output|html-widget-static-bound/;
+
+
+    // handle shiny-spinner element
+
+    // if the element is the shiny output that is wrapped by a spinner container
+    if($(el).parent().hasClass("shiny-spinner-output-container")) {
+
+      if(pattern.test($(el).attr('class'))) {
+        $(el)
+        .outerWidth('100%')
+        .outerHeight('100%')
+        .css({top:"0px", left:"0px"});
+        return $(el).parent().get(0);
+      } else {
+        return el;
+      }
+
+    }
+
+    // if the element is a spinner container with shiny output inside
+    if($(el).hasClass("shiny-spinner-output-container")) {
+
+      $(el).children("div[class^=shiny-][class$=-output]")
+      .outerWidth('100%')
+      .outerHeight('100%')
+      .css({top:"0px", left:"0px"});
+      return el;
+
+    }
+
+    // if the element is not a shiny/htmlwidget ouput, leave it as is
     if(!pattern.test($(el).attr('class'))) { return el; }
 
+    // if the element is a shiny/htmlwidget ouput, we should add a wrapper
     var $wrapper = $('<div></div>')
       .outerWidth($(el).outerWidth() ? $(el).outerWidth() : '100%')
       .outerHeight($(el).outerHeight() ? $(el).outerHeight() : '100%')

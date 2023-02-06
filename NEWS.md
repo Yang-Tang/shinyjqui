@@ -1,3 +1,9 @@
+# shinyjqui (development version)
+
+# shinyjqui 0.4.1.9000
+
+* __Bug fix:__ Add supports to the `shinycssloaders` package. Now you can combine the interaction functions with `shinycssloaders::withSpinner()`. Both `jqui_resizable(withSpinner(plotOutput('gg')))` and `withSpinner(jqui_resizable(plotOutput('gg')))` should work. (#88)
+
 # shinyjqui 0.4.1
 
 * __Bug fix:__ `jqui_resizable()` cannot return the current size in time. (#77)
