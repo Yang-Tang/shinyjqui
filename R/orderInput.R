@@ -116,9 +116,10 @@ orderInputSource <- function(x) {
 #' @param connect Optional. Allow items to be dragged between `orderInput`s.
 #'   Should be a vector of `inputId`(s) of other `orderInput`(s) that the items
 #'   from this `orderInput` should be connected to.
-#' @param item_class One of the [Bootstrap color utility
+#' @param item_class A vector of the [Bootstrap color utility
 #'   classes](https://getbootstrap.com/docs/4.0/utilities/colors/) to apply to
-#'   each item.
+#'   each item. Can be any of `c("default", "primary", "success", "info",
+#'   "warning", "danger")`.
 #' @param placeholder A character string to show when there is no item left in
 #'   the `orderInput`.
 #' @param width The width of the input, e.g. '400px', or '100\%'. Passed to
@@ -134,8 +135,7 @@ orderInputSource <- function(x) {
 #' @example examples/orderInput.R
 orderInput <- function(inputId, label, items,
                        as_source = FALSE, connect = NULL,
-                       item_class = c("default", "primary", "success",
-                                      "info", "warning", "danger"),
+                       item_class = "default",
                        placeholder = NULL, width = "500px",
                        legacy = FALSE, ...) {
 
@@ -163,17 +163,22 @@ orderInput <- function(inputId, label, items,
   style <- sprintf("width: %s; font-size: 0px; min-height: 25px;", width)
   container <- shiny::tags$div(id = inputId, style = style, ...)
 
-  item_class <- sprintf("btn btn-%s", match.arg(item_class))
-  tagsBuilder <- function(value, label) {
+  items <- digestItems(items)
+  item_class <- match.arg(arg = item_class,
+                          choices = c("default", "primary", "success",
+                                      "info", "warning", "danger"),
+                          several.ok = TRUE)
+  item_class <- rep(item_class, length = length(items$values))
+  item_class <- sprintf("btn btn-%s", item_class)
+  tagsBuilder <- function(value, label, class) {
     shiny::tags$div(
       `data-value` = value,
-      class = item_class,
+      class = class,
       style = "margin: 1px",
       label
     )
   }
-  items <- digestItems(items)
-  item_tags <- mapply(tagsBuilder, items$values, items$labels,
+  item_tags <- mapply(tagsBuilder, items$values, items$labels, item_class,
                       SIMPLIFY = FALSE, USE.NAMES = FALSE)
 
 
@@ -213,12 +218,17 @@ orderInput <- function(inputId, label, items,
 updateOrderInput <- function (session, inputId, label = NULL,
                               items = NULL, connect = NULL,
                               item_class = NULL) {
-  item_class = match.arg(item_class,
-                         c("default", "primary", "success",
-                           "info", "warning", "danger"))
+
+  if(!is.null(item_class)) {
+    item_class <- match.arg(arg = item_class,
+                         choices = c("default", "primary", "success",
+                                     "info", "warning", "danger"),
+                         several.ok = TRUE)
+  }
+
   if(!is.null(items)) {items <- digestItems(items)}
   if(!is.null(connect)){
-    if(connect == FALSE) {
+    if(length(connect) == 1 && connect == FALSE) {
       connect <- "false"
     } else {
       connect <- paste0("#", connect, collapse = ", ")

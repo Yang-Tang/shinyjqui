@@ -2,7 +2,10 @@
 
 # shinyjqui 0.4.1.9000
 
+* __New feature:__ `orderInput()` and `updateOrderInput()` can now accept a list of item_classes which would be recycled if necessary to match the length of items. (#96)
 * __Bug fix:__ Add supports to the `shinycssloaders` package. Now you can combine the interaction functions with `shinycssloaders::withSpinner()`. Both `jqui_resizable(withSpinner(plotOutput('gg')))` and `withSpinner(jqui_resizable(plotOutput('gg')))` should work. (#88)
+* __Bug fix:__ Now the `connect` parameter of `updateOrderInput()` accepts vector with length > 1 (#89, #93)
+* __Bug fix:__ Fix unexpected item_class changing of `updateOrderInput()` when updating items.
 
 # shinyjqui 0.4.1
 

@@ -16,20 +16,33 @@ $.extend(orderInputBinding, {
     }).get();
   },
 
-  setValue: function(el, items, item_class) {
+  setValue: function(el, items) {
     // ensure typeof array even with lenght == 1
-    var labels = Array.isArray(items.labels)? items.labels : Array(items.labels);
-    var values = Array.isArray(items.values)? items.values : Array(items.values);
+    var labels = Array.isArray(items.labels)? items.labels : [items.labels];
+    var values = Array.isArray(items.values)? items.values : [items.values];
     $(el).empty();
-    item_class = "btn btn-" + item_class + " ui-sortable-handle";
     $.each(values, function(idx, val) {
       $('<div></div>')
         .text(labels[idx])
         .attr("data-value", val)
-        .addClass(item_class)
         .css("margin", "1px")
         .appendTo($(el));
     });
+  },
+
+  getItemClass: function(el) {
+    if ($(el).children().length == 0) {
+      return ["btn btn-" + "default" + " ui-sortable-handle"]
+    }
+    return $(el).children().map(function(i, e){
+        return $(e).attr("class");
+    }).get();
+  },
+
+  setItemClass: function(el, item_class) {
+    var classes = Array.isArray(item_class)? item_class : [item_class];
+    var n = classes.length;
+    $(el).children().each(function(i, e){$(e).removeAttr('class').addClass(classes[i%n])});
   },
 
   subscribe: function(el, callback) {
@@ -43,8 +56,24 @@ $.extend(orderInputBinding, {
   },
 
   receiveMessage: function(el, data) {
-    if (data.hasOwnProperty('items') & data.hasOwnProperty('item_class'))
-      this.setValue(el, data.items, data.item_class);
+
+    if (data.hasOwnProperty('item_class')) {
+      data.item_class = Array.isArray(data.item_class)? data.item_class : [data.item_class];
+      data.item_class = $.map(data.item_class, function(v, i) {
+        return("btn btn-" + v + " ui-sortable-handle");
+      });
+    }
+
+    if (data.hasOwnProperty('items')) {
+      if (!data.hasOwnProperty('item_class')) {
+        data.item_class = this.getItemClass(el);
+      }
+      this.setValue(el, data.items);
+    }
+
+    if (data.hasOwnProperty('item_class')) {
+      this.setItemClass(el, data.item_class);
+    }
 
     if (data.hasOwnProperty('label'))
       //this._updateLabel(data.label, this._getLabelNode(el));
@@ -58,7 +87,8 @@ $.extend(orderInputBinding, {
 
   getState: function(el) {
     return {
-      label: this._getLabelNode(el).text(),
+      //label: this._getLabelNode(el).text(),
+      label: $(this).labels().text(),
       value: this.getValue(el)
     };
   },
