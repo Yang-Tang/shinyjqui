@@ -64,7 +64,7 @@ server <- function(input, output) {
 }
 
 ui <- fluidPage(
-  jqui_resizable(plotOutput('gg', width = '200px', height = '200px'))
+  jqui_resizabled(plotOutput('gg', width = '200px', height = '200px'))
 )
 
 shinyApp(ui, server)
